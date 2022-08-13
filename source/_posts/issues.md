@@ -26,6 +26,12 @@ tag: record&reference
 
 ## 建站
 
-hexo+github+vercel
+hexo+github+vercel+godaddy
 
 先用着
+
+上面已经备份之后，再继续进行操作就只需在hexo_src分支下进行
+
+hexo的操作，以及git操作
+
+挺方便
