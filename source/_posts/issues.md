@@ -28,7 +28,7 @@ tag: record&reference
 
 hexo+github+vercel+godaddy+dnspod
 
-框架+GitHub pages +框架 +域名注册+域名服务器
+框架+GitHub存储 +网站托管服务 +域名注册+域名服务器DNS
 
 先用着
 
