@@ -1,5 +1,5 @@
 ---
-title: first blog
+title: A Guide to rebuid the workplace
 date: 2020-07-04 18:18
 tags: guide
 ---
