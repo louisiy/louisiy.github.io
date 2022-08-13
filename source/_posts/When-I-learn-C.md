@@ -820,7 +820,7 @@ enum colors {RED, GREEN, PUCE};		//可以用typedef为类型起个名字
 enum colors favorite = PUCE;
 ```
 
-***so? 枚举好处？？？*** 限制我能给的值？ 实例感受下：
+***so？枚举好处？？？*** 限制我能给的值？ 实例感受下：
 
 ```c
 typedef enum {
