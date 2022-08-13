@@ -1,7 +1,7 @@
 ---
 title: When I learn C
-date: 2022-07-22 11:02:00
-tags: C
+date: 2022-07-4 11:02:00
+tags: C notes
 ---
 
 # HERE IS NOTE FOR *Head First C* 😃
