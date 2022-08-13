@@ -5,7 +5,6 @@ tag: record&reference
 ---
 
 
-
 # 常见小问题
 
 ## 终端无法运行脚本
@@ -37,3 +36,44 @@ hexo+github+vercel+godaddy+dnspod
 hexo的操作，以及git操作
 
 挺方便
+
+## 添加404页面
+
+(这里为暂时收录的参考)
+
+原来的主题没有404页面，加一个也不是什么难事。首先在/source/目录下新建一个404.md，内容如下：
+
+```
+title: 404
+date: 2019-07-19 16:41:10
+type: "404"
+layout: "404"
+description: "你来到了没有知识的荒原 :("
+```
+
+然后在/themes/matery/layout/目录下新建一个404.ejs文件，内容如下：
+```ejs
+<style type="text/css">
+    /* don't remove. */
+    .about-cover {
+        height: 75vh;
+    }
+</style>
+
+<div class="bg-cover pd-header about-cover">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                <div class="brand">
+                    <div class="title center-align">
+                        404
+                    </div>
+                    <div class="description center-align">
+                        <%= page.description %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
