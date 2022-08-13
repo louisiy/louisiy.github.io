@@ -35,6 +35,12 @@ hexo+github+vercel+godaddy+dnspod
 
 hexo的操作，以及git操作
 
+批处理
+
+```bash
+hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m 'new push';git push origin hexo_src
+```
+
 挺方便
 
 ## 添加404页面
@@ -77,3 +83,4 @@ description: "你来到了没有知识的荒原 :("
     </div>
 </div>
 ```
+
