@@ -26,7 +26,9 @@ tag: record&reference
 
 ## 建站
 
-hexo+github+vercel+godaddy
+hexo+github+vercel+godaddy+dnspod
+
+框架+GitHub pages +框架 +域名注册+域名服务器
 
 先用着
 
