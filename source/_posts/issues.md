@@ -84,3 +84,16 @@ description: "你来到了没有知识的荒原 :("
 </div>
 ```
 
+## 图床
+
+采用
+
+ jsdelivr (cdn) + github 存储 + PicGo 
+
+方案
+
+// load any GitHub release, commit, or branch
+
+// note: we recommend using npm for projects that support it
+
+https://cdn.jsdelivr.net/gh/user/repo@version/filecdn+
