@@ -1,5 +1,5 @@
 ---
-title: Notes For Git
+title: Algorithm
 date: 2022-06-28 19:26:00
 tags: algorithm notes
 ---
