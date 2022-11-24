@@ -1,6 +1,6 @@
 ---
 title: 杂记录
-date : 2022-8-13
+date : 2022-11-24
 tag: record&reference
 ---
 
@@ -42,6 +42,22 @@ hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m 'new push';git pus
 ```
 
 挺方便
+
+## 恢复备份的操作
+
+首先在指定文件夹clone下来hexo_src分支
+
+```bash
+$ git clone -b hexo_src [仓库地址]
+```
+
+在该clone下来的文件夹里去安装hexo
+
+```bash
+$ cnpm install hexo
+```
+
+> 特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原仓库clone下来处理
 
 ## 添加404页面
 
