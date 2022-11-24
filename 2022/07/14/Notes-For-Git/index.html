@@ -1,0 +1,313 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>  Notes for Git |    Louisiy.</title>
+  <meta name="description" content="Blog">
+  <!-- 标签页图标 -->
+  
+
+  <!-- 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 动画库 -->
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/css/animate.css"/>
+  
+  <!-- css文件 -->
+  
+<link rel="stylesheet" href="/css/white.css">
+
+  <!-- 代码高亮 -->
+  
+    
+      
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.1/styles/github.css">
+
+    
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+
+<div class="menu-outer">
+    <div class="menu-inner">
+      <div class="menu-site-name  animate__animated  animate__fadeInUp">
+        <a href="/">
+          Louisiy.
+        </a>
+        
+      </div>
+      <div class="menu-group">
+        <ul class="menu-ul">
+        
+          <a href="/" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              HOME
+            </li>
+          </a>
+        
+          <a href="/archives" class="nav-link">
+            <li class="menu-li  animate__animated  animate__fadeInUp">
+              BLOG
+            </li>
+          </a>
+        
+        
+        
+        <a href="/search">
+          <li class="menu-li  animate__animated  animate__fadeInUp">
+            <i class="ri-search-line"></i>
+          </li>
+        </a>
+        
+          <li class="menu-li animate__animated  animate__fadeInUp" id="mobile-menu">
+            <i class="ri-menu-line"></i>
+          </li>
+        
+        </ul>
+
+      </div>
+
+    </div>
+</div>
+<div id="mobile-main" class="animate__animated  animate__fadeIn">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-site-name animate__animated  animate__fadeInUp">
+      <a href="/">
+        Louisiy.
+      </a>
+    </div>
+    <div class="mobile-menu-group" id="mobile-close">
+      <i class="ri-close-line"></i>
+    </div>
+
+  </div>
+
+  <div class="mobile-menu-div">
+  
+    <a href="/" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>HOME</span>
+      </div>
+    </a>
+  
+    <a href="/archives" class="mobile-nav-link">
+      <div class="mobile-menu-child animate__animated  animate__fadeInUp">
+        <span>BLOG</span>
+      </div>
+    </a>
+  
+  
+    <a href="/search">  
+      <div class="mobile-menu-child  animate__animated  animate__fadeInUp">
+        <i class="ri-search-line"></i>
+      </div>
+    </a>
+    
+  </div>
+
+
+</div>
+
+<div class="body-outer">
+  <div class="body-inner">
+    
+<article class="post-inner">
+  <div class="post-content-outer">
+    <div class="post-intro">
+      <div class="post-title animate__animated  animate__fadeInUp">Notes For Git</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">7月 14 2022</div>
+      
+    </div>
+    <div class="post-content-inner">
+      <div class="post-content-inner-space">
+
+      </div>
+      <div class="post-content-main animate__animated  animate__fadeInUp">
+        <!-- top型目录 -->
+        
+        <h1 id="Notes-For-Git"><a href="#Notes-For-Git" class="headerlink" title="Notes For Git"></a>Notes For Git</h1><h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><pre><code class="bash">$ git config --list --show-origin
+file:D:/Git/etc/gitconfig       diff.astextplain.textconv=astextplain
+file:D:/Git/etc/gitconfig       filter.lfs.clean=git-lfs clean -- %f
+file:D:/Git/etc/gitconfig       filter.lfs.smudge=git-lfs smudge -- %f
+file:D:/Git/etc/gitconfig       filter.lfs.process=git-lfs filter-process
+file:D:/Git/etc/gitconfig       filter.lfs.required=true
+file:D:/Git/etc/gitconfig       http.sslbackend=openssl
+file:D:/Git/etc/gitconfig       http.sslcainfo=D:/Git/mingw64/ssl/certs/ca-bundle.crt
+file:D:/Git/etc/gitconfig       core.autocrlf=true
+file:D:/Git/etc/gitconfig       core.fscache=true
+file:D:/Git/etc/gitconfig       core.symlinks=false
+file:D:/Git/etc/gitconfig       pull.rebase=false
+file:D:/Git/etc/gitconfig       credential.helper=manager
+file:C:/Users/[]/.gitconfig        user.name=[]
+file:C:/Users/[]/.gitconfig        user.email=[]@[]
+
+$ git config --global user.name &quot;a&quot;
+$ git config --global user.email &quot;@&quot;
+
+
+$ git config --global core.editor &quot;code --wait&quot;
+$ git config --global core.editor &quot;code --wait&quot;
+
+$ git config --list
+$ git config user.name
+
+$ git config --global init.defaultBranch main
+
+$ git help &lt;verb&gt;
+$ git &lt;verb&gt; --help
+$ man git-&lt;verb&gt;
+</code></pre>
+<p>There levels: <code>--local</code> &gt; <code>--global</code> &gt; <code>--system</code></p>
+<p>On Windows systems, Git looks for the <code>.gitconfig</code> file in the $HOME directory (C:\Users$USER for most people). It also still looks for <code>[path]/etc/gitconfig</code>, although it’s relative to the MSys root, which is wherever you decide to install Git on your Windows system when you run the installer. </p>
+<h2 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h2><h3 id="initializing"><a href="#initializing" class="headerlink" title="initializing"></a>initializing</h3><pre><code class="bash">$ cd D:/my_project
+$ git init
+</code></pre>
+<p>to control a repository with git and this will create a file named <code>.git</code></p>
+<p>we can initialize a repository like this:</p>
+<pre><code class="bash">$ git add *.c
+$ git add LICENSE
+$ git commit -m &#39;Initial project version&#39;
+</code></pre>
+<h3 id="cloning"><a href="#cloning" class="headerlink" title="cloning"></a>cloning</h3><p>we can clone a repository like this:</p>
+<pre><code class="bash">$ git clone https://github.com/
+</code></pre>
+<p>if want a new name </p>
+<pre><code class="bash">$ git clone &lt;url&gt; name
+</code></pre>
+<p>and there are other protocols that can be chosen(SSH)</p>
+<h3 id="recording-changes"><a href="#recording-changes" class="headerlink" title="recording changes"></a>recording changes</h3><p>two states : tracked or untracked. To CHECK this :</p>
+<pre><code class="bash">$ git status
+On branch master
+Your branch is up-to-date with &#39;origin/master&#39;.
+nothing to commit, working tree clean
+
+$ git status -s
+M README
+MM Rakefile
+A lib/git.rb
+M lib/simplegit.rb
+?? LICENSE.txt
+</code></pre>
+<p>There are two columns to the output — the left-hand column indicates the status of the staging area and the right-hand column indicates the status of the working tree. </p>
+<h3 id="Ignoring-Files"><a href="#Ignoring-Files" class="headerlink" title="Ignoring Files"></a>Ignoring Files</h3><pre><code class="bash">- .gitignore
+$ cat .gitignore
+*.[oa]
+*~
+# ignore all .a files
+*.a
+# but do track lib.a, even though you&#39;re ignoring .a files above
+!lib.a
+# only ignore the TODO file in the current directory, not subdir/TODO
+/TODO
+# ignore all files in any directory named build
+build/
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+# ignore all .pdf files in the doc/ directory and any of its subdirectories
+doc/**/*.pdf
+</code></pre>
+<h3 id="Viewing-Your-Staged-and-Unstaged-Changes"><a href="#Viewing-Your-Staged-and-Unstaged-Changes" class="headerlink" title="Viewing Your Staged and Unstaged Changes"></a>Viewing Your Staged and Unstaged Changes</h3><p><code>git diff</code> shows you the exact lines added and removed — the patch, as it were</p>
+<h3 id="Commit-Your-Changes"><a href="#Commit-Your-Changes" class="headerlink" title="Commit Your Changes"></a>Commit Your Changes</h3><p><code>git commit</code> 这样需要打开编辑器输入</p>
+<p><code>git commmit -m &quot;There is message&quot;</code></p>
+<pre><code class="bash">$ git commit -m &quot;Story 182: fix benchmarks for speed&quot;
+[master 463dc4f] Story 182: fix benchmarks for speed
+2 files changed, 2 insertions(+)
+create mode 100644 README
+</code></pre>
+<p><code>git commit -a</code> 可以跳过stage阶段</p>
+<h3 id="Removing-Files"><a href="#Removing-Files" class="headerlink" title="Removing Files"></a>Removing Files</h3><p>remove it from your tracked files, and also removes the file from your working directory so you don’t see it as an untracked file the next time around</p>
+<p><code>rm</code> 直接删除，但是不stage</p>
+<p><code>git rm</code> 删除，但是已经stage</p>
+<p>If you modified the file or had already added it to the staging area, you must force the removal with the <code>-f</code> option. </p>
+<p>to keep the file in your working tree but remove it from your staging area.</p>
+<p><code>git rm --cached README</code></p>
+<h3 id="Moving-Files"><a href="#Moving-Files" class="headerlink" title="Moving Files"></a>Moving Files</h3><p>重命名</p>
+<pre><code class="bash">$ git mv README.md README
+$ git status
+On branch master
+Your branch is up-to-date with &#39;origin/master&#39;.
+Changes to be committed:
+(use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+renamed: README.md -&gt; README
+</code></pre>
+<p>相当于</p>
+<pre><code class="bash">$ mv README.md README
+$ git rm README.md
+$ git add README
+</code></pre>
+<h3 id="Viewing-the-Commit-History"><a href="#Viewing-the-Commit-History" class="headerlink" title="Viewing the Commit History"></a>Viewing the Commit History</h3><p><code>git log</code> 查看commit history</p>
+<p><code>git log -patch</code> 显示每次的commit的不同之处</p>
+<p><code>git log -2</code> 只看最近两条</p>
+
+        <!-- 分类文章 -->
+        
+      </div>
+      <div class="post-content-inner-space">
+        
+          <div class="space-toc-main animate__animated  animate__fadeInUp">
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Settings"><span class="space-toc-text">Settings</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Basics"><span class="space-toc-text">Basics</span></a></li></ol>
+           </div>
+        
+      </div>
+   </div>
+    <!-- 评论 -->
+    
+  </div>
+</article>
+  </div>
+</div>
+
+
+
+<!-- 如果是home模式的话，不在首页就显示footer，如果不是home模式的话 所有都显示footer -->
+
+  <div class="footer-outer animate__animated  animate__fadeInUp">
+    <div class="footer-inner">
+    <div class="footer-text">
+    <p>Keep Thinking of Beloved y³</p>
+
+    </div>
+    <div class="footer-contact">
+    <ul class="footer-ul">
+        
+        <li class="footer-li">
+            <a href="https://github.com/FuShaoLei/hexo-theme-white" target="_blank">
+                <i class="ri-github-line"></i>
+            </a>
+        </li>
+        
+        <li class="footer-li">
+            <a href="mailto:1563250958@qq.com" target="_blank">
+                <i class="ri-mail-line"></i>
+            </a>
+        </li>
+        
+    </ul>
+    </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="/js/white.js"></script>
+
+
+
+    
+      
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+</body>
+</html>
