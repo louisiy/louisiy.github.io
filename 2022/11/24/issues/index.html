@@ -142,6 +142,7 @@
 </code></pre>
 <p>在该clone下来的文件夹里去安装hexo</p>
 <pre><code class="bash">$ cnpm install hexo
+$ cnpm install		//这一句不知道和上面这一句有何区别
 </code></pre>
 <blockquote>
 <p>特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原主题仓库clone下来处理</p>
@@ -194,6 +195,11 @@ description: &quot;你来到了没有知识的荒原 :(&quot;
 <p>&#x2F;&#x2F; load any GitHub release, commit, or branch</p>
 <p>&#x2F;&#x2F; note: we recommend using npm for projects that support it</p>
 <p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/user/repo@version/filecdn+">https://cdn.jsdelivr.net/gh/user/repo@version/filecdn+</a></p>
+<h2 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h2><p>1 Q&amp;E</p>
+<pre><code class="bash">platform unsupported hexo-deployer-git@3.0.0 › hexo-fs@3.1.0 › chokidar@3.5.3 › fsevents@~2.3.2 Package require os(darwin) not compatible with your platform(win32)
+[fsevents@~2.3.2] optional install error: Package require os(darwin) not compatible with your platform(win32)
+</code></pre>
+<p>A 这是一个可以忽略的错误，fsevents是可选的依赖，只能应用于maxOS系统，不适合Windows或者Linux，也就是忽略即可</p>
 
         <!-- 分类文章 -->
         
@@ -201,7 +207,7 @@ description: &quot;你来到了没有知识的荒原 :(&quot;
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="space-toc-text">终端无法运行脚本</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%A4%87%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">备份博客源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%BB%BA%E7%AB%99"><span class="space-toc-text">建站</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2"><span class="space-toc-text">添加404页面</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9B%BE%E5%BA%8A"><span class="space-toc-text">图床</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="space-toc-text">终端无法运行脚本</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%A4%87%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">备份博客源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%BB%BA%E7%AB%99"><span class="space-toc-text">建站</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2"><span class="space-toc-text">添加404页面</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9B%BE%E5%BA%8A"><span class="space-toc-text">图床</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="space-toc-text">遇到的一些问题</span></a></li></ol>
            </div>
         
       </div>
