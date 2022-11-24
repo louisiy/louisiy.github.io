@@ -135,8 +135,8 @@ footer: Keep Thinking of Beloved y³ # markdown语法
 
 #有分类时是否开启menu分类页和自定义名字
 menu_categories:
-  open: true
-  name: 分类
+  open: false
+  name: Categories
 
 #可自定义归档标签页名字
 archive_tab_name: Said

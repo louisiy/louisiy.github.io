@@ -17,11 +17,27 @@ tag: record&reference
 
 有时候我们想换一台电脑继续写博客，这时候就可以将博客目录下的所有源文件都上传到github上面。
 
+### 备份
+
 首先在github博客仓库下新建一个分支`hexo_src`，然后`git clone`到本地，把`.git`文件夹拿出来，放在博客根目录下。
 
 然后`git checkout -b hexo_src`切换到`hexo_src`分支，然后`git add .`，然后`git commit -m "xxx"`，最后`git push origin hexo_src`提交就行了。
 
+### 恢复
 
+首先在指定文件夹clone下来hexo_src分支
+
+```bash
+$ git clone -b hexo_src [仓库地址]
+```
+
+在该clone下来的文件夹里去安装hexo
+
+```bash
+$ cnpm install hexo
+```
+
+> 特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原主题仓库clone下来处理
 
 ## 建站
 
@@ -42,22 +58,6 @@ hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m 'new push';git pus
 ```
 
 挺方便
-
-## 恢复备份的操作
-
-首先在指定文件夹clone下来hexo_src分支
-
-```bash
-$ git clone -b hexo_src [仓库地址]
-```
-
-在该clone下来的文件夹里去安装hexo
-
-```bash
-$ cnpm install hexo
-```
-
-> 特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原仓库clone下来处理
 
 ## 添加404页面
 
