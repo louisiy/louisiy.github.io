@@ -135,8 +135,17 @@
         
         <h1 id="常见小问题"><a href="#常见小问题" class="headerlink" title="常见小问题"></a>常见小问题</h1><h2 id="终端无法运行脚本"><a href="#终端无法运行脚本" class="headerlink" title="终端无法运行脚本"></a>终端无法运行脚本</h2><p>参考<a target="_blank" rel="noopener" href="https://go.microsoft.com/fwlink/?LinkID=135170">Microsoft文档</a> 中about_Execution_Policies</p>
 <h2 id="备份博客源文件"><a href="#备份博客源文件" class="headerlink" title="备份博客源文件"></a>备份博客源文件</h2><p>有时候我们想换一台电脑继续写博客，这时候就可以将博客目录下的所有源文件都上传到github上面。</p>
-<p>首先在github博客仓库下新建一个分支<code>hexo_src</code>，然后<code>git clone</code>到本地，把<code>.git</code>文件夹拿出来，放在博客根目录下。</p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>首先在github博客仓库下新建一个分支<code>hexo_src</code>，然后<code>git clone</code>到本地，把<code>.git</code>文件夹拿出来，放在博客根目录下。</p>
 <p>然后<code>git checkout -b hexo_src</code>切换到<code>hexo_src</code>分支，然后<code>git add .</code>，然后<code>git commit -m &quot;xxx&quot;</code>，最后<code>git push origin hexo_src</code>提交就行了。</p>
+<h3 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h3><p>首先在指定文件夹clone下来hexo_src分支</p>
+<pre><code class="bash">$ git clone -b hexo_src [仓库地址]
+</code></pre>
+<p>在该clone下来的文件夹里去安装hexo</p>
+<pre><code class="bash">$ cnpm install hexo
+</code></pre>
+<blockquote>
+<p>特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原主题仓库clone下来处理</p>
+</blockquote>
 <h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>hexo+github+vercel+godaddy+dnspod</p>
 <p>框架+GitHub存储 +网站托管服务 +域名注册+域名服务器DNS</p>
 <p>先用着</p>
@@ -146,15 +155,6 @@
 <pre><code class="bash">hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m &#39;new push&#39;;git push origin hexo_src
 </code></pre>
 <p>挺方便</p>
-<h2 id="恢复备份的操作"><a href="#恢复备份的操作" class="headerlink" title="恢复备份的操作"></a>恢复备份的操作</h2><p>首先在指定文件夹clone下来hexo_src分支</p>
-<pre><code class="bash">$ git clone -b hexo_src [仓库地址]
-</code></pre>
-<p>在该clone下来的文件夹里去安装hexo</p>
-<pre><code class="bash">$ cnpm install hexo
-</code></pre>
-<blockquote>
-<p>特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原仓库clone下来处理</p>
-</blockquote>
 <h2 id="添加404页面"><a href="#添加404页面" class="headerlink" title="添加404页面"></a>添加404页面</h2><p>(这里为暂时收录的参考)</p>
 <p>原来的主题没有404页面，加一个也不是什么难事。首先在&#x2F;source&#x2F;目录下新建一个404.md，内容如下：</p>
 <pre><code>title: 404
@@ -201,7 +201,7 @@ description: &quot;你来到了没有知识的荒原 :(&quot;
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="space-toc-text">终端无法运行脚本</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%A4%87%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">备份博客源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%BB%BA%E7%AB%99"><span class="space-toc-text">建站</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%81%A2%E5%A4%8D%E5%A4%87%E4%BB%BD%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="space-toc-text">恢复备份的操作</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2"><span class="space-toc-text">添加404页面</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9B%BE%E5%BA%8A"><span class="space-toc-text">图床</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%BB%88%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="space-toc-text">终端无法运行脚本</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%A4%87%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">备份博客源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%BB%BA%E7%AB%99"><span class="space-toc-text">建站</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2"><span class="space-toc-text">添加404页面</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9B%BE%E5%BA%8A"><span class="space-toc-text">图床</span></a></li></ol>
            </div>
         
       </div>
