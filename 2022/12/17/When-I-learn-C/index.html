@@ -123,7 +123,7 @@
   <div class="post-content-outer">
     <div class="post-intro">
       <div class="post-title animate__animated  animate__fadeInUp">When I learn C</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">7月 04 2022</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">12月 17 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -701,13 +701,43 @@ int main() &#123;
 </code></pre>
 <p>如果你有一连串的位字段，计算机会放在一起，以节省空间，也就是说如果有8个1位的位字段，计算机就会把它们保存在一个字节中</p>
 <p>如果编译器发现结构中只有一个位字段，还是会把它填充成一个字，这就是为什么位字段总是组合在一起</p>
-<h2 id="6-数据结构与动态存储"><a href="#6-数据结构与动态存储" class="headerlink" title="6 数据结构与动态存储"></a>6 数据结构与动态存储</h2><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>保存可变数量的数据</p>
-<p>链表是一种抽象数据结构。链表是通用的，可以用来保存<br>很多不同类型的数据</p>
+<h2 id="6-数据结构与动态存储"><a href="#6-数据结构与动态存储" class="headerlink" title="6 数据结构与动态存储"></a>6 数据结构与动态存储</h2><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>保存可变数量的数据，插入数据非常快</p>
+<p>链表是一种抽象数据结构。链表是通用的，可以用来保存很多不同类型的数据</p>
 <p>链表保存了一条数据和一个链向另一条数据的链接</p>
 <p>如果一个结构包含一个链向同种结构的链接，那么这个结构就被称为递归结构</p>
 <p>只要在结构中保存指针，island数据就含有下一个我们将游览的island的地址。只要我们的代码能访问一个island，就能够跳到下一个island。</p>
 <p>在递归结构中，需要包含一个相同类型的指针， C语言的语法不允许用typedef别名来声明它，因此必须为结构起一个名字</p>
-<h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<pre><code class="c">typedef struct island &#123;
+char *name;
+char *opens;
+char *closes;
+struct island *next;
+&#125; island;
+
+island amity = &#123;&quot;Amity&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
+island craggy = &#123;&quot;Craggy&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
+island isla_nublar = &#123;&quot;Isla Nublar&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
+island shutter = &#123;&quot;Shutter&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
+
+amity.next = &amp;craggy;
+craggy.next = &amp;isla_nublar;
+isla_nublar.next = &amp;shutter;
+
+\\插入数据
+island skull = &#123;&quot;Skull&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
+isla_nublar.next = &amp;skull;
+skull.next = &amp;shutter;
+
+void display(island *start)&#123;
+    island *i = start;
+    for(; i != NULL; i = i-&gt;next)&#123;
+    printf(&quot;Name:%s\n open:%s-%s\n&quot;,i-&gt;name,i-&gt;open,i-&gt;closes);        
+    &#125;
+&#125;
+</code></pre>
+<p>在C语言中，NULL的值实际上为0，NULL专门用来把某个指针设为0。</p>
+<p>想快速地插入数据，就需要<strong>链表</strong>。想直接访问元素，就应该用<strong>数组</strong></p>
+<h3 id="栈—动态存储"><a href="#栈—动态存储" class="headerlink" title="栈—动态存储"></a>栈—动态存储</h3><h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
 </li>
