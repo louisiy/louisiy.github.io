@@ -1,6 +1,6 @@
 ---
 title: When I learn C
-date: 2022-07-4 11:02:00
+date: 2022-12-17 11:31:00
 tags: C notes
 ---
 
@@ -880,10 +880,9 @@ typedef struct {
 
 ### 链表
 
-保存可变数量的数据
+保存可变数量的数据，插入数据非常快
 
-链表是一种抽象数据结构。链表是通用的，可以用来保存
-很多不同类型的数据
+链表是一种抽象数据结构。链表是通用的，可以用来保存很多不同类型的数据
 
 链表保存了一条数据和一个链向另一条数据的链接
 
@@ -892,6 +891,44 @@ typedef struct {
 只要在结构中保存指针，island数据就含有下一个我们将游览的island的地址。只要我们的代码能访问一个island，就能够跳到下一个island。
 
 在递归结构中，需要包含一个相同类型的指针， C语言的语法不允许用typedef别名来声明它，因此必须为结构起一个名字
+
+```c
+typedef struct island {
+char *name;
+char *opens;
+char *closes;
+struct island *next;
+} island;
+
+island amity = {"Amity", "09:00", "17:00", NULL};
+island craggy = {"Craggy", "09:00", "17:00", NULL};
+island isla_nublar = {"Isla Nublar", "09:00", "17:00", NULL};
+island shutter = {"Shutter", "09:00", "17:00", NULL};
+
+amity.next = &craggy;
+craggy.next = &isla_nublar;
+isla_nublar.next = &shutter;
+
+\\插入数据
+island skull = {"Skull", "09:00", "17:00", NULL};
+isla_nublar.next = &skull;
+skull.next = &shutter;
+
+void display(island *start){
+    island *i = start;
+    for(; i != NULL; i = i->next){
+	printf("Name:%s\n open:%s-%s\n",i->name,i->open,i->closes);        
+    }
+}
+```
+
+在C语言中，NULL的值实际上为0，NULL专门用来把某个指针设为0。
+
+想快速地插入数据，就需要**链表**。想直接访问元素，就应该用**数组**
+
+### 栈—动态存储
+
+
 
 ## 11 网络与套接字
 
