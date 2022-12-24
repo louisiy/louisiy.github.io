@@ -756,7 +756,37 @@ char *copy = strdup(s);
 <p>strdup()总是在堆上创建空间，而不是在栈上，因为栈用来保存局部变量，而局部变量很快就会被清除。</p>
 <p>并且因为strdup()把新字符串放在堆上，所以千万记得要用free()函数释放空间。</p>
 <p>有了动态分配存储器，就能在运行时创建需要的存储器。使用malloc()与free()，可以访问动态堆存储器。</p>
-<h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a>valgrind</h3><h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<h3 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h3><p>一些语言会跟踪程序在堆上分配的数据，当程序不再使用这些数据时，就会释放它们。</p>
+<p>C语言非常古老，发明它的时候，绝大多数语言都没有自动 “垃圾回收”机制。</p>
+<p>操作系统会在程序结束时清除所有存储器。不过，还是应该显式释放你创建的每样东西，这是一种好的习惯。</p>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>一些举例：</p>
+<ul>
+<li>关联数组（也叫映射）<ul>
+<li>连接“键”（key）信息与“值”（value）信息。可以用来连接两种不同类型的数据。</li>
+</ul>
+</li>
+<li>双向链表<ul>
+<li>和普通链表很像，但双向连接，可以双向处理。</li>
+</ul>
+</li>
+<li>链表<ul>
+<li>可以用来保存一串数据项，并使插入新数据项变得简单，但只能沿着一个方向处理。</li>
+</ul>
+</li>
+<li>二叉树<ul>
+<li>每一项都与其他两项相连，可以用来保存层次信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a>valgrind</h3><p>valgrind通过伪造malloc()可以监控分配在堆上的数据。当程序想分配堆存储器时，valgrind将会拦截对malloc()和free()的调用，然后运行自己的malloc()和free()。valgrind<br>的malloc()会记录调用它的是哪段代码和分配了哪段存储器。程序结束时，valgrind会汇报堆上有哪些数据，并告诉这些数据是由哪段代码创建的。</p>
+<p>调试信息是编译时打包到可执行文件中的附加数据，比如某段代码在源文件中的行号。只要有调试信息，valgrind就能提供更多有助于发现存储器泄漏的信息。</p>
+<p>为了在可执行文件中加入调试信息，需要加上-g开关，并重新编译源代码。</p>
+<pre><code class="bash">$ gcc -g spies.c -o spies		// -g 开关告诉编译器要记录要编译代码的行号
+</code></pre>
+<blockquote>
+<p>书中的泄露错误没太看懂😥</p>
+</blockquote>
+<h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
 </li>
