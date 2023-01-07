@@ -1007,12 +1007,12 @@ $ gcc -g spies.c -o spies		// -g 开关告诉编译器要记录要编译代码�
 int sports_no_bieber(char *s){
 	return strstr(s, "sports") && !strstr(s, "bieber");
 }
-void find(function-name match){
+void find(int(*match)(char*)){
 	int i;
 	puts("Search results:");
 	puts("------------------------------------");
 	for (i = 0; i < NUM_ADS; i++) {
-		if ( call-the-match-function(ADS[i])) {
+		if (match(ADS[i])) {
 			printf("%s\n", ADS[i]);
 		}
 	}
@@ -1045,6 +1045,16 @@ char** results = names_fn("Sacha Distel", 1972);
 ```
 
 一旦声明了函数指针变量，就可以像其他变量一样使用它，可以对它赋值，也可以把它加到数组中，还可以把它传给函数
+
+>char**是一个指针，通常用来指向字符串数组
+
+函数指针是C语言最强大的特性之一
+
+```c
+char** 		(*	names_fn	)(	char*,int	)
+返回类型	       指针变量		    参数类型
+    		在这里声明形参的名称
+```
 
 ## 11 网络与套接字
 
