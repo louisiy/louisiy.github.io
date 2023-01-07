@@ -123,7 +123,7 @@
   <div class="post-content-outer">
     <div class="post-intro">
       <div class="post-title animate__animated  animate__fadeInUp">When I learn C</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">12月 23 2022</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">1月 07 2023</div>
       
     </div>
     <div class="post-content-inner">
@@ -786,6 +786,40 @@ char *copy = strdup(s);
 <blockquote>
 <p>书中的泄露错误没太看懂😥</p>
 </blockquote>
+<h2 id="7-高级函数"><a href="#7-高级函数" class="headerlink" title="7 高级函数"></a>7 高级函数</h2><h3 id="向函数传递函数"><a href="#向函数传递函数" class="headerlink" title="向函数传递函数"></a>向函数传递函数</h3><pre><code class="c">int sports_no_bieber(char *s)&#123;
+    return strstr(s, &quot;sports&quot;) &amp;&amp; !strstr(s, &quot;bieber&quot;);
+&#125;
+void find(function-name match)&#123;
+    int i;
+    puts(&quot;Search results:&quot;);
+    puts(&quot;------------------------------------&quot;);
+    for (i = 0; i &lt; NUM_ADS; i++) &#123;
+        if ( call-the-match-function(ADS[i])) &#123;
+            printf(&quot;%s\n&quot;, ADS[i]);
+        &#125;
+    &#125;
+    puts(&quot;------------------------------------&quot;);
+&#125;
+
+find(sports_no_bieber);
+</code></pre>
+<p>函数名是指向函数的指针，创建函数的同时也创建了一个同名函数指针，指针中保存了函数的地址，当调用函数时，你在使用函数指针。</p>
+<blockquote>
+<p>两者并不完全相同，函数名是L-value，而指针变量是R-value，因此函数名不能像指针变量那样自加或自减。</p>
+</blockquote>
+<p>函数有不同的返回类型和形参，所以它有许多不同的类型，没有<code>function*</code>的说法。</p>
+<h3 id="创建函数指针"><a href="#创建函数指针" class="headerlink" title="创建函数指针"></a>创建函数指针</h3><p>需要把函数的返回类型和接收参数类型告诉C编译器。</p>
+<pre><code class="c">int (*warp_fn)(int);
+warp_fn = go_to_warp_speed;		
+//创建一个叫warp_fn的变量，用来保存go_to_warp_speed()函数的地址。相当于调go_to_warp_speed(4)
+warp_fn(4);
+
+char** (*names_fn)(char*,int);
+names_fn = album_names;
+//创建一个叫names_fn的变量，用来保存album_names()函数的地址。
+char** results = names_fn(&quot;Sacha Distel&quot;, 1972);
+</code></pre>
+<p>一旦声明了函数指针变量，就可以像其他变量一样使用它，可以对它赋值，也可以把它加到数组中，还可以把它传给函数</p>
 <h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
@@ -845,7 +879,7 @@ return (x == 1) ? 2 : 3;	//这里上下等价
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#0-%E5%85%B3%E4%BA%8E"><span class="space-toc-text">0 关于</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-%E5%85%A5%E9%97%A8"><span class="space-toc-text">1 入门</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-%E6%8C%87%E9%92%88"><span class="space-toc-text">2 指针</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%9F%E7%90%86"><span class="space-toc-text">2.5 字符串原理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="space-toc-text">3 小工具</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">4 使用多个源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#5-%E7%BB%93%E6%9E%84%E3%80%81%E8%81%94%E5%90%88%E4%B8%8E%E4%BD%8D%E5%AD%97%E6%AE%B5"><span class="space-toc-text">5 结构、联合与位字段</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#6-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8"><span class="space-toc-text">6 数据结构与动态存储</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#11-%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="space-toc-text">11 网络与套接字</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8D%81%E5%A4%A7%E9%81%97%E6%BC%8F%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="space-toc-text">十大遗漏知识点</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#0-%E5%85%B3%E4%BA%8E"><span class="space-toc-text">0 关于</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-%E5%85%A5%E9%97%A8"><span class="space-toc-text">1 入门</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-%E6%8C%87%E9%92%88"><span class="space-toc-text">2 指针</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%9F%E7%90%86"><span class="space-toc-text">2.5 字符串原理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="space-toc-text">3 小工具</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">4 使用多个源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#5-%E7%BB%93%E6%9E%84%E3%80%81%E8%81%94%E5%90%88%E4%B8%8E%E4%BD%8D%E5%AD%97%E6%AE%B5"><span class="space-toc-text">5 结构、联合与位字段</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#6-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8"><span class="space-toc-text">6 数据结构与动态存储</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#7-%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0"><span class="space-toc-text">7 高级函数</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#11-%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="space-toc-text">11 网络与套接字</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8D%81%E5%A4%A7%E9%81%97%E6%BC%8F%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="space-toc-text">十大遗漏知识点</span></a></li></ol>
            </div>
         
       </div>
