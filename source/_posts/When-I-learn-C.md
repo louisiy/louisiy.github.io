@@ -75,7 +75,7 @@ default:
 ```c
 int counter;
 for (counter = 1; counter < 11; counter++) {	//(初始化循环变量；循环运行前检查；循环后执行)
-printf("%i个枣\n", counter);
+	printf("%i个枣\n", counter);
 }
 ```
 
