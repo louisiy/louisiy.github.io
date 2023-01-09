@@ -109,5 +109,5 @@ deploy:
 
 # Security
 encrypt: # hexo-blog-encrypt
-  message: You know what this mean.
+  message: You know what this means.
   wrong_pass_message: Sorry, you aren't her.
