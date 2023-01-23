@@ -123,7 +123,7 @@
   <div class="post-content-outer">
     <div class="post-intro">
       <div class="post-title animate__animated  animate__fadeInUp">When I learn C</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">1月 07 2023</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">1月 21 2023</div>
       
     </div>
     <div class="post-content-inner">
@@ -208,11 +208,13 @@ doses[3] == *(doses + 3) == *(3 + doses) == 3[doses]
 <li>这里的数组内的每一个值都是int类型，都占4字节</li>
 </ul>
 <h3 id="scanf-vs-fgets"><a href="#scanf-vs-fgets" class="headerlink" title="scanf() vs fgets()"></a>scanf() vs fgets()</h3><p><code>scanf()</code>会导致缓冲区溢出,引发段错误（abort trap）,应限制<code>scanf()</code>读取字符串的长度</p>
+<p><code>scanf()</code>不但允许输入多个字段，而且允许输入结构化数据，可以指定两个字段之间以什么字符分割</p>
+<p>当<code>scanf()</code>用<code>%s</code>读取字符串时，遇到空格就会停止。如果想要输入多个单词，需要多次调用<code>scanf()</code>，或使用一些复杂的正则表达式技巧</p>
 <p><code>fgets(char指针，sizeof(char指针),stdin)</code> stdin表示数据来自键盘</p>
 <p><code>fgets()</code>缓冲区大小把<code>\0</code>字符也算了进去，所以不必像<code>scanf()</code>那样把长度减1</p>
 <p>如果要向<code>fgets()</code>函数传递数组变量，就用<code>sizeof</code>，如果只是传指针，就应该输入想要的长度。</p>
-<p><code>scanf()</code>不但允许输入多个字段，而且允许输入结构化数据，可以指定两个字段之间以什<br>么字符分割，<code>fgets()</code>只允许向缓冲区中输入一个字符串，而且只能是字符串，不能是其他数据类型，只能有一个缓冲区</p>
-<p>当<code>scanf()</code>用<code>%s</code>读取字符串时，遇到空格就会停止。如果想要输入多个单词，需要多次调用<code>scanf()</code>，或使用一些复杂的正则表达式技巧，<code>fgets()</code>总能读取整个字符串</p>
+<p><code>fgets()</code>只允许向缓冲区中输入一个字符串，而且只能是字符串，不能是其他数据类型，只能有一个缓冲区</p>
+<p><code>fgets()</code>总能读取整个字符串</p>
 <p><strong>Conclusion</strong>:	如果需要输入由多个字段构成的结构化数据，可以使用<code>scanf()</code>；而如果想要输入一个非结构化的字符串，<code>fgets()</code>将是不二之选</p>
 <h3 id="cards-还是-cards"><a href="#cards-还是-cards" class="headerlink" title="cards[ ]还是*cards"></a>cards[ ]还是*cards</h3><p>字符串字面值保存在只读存储器中。如果想要修改字符串，需要在新的数组中创建副本。可以将char指针声明成为<code>const char *</code>，以防代码用它修改字符串</p>
 <h2 id="2-5-字符串原理"><a href="#2-5-字符串原理" class="headerlink" title="2.5 字符串原理"></a>2.5 字符串原理</h2><h3 id="创建数组的数组"><a href="#创建数组的数组" class="headerlink" title="创建数组的数组"></a>创建数组的数组</h3><pre><code class="c">char tracks[][80] = &#123;			//第一对方括号用来访问由所有字符串组成的数组
@@ -783,9 +785,8 @@ char *copy = strdup(s);
 <p>为了在可执行文件中加入调试信息，需要加上-g开关，并重新编译源代码。</p>
 <pre><code class="bash">$ gcc -g spies.c -o spies		// -g 开关告诉编译器要记录要编译代码的行号
 </code></pre>
-<blockquote>
-<p>书中的泄露错误没太看懂😥</p>
-</blockquote>
+<p>存储器泄漏是C程序中最难发现的错误。</p>
+<p>valgrind工具可以发现泄漏、定位泄漏、检验泄漏是否修复</p>
 <h2 id="7-高级函数"><a href="#7-高级函数" class="headerlink" title="7 高级函数"></a>7 高级函数</h2><h3 id="向函数传递函数"><a href="#向函数传递函数" class="headerlink" title="向函数传递函数"></a>向函数传递函数</h3><pre><code class="c">int sports_no_bieber(char *s)&#123;
     return strstr(s, &quot;sports&quot;) &amp;&amp; !strstr(s, &quot;bieber&quot;);
 &#125;
