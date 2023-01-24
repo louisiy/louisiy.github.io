@@ -1,6 +1,6 @@
 ---
 title: When I learn C
-date: 2023-1-21 15:35:53
+date: 2023-1-24 16:10:20
 tags: C notes
 ---
 
@@ -1067,17 +1067,264 @@ char** 		(*	names_fn	)(	char*,int	)
 >
 >即使省略*和&，C编译器也能识别它们，这样代码更好读
 
+### 排序qsort()
+
+>void指针(void *)可以保存任何类型数据的地址，但使用前必须把它转换为具体类型
+
+```c
+qsort(void *array, size_t length, size_t item_size, int (*compar)(const void *, const void *));
+//qsort(数组指针，数组长度，数组中每个元素长度，比较器函数指针（参数）)
+```
+
+比较器会返回给qsort()三种值
+
+如果第一个值比第二个值大，就返回正数；如果第一个值比第二个值小，就返回负数；如果两个值相等，就返回0
+
+```c
+int compare_scores(const void* score_a, const void* score_b){
+	int a = *(int*)score_a;
+	int b = *(int*)score_b;	//这样将void指针转换为整型指针
+    	...
+}
+```
+
+字符串是字符指针，指向字符串的指针是指针的指针（绕口令哈哈哈）
+
+```c
+int compare_names(const void* a, const void* b){
+	char** sa = (char**)a;
+	char** sb = (char**)b;
+	return strcmp(*sa, *sb); //需要用*来取得字符串
+}
+```
+
+### 创建函数指针数组
+
+如果想在数组中保存函数，就必须告诉编译器函数的具体特征：函数返回什么类型以及接收什么参数
+
+```c
+void (*replies[])(response) = {dump, second_chance, marriage};
+//返回类型（*指针变量）（参数类型）
+```
+
+> C语言在创建枚举时会给每个符号分配一个从0开始的数字
+
+函数指针数组让代码易于管理，它们让代码变得更短、更易于扩展，从而可以伸缩
+
+### 可变参数函数
+
+参数数量可变的函数被称为可变参数函数。C标准库`stdarg.h`中有一组宏（macro）可以帮助建立可变参数函数
+
+>可以把宏想象成一种特殊类型的函数，它可以修改源代码
+
+```c
+\\打印一连串int函数
+#include <stdarg.h>
+void print_ints(int args, ...){		\\在C语言中，函数参数后的省略号“…”表示还有更多参数
+	va_list ap;				\\保存传给函数的其他参数
+	va_start(ap, args);		    \\需要把最后一个普通参数写明(至少需要一个普通参数)
+	int i;
+	for (i = 0; i < args; i++) {
+		printf("argument: %i\n", va_arg(ap, int));		\\用va_arg读取保存在va_list中的参数
+	}
+	va_end(ap);								   \\当读完了所有参数，要用va_end宏来让C结束
+}
+```
+
+>va_arg接收两个值：va_list和要读取参数的类型。本例中所有参数都是int
+>
+>宏用来在编译前重写代码，这里的几个宏`va_start`、`va_arg`和`va_end`看起来很像函数，但实际上隐藏在它们背后的是一些神秘的指令。在编译前，预处理器会根据这些指令在程序中插入巧妙的代码
+
+- va_arg 会返回下一个额外参数，那么一定要搭配循环遍历吗？🤔
 
 
-指针太烂读不下去了😅
 
 ## 8 静态库与动态库
 
+### 库文件引用
+
+<stdio.h>尖括号代表标准头文件，编译器就会在标准头文件目录中查找文件
+
+"encrypt.h"引号代表本地头文件，与程序在同一目录中
+
+> 通常类UNIX操作系统（如Mac或Linux）中，编译器会在以下目录查找头文件：
+> /usr/local/include
+> /usr/include
+>
+> 如果是MinGW版的gcc，编译器会在\MinGW\include中查找
+
+### 共享代码
+
+会希望在程序之间共享两类代码：.h头文件和.o目标文件
+
+#### .h头文件
+
+1. 把头文件保存在标准目录中
+
+   可以在源代码中用尖括号包含它们
+
+2. 在include语句中使用完整路径名
+
+   ```c
+   # include "/my_header_files/encrypt.h"
+   ```
+
+3. 告诉编译器去哪找头文件
+
+   可以使用gcc的`-I`选项
+   
+   ```bash
+   $ gcc -I/my_header_files test_code.c  ...   -o test_code
+   ```
+编译器会先检查`-I`选项中的目录，然后像往常一样检查所有标准目录
+
+#### .o目标文件
+
+可以把.o目标文件放在一个类似共享目录的地方，用完整路径名共享
+
+```bash
+$ gcc -I/my_header_files test_code.c
+	   /my_object_files/encrypt.o
+	   /my_object_files/checksum.o -o test_code
+```
+
+#### 存档
+
+把一批目标文件打包在一起就成了存档文件。只要创建目标文件存档，就可以一次告诉编译器一
+批目标文件
+
+可以使用`nm`命令查看存档中的内容，列出存档中保存文件的名字
+
+可以使用`ar`命令来存档
+
+```bash
+$ ar -rcs libhfsecurity.a encrypt.o checksum.o
+```
+
+参数r表示如果.a文件存在就更新它，参数c表示创建存档时不显示反馈信息，参数s表示需要ar在.a文件开头建立索引。接着是.a文件的文件名，以及需要存档的文件
+
+所有.a文件名都是libXXX.a的形式。这是命名存档的标准方式，存档是静态库（static library），所以要以lib开头，否则编译器找不到它们
+
+接着可以把存档保存在库目录中，并不同情况下进行编译
+
+1. 把.a文件保存在标准目录中，如/usr/local/lib
+
+   确保代码能正确运行之后会把存档安装在标准目录，这个目录专门用来放本地自定义库
+
+   用-I开关编译代码
+
+   ```bash
+   $ gcc test_code.c -lhfsecurity -o test_code
+   ```
+
+2. 把.a文件放在其他目录中
+
+   如果还处于开发阶段，或者在系统目录中安装代码不合适，也可以创建自己的库目录`/my_lib`
+
+   用-L选项告诉编译器去哪找存档
+
+   ```bash
+   $ gcc test_code.c -L/my_lib -lhfsecurity -o test_code
+   ```
+
+如果要使用多个存档，可以设置多个-l选项，`hfsecurity`叫编译器去找一个叫`libhfsecurity.a`的存档，-l选
+项后的名字必须与存档名的一部分匹配，如果存档叫libawesome.a，可以用-lawesome开关编译程序
+
+> 不同机器库目录的内容可以相差很多。因为不同操作系统提供了不同的服务。每个.a文件都是一个独立的库，有的库用来连接网络，有的用来创建GUI程序
+>
+> 找几个.a文件来试用一下nm命令。每个模块都列出了很多名字，它们是一些已经编译好了的函数，可以在程序中使用它们：0000000000000000 T _yywrap，T代表文本(Text)，说明这是一个函数，函数名为yywrap
+>
+> nm命令会告诉你每个.o目标文件的名字，然后列出所有目标文件中的名字，如果某个名字前出现了T，就说明它是目标文件中某个函数的名字
+
+### 动态库
+
+带有元信息的可重定位目标文件，由一个或多个.o文件创建，核心是一段目标代码
+
+#### 创建
+
+首先创建目标文件
+
+```bash
+$ gcc -I/includes -fPIC -c hfcal.c -o hfcal.o
+```
+
+`-fPIC`表示创建位置无关代码。有的操作系统和处理器要用位置无关代码创建库，这样它们才能在运行时决定把代码加载到存储器的哪个位置，事实上在大多数操作系统中都不需要加这个选择
+
+> **位置无关代码**
+>
+> 位置无关代码就是无论计算机把它加载到存储器的哪个位置都可以运行的代码。想象你有一个动态库，它要使用加载点500个字节以外的某个全局变量的值，那么如果操作系统把库加载到其他地方就会出错。只要让编译器创建位置无关的代码，就可以避免这种问题。
+> 包括Windows在内的一些操作系统在加载动态库时会使用一种叫存储器映射的技术，也就是说所有代码其实都是位置无关的。若你在Windows上用刚刚那条命令编译代码，gcc可能会给出一条警告，告诉你不需要-fPIC选项。你既可以奉命删除它，也可以当作没看见。
+
+然后生成动态库
+
+绝大部分操作系统都支持动态库，它们的工作方式也大抵相同，但称呼却大相径庭
+
+Windows 动态链接库；Linux和Unix 共享目标文件；Mac 动态库
+
+```bash
+$ gcc -shared hfcal.o -o	C:\libs\hfcal.dll	//Windows 上的MinGW
+					   /libs/libhfcal.dll.a   //Windows上的Cygwin
+					   /libs/libhfcal.so      //Linux或Unix
+					   /libs/libhfcal.dylib  //Mac
+```
+
+-shared选项告诉gcc你想把.o目标文件转化为动态库
+
+编译器创建动态库时会把库的名字保存在文件中，假设你在Linux中创建了一个叫libhfcal.so的库，那么libhfcal.so文件就会记住它的库名叫hfcal。也就是说，一旦你用某个名字编译了库，就不能再修改文件名了。若想重命名库，就必须用新的名字重新编译一次
+
+> 在一些古老的Mac系统中没有-shared 选项，但是可以用-dynamiclib代替
+
+最后编译程序
+
+一旦创建了动态库，你就可以像静态库那样使用它
+
+```bash
+$ gcc -I/include -c elliptical.c -o elliptical.o
+$ gcc elliptical.o -L/libs -lhfcal -o elliptical
+```
+
+> 在MinGW和Cygwin上，库名的格式有很多种，hfcal的库名可以是: libhfcal.dll.a、libhfcal.dll、hfcal.dll
+
+尽管使用的命令和静态存档一模一样，但两者编译的方式不同。因为库是动态的，所以编译器不会在可执行文件中包含库代码，而是插入一段用来查找库的“占位符”代码，并在运行时链接库
+
+可以运行程序了
+
+Mac可以直接运行当你在Mac中编译程序时，文件的完整路径/libs/libhfcal.dylib保存在可执行文件中，程序启动时知道去哪里找它
+
+在Linux和大部分Unix中，编译器只会记录libhfcal.so库的文件名，而不会包含路径名。也就是说如果不把hfcal库保存到标准目录（如/usr/lib），程序就找不到它。为了解决这个问题，Linux会检查保存在LD_LIBRARY_PATH变量中的附加目录。只要把库目录添加到LD_LIBRARY_PATH中，并export它，elliptical就能找到libhfcal.so
+
+```bash
+> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/libs
+```
+
+Windows同Linux一样，它的可执行文件也只保存hfcal库的名字，不保存目录名。不过Windows没有用LD_LIBRARY_PATH变量去找hfcal库。Windows程序会先在当前目录下查找，如果没找到就去查找保存在PATH变量中的目录
+
+```bash
+//Cygwin
+PATH="$PATH:/libs"
+//MinGW
+PATH="%PATH%:C:\libs"
+```
+
+在Linux和Mac中，动态库通常保存在/usr/lib或/usr/local/lib中；而在Windows中，程序员通常把.DLL和可执行文件保存在同一个目录下
+
+- 动态库在修改库文件后不用再重新编译项目文件
+
+有了动态库，就能在运行时替换代码。不用重新编译程序，你就能修改它。如果你有很多程序，它们共享一段相同的代码，通过建立动态库，就可以同时更新所有程序
+
 ## 9 进程与系统调用
+
+C程序无论做什么事都要靠操作系统。如果它想与硬件打交道，就要进行系统调用。系统调用是操作系统内核中的函数，C标准库中大部分代码都依赖于它们
+
+
 
 ## 10 进程间通信
 
+
+
 ## 11 网络与套接字
+
+
 
 ## 12 线程
 
@@ -1129,6 +1376,3 @@ char** 		(*	names_fn	)(	char*,int	)
   之所以要有逗号运算符是因为有时你不想用分号来分割表达式
 
 ### 预处理指令
-
-
-
