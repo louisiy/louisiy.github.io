@@ -123,7 +123,7 @@
   <div class="post-content-outer">
     <div class="post-intro">
       <div class="post-title animate__animated  animate__fadeInUp">When I learn C</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">1月 23 2023</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">1月 24 2023</div>
       
     </div>
     <div class="post-content-inner">
@@ -886,7 +886,110 @@ void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略
 <ul>
 <li>va_arg 会返回下一个额外参数，那么一定要搭配循环遍历吗？🤔</li>
 </ul>
-<h2 id="8-静态库与动态库"><a href="#8-静态库与动态库" class="headerlink" title="8 静态库与动态库"></a>8 静态库与动态库</h2><h2 id="9-进程与系统调用"><a href="#9-进程与系统调用" class="headerlink" title="9 进程与系统调用"></a>9 进程与系统调用</h2><h2 id="10-进程间通信"><a href="#10-进程间通信" class="headerlink" title="10 进程间通信"></a>10 进程间通信</h2><h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<h2 id="8-静态库与动态库"><a href="#8-静态库与动态库" class="headerlink" title="8 静态库与动态库"></a>8 静态库与动态库</h2><h3 id="库文件引用"><a href="#库文件引用" class="headerlink" title="库文件引用"></a>库文件引用</h3><p>&lt;stdio.h&gt;尖括号代表标准头文件，编译器就会在标准头文件目录中查找文件</p>
+<p>“encrypt.h”引号代表本地头文件，与程序在同一目录中</p>
+<blockquote>
+<p>通常类UNIX操作系统（如Mac或Linux）中，编译器会在以下目录查找头文件：<br>&#x2F;usr&#x2F;local&#x2F;include<br>&#x2F;usr&#x2F;include</p>
+<p>如果是MinGW版的gcc，编译器会在\MinGW\include中查找</p>
+</blockquote>
+<h3 id="共享代码-1"><a href="#共享代码-1" class="headerlink" title="共享代码"></a>共享代码</h3><p>会希望在程序之间共享两类代码：.h头文件和.o目标文件</p>
+<h4 id="h头文件"><a href="#h头文件" class="headerlink" title=".h头文件"></a>.h头文件</h4><ol>
+<li><p>把头文件保存在标准目录中</p>
+<p>可以在源代码中用尖括号包含它们</p>
+</li>
+<li><p>在include语句中使用完整路径名</p>
+<pre><code class="c"># include &quot;/my_header_files/encrypt.h&quot;
+</code></pre>
+</li>
+<li><p>告诉编译器去哪找头文件</p>
+<p>可以使用gcc的<code>-I</code>选项</p>
+<pre><code class="bash">$ gcc -I/my_header_files test_code.c  ...   -o test_code
+</code></pre>
+</li>
+</ol>
+<p>编译器会先检查<code>-I</code>选项中的目录，然后像往常一样检查所有标准目录</p>
+<h4 id="o目标文件"><a href="#o目标文件" class="headerlink" title=".o目标文件"></a>.o目标文件</h4><p>可以把.o目标文件放在一个类似共享目录的地方，用完整路径名共享</p>
+<pre><code class="bash">$ gcc -I/my_header_files test_code.c
+       /my_object_files/encrypt.o
+       /my_object_files/checksum.o -o test_code
+</code></pre>
+<h4 id="存档"><a href="#存档" class="headerlink" title="存档"></a>存档</h4><p>把一批目标文件打包在一起就成了存档文件。只要创建目标文件存档，就可以一次告诉编译器一<br>批目标文件</p>
+<p>可以使用<code>nm</code>命令查看存档中的内容，列出存档中保存文件的名字</p>
+<p>可以使用<code>ar</code>命令来存档</p>
+<pre><code class="bash">$ ar -rcs libhfsecurity.a encrypt.o checksum.o
+</code></pre>
+<p>参数r表示如果.a文件存在就更新它，参数c表示创建存档时不显示反馈信息，参数s表示需要ar在.a文件开头建立索引。接着是.a文件的文件名，以及需要存档的文件</p>
+<p>所有.a文件名都是libXXX.a的形式。这是命名存档的标准方式，存档是静态库（static library），所以要以lib开头，否则编译器找不到它们</p>
+<p>接着可以把存档保存在库目录中，并不同情况下进行编译</p>
+<ol>
+<li><p>把.a文件保存在标准目录中，如&#x2F;usr&#x2F;local&#x2F;lib</p>
+<p>确保代码能正确运行之后会把存档安装在标准目录，这个目录专门用来放本地自定义库</p>
+<p>用-I开关编译代码</p>
+<pre><code class="bash">$ gcc test_code.c -lhfsecurity -o test_code
+</code></pre>
+</li>
+<li><p>把.a文件放在其他目录中</p>
+<p>如果还处于开发阶段，或者在系统目录中安装代码不合适，也可以创建自己的库目录<code>/my_lib</code></p>
+<p>用-L选项告诉编译器去哪找存档</p>
+<pre><code class="bash">$ gcc test_code.c -L/my_lib -lhfsecurity -o test_code
+</code></pre>
+</li>
+</ol>
+<p>如果要使用多个存档，可以设置多个-l选项，<code>hfsecurity</code>叫编译器去找一个叫<code>libhfsecurity.a</code>的存档，-l选<br>项后的名字必须与存档名的一部分匹配，如果存档叫libawesome.a，可以用-lawesome开关编译程序</p>
+<blockquote>
+<p>不同机器库目录的内容可以相差很多。因为不同操作系统提供了不同的服务。每个.a文件都是一个独立的库，有的库用来连接网络，有的用来创建GUI程序</p>
+<p>找几个.a文件来试用一下nm命令。每个模块都列出了很多名字，它们是一些已经编译好了的函数，可以在程序中使用它们：0000000000000000 T _yywrap，T代表文本(Text)，说明这是一个函数，函数名为yywrap</p>
+<p>nm命令会告诉你每个.o目标文件的名字，然后列出所有目标文件中的名字，如果某个名字前出现了T，就说明它是目标文件中某个函数的名字</p>
+</blockquote>
+<h3 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h3><p>带有元信息的可重定位目标文件，由一个或多个.o文件创建，核心是一段目标代码</p>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>首先创建目标文件</p>
+<pre><code class="bash">$ gcc -I/includes -fPIC -c hfcal.c -o hfcal.o
+</code></pre>
+<p><code>-fPIC</code>表示创建位置无关代码。有的操作系统和处理器要用位置无关代码创建库，这样它们才能在运行时决定把代码加载到存储器的哪个位置，事实上在大多数操作系统中都不需要加这个选择</p>
+<blockquote>
+<p><strong>位置无关代码</strong></p>
+<p>位置无关代码就是无论计算机把它加载到存储器的哪个位置都可以运行的代码。想象你有一个动态库，它要使用加载点500个字节以外的某个全局变量的值，那么如果操作系统把库加载到其他地方就会出错。只要让编译器创建位置无关的代码，就可以避免这种问题。<br>包括Windows在内的一些操作系统在加载动态库时会使用一种叫存储器映射的技术，也就是说所有代码其实都是位置无关的。若你在Windows上用刚刚那条命令编译代码，gcc可能会给出一条警告，告诉你不需要-fPIC选项。你既可以奉命删除它，也可以当作没看见。</p>
+</blockquote>
+<p>然后生成动态库</p>
+<p>绝大部分操作系统都支持动态库，它们的工作方式也大抵相同，但称呼却大相径庭</p>
+<p>Windows 动态链接库；Linux和Unix 共享目标文件；Mac 动态库</p>
+<pre><code class="bash">$ gcc -shared hfcal.o -o	C:\libs\hfcal.dll	//Windows 上的MinGW
+                       /libs/libhfcal.dll.a   //Windows上的Cygwin
+                       /libs/libhfcal.so      //Linux或Unix
+                       /libs/libhfcal.dylib  //Mac
+</code></pre>
+<p>-shared选项告诉gcc你想把.o目标文件转化为动态库</p>
+<p>编译器创建动态库时会把库的名字保存在文件中，假设你在Linux中创建了一个叫libhfcal.so的库，那么libhfcal.so文件就会记住它的库名叫hfcal。也就是说，一旦你用某个名字编译了库，就不能再修改文件名了。若想重命名库，就必须用新的名字重新编译一次</p>
+<blockquote>
+<p>在一些古老的Mac系统中没有-shared 选项，但是可以用-dynamiclib代替</p>
+</blockquote>
+<p>最后编译程序</p>
+<p>一旦创建了动态库，你就可以像静态库那样使用它</p>
+<pre><code class="bash">$ gcc -I/include -c elliptical.c -o elliptical.o
+$ gcc elliptical.o -L/libs -lhfcal -o elliptical
+</code></pre>
+<blockquote>
+<p>在MinGW和Cygwin上，库名的格式有很多种，hfcal的库名可以是: libhfcal.dll.a、libhfcal.dll、hfcal.dll</p>
+</blockquote>
+<p>尽管使用的命令和静态存档一模一样，但两者编译的方式不同。因为库是动态的，所以编译器不会在可执行文件中包含库代码，而是插入一段用来查找库的“占位符”代码，并在运行时链接库</p>
+<p>可以运行程序了</p>
+<p>Mac可以直接运行当你在Mac中编译程序时，文件的完整路径&#x2F;libs&#x2F;libhfcal.dylib保存在可执行文件中，程序启动时知道去哪里找它</p>
+<p>在Linux和大部分Unix中，编译器只会记录libhfcal.so库的文件名，而不会包含路径名。也就是说如果不把hfcal库保存到标准目录（如&#x2F;usr&#x2F;lib），程序就找不到它。为了解决这个问题，Linux会检查保存在LD_LIBRARY_PATH变量中的附加目录。只要把库目录添加到LD_LIBRARY_PATH中，并export它，elliptical就能找到libhfcal.so</p>
+<pre><code class="bash">&gt; export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/libs
+</code></pre>
+<p>Windows同Linux一样，它的可执行文件也只保存hfcal库的名字，不保存目录名。不过Windows没有用LD_LIBRARY_PATH变量去找hfcal库。Windows程序会先在当前目录下查找，如果没找到就去查找保存在PATH变量中的目录</p>
+<pre><code class="bash">//Cygwin
+PATH=&quot;$PATH:/libs&quot;
+//MinGW
+PATH=&quot;%PATH%:C:\libs&quot;
+</code></pre>
+<p>在Linux和Mac中，动态库通常保存在&#x2F;usr&#x2F;lib或&#x2F;usr&#x2F;local&#x2F;lib中；而在Windows中，程序员通常把.DLL和可执行文件保存在同一个目录下</p>
+<ul>
+<li>动态库在修改库文件后不用再重新编译项目文件</li>
+</ul>
+<p>有了动态库，就能在运行时替换代码。不用重新编译程序，你就能修改它。如果你有很多程序，它们共享一段相同的代码，通过建立动态库，就可以同时更新所有程序</p>
+<h2 id="9-进程与系统调用"><a href="#9-进程与系统调用" class="headerlink" title="9 进程与系统调用"></a>9 进程与系统调用</h2><p>C程序无论做什么事都要靠操作系统。如果它想与硬件打交道，就要进行系统调用。系统调用是操作系统内核中的函数，C标准库中大部分代码都依赖于它们</p>
+<h2 id="10-进程间通信"><a href="#10-进程间通信" class="headerlink" title="10 进程间通信"></a>10 进程间通信</h2><h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
 </li>
