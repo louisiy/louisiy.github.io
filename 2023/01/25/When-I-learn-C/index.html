@@ -133,8 +133,7 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="HERE-IS-NOTE-FOR-Head-First-C-😃"><a href="#HERE-IS-NOTE-FOR-Head-First-C-😃" class="headerlink" title="HERE IS NOTE FOR Head First C 😃"></a>HERE IS NOTE FOR <em>Head First C</em> 😃</h1><p><strong>0 关于</strong></p>
-<p>这里是符号说明，形如</p>
+        <h1 id="HERE-IS-NOTE-FOR-Head-First-C-😃"><a href="#HERE-IS-NOTE-FOR-Head-First-C-😃" class="headerlink" title="HERE IS NOTE FOR Head First C 😃"></a>HERE IS NOTE FOR <em>Head First C</em> 😃</h1><h2 id="0-关于"><a href="#0-关于" class="headerlink" title="0 关于"></a>0 关于</h2><p>这里是符号说明，形如</p>
 <ul>
 <li>这是一条个人笔记</li>
 </ul>
@@ -1060,7 +1059,7 @@ execvp(&quot;clu&quot;, my_args);		//execVP = 参数数组/向量（Vector） + 
 </tr>
 </tbody></table>
 <p>l、v总是在p、e之前出现；p、e是可选的</p>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>每个进程都有一组环境变量。你可以在命令行中输入set或env查看它们的值，它们一般会告诉进程一些有用的信息，比如用户主目录的位置，或去哪里找命令。C程序可以用getenv()系统调用读取环境变量</p>
+<h3 id="环境变量（具体做法见练习文件）"><a href="#环境变量（具体做法见练习文件）" class="headerlink" title="环境变量（具体做法见练习文件）"></a>环境变量（具体做法见练习文件）</h3><p>每个进程都有一组环境变量。你可以在命令行中输入set或env查看它们的值，它们一般会告诉进程一些有用的信息，比如用户主目录的位置，或去哪里找命令。C程序可以用getenv()系统调用读取环境变量</p>
 <p>可以用字符串指针数组的形式创建一组环境变量。环境变量的格式是“变量名&#x3D;值”。数组最后一项必须是NULL</p>
 <pre><code class="c">char *my_env[] = &#123;&quot;JUICE=peach and apple&quot;, NULL&#125;;
 execle(&quot;diner_info&quot;, &quot;diner_info&quot;, &quot;4&quot;, NULL, my_env);
@@ -1152,6 +1151,136 @@ puts(&quot;哥们，diner_info程序肯定发生了什么问题&quot;);
 </tr>
 </tbody></table>
 <p>描述符表的前三项万年不变：0号标准输入，1号标准输出，2号标准错误。其他项要么为空，要么连接进程打开的数据流。比如程序在打开文件进行读写时，就会占用其中一项</p>
+<p>创建进程以后，标准输入连到键盘，标准输出和标准错误连到屏幕。它们会保持这样的连接，直到有人把它们重定向到了其他地方</p>
+<ul>
+<li>文件描述符描述的不一定是文件</li>
+</ul>
+<p>在 类Unix操作系统中，可以用以下命令把标准错误和标准输出重定向到一个地方：</p>
+<p><code>./myprog 2&gt;&amp;1</code></p>
+<p>“2&gt;”表示“重定向标准错误”;“&amp;1”表示“到标准输出”</p>
+<h3 id="fileno-返回描述符号"><a href="#fileno-返回描述符号" class="headerlink" title="fileno()返回描述符号"></a>fileno()返回描述符号</h3><p>每打开一个文件，操作系统都会在描述符表中新注册一项</p>
+<pre><code class="c">FILE *my_file = fopen(&quot;guitar.mp3&quot;, &quot;r&quot;);
+</code></pre>
+<p>操作系统会打开<em>guitar.mp3</em>文件，然后返回一个指向它的指针，操作系统还会遍历描述符表寻找空项，把新文件注册在其中</p>
+<p>调用fileno()函数可以根据文件指针知道它是几号描述符</p>
+<pre><code class="c">int descriptor = fileno(my_file);
+</code></pre>
+<blockquote>
+<p>在失败时不返回-1的函数很少，fileno()就是其中之一。只要你把打开文件的指针传给fileno()，它就一定会返回描述符编号			😴？？</p>
+</blockquote>
+<h3 id="dup2-复制数据流"><a href="#dup2-复制数据流" class="headerlink" title="dup2()复制数据流"></a>dup2()复制数据流</h3><p>可以用dup2()函数修改某个已经注册过的数据流，dup2()可以复制数据流</p>
+<pre><code class="c">dup2(4, 3);		//同时将4号数据流连接到3号描述符
+</code></pre>
+<h3 id="exit"><a href="#exit" class="headerlink" title="exit()"></a>exit()</h3><p>exit()系统调用是结束程序的最快方式，为了使用exit系统调用，必须包含stdlib.h头文件</p>
+<pre><code class="c">#include &lt;stdlib.h&gt;
+void error(char *msg)&#123;
+    fprintf(stderr, &quot;%s: %s\n&quot;, msg, strerror(errno));
+    exit(1);		//exit(1)会立刻终止程序，并把退出状态置1
+&#125;
+</code></pre>
+<p>每次程序执行只有一次调用exit()的机会</p>
+<h3 id="等待子进程"><a href="#等待子进程" class="headerlink" title="等待子进程"></a>等待子进程</h3><p>子进程一创建就和父进程没关系了，有时候子进程还未完成任务，父进程就已经结束了，操作系统必须提供一种方式，让你等待子进程完成任务</p>
+<h4 id="waitpid-函数"><a href="#waitpid-函数" class="headerlink" title="waitpid()函数"></a>waitpid()函数</h4><p>waitpid()函数会等子进程结束以后才返回，也就是说可以在父进程中加几行代码，让它等到子进程运行结束以后才退出</p>
+<p>需要包含sys&#x2F;wait.h的头文件(Windows平台似乎并不支持)</p>
+<pre><code class="c">#include &lt;sys/wait.h&gt;
+</code></pre>
+<p>接收三个参数</p>
+<pre><code class="c">waitpid(pid,pid_status, options )
+</code></pre>
+<ol>
+<li><p>pid</p>
+<p>父进程在克隆子进程时会得到子进程的ID</p>
+</li>
+<li><p>pid_status</p>
+<p>pid_status用来保存进程的退出信息。因为waitpid()需要修改pid_status，因此它必须是个指针</p>
+</li>
+<li><p>options</p>
+<p>waitpid()有一些选项，详情可以输入man waitpid查看。如果把选项设为0，函数将等待进程结束</p>
+</li>
+</ol>
+<p><strong>pid_status</strong>?</p>
+<p>waitpid()函数结束等待时会在pid_status中保存一个值，它告诉你进程的完成情况</p>
+<p>为了得到子进程的退出状态，可以把pid_status的值传给WEXITSTATUS()宏</p>
+<pre><code class="c">if (WEXITSTATUS(pid_status))
+    puts(&quot;Error status non-zero&quot;);
+</code></pre>
+<p>pid_status中保存了好几条信息，只有前8位表示进程的退出状态，所以需要用宏来查看</p>
+<p>重定向输入、输出，然后让进程相互等待，这就是进程间通信</p>
+<p>进程之间通过共享数据和互相可以等待实现更多功能</p>
+<h3 id="管道连接进程"><a href="#管道连接进程" class="headerlink" title="管道连接进程"></a>管道连接进程</h3><p>可以在命令行用管道把一个进程的输出连接到另一个进程的输入</p>
+<pre><code class="bash">python rssgossip.py -u &#39;pajama death&#39; | grep &#39;http&#39;
+    http://www.rock-news.com/exclusive/24.html
+    http://www.rolling-stone.com/pdalbum.html
+</code></pre>
+<p>grep找出了包含http的那些行</p>
+<p>管道两侧的命令是父子关系，如上例中grep命令是rssgossip.py脚本的父进程</p>
+<ol>
+<li>命令行创建了父进程</li>
+<li>父进程在子进程中克隆出了rssgossip.py脚本</li>
+<li>父进程用管道把子进程的输出连接到自己的输入</li>
+<li>父进程运行了grep命令</li>
+</ol>
+<h3 id="pipe-打开两条数据流"><a href="#pipe-打开两条数据流" class="headerlink" title="pipe()打开两条数据流"></a>pipe()打开两条数据流</h3><p>用pipe()函数建立管道</p>
+<p>每当打开数据流时，它都会加入描述符表。pipe()函数也是如此，它创建两条相连的数据流，并把它们加到表中，然后只要往其中一条数据流中写数据，就可以从另一条数据流中读取</p>
+<p>pipe()在描述符中创建这两项时，会把它们的文件描述符保存在一个包含两个元素的数组中</p>
+<pre><code class="c">int fd[2];
+if (pipe(fd) == -1) &#123;
+    error(&quot;Can&#39;t create the pipe&quot;);
+&#125;
+</code></pre>
+<p>pipe()函数创建了管道，并返回了两个描述符： fd[1]用来向管道写数据，fd[0]用来从管道读数据</p>
+<p>在子进程中，关闭管道的fd[0]端，修改子进程的标准输出，让它指向描述符fd[1]对应的数据流；在父进程中需要关闭管道的fd[1]端，重定向父进程的标准输入，让它从描述符fd[0]对应的数据流中读取数据</p>
+<pre><code class="c">// 子进程
+close(fd[0]);
+dup2(fd[1], 1);
+
+//父进程
+dup2(fd[0], 0);
+close(fd[1]);
+</code></pre>
+<p>不同操作系统打开网页？较为简单粗暴的system()写法</p>
+<pre><code class="c">void open_url(char *url)&#123;
+    char launch[255];
+    sprintf(launch, &quot;cmd /c start %s&quot;, url);		//Windows
+    system(launch);
+    sprintf(launch, &quot;x-www-browser &#39;%s&#39; &amp;&quot;, url);	//Linux
+    system(launch);
+    sprintf(launch, &quot;open &#39;%s&#39;&quot;, url);			     //Mac
+    system(launch);
+&#125;
+</code></pre>
+<blockquote>
+<p>在类Unix机器或任何使用Cygwin的Windows机器中可以获取以下程序</p>
+<p><strong>curl&#x2F;wget</strong><br>可以用这两个程序与网络服务器通信，也可以在C代码中使用它们与网络通信<br><strong>mail&#x2F;mutt</strong><br>可以在命令行用这两个程序发送邮件。如果在机器上装了它们，C程序就能发送邮件<br><strong>convert</strong><br>convert命令可以转换图片格式。你可以写一个C程序，它输出文本格式的SVG图表，然后用convert命令把SVG转化成PNG图片</p>
+</blockquote>
+<p><strong>关于管道的Q&amp;A</strong></p>
+<p>管道可能是文件。可以创建基于文件的管道，它们通常叫有名管道或FIFO(First In First Out，先进先出)文件。因为基于文件的管道有名字，所以两个进程只要知道管道的名字也能用它来通信，即使它们非父子进程。使用<a target="_blank" rel="noopener" href="http://tinyurl.com/cdf6ve5">mkfifo()系统调用</a>有名管道</p>
+<p>如果不用文件来实现管道, 那么通常用存储器。数据写到存储器中的某个位置，然后再从另一<br>个位置读取</p>
+<p>如果试图读取一个空的管道，程序会等管道中出现东西</p>
+<p>子进程结束时，管道会关闭。fgets()将收到EOF（End Of File，文件结束符），于是fgets()函数返回0，循环就结束了</p>
+<p>管道只能单向通信。不过可以创建两个管道，一个从父进程连到子进程，另一个从子进程连到父进程</p>
+<h3 id="杀死进程😎Ctrl-C"><a href="#杀死进程😎Ctrl-C" class="headerlink" title="杀死进程😎Ctrl-C"></a>杀死进程😎Ctrl-C</h3><p>操作系统会从键盘读取数据，但当它看到用户按了Ctrl-C，就会向程序发送中断信号，进程运行默认中断处理器，调用了exit()</p>
+<p>信号是一条短消息，即一个整型值。当信号到来时，进程必须停止手中一切工作去处理信号。进程会查看信号映射表，表中每个信号都对应一个信号处理器函数。中断信号的默认信号处理器会调用exit()函数</p>
+<p>既然有这么一张信号映射表，那么就可以修改进程收到信号时运行的函数</p>
+<h3 id="sigaction是一个函数包装器"><a href="#sigaction是一个函数包装器" class="headerlink" title="sigaction是一个函数包装器"></a>sigaction是一个函数包装器</h3><p>sigaction是一个结构体，它有一个函数指针。sigaction告诉操作系统进程收到某个信号时应该调用哪个函数。</p>
+<p>创建方法：</p>
+<pre><code class="c">struct sigaction action;
+action.sa_handler = diediedie;	//指定计算机调用哪个函数，这个被sigaction包装起来的函数就叫处理器
+sigemptyset(&amp;action.sa_mask);  //用掩码来过滤sigaction要处理的信号，通常会用一个空的掩码
+action.sa_flags = 0;		//一些附加标志位，将它们置0就行了
+</code></pre>
+<p>处理器必须接收信号参数，为整型</p>
+<pre><code class="c">void diediedie(int sig)&#123;
+    puts (&quot;Goodbye cruel world....\n&quot;);
+    exit(1);
+&#125;
+</code></pre>
+<p>处理器的代码应该短而快，刚好能处理接收到的信号就好</p>
+<blockquote>
+<p>在处理器函数中使用标准输出和标准错误时要小心</p>
+<p>之所以会有信号就是因为程序中发生了故障，而故障可能就是这些无法使用</p>
+</blockquote>
+<h3 id="用sigaction-来注册sigaction"><a href="#用sigaction-来注册sigaction" class="headerlink" title="用sigaction()来注册sigaction"></a>用sigaction()来注册sigaction</h3><p>创建sigaction以后，需要用sigaction()函数来让操作系统知道它的存在</p>
 <h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
@@ -1211,7 +1340,7 @@ return (x == 1) ? 2 : 3;	//这里上下等价
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-%E5%85%A5%E9%97%A8"><span class="space-toc-text">1 入门</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-%E6%8C%87%E9%92%88"><span class="space-toc-text">2 指针</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%9F%E7%90%86"><span class="space-toc-text">2.5 字符串原理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="space-toc-text">3 小工具</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">4 使用多个源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#5-%E7%BB%93%E6%9E%84%E3%80%81%E8%81%94%E5%90%88%E4%B8%8E%E4%BD%8D%E5%AD%97%E6%AE%B5"><span class="space-toc-text">5 结构、联合与位字段</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#6-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8"><span class="space-toc-text">6 数据结构与动态存储</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#7-%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0"><span class="space-toc-text">7 高级函数</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#8-%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93"><span class="space-toc-text">8 静态库与动态库</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#9-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="space-toc-text">9 进程与系统调用</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#10-%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="space-toc-text">10 进程间通信</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#11-%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="space-toc-text">11 网络与套接字</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#12-%E7%BA%BF%E7%A8%8B"><span class="space-toc-text">12 线程</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8D%81%E5%A4%A7%E9%81%97%E6%BC%8F%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="space-toc-text">十大遗漏知识点</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#0-%E5%85%B3%E4%BA%8E"><span class="space-toc-text">0 关于</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#1-%E5%85%A5%E9%97%A8"><span class="space-toc-text">1 入门</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-%E6%8C%87%E9%92%88"><span class="space-toc-text">2 指针</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#2-5-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%9F%E7%90%86"><span class="space-toc-text">2.5 字符串原理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#3-%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="space-toc-text">3 小工具</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#4-%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AA%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">4 使用多个源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#5-%E7%BB%93%E6%9E%84%E3%80%81%E8%81%94%E5%90%88%E4%B8%8E%E4%BD%8D%E5%AD%97%E6%AE%B5"><span class="space-toc-text">5 结构、联合与位字段</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#6-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8"><span class="space-toc-text">6 数据结构与动态存储</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#7-%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0"><span class="space-toc-text">7 高级函数</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#8-%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93"><span class="space-toc-text">8 静态库与动态库</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#9-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="space-toc-text">9 进程与系统调用</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#10-%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="space-toc-text">10 进程间通信</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#11-%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="space-toc-text">11 网络与套接字</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#12-%E7%BA%BF%E7%A8%8B"><span class="space-toc-text">12 线程</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8D%81%E5%A4%A7%E9%81%97%E6%BC%8F%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="space-toc-text">十大遗漏知识点</span></a></li></ol>
            </div>
         
       </div>
