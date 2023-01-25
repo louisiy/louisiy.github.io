@@ -123,7 +123,7 @@
   <div class="post-content-outer">
     <div class="post-intro">
       <div class="post-title animate__animated  animate__fadeInUp">When I learn C</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">1月 24 2023</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">1月 25 2023</div>
       
     </div>
     <div class="post-content-inner">
@@ -989,7 +989,169 @@ PATH=&quot;%PATH%:C:\libs&quot;
 </ul>
 <p>有了动态库，就能在运行时替换代码。不用重新编译程序，你就能修改它。如果你有很多程序，它们共享一段相同的代码，通过建立动态库，就可以同时更新所有程序</p>
 <h2 id="9-进程与系统调用"><a href="#9-进程与系统调用" class="headerlink" title="9 进程与系统调用"></a>9 进程与系统调用</h2><p>C程序无论做什么事都要靠操作系统。如果它想与硬件打交道，就要进行系统调用。系统调用是操作系统内核中的函数，C标准库中大部分代码都依赖于它们</p>
-<h2 id="10-进程间通信"><a href="#10-进程间通信" class="headerlink" title="10 进程间通信"></a>10 进程间通信</h2><h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<h3 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h3><p>接收一个字符串参数，并把它当作命令执行</p>
+<pre><code class="c">system(&quot;dir D:&quot;);	//打印D盘内容
+system(&quot;gedit&quot;);       //在Linux中启动编辑器
+system(&quot;say &#39;End of Line&#39; &quot;);	//在Mac上朗读文本
+</code></pre>
+<p>在一些操作系统中，系统调用的代码位于操作系统内核。而对其他操作系统而言，系统调用可能保存在动态库中</p>
+<blockquote>
+<p><strong>内核</strong>？</p>
+<p>在大部分计算机上，系统调用就是操作系统内核中的函数。什么是内核？虽然你从来没在屏幕上看到过它，但内核其实一直都在那里控制计算机。内核是计算机中最重要的程序，它主管三样东西：<br>    进程<br>只有当内核把程序加载到存储器时程序才能运行。内核创建进程，并确保它们得到了所需资源。内核同时也会留意那些变得贪得无厌或者已经崩溃的进程。<br>    存储器<br>计算机所能提供的存储器资源是有限的，因此内核必须小心翼翼地分配每个进程所能使用的存储器大小。内核还能把部分存储器交换到磁盘从而增加虚拟存储器空间。<br>    硬件<br>内核利用设备驱动与连接到计算机上的设备交互。你的程序在不了解键盘、屏幕和图形处理器的情况下就能使用它们，因为内核会代表你与它们交涉。系统调用是程序用来与内核对话的函数。</p>
+</blockquote>
+<h3 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h3><p>进程是存储器中运行的程序。操作系统用一个数字来标识进程，它叫进程标识符（process identifier，简称PID）</p>
+<p>exec()函数通过运行其他程序来替换当前进程。你可以告诉exec()函数要使用哪些命令行参数和环境变量。新程序启动后PID和老程序一样。</p>
+<p>exec()函数在unistd.h中，它版本众多，但可以分为列表函数和数组函数。</p>
+<h4 id="列表函数"><a href="#列表函数" class="headerlink" title="列表函数"></a>列表函数</h4><p>execl()、execlp()、execle()</p>
+<p>列表函数以参数列表的形式接收命令行参数：</p>
+<ol>
+<li><p>程序</p>
+<p>告诉exec()函数将运行什么程序。对execl()或execle()来说，它是程序的完整路径名；对execlp()来讲就是命令的名字，execlp()会根据它去查找程序</p>
+</li>
+<li><p>命令行参数</p>
+<p>需要依次列出想使用的命令行参数。别忘了，第一个命令行参数必须是程序名，也就是说列表版exec()的前两个参数是相同字符串</p>
+<blockquote>
+<p><strong>命令行参数之间的空格会把MinGW弄糊涂</strong></p>
+<p>如果把“I like”和“turles”这两个参数传给exec()，MinGW程序可能会发送三个参数：“I”、“like”和“turtle”。</p>
+</blockquote>
+</li>
+<li><p>NULL</p>
+<p>需要在最后一个命令行参数后加上NULL，告诉函数没有其他参数了</p>
+</li>
+<li><p>环境变量（如果有的话）</p>
+<p>如果调用了以 …e() 结尾的 exec() 函数，还可以传递环境变量数组，像”POWER&#x3D;4”,”PORT&#x3D;OPEN”……那样的字符数组</p>
+</li>
+</ol>
+<pre><code class="c">execl(&quot;/home/flynn/clu&quot;, &quot;/home/flynn/clu&quot;, &quot;paranoids&quot;, &quot;contract&quot;, NULL)	//execL = 参数列表(List)
+execlp(&quot;clu&quot;, &quot;clu&quot;, &quot;paranoids&quot;, &quot;contract&quot;, NULL)		//execLP = 参数列表（List） + 在PATH中查找程序
+execle(&quot;/home/flynn/clu&quot;, &quot;/home/flynn/clu&quot;, &quot;paranoids&quot;, &quot;contract&quot;, NULL, env_vars)
+//execLE = 参数列表（List） + 环境变量（Environment）
+</code></pre>
+<h4 id="数组函数"><a href="#数组函数" class="headerlink" title="数组函数"></a>数组函数</h4><p>execv()、execvp()、execve()</p>
+<p>如果已经把命令行参数保存在了数组中，就会发现这两个版本用起来更容易</p>
+<pre><code class="c">execv(&quot;/home/flynn/clu&quot;, my_args);	//execV=参数数组或参数向量（Vector）
+execvp(&quot;clu&quot;, my_args);		//execVP = 参数数组/向量（Vector） + 在PATH中查找
+//参数需要保存在字符串数组my_args中
+//以上两函数唯一区别是execvp会用PATH变量查找程序
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>使用</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>参数列表</td>
+<td>l</td>
+</tr>
+<tr>
+<td>参数数组&#x2F;向量</td>
+<td>v</td>
+</tr>
+<tr>
+<td>根据PATH查找</td>
+<td>p</td>
+</tr>
+<tr>
+<td>环境变量</td>
+<td>e</td>
+</tr>
+</tbody></table>
+<p>l、v总是在p、e之前出现；p、e是可选的</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>每个进程都有一组环境变量。你可以在命令行中输入set或env查看它们的值，它们一般会告诉进程一些有用的信息，比如用户主目录的位置，或去哪里找命令。C程序可以用getenv()系统调用读取环境变量</p>
+<p>可以用字符串指针数组的形式创建一组环境变量。环境变量的格式是“变量名&#x3D;值”。数组最后一项必须是NULL</p>
+<pre><code class="c">char *my_env[] = &#123;&quot;JUICE=peach and apple&quot;, NULL&#125;;
+execle(&quot;diner_info&quot;, &quot;diner_info&quot;, &quot;4&quot;, NULL, my_env);
+</code></pre>
+<blockquote>
+<p><strong>在Cygwin中传递环境变量时一定要包含PATH变量</strong></p>
+<p>在Cygwin中，加载程序时需要用PATH变量，因此在Cygwin上传递环境变量时一定要包含PATH&#x3D;&#x2F;usr&#x2F;bin</p>
+</blockquote>
+<h3 id="系统调用错误"><a href="#系统调用错误" class="headerlink" title="系统调用错误"></a>系统调用错误</h3><p>如果在调用程序时发生错误，当前进程会继续运行，于是可以向用户报告错误信息</p>
+<pre><code class="c">execle(&quot;diner_info&quot;, &quot;diner_info&quot;, &quot;4&quot;, NULL, my_env);
+puts(&quot;哥们，diner_info程序肯定发生了什么问题&quot;);
+</code></pre>
+<p>所有的系统调用都遵循“失败黄金法则”</p>
+<ol>
+<li>尽可能收拾残局</li>
+<li>把errno变量设为错误码</li>
+<li>返回-1</li>
+</ol>
+<p>errno变量是定义在errno.h中的全局变量，还一并定义了许多标准错误码</p>
+<table>
+<thead>
+<tr>
+<th>标准错误码</th>
+<th>错误消息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EPERM&#x3D;1</td>
+<td>不允许操作</td>
+</tr>
+<tr>
+<td>ENOENT&#x3D;2</td>
+<td>没有该文件或目录</td>
+</tr>
+<tr>
+<td>ESRCH&#x3D;3</td>
+<td>没有该进程</td>
+</tr>
+</tbody></table>
+<p>可以拿errno和这些值比较，也可以用string.h中的<code>strerror()</code>的函数查询标准错误消息</p>
+<pre><code class="c">puts(strerror(errno));	//strerror()将错误码转换为一条消息
+</code></pre>
+<h3 id="用fork-克隆进程"><a href="#用fork-克隆进程" class="headerlink" title="用fork()克隆进程"></a>用fork()克隆进程</h3><p>exec() 是程序中最后一行代码</p>
+<p>fork()会克隆当前进程。新建副本将从同一行开始运行相同程序，变量和变量中的值完全一样，只有进程标识符（PID）和原进程不同。原进程叫父进程，而新建副本叫子进程</p>
+<blockquote>
+<p>注意！与Unix和Mac不同，**Windows天生不支持fork()**，如果想在Windows中使用fork()，必须先要安装Cygwin</p>
+<p>Windows有一个<code>Create-Process()</code>函数。它是一个加强版的system()</p>
+<p>此处<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/win32/procthread/creating-processes">官方文档</a></p>
+</blockquote>
+<p>用fork()+exec()运行子进程，在子进程中调用exec()函数，这样原来的父进程就能继续运行了</p>
+<p>复制进程后，为区分父子进程，fork()函数向子进程返回0，向父进程返回非零值</p>
+<blockquote>
+<p><strong>fork()</strong></p>
+<p>你可以像这样调用fork()：<code>pid_t pid = fork();</code><br>fork()会返回一个整型值：为子进程返回0，为父进程返回一个正数。父进程将接收到子进程的进程标识符<br>什么是pid_t？不同操作系统用不同的整数类型保存进程ID，有的用short，有的用int，操作系统使用哪种类型，pid_t就设为哪个</p>
+</blockquote>
+<ul>
+<li><p>这样的设计中一般现在要考虑可能出现错误了，可以这样写</p>
+</li>
+<li><p>&#96;&#96;&#96;c<br>pid_t pid &#x3D; fork();<br>if (pid &#x3D;&#x3D; -1) {<br>fprintf(stderr, “Can’t fork process: %s\n”, strerror(errno));<br>return 1;<br>}<br>if (!pid) {<br>  …<br>}</p>
+</li>
+</ul>
+<blockquote>
+<p>在用exec()替换子进程前可以不用等fork()复制完整个进程，操作系统会采用写时复制（copy-on-write）技术等技巧。比如操作系统不会真的复制父进程的数据，而是让父子进程共享数据。如果操作系统发现子进程要修改存储器，就会为它复制一份</p>
+</blockquote>
+<h2 id="10-进程间通信"><a href="#10-进程间通信" class="headerlink" title="10 进程间通信"></a>10 进程间通信</h2><p>在命令行中，重定向是非常有用的命令，也可以让进程重定向自己</p>
+<h3 id="进程内部"><a href="#进程内部" class="headerlink" title="进程内部"></a>进程内部</h3><p>进程含有它正在运行的程序，还有栈和堆数据空间。进程还需要记录数据流的连向，它用文件描述符表示数据流，所谓的描述符其实就是一个数字。进程会把文件描述符和对应的数据流保存在描述符表中（下表仅为示意）描述符表的一列是文件描述符号，另一列是它们对应的数据流</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>数据流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>键盘</td>
+</tr>
+<tr>
+<td>1</td>
+<td>屏幕</td>
+</tr>
+<tr>
+<td>2</td>
+<td>屏幕</td>
+</tr>
+<tr>
+<td>3</td>
+<td>数据库连接</td>
+</tr>
+</tbody></table>
+<p>描述符表的前三项万年不变：0号标准输入，1号标准输出，2号标准错误。其他项要么为空，要么连接进程打开的数据流。比如程序在打开文件进行读写时，就会占用其中一项</p>
+<h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
 </li>
