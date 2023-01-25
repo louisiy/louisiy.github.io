@@ -6,7 +6,7 @@ tags: C notes
 
 # HERE IS NOTE FOR *Head First C* 😃
 
-## 0 关于
+**0 关于**
 
 这里是符号说明，形如
 
