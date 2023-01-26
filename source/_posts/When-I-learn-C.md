@@ -1691,6 +1691,8 @@ void open_url(char *url){
 
 ### sigaction是一个函数包装器
 
+**以下均需要包含signal.h文件**
+
 sigaction是一个结构体，它有一个函数指针。sigaction告诉操作系统进程收到某个信号时应该调用哪个函数。
 
 创建方法：
@@ -1720,6 +1722,113 @@ void diediedie(int sig){
 ### 用sigaction()来注册sigaction
 
 创建sigaction以后，需要用sigaction()函数来让操作系统知道它的存在
+
+```c
+sigaction(signal_no, &new_action, &old_action);
+```
+
+接收三个参数：
+
+1. 信号编号
+
+   这个整型值代表了你希望处理的信号。通常会传递SIGINT或SIGQUIT这样的标准信号
+
+2. 新动作
+
+   你想注册的新sigaction的地址
+
+3. 旧动作
+
+   如果你想保存被替换的信号处理器，可以再传一个sigaction指针；如果不想保存，可以设置为NULL
+
+如果sigaction()函数失败，会返回－1，并设置errno变量
+
+以下函数简化了注册过程
+
+```c
+int catch_signal(int sig, void (*handler)(int)){
+	struct sigaction action;
+	action.sa_handler = handler;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = 0;
+	return sigaction (sig, &action, NULL);
+}
+catch_signal(SIGINT, diediedie);
+```
+
+### 操作系统的信号（部分）
+
+| 信号     | 引起原因                                               |
+| -------- | :----------------------------------------------------- |
+| SIGINT   | 进程被中断                                             |
+| SIGQUIT  | 有人要求停止进程，并把存储器中的内容保存到核心转储文件 |
+| SIGFPE   | 浮点错误                                               |
+| SIGTRAP  | 调试人员询问进程执行到了哪里                           |
+| SIGSEGV  | 进程企图访问非法存储器地址                             |
+| SIGWINCH | 终端窗口的大小发生改变                                 |
+| SIGTERM  | 有人要求内核终止进程                                   |
+| SIGPIPE  | 进程在向一个没有人读的管道写数据                       |
+
+### 使用kill发送信号
+
+在类Unix操作系统中有一个叫kill的命令（在Windows上用Cygwin）
+
+叫kill是因为这个命令通常用来“杀死”进程。事实上，kill只是向进程发送了一个信号，kill默认会向进程发送SIGTERM信号
+
+kill －KILL一定能杀死进程
+
+### raise()给自己发送信号
+
+```c
+raise(SIGTERM);
+```
+
+通常会在自定义的信号处理函数中使用raise()，这样程序就能在接收到低级别的信号时引发更高级别的信号。这就是信号升级
+
+### SIGALRM
+
+当计算机中发生了进程需要知道的事情时，操作系统就会向进程发送信号，除了在发生错误时使用，有时进程也需要产生自己的信号
+
+```c
+alarm(120);			//把闹钟调到120秒以后闹铃
+do_important_busy_work();
+do_more_busy_work();			//其间代码就会做其他事
+```
+
+进程在收到闹钟信号以后默认会结束进程，但通常情况下使用定时器不是为了让它帮你“杀死”程序，而是为了利用闹钟信号的处理器去做另一件事
+
+```c
+catch_signal(SIGALRM, pour_coffee);
+alarm(120);
+```
+
+闹钟信号可以实现多任务。如果需要每隔几秒运行一个任务，或者想限制花费在某个任务上的时间，就可以用闹钟信号让程序打断自己
+
+一个进程只有一个定时器。定时器由操作系统的内核管理，如果一个进程有很多定时器，内核就会变得很慢，因此操作系统需要限制进程能使用的定时器个数
+
+每次调用alarm()函数都会重置定时器
+
+> **不要同时使用alarm()和sleep()**
+>
+> sleep()函数会让程序沉睡一段时间。和alarm()函数一样，它也使用了间隔计时器，因此同时使用这两个函数会发生冲突
+
+> setitimer()函数可以把进程间隔计时器的单位设为几分之一秒
+
+### 重置信号和忽略信号
+
+如果想还原默认的信号处理器，signal.h头文件中有一个特殊的符号SIG_DFL，它代表以默认方式处理信号
+
+```c
+catch_signal(SIGTERM, SIG_DFL);
+```
+
+同时，还可以用SIG_IGN符号让进程忽略某个信号
+
+```c
+catch_signal(SIGINT, SIG_IGN);
+```
+
+在决定忽略某个信号前一定要慎重考虑，信号是控制进程和终止进程的重要方式，如果忽略了它们，程序就很难停下来
 
 ## 11 网络与套接字
 
