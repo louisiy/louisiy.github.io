@@ -1379,7 +1379,38 @@ alarm(120);
 <pre><code class="c">catch_signal(SIGINT, SIG_IGN);
 </code></pre>
 <p>在决定忽略某个信号前一定要慎重考虑，信号是控制进程和终止进程的重要方式，如果忽略了它们，程序就很难停下来</p>
-<h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
+<h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>互联网中大部分的底层网络代码都是用C语言写的。网络程序通常由两部分程序组成：服务器和客户端</p>
+<p>可以使用一个叫telnet的客户端程序连接服务器。telnet接收两个参数：一个是服务器地址，另一个是服务器运行的端口</p>
+<blockquote>
+<p>需要用telnet程序连接服务器。很多系统自带了telnet，可以用以下命令检查计算<br>机上有没有telnet：<code>telnet</code><br>如果你的计算机上没有telnet，可以用以下方式安装：<br>Cygwin:<br>打开Cygwin的安装程序（setup.exe），搜索telnet。<br>Linux:<br>在包管理器中搜索telnet，很多操作系统的包管理器叫新立得（synaptic）。<br>Mac:<br>如果没有telnet，可以从<a target="_blank" rel="noopener" href="http://www.macports.org或www.finkproject.org安装./">www.macports.org或www.finkproject.org安装。</a></p>
+</blockquote>
+<p>服务器将同时与多个客户端通信。客户端与服务器之间将展开一段结构化对话，叫做协议。互联网使用了各种协议，一部分是低层协议，另一部分是高层协议。低层协议有IP（Internet Protocol，网际协议），它用来控制二进制的0和1在互联网中的发送方式；高层协议有HTTP（Hypertext Transfer Protocol，超文本传输协议），它用来控制浏览器和网络服务器的对话</p>
+<p>协议通常有一套严格的规则。客户端和服务器都遵守这些规则就没事，但只要它们中有一方违反了规则，对话就会戛然而止</p>
+<h3 id="BLAB"><a href="#BLAB" class="headerlink" title="BLAB"></a>BLAB</h3><p>如果想要写一个与网络通信的程序，就需要一种新数据流——套接字</p>
+<pre><code class="c">#include &lt;sys/socket.h&gt;			//需要包含这个头文件
+...
+int listener_d = socket(PF_INET, SOCK_STREAM, 0);		//listener_d是套接字描述符，0是协议号
+if (listener_d == -1)
+    error(&quot;无法打开套接字&quot;);
+</code></pre>
+<p>在使用套接字与客户端程序通信前，服务器需要历经四个阶段：绑定（Bind）、监听（Listen）、接受（Accept）和开始（Begin），首字母缩写为BLAB</p>
+<ol>
+<li><p>绑定端口</p>
+<p>计算机可能同时运行多个服务器程序，每项服务必须使用不同的端口（port）。端口就好比电视频道，我们在不同端口使用不同的网络服务，就像我们通过不同频道收看不同的电视节目</p>
+<p>服务器在启动时，需要告诉操作系统将要使用哪个端口，这个过程叫端口绑定。为了绑定它，你需要两样东西：套接字描述符和套接字名</p>
+</li>
+</ol>
+<pre><code class="c">#include &lt;arpa/inet.h&gt;
+...
+struct sockaddr_in name;
+name.sin_family = PF_INET;
+name.sin_port = (in_port_t)htons(30000);
+name.sin_addr.s_addr = htonl(INADDR_ANY);
+int c = bind (listener_d, (struct sockaddr *) &amp;name, sizeof(name));
+if (c == -1)
+    error(&quot;无法绑定端口&quot;);
+</code></pre>
+<h2 id="12-线程"><a href="#12-线程" class="headerlink" title="12 线程"></a>12 线程</h2><h2 id="十大遗漏知识点"><a href="#十大遗漏知识点" class="headerlink" title="十大遗漏知识点"></a>十大遗漏知识点</h2><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><ul>
 <li><p>递增与递减</p>
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
 </li>
