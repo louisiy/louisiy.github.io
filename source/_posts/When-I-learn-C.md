@@ -1,6 +1,6 @@
 ---
 title: When I learn C
-date: 2023-1-25 16:23:53
+date: 2023-1-27 10:26:53
 tags: C notes
 ---
 
@@ -1831,6 +1831,68 @@ catch_signal(SIGINT, SIG_IGN);
 在决定忽略某个信号前一定要慎重考虑，信号是控制进程和终止进程的重要方式，如果忽略了它们，程序就很难停下来
 
 ## 11 网络与套接字
+
+### 服务器
+
+互联网中大部分的底层网络代码都是用C语言写的。网络程序通常由两部分程序组成：服务器和客户端
+
+可以使用一个叫telnet的客户端程序连接服务器。telnet接收两个参数：一个是服务器地址，另一个是服务器运行的端口
+
+> 需要用telnet程序连接服务器。很多系统自带了telnet，可以用以下命令检查计算
+> 机上有没有telnet：`telnet`
+> 如果你的计算机上没有telnet，可以用以下方式安装：
+> Cygwin:
+> 打开Cygwin的安装程序（setup.exe），搜索telnet。
+> Linux:
+> 在包管理器中搜索telnet，很多操作系统的包管理器叫新立得（synaptic）。
+> Mac:
+> 如果没有telnet，可以从www.macports.org或www.finkproject.org安装。
+
+服务器将同时与多个客户端通信。客户端与服务器之间将展开一段结构化对话，叫做协议。互联网使用了各种协议，一部分是低层协议，另一部分是高层协议。低层协议有IP（Internet Protocol，网际协议），它用来控制二进制的0和1在互联网中的发送方式；高层协议有HTTP（Hypertext Transfer Protocol，超文本传输协议），它用来控制浏览器和网络服务器的对话
+
+协议通常有一套严格的规则。客户端和服务器都遵守这些规则就没事，但只要它们中有一方违反了规则，对话就会戛然而止
+
+### BLAB
+
+如果想要写一个与网络通信的程序，就需要一种新数据流——套接字
+
+```c
+#include <sys/socket.h>			//需要包含这个头文件
+...
+int listener_d = socket(PF_INET, SOCK_STREAM, 0);		//listener_d是套接字描述符，0是协议号
+if (listener_d == -1)
+	error("无法打开套接字");
+```
+
+在使用套接字与客户端程序通信前，服务器需要历经四个阶段：绑定（Bind）、监听（Listen）、接受（Accept）和开始（Begin），首字母缩写为BLAB
+
+1. 绑定端口
+
+   计算机可能同时运行多个服务器程序，每项服务必须使用不同的端口（port）。端口就好比电视频道，我们在不同端口使用不同的网络服务，就像我们通过不同频道收看不同的电视节目
+
+   服务器在启动时，需要告诉操作系统将要使用哪个端口，这个过程叫端口绑定。为了绑定它，你需要两样东西：套接字描述符和套接字名
+
+```c
+#include <arpa/inet.h>
+...
+struct sockaddr_in name;
+name.sin_family = PF_INET;
+name.sin_port = (in_port_t)htons(30000);
+name.sin_addr.s_addr = htonl(INADDR_ANY);
+int c = bind (listener_d, (struct sockaddr *) &name, sizeof(name));
+if (c == -1)
+	error("无法绑定端口");
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
