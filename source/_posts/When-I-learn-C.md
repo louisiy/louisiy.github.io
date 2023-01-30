@@ -1872,27 +1872,60 @@ if (listener_d == -1)
 
    服务器在启动时，需要告诉操作系统将要使用哪个端口，这个过程叫端口绑定。为了绑定它，你需要两样东西：套接字描述符和套接字名
 
+   ```C
+   #include <arpa/inet.h>
+   ...
+   struct sockaddr_in name;
+   name.sin_family = PF_INET;
+   name.sin_port = (in_port_t)htons(30000);
+   name.sin_addr.s_addr = htonl(INADDR_ANY);
+   int c = bind (listener_d, (struct sockaddr *) &name, sizeof(name));
+   if (c == -1)
+   	error("无法绑定端口");
+
+2. 监听
+
+   可以用listen()系统调用告诉操作系统队列有多长
+
+   调用listen()把队列长度设为10，也就是说最多可以有10个客户端同时尝试连接服务器，它们不会立即得到响应，但可以排队等待，而第11个客户端会被告知服务器太忙
+
+   ```c
+   if(listen(listener_d, 10) == -1)
+       error("无法监听");
+
+3. 接受连接
+
+   accept()系统调用会一直等待，直到有客户端连接服务器时，它会返回第二个套接字描述符，然后就可以用它通信了
+
+   ```c
+   struct sockaddr_storage client_addr;
+   unsigned int address_size = sizeof(client_addr);
+   int connect_d = accept(listener_d, (struct sockaddr *)&client_addr, &address_size);
+   if (connect_d == -1)
+   	error("无法打开副套接字");
+   ```
+
+   服务器将用新的连接描述符connect_d进行通信
+
+### 套接字
+
+套接字是双向的，它既可以用作输入也可以用作输出，也就是说要用其他函数和它通信
+
+如果想向套接字输出数据，就要用send()函数，而不是fprintf()
+
 ```c
-#include <arpa/inet.h>
-...
-struct sockaddr_in name;
-name.sin_family = PF_INET;
-name.sin_port = (in_port_t)htons(30000);
-name.sin_addr.s_addr = htonl(INADDR_ANY);
-int c = bind (listener_d, (struct sockaddr *) &name, sizeof(name));
-if (c == -1)
-	error("无法绑定端口");
+char *msg = "Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n> ";
+if (send(connect_d, msg, strlen(msg), 0) == -1)
+	error("send");
 ```
 
-
-
-
-
-
-
-
-
-
+> **如何选择端口号**
+>
+> 为服务器程序选择端口号时千万要小心。现如今有各式各样的服务器，所以不要选其他程序用过的端口号。在Cygwin和大多数Unix中有一个/etc/services文件，它列出了很多常用服务使用的端口号。在选择端口时必须确保没有其他程序用过
+>
+> 端口号从0开始一直到65535，首先你需要决定用小号码（1024以下）还是大号码。很多计算机中，只有超级用户或管理员才有资格使用1024号以下的端口，因为小号的端口留给了一些知名服务，如网页服务器和邮件服务器。操作系统只允许管理员使用这些端口，防止普通用户启动一些多余的服务
+>
+> 通常情况下，请使用1024号以上的端口
 
 
 
