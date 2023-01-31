@@ -1,5 +1,5 @@
 ---
-title: GNU
+title: GNU和一些
 date: 2023-1-30 17:55:33
 tags: GNU
 ---
@@ -55,3 +55,33 @@ Mingw-w64可运行于本地Microsoft Windows平台，"cross-native"在MSYS2或Cy
 ## MSYS2
 
 MSYS2 ("minimal system 2")是用于Microsoft Windows的软件发布与开发平台，基于Mingw-w64与Cygwin，把Unix环境中的代码移植到Windows。
+
+## lint
+
+UNIX（非复用信息和计算机服务，英语：Uniplexed Information and Computing Service，UnICS），一种多用户、多进程的计算机操作系统，源自于从20世纪70年代开始在美国AT&T公司的贝尔实验室开发的AT&T Unix。
+
+## BSD
+
+伯克利软件包（英语：Berkeley Software Distribution，缩写：BSD；也被称为伯克利Unix或Berkeley Unix）是一个派生自Unix（类Unix）的操作系统，1970年代由伯克利加州大学的学生比尔·乔伊开创，也被用来代表其派生出的各种包。
+
+BSD许可证非常地宽松，因此BSD常被当作工作站级别的Unix系统，许多1980年代成立的计算机公司都从BSD中获益，比较著名的例子如DEC的Ultrix，以及Sun公司的SunOS。 1990年代，BSD大幅度被System V 4.x版以及OSF/1系统所取代，但其开源版本被用在互联网的开发。
+
+![UNIX](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/Unix_history-simple.svg)
+
+## Unix
+
+UNIX（非复用信息和计算机服务，英语：Uniplexed Information and Computing Service，UnICS），一种多用户、多进程的计算机操作系统，源自于从20世纪70年代开始在美国AT&T公司的贝尔实验室开发的AT&T Unix。
+
+UNIX操作系统，是一个强大的多用户、多任务操作系统，支持多种处理器架构，按照操作系统的分类，属于分时操作系统，最早由肯·汤普逊、丹尼斯·里奇和道格拉斯·麦克罗伊于1969年在AT&T的贝尔实验室开发。目前它的商标权由国际开放标准组织所拥有，只有符合单一UNIX规范的UNIX系统才能使用UNIX这个名称，否则只能称为类UNIX（UNIX-like）。
+
+Unix的前身为1964年开始的Multics，1965年时，贝尔实验室加入一项由通用电气和麻省理工学院合作的计划；该计划要创建一套多用户、多任务、多层次（multi－user、multi－processor、multi－level）的MULTICS操作系统。贝尔实验室参与了这个操作系统的研发，但因为开发速度太慢，1969年贝尔实验室决定退出这个计划。贝尔实验室的工程师，肯·汤普逊和丹尼斯·里奇，在此时自行开发了Unix。
+
+此后的10年，Unix在学术机构和大型企业中得到了广泛的应用，当时的UNIX拥有者AT&T公司以低廉甚至免费的许可将Unix源码授权给学术机构做研究或教学之用，许多机构在此源码基础上加以扩展和改进，形成了所谓的“Unix变种”，这些变种反过来也促进了Unix的发展，其中最著名的变种之一是由加州大学柏克莱分校开发的伯克利软件套件(BSD)产品。
+
+后来AT&T意识到了Unix的商业价值，不再将Unix源码授权给学术机构，并对之前的Unix及其变种声明了著作权权利。BSD在Unix的历史发展中具有相当大的影响力，被很多商业厂家采用，成为很多商用Unix的基础。其不断增大的影响力终于引起了AT&T的关注，于是开始了一场持久的著作权官司，这场官司一直打到AT&T将自己的Unix系统实验室卖掉，新接手的Novell采取了一种比较开明的做法，允许柏克莱分校自由发布自己的Unix变种，但是前提是必须将来自于AT&T的代码完全删除，于是诞生了4.4 BSD Lite版，由于这个版本不存在法律问题，4.4 BSD Lite成为了现代柏克莱软件包的基础版本。尽管后来，非商业版的Unix系统又经过了很多演变，但其中有不少最终都是创建在BSD版本上（Linux、Minix等系统除外）。所以从这个角度上，4.4 BSD又是所有自由版本Unix的基础，它们和System V及Linux等共同构成Unix操作系统。
+
+BSD使用主版本加次版本的方法标识，如4.2、4.3BSD，在原始版本的基础上还有派生版本，这些版本通常有自己的名字，如4.3BSD-Net/1，4.3BSD-Net/2等。BSD在发展中也逐渐派生出3个主要的分支：FreeBSD、OpenBSD和NetBSD。
+
+此后的几十年中，Unix仍在不断变化，其著作权所有者不断变更，授权者的数量也在增加。Unix的著作权曾经为AT&T所有，之后Novell拥有获取了Unix，再之后Novell又将著作权出售给了圣克鲁兹作业，但不包括知识产权和专利权（这一事实双方尚存在争议）。有很多大公司在获取了Unix的授权之后，开发了自己的Unix产品，比如IBM的AIX、惠普的HP-UX、SCO的Openserver、SUN的Solaris（被Oracle收购）和SGI的IRIX。
+
+Unix因为其安全可靠，高效强大的特点在服务器领域得到了广泛的应用。直到GNU/Linux流行开始前，Unix也是科学计算、大型机、超级计算机等所用操作系统的主流。现在其仍然被应用于一些对稳定性要求极高的数据中心之上。
