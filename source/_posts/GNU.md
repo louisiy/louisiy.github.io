@@ -66,9 +66,9 @@ UNIX（非复用信息和计算机服务，英语：Uniplexed Information and Co
 
 BSD许可证非常地宽松，因此BSD常被当作工作站级别的Unix系统，许多1980年代成立的计算机公司都从BSD中获益，比较著名的例子如DEC的Ultrix，以及Sun公司的SunOS。 1990年代，BSD大幅度被System V 4.x版以及OSF/1系统所取代，但其开源版本被用在互联网的开发。
 
-![UNIX](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/Unix_history-simple.svg)
-
 ## Unix
+
+![UNIX](https://fastly.jsdelivr.net/gh/louisiy/ImageStorage/img/Unix_history-simple.svg)
 
 UNIX（非复用信息和计算机服务，英语：Uniplexed Information and Computing Service，UnICS），一种多用户、多进程的计算机操作系统，源自于从20世纪70年代开始在美国AT&T公司的贝尔实验室开发的AT&T Unix。
 
@@ -85,3 +85,9 @@ BSD使用主版本加次版本的方法标识，如4.2、4.3BSD，在原始版�
 此后的几十年中，Unix仍在不断变化，其著作权所有者不断变更，授权者的数量也在增加。Unix的著作权曾经为AT&T所有，之后Novell拥有获取了Unix，再之后Novell又将著作权出售给了圣克鲁兹作业，但不包括知识产权和专利权（这一事实双方尚存在争议）。有很多大公司在获取了Unix的授权之后，开发了自己的Unix产品，比如IBM的AIX、惠普的HP-UX、SCO的Openserver、SUN的Solaris（被Oracle收购）和SGI的IRIX。
 
 Unix因为其安全可靠，高效强大的特点在服务器领域得到了广泛的应用。直到GNU/Linux流行开始前，Unix也是科学计算、大型机、超级计算机等所用操作系统的主流。现在其仍然被应用于一些对稳定性要求极高的数据中心之上。
+
+## POSIX
+
+可移植操作系统接口（英语：Portable Operating System Interface，缩写为POSIX）是IEEE为要在各种UNIX操作系统上运行软件，而定义API的一系列互相关联的标准的总称，其正式称呼为IEEE Std 1003，而国际标准名称为ISO/IEC 9945。此标准源于一个大约开始于1985年的项目。POSIX这个名称是由理查德·斯托曼（RMS）应IEEE的要求而提议的一个易于记忆的名称。它基本上是Portable Operating System Interface（可移植操作系统接口）的缩写，而X则表明其对Unix API的传承。
+
+当前的POSIX主要分为四个部分：Base Definitions、System Interfaces、Shell and Utilities和Rationale。
