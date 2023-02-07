@@ -54,6 +54,7 @@ site_description: Blog #The default meta description for all the meta descriptio
 menu:
   HOME: /
   BLOG: /archives
+  Tags: /categories
 
 
 ## 本地搜索
@@ -135,8 +136,8 @@ footer: Keep Thinking of Beloved y³ # markdown语法
 
 #有分类时是否开启menu分类页和自定义名字
 menu_categories:
-  open: false
-  name: Categories
+  open: true
+  name: Tags
 
 #可自定义归档标签页名字
 archive_tab_name: Said
@@ -145,3 +146,9 @@ archive_tab_name: Said
 #图片懒加载
 lazyload:
   open: true #是否开启
+
+# Mermaid (markdown to flow chart, seq chart, class chart ...)
+mermaid: 
+	enable: true
+	# Available themes: default | dark | forest | neutral
+	theme: default
