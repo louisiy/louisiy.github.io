@@ -1,20 +1,92 @@
 ---
-title: Hexo 主题开发
+title: Hexo建站
 date: 2023-02-07 19:23:24
 tags: hexo
 ---
 
-# Hexo主题开发
+# Hexo 建站
+
+采用Hexo建立个人博客，本文记录建站经历
+
+## 建站
+
+hexo+github+vercel+godaddy+dnspod
+
+框架+GitHub存储 +网站托管服务 +域名注册+域名服务器DNS
+
+先用着
+
+上面已经备份之后，再继续进行操作就只需在hexo_src分支下进行
+
+hexo的操作，以及git操作
+
+批处理
+
+```bash
+hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m 'new push';git push origin hexo_src
+```
+
+挺方便
+
+## 备份博客源文件
+
+有时候我们想换一台电脑继续写博客，这时候就可以将博客目录下的所有源文件都上传到github上面。
+
+### 备份
+
+首先在github博客仓库下新建一个分支`hexo_src`，然后`git clone`到本地，把`.git`文件夹拿出来，放在博客根目录下。
+
+然后`git checkout -b hexo_src`切换到`hexo_src`分支，然后`git add .`，然后`git commit -m "xxx"`，最后`git push origin hexo_src`提交就行了。
+
+### 恢复
+
+首先在指定文件夹clone下来hexo_src分支
+
+```bash
+$ git clone -b hexo_src [仓库地址]
+```
+
+在该clone下来的文件夹里去安装hexo
+
+```bash
+$ cnpm install hexo
+$ cnpm install		//这一句不知道和上面这一句有何区别
+```
+
+> 特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原主题仓库clone下来处理
+
+## 图床
+
+采用
+
+ jsdelivr (cdn) + github 存储 + PicGo 
+
+方案
+
+// load any GitHub release, commit, or branch
+
+// note: we recommend using npm for projects that support it
+
+https://cdn.jsdelivr.net/gh/user/repo@version/filecdn+
+
+## 主题开发
 
 由于之前采用的white主题的开发者已将开源主题归档跑路不再维护，并且相较于本人在其他地方所看到的个人博客还有很多可以修改的可能，故决定在此基础之上进行修改，最后做出另一款自用的主题
 
 在正式修改开发前需要先学习hexo主题的制作知识，以下综述总结于网络
 
-## 预备
+### 预备
 
-针对Hexo主题的开发需要了解以下知识：
-- 模板引擎语法
-- CSS预处理器
+主题的基本结构，常见问题，常用的页面实现，基本工具
+
+
+
+针对Hexo主题的开发需要了解
+
+- HTML/CSS/JavaScript
+
+- 模板引擎语法，如EJS/Jade/Swig
+- CSS预处理器，如SASS/LESS/Stylus
 - YML语法
 - Hexo文档
 
@@ -30,9 +102,9 @@ tags: hexo
 
 
 
-## 实操
+### 实操
 
-### HTML生成框架
+#### HTML生成框架
 
 我们在`layout`目录下新建`_partial`目录，在该目录下添加`head.ejs`,`header.ejs`以及`footer.ejs`文件
 
@@ -189,7 +261,7 @@ Hexo 提供了 `excerpt` 属性来获取文章的摘录部分，不过这里需�
 </div>
 ```
 
-### 添加主题配置
+#### 添加主题配置
 
 实际上我们需要让导航菜单根据我们的需要显示不同的项，上面这种写法不方便修改。所以我们会在主题的配置文件中添加导航菜单的配置。在 `theme-example` 下的配置文件 `_config.yml`，在其中添加需要配置的字段。然后可以通过 `theme` 这个变量来拿到该配置文件中的配置
 
@@ -224,7 +296,7 @@ menu:
 </header>
 ```
 
-### CSS样式
+#### CSS样式
 
 到目前为止，我们完成了首页的整体页面结构，不过由于没添加css样式，因此整体页面非常难看，所以我们需要给页面加上一些样式来美化一下我们的页面。
 
@@ -325,7 +397,7 @@ body {
 @import "_partial/index";
 ```
 
-### 添加分页
+#### 添加分页
 
 在站点的 `source/_post/` 目录下存放的是我们的文章，现在我们把原本的 `hello-world.md` 复制黏贴 10+ 次，再查看站点首页。会发现，首页只显示了 10 篇文章。
 
@@ -354,7 +426,7 @@ body {
 
 这里我们使用到了另外的一个辅助函数 `paginator`，它能够帮助我们插入分页链接，这里我们只是实现了一个最基本的分页，具体的样式可以自行添加，或者根据文档使用其他配置自定义分页
 
-### 添加文章详情页
+#### 添加文章详情页
 
 文章详情页对应的布局文件是 `post.ejs`，新建 `post.ejs`:
 
@@ -372,7 +444,7 @@ body {
 </article>
 ```
 
-### 添加归档页
+#### 添加归档页
 
 创建归档页使用的模板文件 `archive.ejs`:
 
@@ -424,7 +496,7 @@ body {
 }
 ```
 
-### 添加分类页
+#### 添加分类页
 
 分类页跟归档页也类似，相当于根据不同的分类进行归档。
 
@@ -473,7 +545,7 @@ type: "categories"
 
 后续的标签页类似。
 
-### 添加标签页
+#### 添加标签页
 
 标签页与分类页及其类似，只是根据标签进行归档。
 
@@ -495,7 +567,7 @@ type: "categories"
 </section>
 ```
 
-### 添加自定义页面
+#### 添加自定义页面
 
 自定义页面与文章详情页类似
 
@@ -528,7 +600,7 @@ menu:
 
 执行`hexo new page about`进行手动生成页面，编辑文件内容即可
 
-## **Hexo插件**
+### Hexo插件
 
 Hexo 有强大的插件系统，让我们能够轻松扩展功能而不用修改核心模块的源码。在 Hexo 中有两种形式的插件：
 
