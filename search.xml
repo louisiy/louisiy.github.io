@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>the C programing Language NOTES</title>
+      <link href="/2023/04/TheC/"/>
+      <url>/2023/04/TheC/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在学习进度，准备开始读一遍传世经典K&amp;R</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> C </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo主题开发</title>
       <link href="/2023/02/HexoTheme/"/>
       <url>/2023/02/HexoTheme/</url>
