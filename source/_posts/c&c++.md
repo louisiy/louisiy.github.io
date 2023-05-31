@@ -142,7 +142,257 @@ void DayDreaming(int &salary, int &cars, int &houses){
 
 ## 类的定义与使用
 
+```c++
+//类定义
+class Baby{
+    //成员变量
+    
+    //成员函数  
+    
+};
 
+//类实例
+Baby dawa, erwa;
+```
+
+### 成员变量的初始化
+
+- 在**定义类时**即可确定，用构造函数，且无需参数
+- 在**创建对象时**确定，用带参数的构造函数
+- 在**创建对象后**才能确定，用成员函数
+
+### 构造函数
+
+```c++
+class CLASSNAME{
+    CLASSNAME(){
+        
+    }
+    CLASSNAME([ARGUMENTS]){		//带参数的构造函数
+        
+    }
+};
+```
+
+- 构造函数的名字 = 类的名字
+
+- 没有返回值类型：不返回任何数据
+
+- 创建对象时自动调用，初始化成员变量
+
+- 每个类需要至少一个构造函数，若不写，则默认为：
+
+  ```c++
+  CLASSNAME(){
+      
+  }
+  ```
+
+类初始化时构造函数的调用顺序：
+
+- 初始化对象的储存空间或为零或为null
+- 按顺序分别调用类成员变量和对象成员的初始化
+- 调用构造函数
+
+```c++
+#include <iostream>
+using namespace std;
+class Dollar{
+    public:
+    	int n;
+    	Dollar(){
+            	n = 100;
+            	cout << n << " dollars come to my home" <<endl;
+            }
+};
+
+class Money{
+    public:
+    	Dollar d;
+    	Money(){
+            	cout << "All money come to my home" << endl;
+            }
+};
+
+int main(){
+    Money m;
+    
+    return 0;
+}
+```
+
+运行结果为：
+
+```bash
+$ .\test.exe
+100 dollars come to my home
+All money come to my home
+```
+
+#### 默认构造函数
+
+调用时可以不需要实参的构造函数
+
+- 参数列表为空
+- 全部参数都有默认值（略）
+
+每个类只能有一个默认的构造函数，否则将编译错误
+
+一个构造函数的例子：
+
+```c++
+class Baby {
+public:
+    char name[20];
+    char gender;
+    int age;
+    double weight;
+    int numPoops;
+    Baby(char myname[], char g, double w) 	//创建对象时确定
+                                       : age(0), numPoops(0) {	//初始化成员列表，在定义类的时候确定
+        strcpy(name, myname);
+        gender = g; 
+        weight = w;
+    }   
+};
+```
+
+#### 调用带参数的构造函数
+
+```c++
+//创建对象
+Baby dawa = Baby("大力士", 'M', 20);
+
+//或者
+Baby dawa("大力士", 'M', 20);
+```
+
+### 成员函数
+
+形如
+
+```c++
+class Baby{
+    public:
+    	...
+            void poop(){
+            	numPoops ++;
+            	cout << "Dear mother," << "I have pooped." << endl;
+            }
+            void sayHi(){
+    		cout << "Hi, my name is " << name << endl;
+	    }
+
+	    void eat(double foodWeight){
+    		weight +=foodWeight;
+	    } 
+}
+```
+
+综上，完整的Baby类为
+
+```c++
+class Baby{
+    public:
+    	char name[20];
+    	char gender;
+    	int age;
+    	double weight;
+    	int numPoops;
+
+    	Baby(char myname[], char g, double w) 	//创建对象时确定
+                                       : age(0), numPoops(0) {	//初始化成员列表，在定义类的时候确定
+        	strcpy(name, myname);
+        	gender = g; 
+        	weight = w;
+    	}
+
+    	void poop(){
+            	numPoops ++;
+            	cout << "Dear mother," << "I have pooped." << endl;
+            }
+            void sayHi(){
+    		cout << "Hi, my name is " << name << endl;
+	    }
+
+	    void eat(double foodWeight){
+    		weight +=foodWeight;
+	    } 
+}
+```
+
+### 函数声明与实现分离
+
+对于普通函数，函数原型与函数的实现可以分离，即把函数原型放在文件开头，而把函数的实现放在后面
+
+类似的，类的成员函数也可以这样做，函数的实现需要用`::`来表示它是哪一个类的成员函数
+
+```c++
+//baby.h 头文件
+class Baby{
+    public:
+    	char name[20];
+    	char gender;
+    	int age;
+    	double weight;
+    	int numPoops;
+    	Baby(char*, char, double);
+    	void poop();
+    	void sayHi();
+    	void eat(double foodweight);
+}
+
+//baby.cpp 源文件
+#include "baby.h"
+Baby::Baby(char myname[], char g, double w){
+	...    
+}
+void Baby::poop(){
+    ...
+}
+void Baby::eat(double foodweight){
+    weight +=foodweight;
+}
+```
+
+### 类的使用
+
+```c++
+//类定义
+class Baby{...}
+
+//类实例
+Baby dawa = Baby("大力士", 'M', 20);
+Baby erwa = Baby("千里眼", 'M', 16);
+Baby sanwa = Baby("钢筋铁骨", 'M', 18);
+Baby siwa = Baby("火神", 'M', 16);
+```
+
+#### 访问成员变量
+
+`Object.FIELD_NAME`
+
+```c++
+cout << dawa.name << endl;
+cout << erwa.weight << endl;
+cout << sanwa.numPoops << endl;
+```
+
+#### 调用成员参数
+
+`Object.METHOD_NAME([参数])`
+
+```c++
+dawa.sayHi();	//把sayHi作用于dawa
+erwa.eat(1);	//把eat(1)作用于erwa
+sanwa.poop();	//把poop作用于sanwa
+```
+
+## 进一步内容
+
+### 对象的赋值
+
+## 常用的C++类
 
 ## 访问控制
 
