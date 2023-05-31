@@ -571,8 +571,6 @@ cout << s3.find("e", 0) << endl;	//8
 cout << s3.substr(7, 3) << endl;	//"Reg"
 ```
 
-
-
 ## 访问控制
 
 ### 抽象与封装
@@ -800,7 +798,73 @@ int move(string turtle);
 
 ![c&c++_5](..\img\c&c++_5.png)
 
+```c++
+class Dude {
+    public:
+        string name;
+        int hp;	// 血量
+        int mp;	// 魔力值
+        Dude() { hp = 100; mp = 0; }
+        void sayName() {
+            cout << name << endl;
+        }
+        void punchFace(Dude &target) {
+            target.hp -= 10;
+        }    
+};
 
+class Wizard  :  public Dude{ 		// Wizard 是 Dude 的一个子类
+    string spells[20];
+    public:
+        void cast(string spell){
+            // cool stuff here
+            ...
+            mp -= 10;
+        }  
+};
+
+class GrandWizard : public Wizard {
+    public:
+        void sayName(){
+            cout << "Grand wizard " << name;
+        } 
+};
+
+grandWizard1.name = "Flash";
+grandWizard1.sayName();
+```
+
+C++看到如下语句时会如何做？`grandWizard1.punchFace(dude1);`
+
+- 在GrandWizard类中寻找punchFace()；
+- 没有找到！grandWizard有父类吗？
+- 在Wizard类中查找punchFace()；
+- 没有找到！Wizard有父类吗？
+- 在Dude类中查找punchFace()；
+- 找到了！调用punchFace()；
+- 减少dude1的hp值
+
+### 不同的继承方式
+
+ 三类继承方式：公有继承（public）、私有继承（private）、保护继承（protected）
+
+|          | 访问属性的继承                                               | 子类成员函数                                               | 子类对象                       |
+| -------- | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------ |
+| 公有继承 | 父类的public和protected成员的访问属性在子类中不变，private不能访问 | 可以访问父类中的public和protected成员，不能访问private成员 | 只能访问从父类继承的public成员 |
+| 私有继承 | 父类的public和protected成员以private出现在子类，private不能访问 | 同上                                                       | 不能访问从父类继承的任何成员   |
+| 保护继承 | 父类的public和protected成员以protected出现在子类，private不能访问 | 同上                                                       | 不能访问从父类继承的任何成员   |
+
+### 子类对象的存储
+
+在创建一个子类对象后
+
+- 一方面，该子类对象本身是一个独立、完整的对象
+- 另一方面，在该对象内部，又包含了一个父类子对象(subobject)
+- 该子对象与正常创建的父类对象相同
+
+具体实现
+
+![c&c++_6](..\img\c&c++_6.png)
 
 
 
