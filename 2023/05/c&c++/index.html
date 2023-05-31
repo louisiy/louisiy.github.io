@@ -821,6 +821,92 @@ int move(string turtle);
            data-src="/..%5Cimg%5Cc&c++_5.png" >
         </sapn>
       </p>
+<pre><code class="c++">class Dude &#123;
+    public:
+        string name;
+        int hp;	// 血量
+        int mp;	// 魔力值
+        Dude() &#123; hp = 100; mp = 0; &#125;
+        void sayName() &#123;
+            cout &lt;&lt; name &lt;&lt; endl;
+        &#125;
+        void punchFace(Dude &amp;target) &#123;
+            target.hp -= 10;
+        &#125;    
+&#125;;
+
+class Wizard  :  public Dude&#123; 		// Wizard 是 Dude 的一个子类
+    string spells[20];
+    public:
+        void cast(string spell)&#123;
+            // cool stuff here
+            ...
+            mp -= 10;
+        &#125;  
+&#125;;
+
+class GrandWizard : public Wizard &#123;
+    public:
+        void sayName()&#123;
+            cout &lt;&lt; &quot;Grand wizard &quot; &lt;&lt; name;
+        &#125; 
+&#125;;
+
+grandWizard1.name = &quot;Flash&quot;;
+grandWizard1.sayName();
+</code></pre>
+<p>C++看到如下语句时会如何做？<code>grandWizard1.punchFace(dude1);</code></p>
+<ul>
+<li>在GrandWizard类中寻找punchFace()；</li>
+<li>没有找到！grandWizard有父类吗？</li>
+<li>在Wizard类中查找punchFace()；</li>
+<li>没有找到！Wizard有父类吗？</li>
+<li>在Dude类中查找punchFace()；</li>
+<li>找到了！调用punchFace()；</li>
+<li>减少dude1的hp值</li>
+</ul>
+<h3 id="不同的继承方式"><a href="#不同的继承方式" class="headerlink" title="不同的继承方式"></a>不同的继承方式</h3><p> 三类继承方式：公有继承（public）、私有继承（private）、保护继承（protected）</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>访问属性的继承</th>
+<th>子类成员函数</th>
+<th>子类对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公有继承</td>
+<td>父类的public和protected成员的访问属性在子类中不变，private不能访问</td>
+<td>可以访问父类中的public和protected成员，不能访问private成员</td>
+<td>只能访问从父类继承的public成员</td>
+</tr>
+<tr>
+<td>私有继承</td>
+<td>父类的public和protected成员以private出现在子类，private不能访问</td>
+<td>同上</td>
+<td>不能访问从父类继承的任何成员</td>
+</tr>
+<tr>
+<td>保护继承</td>
+<td>父类的public和protected成员以protected出现在子类，private不能访问</td>
+<td>同上</td>
+<td>不能访问从父类继承的任何成员</td>
+</tr>
+</tbody></table>
+<h3 id="子类对象的存储"><a href="#子类对象的存储" class="headerlink" title="子类对象的存储"></a>子类对象的存储</h3><p>在创建一个子类对象后</p>
+<ul>
+<li>一方面，该子类对象本身是一个独立、完整的对象</li>
+<li>另一方面，在该对象内部，又包含了一个父类子对象(subobject)</li>
+<li>该子对象与正常创建的父类对象相同</li>
+</ul>
+<p>具体实现</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/..%5Cimg%5Cc&c++_6.png" >
+        </sapn>
+      </p>
 <h2 id="多态-不作要求"><a href="#多态-不作要求" class="headerlink" title="多态(不作要求)"></a>多态(不作要求)</h2>
         <!-- 分类文章 -->
         
