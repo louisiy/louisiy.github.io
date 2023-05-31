@@ -496,7 +496,7 @@ cout &lt;&lt; p-&gt;name &lt;&lt; &#39; &#39; &lt;&lt; p-&gt;gender		//-&gt;用�
         </sapn>
       </p>
 <p>对象dawa和指针p都是在栈空间中，new出来的新对象在堆空间中</p>
-<h3 id="静态类型"><a href="#静态类型" class="headerlink" title="静态类型"></a>静态类型</h3><p>static类型表示“静态”或“全局”的意思，适用于成员变量和方法</p>
+<h3 id="静态类型-不作要求"><a href="#静态类型-不作要求" class="headerlink" title="静态类型(不作要求)"></a>静态类型(不作要求)</h3><p>static类型表示“静态”或“全局”的意思，适用于成员变量和方法</p>
 <h4 id="静态成员变量"><a href="#静态成员变量" class="headerlink" title="静态成员变量"></a>静态成员变量</h4><ul>
 <li>是类一级的定义，独立于该类的任何对象（实例），为所有对象所共享</li>
 <li>必须在类外初始化，用<code>::</code>指明类</li>
@@ -517,7 +517,7 @@ cout &lt;&lt; p-&gt;name &lt;&lt; &#39; &#39; &lt;&lt; p-&gt;gender		//-&gt;用�
            &lt;&lt; b2.numBabiesMade &lt;&lt; endl;
 &#125;
 </code></pre>
-<h3 id="常类型（const）"><a href="#常类型（const）" class="headerlink" title="常类型（const）"></a>常类型（const）</h3><h2 id="常用的C-类"><a href="#常用的C-类" class="headerlink" title="常用的C++类"></a>常用的C++类</h2><h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><p>字符串：</p>
+<h3 id="常类型（不作要求）"><a href="#常类型（不作要求）" class="headerlink" title="常类型（不作要求）"></a>常类型（不作要求）</h3><h2 id="常用的C-类"><a href="#常用的C-类" class="headerlink" title="常用的C++类"></a>常用的C++类</h2><h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><p>字符串：</p>
 <ul>
 <li>用双引号括起来的若干个字符</li>
 <li>如”你好”、”no zuo no dai”</li>
@@ -781,21 +781,54 @@ void main(String args[])&#123;
 <pre><code class="c++">int move(string snake);
 int move(string turtle);
 </code></pre>
-<h2 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h2><p>寄存器、栈（stack）、堆（heap）、静态数据区</p>
+<h2 id="存储管理（不作要求）"><a href="#存储管理（不作要求）" class="headerlink" title="存储管理（不作要求）"></a>存储管理（不作要求）</h2><p>寄存器、栈（stack）、堆（heap）、静态数据区</p>
 <h3 id="内存分布"><a href="#内存分布" class="headerlink" title="内存分布"></a>内存分布</h3><p>
         <span class="lazyload-img-span">
         <img   
            data-src="/..%5Cimg%5Cc&c++_2.png" >
         </sapn>
       </p>
-
+<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><p>类与类之间的关系</p>
+<ul>
+<li>泛化（Generalization）：“is a”关系，继承关系，一般类&#x2F;特殊类，父类&#x2F;子类，基类&#x2F;派生类</li>
+<li>聚合（Aggregation）：“part of”关系，整体&#x2F;部分</li>
+<li>关联（Association）：类与类之间存在某种语义关联</li>
+</ul>
+<p>继承是类与类之间的关系，而非对象之间的关系</p>
+<ul>
+<li>便于软件重用</li>
+<li>不同子类之间有许多共同的属性</li>
+<li>但是子类之间又有区别</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/..%5Cimg%5Cc&c++_4.png" >
+        </sapn>
+      </p>
+<ul>
+<li>Y继承了X的属性和操作</li>
+<li>Y只需要定义新增的属性和操作</li>
+<li>Y的对象同时也是X的对象</li>
+</ul>
+<p>类的层次结构</p>
+<ul>
+<li>不同程度的抽象可得到不同层次的类</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/..%5Cimg%5Cc&c++_5.png" >
+        </sapn>
+      </p>
+<h2 id="多态-不作要求"><a href="#多态-不作要求" class="headerlink" title="多态(不作要求)"></a>多态(不作要求)</h2>
         <!-- 分类文章 -->
         
       </div>
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#C-%E5%AF%B9C%E7%9A%84%E6%89%A9%E5%85%85"><span class="space-toc-text">C++对C的扩充</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="space-toc-text">类和对象</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="space-toc-text">类的定义与使用</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%86%85%E5%AE%B9"><span class="space-toc-text">进一步内容</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84C-%E7%B1%BB"><span class="space-toc-text">常用的C++类</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="space-toc-text">访问控制</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="space-toc-text">函数重载</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="space-toc-text">存储管理</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#C-%E5%AF%B9C%E7%9A%84%E6%89%A9%E5%85%85"><span class="space-toc-text">C++对C的扩充</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="space-toc-text">类和对象</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="space-toc-text">类的定义与使用</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%86%85%E5%AE%B9"><span class="space-toc-text">进一步内容</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84C-%E7%B1%BB"><span class="space-toc-text">常用的C++类</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="space-toc-text">访问控制</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="space-toc-text">函数重载</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8D%E4%BD%9C%E8%A6%81%E6%B1%82%EF%BC%89"><span class="space-toc-text">存储管理（不作要求）</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="space-toc-text">类的继承</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%A4%9A%E6%80%81-%E4%B8%8D%E4%BD%9C%E8%A6%81%E6%B1%82"><span class="space-toc-text">多态(不作要求)</span></a></li></ol>
            </div>
         
       </div>
