@@ -392,7 +392,186 @@ sanwa.poop();	//把poop作用于sanwa
 
 ### 对象的赋值
 
+```c++
+class Point {
+	public:
+    	int x, y;
+    	Point(){ x = 0; y = 0;}
+};
+
+int main() 
+{
+    Point start, end;
+    start.x = 3;
+    start.y = 4;
+    end = start;  //对象的赋值
+    cout << end.x << ' ' << end.y << endl;
+    return 0;
+}
+```
+
+### 对象作为函数参数
+
+```c++
+#include <iostream>
+using namespace std;
+
+class DaGongRen{
+    public:
+    	int salary, nCars, nHouses;
+};
+
+void GetRich(DaGongRen p, int s, int c, int h){
+    p.salary += s;
+    p.nCars += c;
+    p.nHouses += h;
+}
+
+int main() 
+{
+    DaGongRen poor;
+    poor.salary = 6000;
+    poor.nCars = 0;
+    poor.nHouses = 0;
+    GetRich(poor, 12000, 2, 1);
+    cout << poor.salary << ' ' << poor.nCars << ' ' << poor.nHouses << endl;
+    return 0;
+}
+
+然而GetRich并没有改变初始化的DaGongRen p对象里的值，还是需要引用或指针
+```
+
+使用另一对象来初始化
+
+```c++
+class Singer { 
+	public:
+    	string name;
+    	int birth;
+    	Singer() {}  //默认构造函数
+    	Singer(Singer &o){ //复制构造函数，形参为引用
+        	name = o.name; birth = o.birth;  
+    	}
+};
+int main() {
+{
+    Singer MJ; //使用默认构造函数
+    MJ.name = "Michael Jackson"; 
+    MJ.birth = 1958;
+    Singer wang(MJ); //使用复制构造函数
+}
+```
+
+### 指向对象的指针
+
+```c++
+Baby dawa("大力士", 'M', 20);
+Baby *p = new Baby("大力士", 'M', 20);		//new 相当于 malloc
+cout << p->name << ' ' << p->gender		//->用法类似于结构体
+```
+
+![c&c++_3](..\img\c&c++_3.png)
+
+对象dawa和指针p都是在栈空间中，new出来的新对象在堆空间中
+
+### 静态类型
+
+static类型表示“静态”或“全局”的意思，适用于成员变量和方法
+
+#### 静态成员变量
+
+- 是类一级的定义，独立于该类的任何对象（实例），为所有对象所共享
+- 必须在类外初始化，用`::`指明类
+- 可以在任何类对象创建之前访问（静态成员函数也是如此）
+
+```c++
+class Baby {
+    public:
+        static int numBabiesMade; 
+    };
+    int Baby::numBabiesMade = 0;
+    void main() {
+        Baby::numBabiesMade = 100; 
+        Baby b1, b2;
+        b1.numBabiesMade = 1;
+        b2.numBabiesMade = 2;
+        cout << Baby::numBabiesMade<<' '
+           << b1.numBabiesMade << ' '
+           << b2.numBabiesMade << endl;
+}
+```
+
+### 常类型（const）
+
+
+
 ## 常用的C++类
+
+### String类
+
+字符串：
+
+- 用双引号括起来的若干个字符
+- 如"你好"、"no zuo no dai"
+- C语言：存储在字符数组，以0结尾
+- C++：string类
+  - 表示字符串
+  - 实际上是对字符数组操作的封装
+
+### string类的构造函数
+
+```c++
+string();	//默认构造函数，建立长度为0的串
+string s1;
+
+string(const char *s);	//用s字符串来初始化
+string s2 = "abc";	//或
+string s2("abc");
+
+string(const string& s) 	//复制构造函数
+string s3 = s2;
+```
+
+### 字符串存储
+
+字符串中的字符下标从0开始：
+
+`String name = 'Ultimate';`
+
+![c&c++_2](..\img\c&c++_1.png)
+
+- 首字符下标为0，尾字符下标为N-1
+- 每个元素的类型为char
+
+### string类的一些成员函数
+
+| 函数名称                                                     | 功能描述                                        |
+| ------------------------------------------------------------ | ----------------------------------------------- |
+| +、=                                                         | 字符串的拼接和赋值                              |
+| ==、!=、<、<=、>、>=                                         | 各种关系运算                                    |
+| int length()                                                 | 返回字符串的长度                                |
+| s[i]                                                         | 访问字符串s中下标为i的字符                      |
+| string substr(int pos, int n)                                | 返回pos开始的n个字符组成的子串                  |
+| int find(const char *s, int pos)<br />int find(char c, int pos) | 从pos开始查找字符串s或字符c在当前字符串中的位置 |
+| string&insert(int p0,char *s)                                | 在当前字符串的p0位置插入字符串s                 |
+| string&erase(int pos, int n)                                 | 删除pos开始的n个字符，返回新串                  |
+
+### string类举例
+
+```c++
+string s1 = "too ";
+string s2 = s1 + "how";
+cout << s2 << endl;		//“too how”
+
+//index		012345678901
+string s3 = "Stuart Reges";
+
+cout << s3.length() << endl;	//12
+cout << s3.find("e", 0) << endl;	//8
+cout << s3.substr(7, 3) << endl;	//"Reg"
+```
+
+
 
 ## 访问控制
 
@@ -593,4 +772,4 @@ int move(string turtle);
 
 ### 内存分布
 
-![image-20230531174310352](C:\Users\Louisiy\AppData\Roaming\Typora\typora-user-images\image-20230531174310352.png)
+![c&c++_2](..\img\c&c++_2.png)
