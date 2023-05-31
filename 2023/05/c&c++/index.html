@@ -424,7 +424,184 @@ cout &lt;&lt; sanwa.numPoops &lt;&lt; endl;
 erwa.eat(1);	//把eat(1)作用于erwa
 sanwa.poop();	//把poop作用于sanwa
 </code></pre>
-<h2 id="进一步内容"><a href="#进一步内容" class="headerlink" title="进一步内容"></a>进一步内容</h2><h3 id="对象的赋值"><a href="#对象的赋值" class="headerlink" title="对象的赋值"></a>对象的赋值</h3><h2 id="常用的C-类"><a href="#常用的C-类" class="headerlink" title="常用的C++类"></a>常用的C++类</h2><h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><h3 id="抽象与封装"><a href="#抽象与封装" class="headerlink" title="抽象与封装"></a>抽象与封装</h3><ul>
+<h2 id="进一步内容"><a href="#进一步内容" class="headerlink" title="进一步内容"></a>进一步内容</h2><h3 id="对象的赋值"><a href="#对象的赋值" class="headerlink" title="对象的赋值"></a>对象的赋值</h3><pre><code class="c++">class Point &#123;
+    public:
+        int x, y;
+        Point()&#123; x = 0; y = 0;&#125;
+&#125;;
+
+int main() 
+&#123;
+    Point start, end;
+    start.x = 3;
+    start.y = 4;
+    end = start;  //对象的赋值
+    cout &lt;&lt; end.x &lt;&lt; &#39; &#39; &lt;&lt; end.y &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<h3 id="对象作为函数参数"><a href="#对象作为函数参数" class="headerlink" title="对象作为函数参数"></a>对象作为函数参数</h3><pre><code class="c++">#include &lt;iostream&gt;
+using namespace std;
+
+class DaGongRen&#123;
+    public:
+        int salary, nCars, nHouses;
+&#125;;
+
+void GetRich(DaGongRen p, int s, int c, int h)&#123;
+    p.salary += s;
+    p.nCars += c;
+    p.nHouses += h;
+&#125;
+
+int main() 
+&#123;
+    DaGongRen poor;
+    poor.salary = 6000;
+    poor.nCars = 0;
+    poor.nHouses = 0;
+    GetRich(poor, 12000, 2, 1);
+    cout &lt;&lt; poor.salary &lt;&lt; &#39; &#39; &lt;&lt; poor.nCars &lt;&lt; &#39; &#39; &lt;&lt; poor.nHouses &lt;&lt; endl;
+    return 0;
+&#125;
+
+然而GetRich并没有改变初始化的DaGongRen p对象里的值，还是需要引用或指针
+</code></pre>
+<p>使用另一对象来初始化</p>
+<pre><code class="c++">class Singer &#123; 
+    public:
+        string name;
+        int birth;
+        Singer() &#123;&#125;  //默认构造函数
+        Singer(Singer &amp;o)&#123; //复制构造函数，形参为引用
+            name = o.name; birth = o.birth;  
+        &#125;
+&#125;;
+int main() &#123;
+&#123;
+    Singer MJ; //使用默认构造函数
+    MJ.name = &quot;Michael Jackson&quot;; 
+    MJ.birth = 1958;
+    Singer wang(MJ); //使用复制构造函数
+&#125;
+</code></pre>
+<h3 id="指向对象的指针"><a href="#指向对象的指针" class="headerlink" title="指向对象的指针"></a>指向对象的指针</h3><pre><code class="c++">Baby dawa(&quot;大力士&quot;, &#39;M&#39;, 20);
+Baby *p = new Baby(&quot;大力士&quot;, &#39;M&#39;, 20);		//new 相当于 malloc
+cout &lt;&lt; p-&gt;name &lt;&lt; &#39; &#39; &lt;&lt; p-&gt;gender		//-&gt;用法类似于结构体
+</code></pre>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/..%5Cimg%5Cc&c++_3.png" >
+        </sapn>
+      </p>
+<p>对象dawa和指针p都是在栈空间中，new出来的新对象在堆空间中</p>
+<h3 id="静态类型"><a href="#静态类型" class="headerlink" title="静态类型"></a>静态类型</h3><p>static类型表示“静态”或“全局”的意思，适用于成员变量和方法</p>
+<h4 id="静态成员变量"><a href="#静态成员变量" class="headerlink" title="静态成员变量"></a>静态成员变量</h4><ul>
+<li>是类一级的定义，独立于该类的任何对象（实例），为所有对象所共享</li>
+<li>必须在类外初始化，用<code>::</code>指明类</li>
+<li>可以在任何类对象创建之前访问（静态成员函数也是如此）</li>
+</ul>
+<pre><code class="c++">class Baby &#123;
+    public:
+        static int numBabiesMade; 
+    &#125;;
+    int Baby::numBabiesMade = 0;
+    void main() &#123;
+        Baby::numBabiesMade = 100; 
+        Baby b1, b2;
+        b1.numBabiesMade = 1;
+        b2.numBabiesMade = 2;
+        cout &lt;&lt; Baby::numBabiesMade&lt;&lt;&#39; &#39;
+           &lt;&lt; b1.numBabiesMade &lt;&lt; &#39; &#39;
+           &lt;&lt; b2.numBabiesMade &lt;&lt; endl;
+&#125;
+</code></pre>
+<h3 id="常类型（const）"><a href="#常类型（const）" class="headerlink" title="常类型（const）"></a>常类型（const）</h3><h2 id="常用的C-类"><a href="#常用的C-类" class="headerlink" title="常用的C++类"></a>常用的C++类</h2><h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><p>字符串：</p>
+<ul>
+<li>用双引号括起来的若干个字符</li>
+<li>如”你好”、”no zuo no dai”</li>
+<li>C语言：存储在字符数组，以0结尾</li>
+<li>C++：string类<ul>
+<li>表示字符串</li>
+<li>实际上是对字符数组操作的封装</li>
+</ul>
+</li>
+</ul>
+<h3 id="string类的构造函数"><a href="#string类的构造函数" class="headerlink" title="string类的构造函数"></a>string类的构造函数</h3><pre><code class="c++">string();	//默认构造函数，建立长度为0的串
+string s1;
+
+string(const char *s);	//用s字符串来初始化
+string s2 = &quot;abc&quot;;	//或
+string s2(&quot;abc&quot;);
+
+string(const string&amp; s) 	//复制构造函数
+string s3 = s2;
+</code></pre>
+<h3 id="字符串存储"><a href="#字符串存储" class="headerlink" title="字符串存储"></a>字符串存储</h3><p>字符串中的字符下标从0开始：</p>
+<p><code>String name = &#39;Ultimate&#39;;</code></p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="/..%5Cimg%5Cc&c++_1.png" >
+        </sapn>
+      </p>
+<ul>
+<li>首字符下标为0，尾字符下标为N-1</li>
+<li>每个元素的类型为char</li>
+</ul>
+<h3 id="string类的一些成员函数"><a href="#string类的一些成员函数" class="headerlink" title="string类的一些成员函数"></a>string类的一些成员函数</h3><table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+、&#x3D;</td>
+<td>字符串的拼接和赋值</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;、!&#x3D;、&lt;、&lt;&#x3D;、&gt;、&gt;&#x3D;</td>
+<td>各种关系运算</td>
+</tr>
+<tr>
+<td>int length()</td>
+<td>返回字符串的长度</td>
+</tr>
+<tr>
+<td>s[i]</td>
+<td>访问字符串s中下标为i的字符</td>
+</tr>
+<tr>
+<td>string substr(int pos, int n)</td>
+<td>返回pos开始的n个字符组成的子串</td>
+</tr>
+<tr>
+<td>int find(const char *s, int pos)<br />int find(char c, int pos)</td>
+<td>从pos开始查找字符串s或字符c在当前字符串中的位置</td>
+</tr>
+<tr>
+<td>string&amp;insert(int p0,char *s)</td>
+<td>在当前字符串的p0位置插入字符串s</td>
+</tr>
+<tr>
+<td>string&amp;erase(int pos, int n)</td>
+<td>删除pos开始的n个字符，返回新串</td>
+</tr>
+</tbody></table>
+<h3 id="string类举例"><a href="#string类举例" class="headerlink" title="string类举例"></a>string类举例</h3><pre><code class="c++">string s1 = &quot;too &quot;;
+string s2 = s1 + &quot;how&quot;;
+cout &lt;&lt; s2 &lt;&lt; endl;		//“too how”
+
+//index		012345678901
+string s3 = &quot;Stuart Reges&quot;;
+
+cout &lt;&lt; s3.length() &lt;&lt; endl;	//12
+cout &lt;&lt; s3.find(&quot;e&quot;, 0) &lt;&lt; endl;	//8
+cout &lt;&lt; s3.substr(7, 3) &lt;&lt; endl;	//&quot;Reg&quot;
+</code></pre>
+<h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><h3 id="抽象与封装"><a href="#抽象与封装" class="headerlink" title="抽象与封装"></a>抽象与封装</h3><ul>
 <li>将类的本质行为和它的具体实现分开</li>
 <li>外部观点：类的对外接口</li>
 <li>内部观点：类的具体实现</li>
@@ -608,7 +785,7 @@ int move(string turtle);
 <h3 id="内存分布"><a href="#内存分布" class="headerlink" title="内存分布"></a>内存分布</h3><p>
         <span class="lazyload-img-span">
         <img   
-           data-src="C:\Users\Louisiy\AppData\Roaming\Typora\typora-user-images\image-20230531174310352.png" >
+           data-src="/..%5Cimg%5Cc&c++_2.png" >
         </sapn>
       </p>
 
