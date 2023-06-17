@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Hexo建站 |    Louisiy.</title>
+  <title>  Algorithm |    Louisiy.</title>
   <meta name="description" content="Blog">
   <!-- 标签页图标 -->
   
@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -134,8 +134,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Hexo建站</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">2月 07 2023</div>
+      <div class="post-title animate__animated  animate__fadeInUp">Algorithm</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">6月 28 2022</div>
       
     </div>
     <div class="post-content-inner">
@@ -145,39 +145,14 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <p>采用Hexo建立个人博客，本文记录建站经历</p>
-<h2 id="建站思路"><a href="#建站思路" class="headerlink" title="建站思路"></a>建站思路</h2><p>hexo+github+vercel+godaddy+dnspod</p>
-<p>框架+GitHub存储 +网站托管服务 +域名注册+域名服务器DNS</p>
-<p>先用着</p>
-<p>上面已经备份之后，再继续进行操作就只需在hexo_src分支下进行</p>
-<p>hexo的操作，以及git操作</p>
-<p>批处理</p>
-<pre><code class="bash">hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m &#39;new push&#39;;git push origin hexo_src
-</code></pre>
-<p>挺方便</p>
-<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>使用 <code>hexo init</code> 来生成基本文件，做一些基本的配置，像安装模块、配置主题等</p>
-<p>使用 <code>hexo new page / post</code>来生成文章或页面的 md 文件，编辑</p>
-<p>使用 <code>hexo g</code> 生成文件，Hexo 会根据主题中的模板，来生成对应的 html 文件，转译 CSS 文件，复制其它的静态文件（如图片图标字体等），组织为一个静态网站</p>
-<p>使用 <code>hexo d</code> 来部署，一般是借助一些部署模块完成</p>
-<h2 id="备份博客源文件"><a href="#备份博客源文件" class="headerlink" title="备份博客源文件"></a>备份博客源文件</h2><p>有时候我们想换一台电脑继续写博客，这时候就可以将博客目录下的所有源文件都上传到github上面。</p>
-<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>首先在github博客仓库下新建一个分支<code>hexo_src</code>，然后<code>git clone</code>到本地，把<code>.git</code>文件夹拿出来，放在博客根目录下。</p>
-<p>然后<code>git checkout -b hexo_src</code>切换到<code>hexo_src</code>分支，然后<code>git add .</code>，然后<code>git commit -m &quot;xxx&quot;</code>，最后<code>git push origin hexo_src</code>提交就行了。</p>
-<h3 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h3><p>首先在指定文件夹clone下来hexo_src分支</p>
-<pre><code class="bash">$ git clone -b hexo_src [仓库地址]
-</code></pre>
-<p>在该clone下来的文件夹里去安装hexo</p>
-<pre><code class="bash">$ cnpm install hexo
-$ cnpm install		//这一句不知道和上面这一句有何区别
-</code></pre>
-<blockquote>
-<p>特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原主题仓库clone下来处理</p>
-</blockquote>
-<h2 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h2><p>采用</p>
-<p> jsdelivr (cdn) + github 存储 + PicGo </p>
-<p>方案</p>
-<p>&#x2F;&#x2F; load any GitHub release, commit, or branch</p>
-<p>&#x2F;&#x2F; note: we recommend using npm for projects that support it</p>
-<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/user/repo@version/filecdn+">https://cdn.jsdelivr.net/gh/user/repo@version/filecdn+</a></p>
+        <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><h3 id="1dim-peak-finder"><a href="#1dim-peak-finder" class="headerlink" title="1dim peak finder"></a>1dim peak finder</h3><p>$$\Theta (n)  $$ </p>
+<p>if we adopt <strong>divide &amp; conquer</strong> </p>
+<p>the complexity will be </p>
+<p>$$T(n) &#x3D; T(\frac n2)+ \Theta(1)$$</p>
+<p>and there is the base case :</p>
+<p>$$T(1)&#x3D;\Theta(1)$$</p>
+<p>thus </p>
+<p>$$<br>T(n)&#x3D; \Theta(1) +\Theta(1)+…+\Theta(1)<br>    &#x3D; \Theta(\log _{2} n)<br>$$</p>
 
         <!-- 分类文章 -->
         
@@ -185,7 +160,7 @@ $ cnpm install		//这一句不知道和上面这一句有何区别
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%BB%BA%E7%AB%99%E6%80%9D%E8%B7%AF"><span class="space-toc-text">建站思路</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Hexo"><span class="space-toc-text">Hexo</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%A4%87%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%BA%90%E6%96%87%E4%BB%B6"><span class="space-toc-text">备份博客源文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9B%BE%E5%BA%8A"><span class="space-toc-text">图床</span></a></li></ol>
+            
            </div>
         
       </div>

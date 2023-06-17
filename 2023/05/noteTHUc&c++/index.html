@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -907,6 +907,72 @@ grandWizard1.sayName();
            data-src="/..%5Cimg%5Cc&c++_6.png" >
         </sapn>
       </p>
+<h3 id="构造函数-1"><a href="#构造函数-1" class="headerlink" title="构造函数"></a>构造函数</h3><p>父类和子类的构造函数</p>
+<ul>
+<li><p>父类和子类的构造函数各自负责初始化自身的成员变量</p>
+</li>
+<li><p>若构造函数无参数，在创建子类对象时系统会自动先调用父类的构造函数</p>
+<pre><code class="c++">class CPU8086&#123;
+    public:
+        cpu8086()&#123;
+                cout &lt;&lt; &quot;8086 constructor&quot; &lt;&lt; endl;
+        &#125;
+&#125;;
+class CPU286 : public CPU8086 &#123;
+    public:
+      CPU286() &#123;
+        cout &lt;&lt; &quot;286 constructor&quot; &lt;&lt; endl;
+      &#125;
+&#125;;
+class CPU386 : public CPU286 &#123;
+    public:
+      CPU386() &#123;
+        cout &lt;&lt; &quot;386 constructor&quot; &lt;&lt; endl;
+      &#125;
+&#125;;
+
+void main()
+&#123; 
+    CPU386 cpu;
+&#125;
+
+//运行结果
+8086 constructor
+286 constructor
+386 constructor
+</code></pre>
+</li>
+<li><p>若构造函数有参数，在子类的构造函数中需要给父类的构造函数传递参数</p>
+<pre><code class="c++">子类名::子类名(父类所需的形参，子类成员所需的形参): 父类名(参数表), 子类成员初始化列表
+&#123;
+    //其他初始化；
+&#125;;
+
+class CPU8086 &#123;
+    public:
+      CPU8086(int i) &#123;
+        cout &lt;&lt; &quot;8086 constructor: &quot; &lt;&lt; i &lt;&lt; endl;
+      &#125;
+&#125;;
+class CPU286 : public CPU8086 &#123;
+    public:
+      CPU286(int i, int j) : CPU8086(i) &#123;
+        cout &lt;&lt; &quot;286 constructor: &quot; &lt;&lt; j &lt;&lt; endl;
+      &#125;
+&#125;;
+class CPU386 : public CPU286 &#123;
+    public:
+      CPU386(int i, int j, int k) : CPU286(i,j)&#123;
+        cout &lt;&lt; &quot;386 constructor: &quot; &lt;&lt; k &lt;&lt; endl;
+      &#125;
+&#125;;
+void main()
+&#123; 
+    CPU386 cpu(8086, 286, 386);
+&#125;
+</code></pre>
+</li>
+</ul>
 <h2 id="多态-不作要求"><a href="#多态-不作要求" class="headerlink" title="多态(不作要求)"></a>多态(不作要求)</h2>
         <!-- 分类文章 -->
         
