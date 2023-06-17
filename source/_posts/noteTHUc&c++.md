@@ -866,9 +866,77 @@ C++看到如下语句时会如何做？`grandWizard1.punchFace(dude1);`
 
 ![c&c++_6](..\img\c&c++_6.png)
 
+### 构造函数
 
+父类和子类的构造函数
+
+- 父类和子类的构造函数各自负责初始化自身的成员变量
+
+- 若构造函数无参数，在创建子类对象时系统会自动先调用父类的构造函数
+
+  ```c++
+  class CPU8086{
+      public:
+      	cpu8086(){
+              	cout << "8086 constructor" << endl;
+          }
+  };
+  class CPU286 : public CPU8086 {
+      public:
+        CPU286() {
+          cout << "286 constructor" << endl;
+        }
+  };
+  class CPU386 : public CPU286 {
+      public:
+        CPU386() {
+          cout << "386 constructor" << endl;
+        }
+  };
+  
+  void main()
+  { 
+      CPU386 cpu;
+  }
+  
+  //运行结果
+  8086 constructor
+  286 constructor
+  386 constructor
+  ```
+
+  
+
+- 若构造函数有参数，在子类的构造函数中需要给父类的构造函数传递参数
+
+  ```c++
+  子类名::子类名(父类所需的形参，子类成员所需的形参): 父类名(参数表), 子类成员初始化列表
+  {
+  	//其他初始化；
+  };
+  
+  class CPU8086 {
+      public:
+        CPU8086(int i) {
+          cout << "8086 constructor: " << i << endl;
+        }
+  };
+  class CPU286 : public CPU8086 {
+      public:
+        CPU286(int i, int j) : CPU8086(i) {
+          cout << "286 constructor: " << j << endl;
+        }
+  };
+  class CPU386 : public CPU286 {
+      public:
+        CPU386(int i, int j, int k) : CPU286(i,j){
+          cout << "386 constructor: " << k << endl;
+        }
+  };
+  void main()
+  { 
+      CPU386 cpu(8086, 286, 386);
+  }
+  ```
 
 ## 多态(不作要求)
-
-
-
