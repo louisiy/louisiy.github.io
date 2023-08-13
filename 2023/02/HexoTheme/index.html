@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -175,279 +175,82 @@
 </ul>
 <p>这些文件是Hexo在生成HTML文件时要用到的，全部放在<code>layout</code>文件夹中。这些页面内重复的组件代码，如页头页脚的部分，可以单独提取出来进行复用</p>
 <p>此外，还有JS&#x2F;CSS&#x2F;图片&#x2F;favicon.ico等文件直接放入source文件夹里，不需要页面引用</p>
-<h4 id="主题文件夹结构"><a href="#主题文件夹结构" class="headerlink" title="主题文件夹结构"></a>主题文件夹结构</h4><pre><code>├─languages			//多语言文件夹
-│  └─en.yml
-├─layout			//主题布局模板
-│  ├─layout.ejs
-│  └─_partial		//各页面共享的模板部分
-├─scripts			//hexo脚本插件目录，可以编写一些辅助函数脚本
-├─source			//资源文件目录，包括页面样式，js脚本等
-│  ├─css
-│  │ └─index.styl
-│  └─js
-└─_config.yml		//主题配置文件
-</code></pre>
-<h4 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h4><p>修改<strong>站点配置文件</strong>中的主题配置，使用主题：</p>
-<pre><code class="yaml"># Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: theme-example
-</code></pre>
-<h3 id="详细"><a href="#详细" class="headerlink" title="详细"></a>详细</h3><h4 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h4><p><code>_config.yml</code>:</p>
-<pre><code class="yaml">menu:
-  home: /
-  categories: /categories
-  tags: /tags
-  archives: /archives
-  about: /about
-  
-language: zh-CN
-# 或者多个配置文件
-language:
- - zh-CN
- - en
-</code></pre>
-<h4 id="多语言支持"><a href="#多语言支持" class="headerlink" title="多语言支持"></a>多语言支持</h4><p>Hexo 支持多语言显示，在主题的 <code>languages</code> 文件夹中，存放具体的多语言文件，可以是 YML 或者 JSON 文件。再在主配置文件 <code>_config.yml</code> 中使用下面的方法来指定具体的使用的配置文件名：</p>
-<pre><code class="yaml">language: zh-CN
-# 或者多个配置文件
-language:
- - zh-CN
- - en
-</code></pre>
-<p>像下面这样组织语言文件，<code>languages/en.yml</code>：</p>
-<pre><code class="yaml">archive_title: Archives
-category_title: Category
-tag_title: Tag
-</code></pre>
-<p>在模板里，当需要在页面中显示文字时，可以使用 Hexo 提供的帮助函数 <code>__()</code> &#x2F; <code>_p()</code> 来读取具体的值，如：</p>
-<pre><code class="ejs">&#123;% if is_archive() %&#125;
-  &#123;% set pageTitle = _p('archive_title') %&#125;
-  &#123;% endif %&#125;
+<h4 id="主题文件夹结构"><a href="#主题文件夹结构" class="headerlink" title="主题文件夹结构"></a>主题文件夹结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├─languages			//多语言文件夹</span><br><span class="line">│  └─en.yml</span><br><span class="line">├─layout			//主题布局模板</span><br><span class="line">│  ├─layout.ejs</span><br><span class="line">│  └─_partial		//各页面共享的模板部分</span><br><span class="line">├─scripts			//hexo脚本插件目录，可以编写一些辅助函数脚本</span><br><span class="line">├─source			//资源文件目录，包括页面样式，js脚本等</span><br><span class="line">│  ├─css</span><br><span class="line">│  │ └─index.styl</span><br><span class="line">│  └─js</span><br><span class="line">└─_config.yml		//主题配置文件</span><br></pre></td></tr></table></figure>
 
-   page_title 
-</code></pre>
-<h4 id="HTML框架"><a href="#HTML框架" class="headerlink" title="HTML框架"></a>HTML框架</h4><pre><code>├─layout
-   ├─layout.ejs		//通用的布局文件模板
-   ├─index.ejs		//继承layout.ejs布局模板，首页
-   ├─post.ejs		//文章详情页
-   ├─archive.ejs	//归档页  
-   ├─page.ejs		//自定义页面模板
-   └─_partial
-     ├─head.ejs
-     ├─header.ejs
-     ├─footer.ejs
-     ├─category.ejs
-     ├─tag.ejs
-     ├─custom.ejs
-     └─paginator.ejs
-</code></pre>
+<h4 id="应用主题"><a href="#应用主题" class="headerlink" title="应用主题"></a>应用主题</h4><p>修改<strong>站点配置文件</strong>中的主题配置，使用主题：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">theme-example</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="详细"><a href="#详细" class="headerlink" title="详细"></a>详细</h3><h4 id="主题配置文件"><a href="#主题配置文件" class="headerlink" title="主题配置文件"></a>主题配置文件</h4><p><code>_config.yml</code>:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about</span></span><br><span class="line">  </span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="comment"># 或者多个配置文件</span></span><br><span class="line"><span class="attr">language:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">zh-CN</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">en</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="多语言支持"><a href="#多语言支持" class="headerlink" title="多语言支持"></a>多语言支持</h4><p>Hexo 支持多语言显示，在主题的 <code>languages</code> 文件夹中，存放具体的多语言文件，可以是 YML 或者 JSON 文件。再在主配置文件 <code>_config.yml</code> 中使用下面的方法来指定具体的使用的配置文件名：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="comment"># 或者多个配置文件</span></span><br><span class="line"><span class="attr">language:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">zh-CN</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">en</span></span><br></pre></td></tr></table></figure>
+
+<p>像下面这样组织语言文件，<code>languages/en.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">archive_title:</span> <span class="string">Archives</span></span><br><span class="line"><span class="attr">category_title:</span> <span class="string">Category</span></span><br><span class="line"><span class="attr">tag_title:</span> <span class="string">Tag</span></span><br></pre></td></tr></table></figure>
+
+<p>在模板里，当需要在页面中显示文字时，可以使用 Hexo 提供的帮助函数 <code>__()</code> &#x2F; <code>_p()</code> 来读取具体的值，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if is_archive() %&#125;</span><br><span class="line">  &#123;% set pageTitle = _p(&#x27;archive_title&#x27;) %&#125;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">   page_title </span><br></pre></td></tr></table></figure>
+
+<h4 id="HTML框架"><a href="#HTML框架" class="headerlink" title="HTML框架"></a>HTML框架</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">├─layout</span><br><span class="line">   ├─layout.ejs		//通用的布局文件模板</span><br><span class="line">   ├─index.ejs		//继承layout.ejs布局模板，首页</span><br><span class="line">   ├─post.ejs		//文章详情页</span><br><span class="line">   ├─archive.ejs	//归档页  </span><br><span class="line">   ├─page.ejs		//自定义页面模板</span><br><span class="line">   └─_partial</span><br><span class="line">     ├─head.ejs</span><br><span class="line">     ├─header.ejs</span><br><span class="line">     ├─footer.ejs</span><br><span class="line">     ├─category.ejs</span><br><span class="line">     ├─tag.ejs</span><br><span class="line">     ├─custom.ejs</span><br><span class="line">     └─paginator.ejs</span><br></pre></td></tr></table></figure>
+
 <p><code>layout/layout.ejs</code>:</p>
-<pre><code class="ejs">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;%- partial(&#39;_partial/head&#39;) %&gt;				//引入head.ejs
-&lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-    &lt;%- partial(&#39;_partial/header&#39;) %&gt;		//引入header.ejs
-    &lt;%- body %&gt;							   //新增的ejs文件将内容填充在这里
-    &lt;%- partial(&#39;_partial/footer&#39;) %&gt;  		//引入footer.ejs
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt; 
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;%- partial(&#x27;_partial/head&#x27;) %&gt;				//引入head.ejs</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;%- partial(&#x27;_partial/header&#x27;) %&gt;		//引入header.ejs</span><br><span class="line">    &lt;%- body %&gt;							   //新增的ejs文件将内容填充在这里</span><br><span class="line">    &lt;%- partial(&#x27;_partial/footer&#x27;) %&gt;  		//引入footer.ejs</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt; </span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>partial()函数的作用是可以引入其他模板文件，详情参考hexo文档</p>
 </blockquote>
 <p><code>layout/_partial/head.ejs</code>:</p>
-<pre><code class="ejs">&lt;head&gt;
-    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-    &lt;meta content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot; name=&quot;viewport&quot;&gt;
-    &lt;title&gt;&lt;%= config.title %&gt;&lt;/title&gt;		//config全局变量，包含站点配置
-&lt;/head&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</span><br><span class="line">    &lt;meta content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot; name=&quot;viewport&quot;&gt;</span><br><span class="line">    &lt;title&gt;&lt;%= config.title %&gt;&lt;/title&gt;		//config全局变量，包含站点配置</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>layout/_partial/header.ejs</code>：</p>
-<pre><code class="ejs">&lt;header class=&quot;header&quot;&gt;
-    &lt;div class=&quot;title&quot;&gt;
-        &lt;a href=&quot;&lt;%= url_for() %&gt;&quot; class=&quot;logo&quot;&gt;&lt;%= config.title %&gt;&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;nav class=&quot;navbar&quot;&gt;
-        &lt;ul class=&quot;menu&quot;&gt;
-            &lt;% for (name in theme.menu) &#123; %&gt;
-            //theme.menu获取theme_config中导航菜单的设置
-            &lt;li class=&quot;menu-item&quot;&gt;
-                &lt;a href=&quot;&lt;%- url_for(theme.menu[name]) %&gt;&quot; class=&quot;menu-item-link&quot;&gt;&lt;%= name %&gt;&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;% &#125; %&gt;
-        &lt;/ul&gt;
-    &lt;/nav&gt;
-&lt;/header&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;header class=&quot;header&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;title&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;&lt;%= url_for() %&gt;&quot; class=&quot;logo&quot;&gt;&lt;%= config.title %&gt;&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;nav class=&quot;navbar&quot;&gt;</span><br><span class="line">        &lt;ul class=&quot;menu&quot;&gt;</span><br><span class="line">            &lt;% for (name in theme.menu) &#123; %&gt;</span><br><span class="line">            //theme.menu获取theme_config中导航菜单的设置</span><br><span class="line">            &lt;li class=&quot;menu-item&quot;&gt;</span><br><span class="line">                &lt;a href=&quot;&lt;%- url_for(theme.menu[name]) %&gt;&quot; class=&quot;menu-item-link&quot;&gt;&lt;%= name %&gt;&lt;/a&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">            &lt;% &#125; %&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/nav&gt;</span><br><span class="line">&lt;/header&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>layout/_partial/footer.ejs</code>：</p>
-<pre><code class="ejs">&lt;footer&gt;
-    &lt;p&gt;Theme is &lt;a href=&quot;/&quot; target=&quot;_blank&quot;&gt;Theme-example&lt;/a&gt; by &lt;a href=&quot;&lt;%= config.url %&gt;&quot; target=&quot;_blank&quot;&gt;&lt;%= config.author %&gt;&lt;/a&gt;&lt;/p&gt;
-    &lt;p&gt;Powered by &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;hexo&lt;/a&gt; &amp;copy; &lt;%- date(Date.now(), &#39;YYYY&#39;) %&gt;&lt;/p&gt;
-&lt;/footer&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;footer&gt;</span><br><span class="line">    &lt;p&gt;Theme is &lt;a href=&quot;/&quot; target=&quot;_blank&quot;&gt;Theme-example&lt;/a&gt; by &lt;a href=&quot;&lt;%= config.url %&gt;&quot; target=&quot;_blank&quot;&gt;&lt;%= config.author %&gt;&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Powered by &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;hexo&lt;/a&gt; &amp;copy; &lt;%- date(Date.now(), &#x27;YYYY&#x27;) %&gt;&lt;/p&gt;</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>index.ejs</code>:</p>
-<pre><code class="ejs">//变量page会根据不同的页面拥有不同的属性，page变量的posts属性可以拿到文章数据的集合
-//这个posts属性需要在layout的文件夹里新建post.ejs的文件才能获得对象的属性
-&lt;section class=&quot;posts&quot;&gt;
-    &lt;% page.posts.each(function (post) &#123; %&gt;		//显示文章列表
-    &lt;article class=&quot;post&quot;&gt;
-        &lt;div class=&quot;post-title&quot;&gt;
-            &lt;a class=&quot;post-title-link&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;post-content&quot;&gt;
-            &lt;%- post.content %&gt;  //显示文章的全部内容
-        &lt;/div&gt;
-        或者：
-        &lt;div class=&quot;post-content&quot;&gt;
-               &lt;%- post.excerpt %&gt;
-    //excerpt属性可获取文章的摘录部分，即文章中&lt;!--more--&gt;标记前的内容
-    //如果未标记，那么post.excerpt会是空的
-          &lt;/div&gt;
-        &lt;div class=&quot;post-meta&quot;&gt;
-            &lt;span class=&quot;post-time&quot;&gt;&lt;%- date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;
-            //
-        &lt;/div&gt;
-    &lt;/article&gt;
-    &lt;% &#125;) %&gt;
-&lt;/section&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//变量page会根据不同的页面拥有不同的属性，page变量的posts属性可以拿到文章数据的集合</span><br><span class="line">//这个posts属性需要在layout的文件夹里新建post.ejs的文件才能获得对象的属性</span><br><span class="line">&lt;section class=&quot;posts&quot;&gt;</span><br><span class="line">    &lt;% page.posts.each(function (post) &#123; %&gt;		//显示文章列表</span><br><span class="line">    &lt;article class=&quot;post&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;post-title&quot;&gt;</span><br><span class="line">            &lt;a class=&quot;post-title-link&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;post-content&quot;&gt;</span><br><span class="line">            &lt;%- post.content %&gt;  //显示文章的全部内容</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        或者：</span><br><span class="line">        &lt;div class=&quot;post-content&quot;&gt;</span><br><span class="line">    		   &lt;%- post.excerpt %&gt;</span><br><span class="line">    //excerpt属性可获取文章的摘录部分，即文章中&lt;!--more--&gt;标记前的内容</span><br><span class="line">    //如果未标记，那么post.excerpt会是空的</span><br><span class="line">		  &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;post-meta&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;post-time&quot;&gt;&lt;%- date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;</span><br><span class="line">        	//</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/article&gt;</span><br><span class="line">    &lt;% &#125;) %&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
 <p> <code>post.ejs</code>:</p>
-<pre><code class="ejs">&lt;article class=&quot;post&quot;&gt;
-    &lt;div class=&quot;post-title&quot;&gt;
-        &lt;h2 class=&quot;title&quot;&gt;&lt;%= page.title %&gt;&lt;/h2&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;post-meta&quot;&gt;
-        &lt;span class=&quot;post-time&quot;&gt;&lt;%- date(page.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;post-content&quot;&gt;
-        &lt;%- page.content %&gt;
-    &lt;/div&gt;
-&lt;/article&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;article class=&quot;post&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;post-title&quot;&gt;</span><br><span class="line">        &lt;h2 class=&quot;title&quot;&gt;&lt;%= page.title %&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;post-meta&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;post-time&quot;&gt;&lt;%- date(page.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;post-content&quot;&gt;</span><br><span class="line">        &lt;%- page.content %&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/article&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>archive.ejs</code>:</p>
-<pre><code class="ejs">&lt;section class=&quot;archive&quot;&gt;
-    &lt;ul class=&quot;post-archive&quot;&gt;
-    &lt;% page.posts.each(function (post) &#123; %&gt;
-        &lt;li class=&quot;post-item&quot;&gt;
-            &lt;span class=&quot;post-date&quot;&gt;&lt;%= date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;
-            &lt;a class=&quot;post-title&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;
-        &lt;/li&gt;
-    &lt;% &#125;) %&gt;
-    &lt;/ul&gt;
-&lt;/section&gt;
-&lt;%- partial(&#39;_partial/paginator&#39;) %&gt;
-</code></pre>
-<h4 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h4><pre><code>├─source			//资源文件目录，包括页面样式，js脚本等
-   ├─css
-   │ ├─style.styl
-   │ ├─index.styl
-   │ └─_partial
-   │   ├─header.styl
-   │   ├─footer.styl   
-   │   ├─post.styl
-   │   └─archive.styl
-   └─js
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;archive&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;post-archive&quot;&gt;</span><br><span class="line">    &lt;% page.posts.each(function (post) &#123; %&gt;</span><br><span class="line">        &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;post-date&quot;&gt;&lt;%= date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;</span><br><span class="line">            &lt;a class=&quot;post-title&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">    &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">&lt;%- partial(&#x27;_partial/paginator&#x27;) %&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="CSS样式"><a href="#CSS样式" class="headerlink" title="CSS样式"></a>CSS样式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">├─source			//资源文件目录，包括页面样式，js脚本等</span><br><span class="line">   ├─css</span><br><span class="line">   │ ├─style.styl</span><br><span class="line">   │ ├─index.styl</span><br><span class="line">   │ └─_partial</span><br><span class="line">   │   ├─header.styl</span><br><span class="line">   │   ├─footer.styl   </span><br><span class="line">   │   ├─post.styl</span><br><span class="line">   │   └─archive.styl</span><br><span class="line">   └─js</span><br></pre></td></tr></table></figure>
+
 <p>Hexo提供 <code>hexo-renderer-stylus</code> 插件，只需要将样式文件放到 <code>source/css</code> 文件夹中。Hexo 在生成页面的时候会将 <code>source</code> 中的所有文件复制到生成的 <code>public</code> 文件中，并且在此之前会编译 <code>styl</code> 为 <code>css</code> 文件，把所有样式 <code>import</code> 到<code>style.styl</code>，编译之后只会有 <code>style.css</code> 一个文件</p>
 <p><code>style.styl</code>:</p>
-<pre><code class="ejs">body &#123;
-    background-color: #F2F2F2;
-    font-size: 1.25rem;
-    line-height: 1.5;
-&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background-color: #F2F2F2;</span><br><span class="line">    font-size: 1.25rem;</span><br><span class="line">    line-height: 1.5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.container &#123;</span><br><span class="line">    max-width: 960px;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">@import &quot;_partial/header&quot;;</span><br><span class="line">@import &quot;index&quot;;</span><br></pre></td></tr></table></figure>
 
-.container &#123;
-    max-width: 960px;
-    margin: 0 auto;
-&#125;
-
-...
-
-@import &quot;_partial/header&quot;;
-@import &quot;index&quot;;
-</code></pre>
 <h4 id="进一步细节"><a href="#进一步细节" class="headerlink" title="进一步细节"></a>进一步细节</h4><h5 id="添加分页"><a href="#添加分页" class="headerlink" title="添加分页"></a>添加分页</h5><p>首页显示的文章数量可以通过站点配置文件中的 <code>per_page</code> 字段来修改，但是不可能把所有文章都放在一页，所以需要添加文章列表的分页</p>
 <p><code>_partial/paginator.ejs</code></p>
-<pre><code class="ejs">&lt;% if (page.total &gt; 1)&#123; %&gt;
-    &lt;nav class=&quot;page-nav&quot;&gt;
-    &lt;%- paginator(&#123;
-        prev_text: &quot;&amp;laquo; Prev&quot;,
-        next_text: &quot;Next &amp;raquo;&quot;
-    &#125;) %&gt;
-    &lt;/nav&gt;
-&lt;% &#125; %&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (page.total &gt; 1)&#123; %&gt;</span><br><span class="line">    &lt;nav class=&quot;page-nav&quot;&gt;</span><br><span class="line">    &lt;%- paginator(&#123;</span><br><span class="line">        prev_text: &quot;&amp;laquo; Prev&quot;,</span><br><span class="line">        next_text: &quot;Next &amp;raquo;&quot;</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">    &lt;/nav&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
 <p>在 <code>index.ejs</code> 中添加这个文件的内容：</p>
-<pre><code class="ejs">...
-&lt;/section&gt;
-&lt;%- partial(&#39;_partial/paginator&#39;) %&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">&lt;%- partial(&#x27;_partial/paginator&#x27;) %&gt;</span><br></pre></td></tr></table></figure>
+
 <p>辅助函数 <code>paginator</code>能够插入分页链接，这是最基本的分页，具体的样式可以自行添加，或者根据文档使用其他配置自定义分页</p>
 <h5 id="添加分类页-x2F-分类页"><a href="#添加分类页-x2F-分类页" class="headerlink" title="添加分类页&#x2F;分类页"></a>添加分类页&#x2F;分类页</h5><p>分类页和标签页的模板编写比较特殊，本质上，分类页和标签页属于自定义页面，需要新建自定义页面模板<code>page.ejs</code></p>
-<pre><code class="ejs">&lt;% if (is_current(theme.menu.categories)) &#123; %&gt;
-&lt;%- partial(&#39;_partial/category&#39;) %&gt;
-&lt;% &#125; else if (is_current(theme.menu.tags)) &#123; %&gt;
-&lt;%- partial(&#39;_partial/tag&#39;) %&gt;
-&lt;% &#125; else &#123; %&gt;
-&lt;%- partial(&#39;_partial/custom&#39;) %&gt;
-&lt;% &#125; %&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (is_current(theme.menu.categories)) &#123; %&gt;</span><br><span class="line">&lt;%- partial(&#x27;_partial/category&#x27;) %&gt;</span><br><span class="line">&lt;% &#125; else if (is_current(theme.menu.tags)) &#123; %&gt;</span><br><span class="line">&lt;%- partial(&#x27;_partial/tag&#x27;) %&gt;</span><br><span class="line">&lt;% &#125; else &#123; %&gt;</span><br><span class="line">&lt;%- partial(&#x27;_partial/custom&#x27;) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
 <p>需要根据当前自定义页面的类型来决定渲染何种自定义页面模板。</p>
 <p><code>_partial/category.ejs</code>:</p>
-<pre><code class="ejs">&lt;section class=&quot;archive&quot;&gt;
-    &lt;ul class=&quot;post-archive&quot;&gt;
-    &lt;% site.categories.each(function (category) &#123; %&gt;
-        &lt;span&gt;&lt;%= category.name %&gt;&lt;/span&gt;
-        &lt;% category.posts.forEach(function(post) &#123; %&gt;
-        &lt;li class=&quot;post-item&quot;&gt;
-            &lt;span class=&quot;post-date&quot;&gt;&lt;%= date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;
-            &lt;a class=&quot;post-title&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;% &#125;) %&gt;
-    &lt;% &#125;) %&gt;
-    &lt;/ul&gt;
-&lt;/section&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;archive&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;post-archive&quot;&gt;</span><br><span class="line">    &lt;% site.categories.each(function (category) &#123; %&gt;</span><br><span class="line">        &lt;span&gt;&lt;%= category.name %&gt;&lt;/span&gt;</span><br><span class="line">        &lt;% category.posts.forEach(function(post) &#123; %&gt;</span><br><span class="line">        &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;post-date&quot;&gt;&lt;%= date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;</span><br><span class="line">            &lt;a class=&quot;post-title&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">        &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>_partial/tag.ejs</code>:</p>
-<pre><code class="ejs">&lt;section class=&quot;archive&quot;&gt;
-    &lt;ul class=&quot;post-archive&quot;&gt;
-    &lt;% site.tags.each(function (tag) &#123; %&gt;
-        &lt;span&gt;&lt;%= tag.name %&gt;&lt;/span&gt;
-        &lt;% tag.posts.forEach(function(post) &#123; %&gt;
-        &lt;li class=&quot;post-item&quot;&gt;
-            &lt;span class=&quot;post-date&quot;&gt;&lt;%= date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;
-            &lt;a class=&quot;post-title&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;% &#125;) %&gt;
-    &lt;% &#125;) %&gt;
-    &lt;/ul&gt;
-&lt;/section&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;archive&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;post-archive&quot;&gt;</span><br><span class="line">    &lt;% site.tags.each(function (tag) &#123; %&gt;</span><br><span class="line">        &lt;span&gt;&lt;%= tag.name %&gt;&lt;/span&gt;</span><br><span class="line">        &lt;% tag.posts.forEach(function(post) &#123; %&gt;</span><br><span class="line">        &lt;li class=&quot;post-item&quot;&gt;</span><br><span class="line">            &lt;span class=&quot;post-date&quot;&gt;&lt;%= date(post.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;</span><br><span class="line">            &lt;a class=&quot;post-title&quot; href=&quot;&lt;%- url_for(post.path) %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;</span><br><span class="line">        &lt;/li&gt;</span><br><span class="line">        &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
 <p><code>site.categories</code>包括了站点所有的分类信息，可以遍历获取分类信息，其中<code>category.posts</code>又包含了该分类的所有文章信息。</p>
 <p>需要注意的是，要想在页面中展示分类页，需要先执行<code>hexo new page categories</code>(<code>tag</code>)生成分类页面，并修改<code>type</code>为<code>categories</code>(<code>tag</code>)</p>
 <p><code>post/category(tag)/categories(tag).md</code>:</p>
-<pre><code class="md">---
-title: categories
-date: 2019-02-25 18:19:55
-type: &quot;categories/tag&quot;
----
-</code></pre>
+<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2019-02-25 18:19:55</span><br><span class="line"><span class="section">type: &quot;categories/tag&quot;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
 <h5 id="添加自定义页面"><a href="#添加自定义页面" class="headerlink" title="添加自定义页面"></a>添加自定义页面</h5><p>自定义页面与文章详情页类似</p>
 <p><code>_partial/custom.ejs</code>:</p>
-<pre><code class="ejs">&lt;article class=&quot;post&quot;&gt;
-    &lt;div class=&quot;post-title&quot;&gt;
-        &lt;h2 class=&quot;title&quot;&gt;&lt;%= page.title %&gt;&lt;/h2&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;post-meta&quot;&gt;
-        &lt;span class=&quot;post-time&quot;&gt;&lt;%- date(page.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;post-content&quot;&gt;
-        &lt;%- page.content %&gt;
-    &lt;/div&gt;
-&lt;/article&gt;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;article class=&quot;post&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;post-title&quot;&gt;</span><br><span class="line">        &lt;h2 class=&quot;title&quot;&gt;&lt;%= page.title %&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;post-meta&quot;&gt;</span><br><span class="line">        &lt;span class=&quot;post-time&quot;&gt;&lt;%- date(page.date, &quot;YYYY-MM-DD&quot;) %&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;post-content&quot;&gt;</span><br><span class="line">        &lt;%- page.content %&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/article&gt;</span><br></pre></td></tr></table></figure>
+
 <p>并需要在主题配置文件中添加自定义页面的菜单（见前文）</p>
 <p>关于页面执行<code>hexo new page about</code>进行手动生成页面，编辑文件内容即可</p>
 <h3 id="Hexo插件"><a href="#Hexo插件" class="headerlink" title="Hexo插件"></a>Hexo插件</h3><p>Hexo 有强大的插件系统，让我们能够轻松扩展功能而不用修改核心模块的源码。在 Hexo 中有两种形式的插件：</p>
@@ -459,68 +262,24 @@ type: &quot;categories/tag&quot;
 <p>想给首页文章列表中的文章块添加一个背景颜色，背景颜色可以在文章md文件中定义，如果未定义，则随机选用一种颜色</p>
 <p>首先，文章md文件中顶部Front-matter添加一个<code>color</code>字段：</p>
 <p><code>_posts/hello-world-1.md</code>:</p>
-<pre><code class="javascript">title: Hello World 1
-date: 2019-02-12 17:49:32
-categories: 分类1
-tags: 
-    - 标签1
-color: blue
----
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title</span>: <span class="title class_">Hello</span> <span class="title class_">World</span> <span class="number">1</span></span><br><span class="line"><span class="attr">date</span>: <span class="number">2019</span>-<span class="number">02</span>-<span class="number">12</span> <span class="number">17</span>:<span class="number">49</span>:<span class="number">32</span></span><br><span class="line"><span class="attr">categories</span>: 分类<span class="number">1</span></span><br><span class="line"><span class="attr">tags</span>: </span><br><span class="line">    - 标签<span class="number">1</span></span><br><span class="line"><span class="attr">color</span>: blue</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
 <p>定义完成后，就可以在文章信息字段<code>post</code>或者<code>page</code>中获取到<code>color</code></p>
 <p>然后，需要添加一个脚本函数来根据<code>color</code>字段来获取文章块的背景颜色，新增<code>scripts/getPostBgColor.js</code>:</p>
-<pre><code class="javascript">const arr = [ &#39;blue&#39;, &#39;purple&#39;, &#39;green&#39;, &#39;yellow&#39;, &#39;red&#39;, &#39;orange&#39; ];
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [ <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;purple&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;orange&#x27;</span> ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getPostBgColor = <span class="keyword">function</span>(<span class="params">color</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.<span class="title function_">indexOf</span>(color) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`bg-<span class="subst">$&#123;color&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;bg-&#x27;</span> + <span class="title function_">randBgColor</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">randBgColor</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> arr[<span class="title function_">randomInt</span>(<span class="number">0</span>, <span class="number">5</span>)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">randomInt</span>(<span class="params">min, max</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * (max - min)) + min;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">helper</span>.<span class="title function_">register</span>(<span class="string">&#x27;getPostBgColor&#x27;</span>, getPostBgColor);</span><br><span class="line"><span class="comment">// 全局注册一个脚本函数</span></span><br></pre></td></tr></table></figure>
 
-var getPostBgColor = function(color) &#123;
-  if (arr.indexOf(color) &gt;= 0) &#123;
-    return `bg-$&#123;color&#125;`;
-  &#125;
-  return &#39;bg-&#39; + randBgColor();
-&#125;;
-
-function randBgColor() &#123;
-  return arr[randomInt(0, 5)];
-&#125;
-
-function randomInt(min, max) &#123;
-  return Math.round(Math.random() * (max - min)) + min;
-&#125;
-
-hexo.extend.helper.register(&#39;getPostBgColor&#39;, getPostBgColor);
-// 全局注册一个脚本函数
-</code></pre>
 <p><code>layout/index.ejs</code>:</p>
-<pre><code class="ejs">...
-&lt;article class=&quot;post &lt;%= getPostBgColor(post.color) %&gt;&quot;&gt;
-...
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;article class=&quot;post &lt;%= getPostBgColor(post.color) %&gt;&quot;&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
 <p>添加背景颜色样式，编辑<code>css/index.styl</code>:</p>
-<pre><code class="stylus">...
-.bg-blue &#123;
-    background-color: #6fa3ef;
-&#125;
-.bg-purple &#123;
-    background-color: #bc99c4;
-&#125;
-.bg-green &#123;
-    background-color: #46c47c;
-&#125;
-.bg-yellow &#123;
-    background-color: #f9bb3c;
-&#125;
-.bg-red &#123;
-    background-color: #e8583d;
-&#125;
-.bg-orange &#123;
-    background-color: #f68e5f;
-&#125;
-</code></pre>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="selector-class">.bg-blue</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#6fa3ef</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-purple</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#bc99c4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-green</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#46c47c</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-yellow</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f9bb3c</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-red</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#e8583d</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bg-orange</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f68e5f</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>有其他复杂的需求，可以通过编写更加复杂的脚本来实现</p>
 <h3 id="Hexo的数据DB扩展查询"><a href="#Hexo的数据DB扩展查询" class="headerlink" title="Hexo的数据DB扩展查询"></a>Hexo的数据DB扩展查询</h3><p>我们已经知道，Hexo已经为我们预先义了很多常用的变量供我们使用，具体可以在 Hexo | 变量 查询。但是如果系统提供的变量数据不能满足我们的要求，那我们该怎么办呢？其实我们可以通过扩展查询来获取到我们期望的数据。</p>
 <p>其实Hexo所有的文章分类标签等等变量信息，在编译成本地静态文件之前，都是本地存储在一个<code>db.json</code>中的，相当于小型的本地数据库，Hexo在运行阶段，所有的数据相关操作其实都是在这个小型数据库上进行操作，其底层使用的查询引擎就是Warehouse。因此我们可以通过Warehouse的语法进行自定义扩展查询。</p>
 <p>比如我们需要在页面的底部展示全站的最近6篇文章列表，由于Hexo首页只提供了第一页的数据，因此我们可以基于<code>site</code>变量进行扩展查询：</p>
-<pre><code class="ejs">site.posts.sort(&#123;date: -1&#125;).limit(6)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">site.posts.sort(&#123;date: -1&#125;).limit(6)</span><br></pre></td></tr></table></figure>
+
 <p><code>site.posts</code>表示所有的文章，<code>sort（&#123;date: -1&#125;)</code>表示按创建时间倒序排列，<code>limit(6)</code>表示只取前6条数据，这样我们就可以拿到了全站的最近6文章信息，后续进行相应展示操作即可。</p>
 <p>其他更多复杂的扩展查询都可以根据Warehouse语法文档进行按需扩展。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实说白了，Hexo就是把那些 Markdown 文件，按照我们编写的对应布局模板，填上对应的数据生成 HTML 页面，然后在编译的过程中将JS&#x2F;CSS等文件引入HTML，然后生成每个页面的对应HMTL静态文件。</p>

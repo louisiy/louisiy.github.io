@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -145,18 +145,8 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="LaTeX笔记"><a href="#LaTeX笔记" class="headerlink" title="LaTeX笔记"></a>LaTeX笔记</h1><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><pre><code class="latex">//English
-\documentclass&#123;article&#125;
-\begin&#123;document&#125;
-&quot;Hello world!&quot; from \LaTeX
-\end&#123;document&#125;
+        <h1 id="LaTeX笔记"><a href="#LaTeX笔记" class="headerlink" title="LaTeX笔记"></a>LaTeX笔记</h1><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//English</span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">&quot;Hello world!&quot; from <span class="keyword">\LaTeX</span></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line">//中文</span><br><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">“你好，世界！” 来自 <span class="keyword">\LaTeX</span>&#123;&#125; 的问候  //怀疑这里新版本不需要&#123;&#125;占空格了</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
 
-//中文
-\documentclass&#123;ctexart&#125;
-\begin&#123;document&#125;
-“你好，世界！” 来自 \LaTeX&#123;&#125; 的问候  //怀疑这里新版本不需要&#123;&#125;占空格了
-\end&#123;document&#125;
-</code></pre>
 <h2 id="相关概念辨析"><a href="#相关概念辨析" class="headerlink" title="相关概念辨析"></a>相关概念辨析</h2><h3 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h3><p>排版引擎是编译源代码并生成文档的程序，如pdfLaTeX、XeLaTeX等。有时也称为编译器</p>
 <h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p>是定义了一组命令的代码集。如LaTeX。高纳德本人也编写了一个简单的plain TeX格式，但仍不便于使用</p>
 <h3 id="编译命令"><a href="#编译命令" class="headerlink" title="编译命令"></a>编译命令</h3><p>是实际调用的、结合了引擎和格式的命令。如<code>xelatex</code>命令是结合了XeTeX引擎和LaTeX格式的一个编译命令</p>

@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -159,156 +159,60 @@
 <h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><blockquote>
 <p>其实config文件里写的很明白了，现在就重新列一下，添加一些不必要的说明</p>
 </blockquote>
-<h3 id="可自定义style"><a href="#可自定义style" class="headerlink" title="可自定义style"></a>可自定义style</h3><pre><code>############## style ##############
-style:
-  layout:
-    max-width: 1130px #总体宽度
-    post-max-width: 800px #文章内容宽度
-  color:
-    theme-main: &quot;#1A98FF&quot; # 主色调
-    theme-secondary: &quot;#DDF0FF&quot; # 次色调
-    text-main: &quot;#333333&quot; # 文字主色调
-    text-secondary: &quot;#898FA0&quot; # 文字次色调
-  animation:
-    open: true # 如果开启动画的话会引入animation.css
-</code></pre>
-<h3 id="主页配置"><a href="#主页配置" class="headerlink" title="主页配置"></a>主页配置</h3><h4 id="home页和archive可选配置"><a href="#home页和archive可选配置" class="headerlink" title="home页和archive可选配置"></a>home页和archive可选配置</h4><pre><code># home页可选类型
-home:
-  type: &quot;img&quot; # 主页的类型，可选 home | img | simple
+<h3 id="可自定义style"><a href="#可自定义style" class="headerlink" title="可自定义style"></a>可自定义style</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">############## style ##############</span><br><span class="line">style:</span><br><span class="line">  layout:</span><br><span class="line">    max-width: 1130px #总体宽度</span><br><span class="line">    post-max-width: 800px #文章内容宽度</span><br><span class="line">  color:</span><br><span class="line">    theme-main: &quot;#1A98FF&quot; # 主色调</span><br><span class="line">    theme-secondary: &quot;#DDF0FF&quot; # 次色调</span><br><span class="line">    text-main: &quot;#333333&quot; # 文字主色调</span><br><span class="line">    text-secondary: &quot;#898FA0&quot; # 文字次色调</span><br><span class="line">  animation:</span><br><span class="line">    open: true # 如果开启动画的话会引入animation.css</span><br></pre></td></tr></table></figure>
 
-# archive页可选类型
-archive:
-  type: &quot;simple&quot; # archive的类型，可选 img | simple
-</code></pre>
+<h3 id="主页配置"><a href="#主页配置" class="headerlink" title="主页配置"></a>主页配置</h3><h4 id="home页和archive可选配置"><a href="#home页和archive可选配置" class="headerlink" title="home页和archive可选配置"></a>home页和archive可选配置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># home页可选类型</span><br><span class="line">home:</span><br><span class="line">  type: &quot;img&quot; # 主页的类型，可选 home | img | simple</span><br><span class="line"></span><br><span class="line"># archive页可选类型</span><br><span class="line">archive:</span><br><span class="line">  type: &quot;simple&quot; # archive的类型，可选 img | simple</span><br></pre></td></tr></table></figure>
+
 <p>type为home就是一个封面，为img就是图片加标题的形式，simple就是极简模式</p>
 <h3 id="随机cover"><a href="#随机cover" class="headerlink" title="随机cover"></a>随机cover</h3><p>当你懒的找封面而又想用img模式的时候，我为你准备了些随机封面</p>
-<pre><code>archive_img_mode:
-  default_cover: #默认的cover
-    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/01.jpg
-    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/02.jpg
-    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/03.jpg
-    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/04.jpg
-    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/05.jpg
-    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/06.jpg
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">archive_img_mode:</span><br><span class="line">  default_cover: #默认的cover</span><br><span class="line">    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/01.jpg</span><br><span class="line">    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/02.jpg</span><br><span class="line">    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/03.jpg</span><br><span class="line">    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/04.jpg</span><br><span class="line">    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/05.jpg</span><br><span class="line">    - https://cdn.jsdelivr.net/gh/fushaolei/cdn-white@1.0/cover/06.jpg</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>图片均来自于bing的每日图片，版权归图片原作者所有，我只是搬到了自己的仓库方便使用，如果有侵犯到你的权益，请和我联系 ( •̀ ω •́ )y</p>
 </blockquote>
-<h3 id="浏览器标签页配置"><a href="#浏览器标签页配置" class="headerlink" title="浏览器标签页配置"></a>浏览器标签页配置</h3><pre><code># icon
-icon:  #标签页图标，这里可填链接
-#  header
-site_name: white.
-</code></pre>
-<h3 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h3><pre><code>menu:
-  HOME: /
-  BLOG: /archives
-</code></pre>
-<h3 id="全局搜索"><a href="#全局搜索" class="headerlink" title="全局搜索"></a>全局搜索</h3><pre><code>## 本地搜索
-search:
-  open: false # 是否开启
-  page: /search # 页面路径（通常命名为search）
-</code></pre>
+<h3 id="浏览器标签页配置"><a href="#浏览器标签页配置" class="headerlink" title="浏览器标签页配置"></a>浏览器标签页配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># icon</span><br><span class="line">icon:  #标签页图标，这里可填链接</span><br><span class="line">#  header</span><br><span class="line">site_name: white.</span><br></pre></td></tr></table></figure>
+
+<h3 id="menu"><a href="#menu" class="headerlink" title="menu"></a>menu</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  HOME: /</span><br><span class="line">  BLOG: /archives</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局搜索"><a href="#全局搜索" class="headerlink" title="全局搜索"></a>全局搜索</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## 本地搜索</span><br><span class="line">search:</span><br><span class="line">  open: false # 是否开启</span><br><span class="line">  page: /search # 页面路径（通常命名为search）</span><br></pre></td></tr></table></figure>
+
 <p>如果你想使用的话，请先到根目录执行</p>
-<pre><code>npm install hexo-generator-search --save
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+
 <p>然后新建一个名为search的page</p>
-<pre><code>hexo new page &quot;search&quot;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;search&quot;</span><br></pre></td></tr></table></figure>
+
 <p>进入这个文件夹，更改它的<code>index.md</code>文件，示例如下</p>
-<pre><code>---
-layout: search
-cover: #你还可以自定义cover
----
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">layout: search</span><br><span class="line">cover: #你还可以自定义cover</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
 <p>然后将open设置为true即可开启</p>
 <h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><blockquote>
 <p>当你的home页有用到type home模式的话 请配置此项</p>
 </blockquote>
-<pre><code># 自我介绍
-intro:
-  title: Hi.I&#39;m White.
-  sub: &#39;A [White](https://github.com/FuShaoLei/hexo-theme-white) theme for [Hexo](http://hexo.io/)&#39; # markdown语法
-  avator: https://cdn.jsdelivr.net/gh/fushaolei/img/20200524104925.jpg #头像 暂时还没用到
-  author: white #所有文章的默认作者
-</code></pre>
-<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><pre><code>#联系方式  
-#更多图标：https://remixicon.com/
-contact:
-  Github:
-    - https://github.com/FuShaoLei/hexo-theme-white
-    - ri-github-line
-  Email: 
-    - mailto:1563250958@qq.com
-    - ri-mail-line
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 自我介绍</span><br><span class="line">intro:</span><br><span class="line">  title: Hi.I&#x27;m White.</span><br><span class="line">  sub: &#x27;A [White](https://github.com/FuShaoLei/hexo-theme-white) theme for [Hexo](http://hexo.io/)&#x27; # markdown语法</span><br><span class="line">  avator: https://cdn.jsdelivr.net/gh/fushaolei/img/20200524104925.jpg #头像 暂时还没用到</span><br><span class="line">  author: white #所有文章的默认作者</span><br></pre></td></tr></table></figure>
+
+<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#联系方式  </span><br><span class="line">#更多图标：https://remixicon.com/</span><br><span class="line">contact:</span><br><span class="line">  Github:</span><br><span class="line">    - https://github.com/FuShaoLei/hexo-theme-white</span><br><span class="line">    - ri-github-line</span><br><span class="line">  Email: </span><br><span class="line">    - mailto:1563250958@qq.com</span><br><span class="line">    - ri-mail-line</span><br></pre></td></tr></table></figure>
+
 <p>格式就是</p>
-<pre><code>名字:
-  - 链接
-  - 图标 
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">名字:</span><br><span class="line">  - 链接</span><br><span class="line">  - 图标 </span><br></pre></td></tr></table></figure>
+
 <p>更多图标请到 <a target="_blank" rel="noopener" href="https://remixicon.com/">https://remixicon.com/</a> 搜寻，感谢此图标项目的开源作者<a target="_blank" rel="noopener" href="https://github.com/xiaochunjimmy">xiaochunjimmy</a></p>
-<h3 id="文章toc设置"><a href="#文章toc设置" class="headerlink" title="文章toc设置"></a>文章toc设置</h3><pre><code># 文章toc索引栏设置
-toc:
-  open: true # 是否开启
-  side: true  # 选择toc的位置，填true的话toc将会显示在文章的侧边，填false的话 toc将出现在文章的开头
-  max: 2 #最大深度
-  min: 2 #最小深度
-</code></pre>
+<h3 id="文章toc设置"><a href="#文章toc设置" class="headerlink" title="文章toc设置"></a>文章toc设置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 文章toc索引栏设置</span><br><span class="line">toc:</span><br><span class="line">  open: true # 是否开启</span><br><span class="line">  side: true  # 选择toc的位置，填true的话toc将会显示在文章的侧边，填false的话 toc将出现在文章的开头</span><br><span class="line">  max: 2 #最大深度</span><br><span class="line">  min: 2 #最小深度</span><br></pre></td></tr></table></figure>
+
 <p>其中side如果设置为false的话，将会出现在文章的top部分，如果设置为true的话，将会出现在侧边<br>min设置的是最小深度，max设置的是最大深度，<del>如上面配置所示，min为2，说明h2索引是至少要出现的，不会出现h1索引 （ 突然不知道怎么表达，</del> 如果不理解的话建议你试试 😂</p>
 <h3 id="highlight"><a href="#highlight" class="headerlink" title="highlight"></a>highlight</h3><p>代码高亮，想要使用代码高亮，得先把根目录的**<code>_config.yml</code>里的highlight的enable置成false**</p>
-<pre><code># 插件
-plugins:
-  highlightjs:
-    js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js
-    css: https://cdn.jsdelivr.net/npm/highlight.js@10.1.1/styles/github.css
-    # more: https://www.jsdelivr.com/package/npm/highlight.js?path=styles
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 插件</span><br><span class="line">plugins:</span><br><span class="line">  highlightjs:</span><br><span class="line">    js: https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js</span><br><span class="line">    css: https://cdn.jsdelivr.net/npm/highlight.js@10.1.1/styles/github.css</span><br><span class="line">    # more: https://www.jsdelivr.com/package/npm/highlight.js?path=styles</span><br></pre></td></tr></table></figure>
+
 <p><strong>注：</strong> hexo 5.0版本此处有bug（2020年8月10日写），就是渲染不出来大括号（<code>&#123;</code>和<code>&#125;</code>）</p>
 <p>这里博主有点懒了，最近事多心烦，就等着hexo官方更新吧 QAQ</p>
-<h3 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h3><pre><code># 评论系统设置
-comments:
-  open: false #是否开启评论系统
-  system: gitalk #选择评论系统 可选 valine gitalk livere
-  # Valine
-  valine:
-    appid: #Leancloud应用的AppID  这里和下面的要换成你自己的啊QAQ
-    appkey: #Leancloud应用的AppKey
-    verify: false #验证码
-    notify: true #评论回复提醒
-    avatar: robohash #评论列表头像样式：&#39;&#39;/mm/identicon/monsterid/wavatar/retro/hide
-    #头像类型可见： https://valine.js.org/avatar.html
-    placeholder: 留下你来过的痕迹~ #评论框占位符
-  # Gitalk
-  gitalk:
-    owner:  #Github 用户名,
-    repo:  #储存评论issue的github仓库名
-    admin:  #Github 用户名
-    clientID:  #`Github Application clientID`
-    clientSecret: #`Github Application clientSecret`
-  #livere
-  livere: # 前往 http://livere.com/ 申请账号
-    dataId: city #免费版本city
-    dataUid: #安装代码中 data-uid 后面数据
-</code></pre>
+<h3 id="评论系统"><a href="#评论系统" class="headerlink" title="评论系统"></a>评论系统</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 评论系统设置</span><br><span class="line">comments:</span><br><span class="line">  open: false #是否开启评论系统</span><br><span class="line">  system: gitalk #选择评论系统 可选 valine gitalk livere</span><br><span class="line">  # Valine</span><br><span class="line">  valine:</span><br><span class="line">    appid: #Leancloud应用的AppID  这里和下面的要换成你自己的啊QAQ</span><br><span class="line">    appkey: #Leancloud应用的AppKey</span><br><span class="line">    verify: false #验证码</span><br><span class="line">    notify: true #评论回复提醒</span><br><span class="line">    avatar: robohash #评论列表头像样式：&#x27;&#x27;/mm/identicon/monsterid/wavatar/retro/hide</span><br><span class="line">    #头像类型可见： https://valine.js.org/avatar.html</span><br><span class="line">    placeholder: 留下你来过的痕迹~ #评论框占位符</span><br><span class="line">  # Gitalk</span><br><span class="line">  gitalk:</span><br><span class="line">    owner:  #Github 用户名,</span><br><span class="line">    repo:  #储存评论issue的github仓库名</span><br><span class="line">    admin:  #Github 用户名</span><br><span class="line">    clientID:  #`Github Application clientID`</span><br><span class="line">    clientSecret: #`Github Application clientSecret`</span><br><span class="line">  #livere</span><br><span class="line">  livere: # 前往 http://livere.com/ 申请账号</span><br><span class="line">    dataId: city #免费版本city</span><br><span class="line">    dataUid: #安装代码中 data-uid 后面数据</span><br></pre></td></tr></table></figure>
+
 <p>这里的话相关教程大家网上搜就好了。这里就不赘诉了</p>
 <blockquote>
 <p>还是写一些gitalk的坑吧，一个是repo这里 写的应该是<strong>仓库名</strong>，而不是仓库链接或者其他的东西，然后gitalk要上线部署一次才可以，md文件名字最好用英文来命名，如果用中文的话，超出50个字符将会初始化失败</p>
 </blockquote>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code># 页脚
-footer: Power by [Hexo](http://hexo.io/) Theme by [White](https://github.com/FuShaoLei/hexo-theme-white) # markdown语法
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 页脚</span><br><span class="line">footer: Power by [Hexo](http://hexo.io/) Theme by [White](https://github.com/FuShaoLei/hexo-theme-white) # markdown语法</span><br><span class="line"></span><br><span class="line">#有分类时是否开启menu分类页和自定义名字</span><br><span class="line">menu_categories:</span><br><span class="line">  open: true</span><br><span class="line">  name: 分类</span><br><span class="line"></span><br><span class="line">#可自定义归档标签页名字 </span><br><span class="line">archive_tab_name: Blog</span><br><span class="line"></span><br><span class="line">#图片懒加载</span><br><span class="line">lazyload:</span><br><span class="line">  open: true #是否开启</span><br></pre></td></tr></table></figure>
 
-#有分类时是否开启menu分类页和自定义名字
-menu_categories:
-  open: true
-  name: 分类
-
-#可自定义归档标签页名字 
-archive_tab_name: Blog
-
-#图片懒加载
-lazyload:
-  open: true #是否开启
-</code></pre>
 <p>这里就不bb了 大家应该看的懂</p>
 <h2 id="进阶使用"><a href="#进阶使用" class="headerlink" title="进阶使用"></a>进阶使用</h2><h3 id="平滑升级"><a href="#平滑升级" class="headerlink" title="平滑升级"></a>平滑升级</h3><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>因为主题的更新比较频繁，所以如果你想舒服用到最新的版本的话，就请使用平滑升级</p>
 <ol>

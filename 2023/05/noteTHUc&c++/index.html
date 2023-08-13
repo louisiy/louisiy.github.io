@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -150,72 +150,25 @@
 <p>在输出操作中，字节从内存流向输出设备</p>
 <p>头文件iostream中定义了输入流cin和输出流cout对象</p>
 <h3 id="用cout进行输出"><a href="#用cout进行输出" class="headerlink" title="用cout进行输出"></a>用<code>cout</code>进行输出</h3><p>cout表示输出流对象，与它相关联的设备是显示器。cout必须和输出运算符&lt;&lt;一起使用，表示将其后面的数据插入到输出流中去。</p>
-<pre><code class="c++">cout = c + out
-//c -&gt; char
-</code></pre>
-<p>举例:</p>
-<pre><code class="c++">#include &lt;iostream&gt;
-using namespace std;
-int main()&#123;
-    int i =1;
-    float f = 3.14;
-    char c = &#39;A&#39;, str[]=&quot;hello,world\n&quot;;
-    cout &lt;&lt; i;
-    cout &lt;&lt; f;
-    cout &lt;&lt; c;
-    cout &lt;&lt; str;
-    cout &lt;&lt; i &lt;&lt; f &lt;&lt; c &lt;&lt; str &lt;&lt; endl;
-&#125;
-</code></pre>
-<h3 id="用cin进行输出"><a href="#用cin进行输出" class="headerlink" title="用cin进行输出"></a>用<code>cin</code>进行输出</h3><p>cin表示输入流对象，与它相关联的输入输出设备是键盘。当我们从键盘输入字符串时，形成了输入流（数据流），用提取操作符&gt;&gt;将数据流储存到一个事先定义好的变量中。</p>
-<pre><code class="c++">cin = c + in;
-</code></pre>
-<p>举例：</p>
-<pre><code class="c++">#include &lt;iostream&gt;
-using namespace std;
-int main()&#123;
-    int i;
-    float f;
-    char c, str[20];
-    cin &gt;&gt; i &gt;&gt; f &gt;&gt; c &gt;&gt; str;
-&#125;
-// 以空白字符（空格、制表符、换行、回车）作为输入数据之间的间隔
-//输入一个字符可以使用：
-cin.get(c);
-//输入一个字符串可用：
-cin.getline(str,20);
-</code></pre>
-<h3 id="C-对数据类型的扩充"><a href="#C-对数据类型的扩充" class="headerlink" title="C++对数据类型的扩充"></a>C++对数据类型的扩充</h3><h4 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h4><p>取值为：true或false</p>
-<pre><code class="c++">bool RealMonkey = true;
-bool RealMonkey, PrettyWoman;
-RealMoney = false;
-PrettyWoman =false;
-</code></pre>
-<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>引用（reference）的作用是为一个变量起一个别名</p>
-<pre><code class="c++">int LiBai;
-int &amp;LiTaiBai = LiBai; // 必须初始化
-int &amp;QingLianJuShi =LiBai;
-int &amp;ShiXian = LiBai;
-int &amp;JiuXian = LiBai;
-LiBai = 49;
-LiTaiBai ++;
-</code></pre>
-<h4 id="引用作为函数参数"><a href="#引用作为函数参数" class="headerlink" title="引用作为函数参数"></a>引用作为函数参数</h4><pre><code class="c++">// 使得在被调用的函数中可以修改作为实参的变量的值
-void main()&#123;
-    int salary, nCars, nHouses;
-    salary = 6000;
-    nCars = 0;
-    nHouses = 0;
-    DayDreaming(salary, nCars, nHouses);
-    cout &lt;&lt; salary &lt;&lt; &quot; &quot; &lt;&lt; nCars &lt;&lt; &quot; &quot; &lt;&lt; nHouses;
-&#125;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout = c + out</span><br><span class="line"><span class="comment">//c -&gt; char</span></span><br></pre></td></tr></table></figure>
 
-void DayDreaming(int &amp;salary, int &amp;cars, int &amp;houses)&#123;
-    salary = salary * 3;
-    cars += 2;
-    houses ++;
-&#125;
-</code></pre>
+<p>举例:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i =<span class="number">1</span>;</span><br><span class="line">    <span class="type">float</span> f = <span class="number">3.14</span>;</span><br><span class="line">    <span class="type">char</span> c = <span class="string">&#x27;A&#x27;</span>, str[]=<span class="string">&quot;hello,world\n&quot;</span>;</span><br><span class="line">    cout &lt;&lt; i;</span><br><span class="line">    cout &lt;&lt; f;</span><br><span class="line">    cout &lt;&lt; c;</span><br><span class="line">    cout &lt;&lt; str;</span><br><span class="line">    cout &lt;&lt; i &lt;&lt; f &lt;&lt; c &lt;&lt; str &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用cin进行输出"><a href="#用cin进行输出" class="headerlink" title="用cin进行输出"></a>用<code>cin</code>进行输出</h3><p>cin表示输入流对象，与它相关联的输入输出设备是键盘。当我们从键盘输入字符串时，形成了输入流（数据流），用提取操作符&gt;&gt;将数据流储存到一个事先定义好的变量中。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cin = c + in;</span><br></pre></td></tr></table></figure>
+
+<p>举例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">float</span> f;</span><br><span class="line">    <span class="type">char</span> c, str[<span class="number">20</span>];</span><br><span class="line">    cin &gt;&gt; i &gt;&gt; f &gt;&gt; c &gt;&gt; str;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 以空白字符（空格、制表符、换行、回车）作为输入数据之间的间隔</span></span><br><span class="line"><span class="comment">//输入一个字符可以使用：</span></span><br><span class="line">cin.<span class="built_in">get</span>(c);</span><br><span class="line"><span class="comment">//输入一个字符串可用：</span></span><br><span class="line">cin.<span class="built_in">getline</span>(str,<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="C-对数据类型的扩充"><a href="#C-对数据类型的扩充" class="headerlink" title="C++对数据类型的扩充"></a>C++对数据类型的扩充</h3><h4 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h4><p>取值为：true或false</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> RealMonkey = <span class="literal">true</span>;</span><br><span class="line"><span class="type">bool</span> RealMonkey, PrettyWoman;</span><br><span class="line">RealMoney = <span class="literal">false</span>;</span><br><span class="line">PrettyWoman =<span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><p>引用（reference）的作用是为一个变量起一个别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> LiBai;</span><br><span class="line"><span class="type">int</span> &amp;LiTaiBai = LiBai; <span class="comment">// 必须初始化</span></span><br><span class="line"><span class="type">int</span> &amp;QingLianJuShi =LiBai;</span><br><span class="line"><span class="type">int</span> &amp;ShiXian = LiBai;</span><br><span class="line"><span class="type">int</span> &amp;JiuXian = LiBai;</span><br><span class="line">LiBai = <span class="number">49</span>;</span><br><span class="line">LiTaiBai ++;</span><br></pre></td></tr></table></figure>
+
+<h4 id="引用作为函数参数"><a href="#引用作为函数参数" class="headerlink" title="引用作为函数参数"></a>引用作为函数参数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使得在被调用的函数中可以修改作为实参的变量的值</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> salary, nCars, nHouses;</span><br><span class="line">    salary = <span class="number">6000</span>;</span><br><span class="line">    nCars = <span class="number">0</span>;</span><br><span class="line">    nHouses = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">DayDreaming</span>(salary, nCars, nHouses);</span><br><span class="line">    cout &lt;&lt; salary &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; nCars &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; nHouses;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">DayDreaming</span><span class="params">(<span class="type">int</span> &amp;salary, <span class="type">int</span> &amp;cars, <span class="type">int</span> &amp;houses)</span></span>&#123;</span><br><span class="line">    salary = salary * <span class="number">3</span>;</span><br><span class="line">    cars += <span class="number">2</span>;</span><br><span class="line">    houses ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h3 id="对象（Object）"><a href="#对象（Object）" class="headerlink" title="对象（Object）"></a>对象（Object）</h3><p>什么是对象</p>
 <ul>
 <li>在认知心理学中，对象是指可触摸、可见或思维可理解的东西</li>
@@ -228,31 +181,15 @@ void DayDreaming(int &amp;salary, int &amp;cars, int &amp;houses)&#123;
 <h3 id="类（class）"><a href="#类（class）" class="headerlink" title="类（class）"></a>类（class）</h3><p>一组具有类似属性和行为的对象</p>
 <h4 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h4><p>类：抽象地定义了该类对象地本质特征（属性和操作），类型定义、模板</p>
 <p>对象：类的实例，具有各自的属性值，占用存储空间</p>
-<h2 id="类的定义与使用"><a href="#类的定义与使用" class="headerlink" title="类的定义与使用"></a>类的定义与使用</h2><pre><code class="c++">//类定义
-class Baby&#123;
-    //成员变量
-    
-    //成员函数  
-    
-&#125;;
+<h2 id="类的定义与使用"><a href="#类的定义与使用" class="headerlink" title="类的定义与使用"></a>类的定义与使用</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span>&#123;</span><br><span class="line">    <span class="comment">//成员变量</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//成员函数  </span></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类实例</span></span><br><span class="line">Baby dawa, erwa;</span><br></pre></td></tr></table></figure>
 
-//类实例
-Baby dawa, erwa;
-</code></pre>
 <h3 id="成员变量的初始化"><a href="#成员变量的初始化" class="headerlink" title="成员变量的初始化"></a>成员变量的初始化</h3><ul>
 <li>在<strong>定义类时</strong>即可确定，用构造函数，且无需参数</li>
 <li>在<strong>创建对象时</strong>确定，用带参数的构造函数</li>
 <li>在<strong>创建对象后</strong>才能确定，用成员函数</li>
 </ul>
-<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><pre><code class="c++">class CLASSNAME&#123;
-    CLASSNAME()&#123;
-        
-    &#125;
-    CLASSNAME([ARGUMENTS])&#123;		//带参数的构造函数
-        
-    &#125;
-&#125;;
-</code></pre>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CLASSNAME</span>&#123;</span><br><span class="line">    <span class="built_in">CLASSNAME</span>()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">CLASSNAME</span>([ARGUMENTS])&#123;		<span class="comment">//带参数的构造函数</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><p>构造函数的名字 &#x3D; 类的名字</p>
 </li>
@@ -261,11 +198,7 @@ Baby dawa, erwa;
 <li><p>创建对象时自动调用，初始化成员变量</p>
 </li>
 <li><p>每个类需要至少一个构造函数，若不写，则默认为：</p>
-<pre><code class="c++">CLASSNAME()&#123;
-    
-&#125;
-</code></pre>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CLASSNAME</span>()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>类初始化时构造函数的调用顺序：</p>
 <ul>
@@ -273,36 +206,11 @@ Baby dawa, erwa;
 <li>按顺序分别调用类成员变量和对象成员的初始化</li>
 <li>调用构造函数</li>
 </ul>
-<pre><code class="c++">#include &lt;iostream&gt;
-using namespace std;
-class Dollar&#123;
-    public:
-        int n;
-        Dollar()&#123;
-                n = 100;
-                cout &lt;&lt; n &lt;&lt; &quot; dollars come to my home&quot; &lt;&lt;endl;
-            &#125;
-&#125;;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dollar</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="type">int</span> n;</span><br><span class="line">    	<span class="built_in">Dollar</span>()&#123;</span><br><span class="line">            	n = <span class="number">100</span>;</span><br><span class="line">            	cout &lt;&lt; n &lt;&lt; <span class="string">&quot; dollars come to my home&quot;</span> &lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Money</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	Dollar d;</span><br><span class="line">    	<span class="built_in">Money</span>()&#123;</span><br><span class="line">            	cout &lt;&lt; <span class="string">&quot;All money come to my home&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Money m;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-class Money&#123;
-    public:
-        Dollar d;
-        Money()&#123;
-                cout &lt;&lt; &quot;All money come to my home&quot; &lt;&lt; endl;
-            &#125;
-&#125;;
-
-int main()&#123;
-    Money m;
-    
-    return 0;
-&#125;
-</code></pre>
 <p>运行结果为：</p>
-<pre><code class="bash">$ .\test.exe
-100 dollars come to my home
-All money come to my home
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ .\test.exe</span><br><span class="line">100 dollars come to my home</span><br><span class="line">All money come to my home</span><br></pre></td></tr></table></figure>
+
 <h4 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h4><p>调用时可以不需要实参的构造函数</p>
 <ul>
 <li>参数列表为空</li>
@@ -310,185 +218,37 @@ All money come to my home
 </ul>
 <p>每个类只能有一个默认的构造函数，否则将编译错误</p>
 <p>一个构造函数的例子：</p>
-<pre><code class="c++">class Baby &#123;
-public:
-    char name[20];
-    char gender;
-    int age;
-    double weight;
-    int numPoops;
-    Baby(char myname[], char g, double w) 	//创建对象时确定
-                                       : age(0), numPoops(0) &#123;	//初始化成员列表，在定义类的时候确定
-        strcpy(name, myname);
-        gender = g; 
-        weight = w;
-    &#125;   
-&#125;;
-</code></pre>
-<h4 id="调用带参数的构造函数"><a href="#调用带参数的构造函数" class="headerlink" title="调用带参数的构造函数"></a>调用带参数的构造函数</h4><pre><code class="c++">//创建对象
-Baby dawa = Baby(&quot;大力士&quot;, &#39;M&#39;, 20);
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="type">char</span> gender;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">double</span> weight;</span><br><span class="line">    <span class="type">int</span> numPoops;</span><br><span class="line">    <span class="built_in">Baby</span>(<span class="type">char</span> myname[], <span class="type">char</span> g, <span class="type">double</span> w) 	<span class="comment">//创建对象时确定</span></span><br><span class="line">                                       : <span class="built_in">age</span>(<span class="number">0</span>), <span class="built_in">numPoops</span>(<span class="number">0</span>) &#123;	<span class="comment">//初始化成员列表，在定义类的时候确定</span></span><br><span class="line">        <span class="built_in">strcpy</span>(name, myname);</span><br><span class="line">        gender = g; </span><br><span class="line">        weight = w;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-//或者
-Baby dawa(&quot;大力士&quot;, &#39;M&#39;, 20);
-</code></pre>
+<h4 id="调用带参数的构造函数"><a href="#调用带参数的构造函数" class="headerlink" title="调用带参数的构造函数"></a>调用带参数的构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建对象</span></span><br><span class="line">Baby dawa = <span class="built_in">Baby</span>(<span class="string">&quot;大力士&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="function">Baby <span class="title">dawa</span><span class="params">(<span class="string">&quot;大力士&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">20</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
 <h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><p>形如</p>
-<pre><code class="c++">class Baby&#123;
-    public:
-        ...
-            void poop()&#123;
-                numPoops ++;
-                cout &lt;&lt; &quot;Dear mother,&quot; &lt;&lt; &quot;I have pooped.&quot; &lt;&lt; endl;
-            &#125;
-            void sayHi()&#123;
-            cout &lt;&lt; &quot;Hi, my name is &quot; &lt;&lt; name &lt;&lt; endl;
-        &#125;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	...</span><br><span class="line">            <span class="function"><span class="type">void</span> <span class="title">poop</span><span class="params">()</span></span>&#123;</span><br><span class="line">            	numPoops ++;</span><br><span class="line">            	cout &lt;&lt; <span class="string">&quot;Dear mother,&quot;</span> &lt;&lt; <span class="string">&quot;I have pooped.&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="type">void</span> <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">    		cout &lt;&lt; <span class="string">&quot;Hi, my name is &quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	    <span class="function"><span class="type">void</span> <span class="title">eat</span><span class="params">(<span class="type">double</span> foodWeight)</span></span>&#123;</span><br><span class="line">    		weight +=foodWeight;</span><br><span class="line">	    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        void eat(double foodWeight)&#123;
-            weight +=foodWeight;
-        &#125; 
-&#125;
-</code></pre>
 <p>综上，完整的Baby类为</p>
-<pre><code class="c++">class Baby&#123;
-    public:
-        char name[20];
-        char gender;
-        int age;
-        double weight;
-        int numPoops;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    	<span class="type">char</span> gender;</span><br><span class="line">    	<span class="type">int</span> age;</span><br><span class="line">    	<span class="type">double</span> weight;</span><br><span class="line">    	<span class="type">int</span> numPoops;</span><br><span class="line"></span><br><span class="line">    	<span class="built_in">Baby</span>(<span class="type">char</span> myname[], <span class="type">char</span> g, <span class="type">double</span> w) 	<span class="comment">//创建对象时确定</span></span><br><span class="line">                                       : <span class="built_in">age</span>(<span class="number">0</span>), <span class="built_in">numPoops</span>(<span class="number">0</span>) &#123;	<span class="comment">//初始化成员列表，在定义类的时候确定</span></span><br><span class="line">        	<span class="built_in">strcpy</span>(name, myname);</span><br><span class="line">        	gender = g; </span><br><span class="line">        	weight = w;</span><br><span class="line">    	&#125;</span><br><span class="line"></span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">poop</span><span class="params">()</span></span>&#123;</span><br><span class="line">            	numPoops ++;</span><br><span class="line">            	cout &lt;&lt; <span class="string">&quot;Dear mother,&quot;</span> &lt;&lt; <span class="string">&quot;I have pooped.&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="type">void</span> <span class="title">sayHi</span><span class="params">()</span></span>&#123;</span><br><span class="line">    		cout &lt;&lt; <span class="string">&quot;Hi, my name is &quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">	    <span class="function"><span class="type">void</span> <span class="title">eat</span><span class="params">(<span class="type">double</span> foodWeight)</span></span>&#123;</span><br><span class="line">    		weight +=foodWeight;</span><br><span class="line">	    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        Baby(char myname[], char g, double w) 	//创建对象时确定
-                                       : age(0), numPoops(0) &#123;	//初始化成员列表，在定义类的时候确定
-            strcpy(name, myname);
-            gender = g; 
-            weight = w;
-        &#125;
-
-        void poop()&#123;
-                numPoops ++;
-                cout &lt;&lt; &quot;Dear mother,&quot; &lt;&lt; &quot;I have pooped.&quot; &lt;&lt; endl;
-            &#125;
-            void sayHi()&#123;
-            cout &lt;&lt; &quot;Hi, my name is &quot; &lt;&lt; name &lt;&lt; endl;
-        &#125;
-
-        void eat(double foodWeight)&#123;
-            weight +=foodWeight;
-        &#125; 
-&#125;
-</code></pre>
 <h3 id="函数声明与实现分离"><a href="#函数声明与实现分离" class="headerlink" title="函数声明与实现分离"></a>函数声明与实现分离</h3><p>对于普通函数，函数原型与函数的实现可以分离，即把函数原型放在文件开头，而把函数的实现放在后面</p>
 <p>类似的，类的成员函数也可以这样做，函数的实现需要用<code>::</code>来表示它是哪一个类的成员函数</p>
-<pre><code class="c++">//baby.h 头文件
-class Baby&#123;
-    public:
-        char name[20];
-        char gender;
-        int age;
-        double weight;
-        int numPoops;
-        Baby(char*, char, double);
-        void poop();
-        void sayHi();
-        void eat(double foodweight);
-&#125;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//baby.h 头文件</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    	<span class="type">char</span> gender;</span><br><span class="line">    	<span class="type">int</span> age;</span><br><span class="line">    	<span class="type">double</span> weight;</span><br><span class="line">    	<span class="type">int</span> numPoops;</span><br><span class="line">    	<span class="built_in">Baby</span>(<span class="type">char</span>*, <span class="type">char</span>, <span class="type">double</span>);</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">poop</span><span class="params">()</span></span>;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sayHi</span><span class="params">()</span></span>;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">eat</span><span class="params">(<span class="type">double</span> foodweight)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//baby.cpp 源文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;baby.h&quot;</span></span></span><br><span class="line">Baby::<span class="built_in">Baby</span>(<span class="type">char</span> myname[], <span class="type">char</span> g, <span class="type">double</span> w)&#123;</span><br><span class="line">	...    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Baby::poop</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Baby::eat</span><span class="params">(<span class="type">double</span> foodweight)</span></span>&#123;</span><br><span class="line">    weight +=foodweight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-//baby.cpp 源文件
-#include &quot;baby.h&quot;
-Baby::Baby(char myname[], char g, double w)&#123;
-    ...    
-&#125;
-void Baby::poop()&#123;
-    ...
-&#125;
-void Baby::eat(double foodweight)&#123;
-    weight +=foodweight;
-&#125;
-</code></pre>
-<h3 id="类的使用"><a href="#类的使用" class="headerlink" title="类的使用"></a>类的使用</h3><pre><code class="c++">//类定义
-class Baby&#123;...&#125;
+<h3 id="类的使用"><a href="#类的使用" class="headerlink" title="类的使用"></a>类的使用</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类实例</span></span><br><span class="line">Baby dawa = <span class="built_in">Baby</span>(<span class="string">&quot;大力士&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">20</span>);</span><br><span class="line">Baby erwa = <span class="built_in">Baby</span>(<span class="string">&quot;千里眼&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">16</span>);</span><br><span class="line">Baby sanwa = <span class="built_in">Baby</span>(<span class="string">&quot;钢筋铁骨&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">18</span>);</span><br><span class="line">Baby siwa = <span class="built_in">Baby</span>(<span class="string">&quot;火神&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">16</span>);</span><br></pre></td></tr></table></figure>
 
-//类实例
-Baby dawa = Baby(&quot;大力士&quot;, &#39;M&#39;, 20);
-Baby erwa = Baby(&quot;千里眼&quot;, &#39;M&#39;, 16);
-Baby sanwa = Baby(&quot;钢筋铁骨&quot;, &#39;M&#39;, 18);
-Baby siwa = Baby(&quot;火神&quot;, &#39;M&#39;, 16);
-</code></pre>
 <h4 id="访问成员变量"><a href="#访问成员变量" class="headerlink" title="访问成员变量"></a>访问成员变量</h4><p><code>Object.FIELD_NAME</code></p>
-<pre><code class="c++">cout &lt;&lt; dawa.name &lt;&lt; endl;
-cout &lt;&lt; erwa.weight &lt;&lt; endl;
-cout &lt;&lt; sanwa.numPoops &lt;&lt; endl;
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; dawa.name &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; erwa.weight &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; sanwa.numPoops &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
 <h4 id="调用成员参数"><a href="#调用成员参数" class="headerlink" title="调用成员参数"></a>调用成员参数</h4><p><code>Object.METHOD_NAME([参数])</code></p>
-<pre><code class="c++">dawa.sayHi();	//把sayHi作用于dawa
-erwa.eat(1);	//把eat(1)作用于erwa
-sanwa.poop();	//把poop作用于sanwa
-</code></pre>
-<h2 id="进一步内容"><a href="#进一步内容" class="headerlink" title="进一步内容"></a>进一步内容</h2><h3 id="对象的赋值"><a href="#对象的赋值" class="headerlink" title="对象的赋值"></a>对象的赋值</h3><pre><code class="c++">class Point &#123;
-    public:
-        int x, y;
-        Point()&#123; x = 0; y = 0;&#125;
-&#125;;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dawa.<span class="built_in">sayHi</span>();	<span class="comment">//把sayHi作用于dawa</span></span><br><span class="line">erwa.<span class="built_in">eat</span>(<span class="number">1</span>);	<span class="comment">//把eat(1)作用于erwa</span></span><br><span class="line">sanwa.<span class="built_in">poop</span>();	<span class="comment">//把poop作用于sanwa</span></span><br></pre></td></tr></table></figure>
 
-int main() 
-&#123;
-    Point start, end;
-    start.x = 3;
-    start.y = 4;
-    end = start;  //对象的赋值
-    cout &lt;&lt; end.x &lt;&lt; &#39; &#39; &lt;&lt; end.y &lt;&lt; endl;
-    return 0;
-&#125;
-</code></pre>
-<h3 id="对象作为函数参数"><a href="#对象作为函数参数" class="headerlink" title="对象作为函数参数"></a>对象作为函数参数</h3><pre><code class="c++">#include &lt;iostream&gt;
-using namespace std;
+<h2 id="进一步内容"><a href="#进一步内容" class="headerlink" title="进一步内容"></a>进一步内容</h2><h3 id="对象的赋值"><a href="#对象的赋值" class="headerlink" title="对象的赋值"></a>对象的赋值</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">    	<span class="type">int</span> x, y;</span><br><span class="line">    	<span class="built_in">Point</span>()&#123; x = <span class="number">0</span>; y = <span class="number">0</span>;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Point start, end;</span><br><span class="line">    start.x = <span class="number">3</span>;</span><br><span class="line">    start.y = <span class="number">4</span>;</span><br><span class="line">    end = start;  <span class="comment">//对象的赋值</span></span><br><span class="line">    cout &lt;&lt; end.x &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; end.y &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-class DaGongRen&#123;
-    public:
-        int salary, nCars, nHouses;
-&#125;;
+<h3 id="对象作为函数参数"><a href="#对象作为函数参数" class="headerlink" title="对象作为函数参数"></a>对象作为函数参数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DaGongRen</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="type">int</span> salary, nCars, nHouses;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">GetRich</span><span class="params">(DaGongRen p, <span class="type">int</span> s, <span class="type">int</span> c, <span class="type">int</span> h)</span></span>&#123;</span><br><span class="line">    p.salary += s;</span><br><span class="line">    p.nCars += c;</span><br><span class="line">    p.nHouses += h;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DaGongRen poor;</span><br><span class="line">    poor.salary = <span class="number">6000</span>;</span><br><span class="line">    poor.nCars = <span class="number">0</span>;</span><br><span class="line">    poor.nHouses = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">GetRich</span>(poor, <span class="number">12000</span>, <span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line">    cout &lt;&lt; poor.salary &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; poor.nCars &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; poor.nHouses &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">然而GetRich并没有改变初始化的DaGongRen p对象里的值，还是需要引用或指针</span><br></pre></td></tr></table></figure>
 
-void GetRich(DaGongRen p, int s, int c, int h)&#123;
-    p.salary += s;
-    p.nCars += c;
-    p.nHouses += h;
-&#125;
-
-int main() 
-&#123;
-    DaGongRen poor;
-    poor.salary = 6000;
-    poor.nCars = 0;
-    poor.nHouses = 0;
-    GetRich(poor, 12000, 2, 1);
-    cout &lt;&lt; poor.salary &lt;&lt; &#39; &#39; &lt;&lt; poor.nCars &lt;&lt; &#39; &#39; &lt;&lt; poor.nHouses &lt;&lt; endl;
-    return 0;
-&#125;
-
-然而GetRich并没有改变初始化的DaGongRen p对象里的值，还是需要引用或指针
-</code></pre>
 <p>使用另一对象来初始化</p>
-<pre><code class="c++">class Singer &#123; 
-    public:
-        string name;
-        int birth;
-        Singer() &#123;&#125;  //默认构造函数
-        Singer(Singer &amp;o)&#123; //复制构造函数，形参为引用
-            name = o.name; birth = o.birth;  
-        &#125;
-&#125;;
-int main() &#123;
-&#123;
-    Singer MJ; //使用默认构造函数
-    MJ.name = &quot;Michael Jackson&quot;; 
-    MJ.birth = 1958;
-    Singer wang(MJ); //使用复制构造函数
-&#125;
-</code></pre>
-<h3 id="指向对象的指针"><a href="#指向对象的指针" class="headerlink" title="指向对象的指针"></a>指向对象的指针</h3><pre><code class="c++">Baby dawa(&quot;大力士&quot;, &#39;M&#39;, 20);
-Baby *p = new Baby(&quot;大力士&quot;, &#39;M&#39;, 20);		//new 相当于 malloc
-cout &lt;&lt; p-&gt;name &lt;&lt; &#39; &#39; &lt;&lt; p-&gt;gender		//-&gt;用法类似于结构体
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Singer</span> &#123; </span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">    	string name;</span><br><span class="line">    	<span class="type">int</span> birth;</span><br><span class="line">    	<span class="built_in">Singer</span>() &#123;&#125;  <span class="comment">//默认构造函数</span></span><br><span class="line">    	<span class="built_in">Singer</span>(Singer &amp;o)&#123; <span class="comment">//复制构造函数，形参为引用</span></span><br><span class="line">        	name = o.name; birth = o.birth;  </span><br><span class="line">    	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#123;</span><br><span class="line">    Singer MJ; <span class="comment">//使用默认构造函数</span></span><br><span class="line">    MJ.name = <span class="string">&quot;Michael Jackson&quot;</span>; </span><br><span class="line">    MJ.birth = <span class="number">1958</span>;</span><br><span class="line">    <span class="function">Singer <span class="title">wang</span><span class="params">(MJ)</span></span>; <span class="comment">//使用复制构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="指向对象的指针"><a href="#指向对象的指针" class="headerlink" title="指向对象的指针"></a>指向对象的指针</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Baby <span class="title">dawa</span><span class="params">(<span class="string">&quot;大力士&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">20</span>)</span></span>;</span><br><span class="line">Baby *p = <span class="keyword">new</span> <span class="built_in">Baby</span>(<span class="string">&quot;大力士&quot;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="number">20</span>);		<span class="comment">//new 相当于 malloc</span></span><br><span class="line">cout &lt;&lt; p-&gt;name &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; p-&gt;gender		<span class="comment">//-&gt;用法类似于结构体</span></span><br></pre></td></tr></table></figure>
+
 <p>
         <span class="lazyload-img-span">
         <img   
@@ -502,21 +262,8 @@ cout &lt;&lt; p-&gt;name &lt;&lt; &#39; &#39; &lt;&lt; p-&gt;gender		//-&gt;用�
 <li>必须在类外初始化，用<code>::</code>指明类</li>
 <li>可以在任何类对象创建之前访问（静态成员函数也是如此）</li>
 </ul>
-<pre><code class="c++">class Baby &#123;
-    public:
-        static int numBabiesMade; 
-    &#125;;
-    int Baby::numBabiesMade = 0;
-    void main() &#123;
-        Baby::numBabiesMade = 100; 
-        Baby b1, b2;
-        b1.numBabiesMade = 1;
-        b2.numBabiesMade = 2;
-        cout &lt;&lt; Baby::numBabiesMade&lt;&lt;&#39; &#39;
-           &lt;&lt; b1.numBabiesMade &lt;&lt; &#39; &#39;
-           &lt;&lt; b2.numBabiesMade &lt;&lt; endl;
-&#125;
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Baby</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="type">static</span> <span class="type">int</span> numBabiesMade; </span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="type">int</span> Baby::numBabiesMade = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Baby::numBabiesMade = <span class="number">100</span>; </span><br><span class="line">        Baby b1, b2;</span><br><span class="line">        b1.numBabiesMade = <span class="number">1</span>;</span><br><span class="line">        b2.numBabiesMade = <span class="number">2</span>;</span><br><span class="line">        cout &lt;&lt; Baby::numBabiesMade&lt;&lt;<span class="string">&#x27; &#x27;</span></span><br><span class="line">           &lt;&lt; b1.numBabiesMade &lt;&lt; <span class="string">&#x27; &#x27;</span></span><br><span class="line">           &lt;&lt; b2.numBabiesMade &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="常类型（不作要求）"><a href="#常类型（不作要求）" class="headerlink" title="常类型（不作要求）"></a>常类型（不作要求）</h3><h2 id="常用的C-类"><a href="#常用的C-类" class="headerlink" title="常用的C++类"></a>常用的C++类</h2><h3 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h3><p>字符串：</p>
 <ul>
 <li>用双引号括起来的若干个字符</li>
@@ -528,16 +275,8 @@ cout &lt;&lt; p-&gt;name &lt;&lt; &#39; &#39; &lt;&lt; p-&gt;gender		//-&gt;用�
 </ul>
 </li>
 </ul>
-<h3 id="string类的构造函数"><a href="#string类的构造函数" class="headerlink" title="string类的构造函数"></a>string类的构造函数</h3><pre><code class="c++">string();	//默认构造函数，建立长度为0的串
-string s1;
+<h3 id="string类的构造函数"><a href="#string类的构造函数" class="headerlink" title="string类的构造函数"></a>string类的构造函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span>();	<span class="comment">//默认构造函数，建立长度为0的串</span></span><br><span class="line">string s1;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span>(<span class="type">const</span> <span class="type">char</span> *s);	<span class="comment">//用s字符串来初始化</span></span><br><span class="line">string s2 = <span class="string">&quot;abc&quot;</span>;	<span class="comment">//或</span></span><br><span class="line"><span class="function">string <span class="title">s2</span><span class="params">(<span class="string">&quot;abc&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span>(<span class="type">const</span> string&amp; s) 	<span class="comment">//复制构造函数</span></span><br><span class="line">string s3 = s2;</span><br></pre></td></tr></table></figure>
 
-string(const char *s);	//用s字符串来初始化
-string s2 = &quot;abc&quot;;	//或
-string s2(&quot;abc&quot;);
-
-string(const string&amp; s) 	//复制构造函数
-string s3 = s2;
-</code></pre>
 <h3 id="字符串存储"><a href="#字符串存储" class="headerlink" title="字符串存储"></a>字符串存储</h3><p>字符串中的字符下标从0开始：</p>
 <p><code>String name = &#39;Ultimate&#39;;</code></p>
 <p>
@@ -590,17 +329,8 @@ string s3 = s2;
 <td>删除pos开始的n个字符，返回新串</td>
 </tr>
 </tbody></table>
-<h3 id="string类举例"><a href="#string类举例" class="headerlink" title="string类举例"></a>string类举例</h3><pre><code class="c++">string s1 = &quot;too &quot;;
-string s2 = s1 + &quot;how&quot;;
-cout &lt;&lt; s2 &lt;&lt; endl;		//“too how”
+<h3 id="string类举例"><a href="#string类举例" class="headerlink" title="string类举例"></a>string类举例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;too &quot;</span>;</span><br><span class="line">string s2 = s1 + <span class="string">&quot;how&quot;</span>;</span><br><span class="line">cout &lt;&lt; s2 &lt;&lt; endl;		<span class="comment">//“too how”</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//index		012345678901</span></span><br><span class="line">string s3 = <span class="string">&quot;Stuart Reges&quot;</span>;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; s3.<span class="built_in">length</span>() &lt;&lt; endl;	<span class="comment">//12</span></span><br><span class="line">cout &lt;&lt; s3.<span class="built_in">find</span>(<span class="string">&quot;e&quot;</span>, <span class="number">0</span>) &lt;&lt; endl;	<span class="comment">//8</span></span><br><span class="line">cout &lt;&lt; s3.<span class="built_in">substr</span>(<span class="number">7</span>, <span class="number">3</span>) &lt;&lt; endl;	<span class="comment">//&quot;Reg&quot;</span></span><br></pre></td></tr></table></figure>
 
-//index		012345678901
-string s3 = &quot;Stuart Reges&quot;;
-
-cout &lt;&lt; s3.length() &lt;&lt; endl;	//12
-cout &lt;&lt; s3.find(&quot;e&quot;, 0) &lt;&lt; endl;	//8
-cout &lt;&lt; s3.substr(7, 3) &lt;&lt; endl;	//&quot;Reg&quot;
-</code></pre>
 <h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><h3 id="抽象与封装"><a href="#抽象与封装" class="headerlink" title="抽象与封装"></a>抽象与封装</h3><ul>
 <li>将类的本质行为和它的具体实现分开</li>
 <li>外部观点：类的对外接口</li>
@@ -630,102 +360,21 @@ cout &lt;&lt; s3.substr(7, 3) &lt;&lt; endl;	//&quot;Reg&quot;
 <td>等价于private</td>
 </tr>
 </tbody></table>
-<h3 id="直接访问成员变量"><a href="#直接访问成员变量" class="headerlink" title="直接访问成员变量"></a>直接访问成员变量</h3><pre><code class="c++">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
+<h3 id="直接访问成员变量"><a href="#直接访问成员变量" class="headerlink" title="直接访问成员变量"></a>直接访问成员变量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BankAccount</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	string number;</span><br><span class="line">    	<span class="type">double</span> balance;</span><br><span class="line">    	string password;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    BankAccount account;</span><br><span class="line">    account.balance = <span class="number">1000000</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;password is:&quot;</span> &lt;&lt; account.password &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-class BankAccount&#123;
-    public:
-        string number;
-        double balance;
-        string password;  
-&#125;;
+<h3 id="不能直接访问成员变量"><a href="#不能直接访问成员变量" class="headerlink" title="不能直接访问成员变量"></a>不能直接访问成员变量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">BankAccount</span>&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	string number;</span><br><span class="line">    	<span class="type">double</span> balance;</span><br><span class="line">    	string password;  </span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">deposit</span><span class="params">(<span class="type">double</span> money)</span></span>&#123;</span><br><span class="line">            balance += money;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">withdraw</span><span class="params">(<span class="type">double</span> money)</span></span>&#123;</span><br><span class="line">            balance -= money;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">resetPassword</span><span class="params">(string pwd)</span></span>&#123;</span><br><span class="line">            password = pwd;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    BankAccount account;</span><br><span class="line">	account.<span class="built_in">deposit</span>(<span class="number">1000000</span>);</span><br><span class="line">    string pwd =<span class="string">&quot;abc123&quot;</span>;</span><br><span class="line">    account.<span class="built_in">resetPassword</span>(pwd);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-int main()&#123;
-    BankAccount account;
-    account.balance = 1000000;
-    cout &lt;&lt; &quot;password is:&quot; &lt;&lt; account.password &lt;&lt; endl;
-    return 0;
-&#125;
-</code></pre>
-<h3 id="不能直接访问成员变量"><a href="#不能直接访问成员变量" class="headerlink" title="不能直接访问成员变量"></a>不能直接访问成员变量</h3><pre><code class="c++">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
-
-class BankAccount&#123;
-    private:
-        string number;
-        double balance;
-        string password;  
-    public:
-        void deposit(double money)&#123;
-            balance += money;
-        &#125;
-        void withdraw(double money)&#123;
-            balance -= money;
-        &#125;
-        void resetPassword(string pwd)&#123;
-            password = pwd;
-        &#125;
-&#125;;
-
-int main()&#123;
-    BankAccount account;
-    account.deposit(1000000);
-    string pwd =&quot;abc123&quot;;
-    account.resetPassword(pwd);
-    return 0;
-&#125;
-</code></pre>
 <p>接口函数命名：<code>getXXX()</code> 查询类；<code>setXXX()</code> 修改类</p>
 <h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>其他类型转字符串</p>
 <p>C语言的实现办法</p>
-<pre><code class="c">char *itoa(int value,char *string,int radix);
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">itoa</span><span class="params">(<span class="type">int</span> value,<span class="type">char</span> *<span class="built_in">string</span>,<span class="type">int</span> radix)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> *<span class="title function_">fcvt</span><span class="params">(<span class="type">double</span> value, <span class="type">int</span> ndigit,<span class="type">int</span> *decpt, <span class="type">int</span> *sign)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> *<span class="title function_">ultoa</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> value, <span class="type">char</span> *<span class="built_in">string</span>, <span class="type">int</span> radix)</span>;</span><br></pre></td></tr></table></figure>
 
-char *fcvt(double value, int ndigit,int *decpt, int *sign);
-
-char *ultoa(unsigned long value, char *string, int radix);
-</code></pre>
 <p>C++11的实现方法</p>
-<pre><code class="c++">std::to_string(int i)
-std::to_string(unsigned u)
-std::to_string(long l)
-std::to_string(unsigned long l)
-std::to_string(float f)
-std::to_string(double d)
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">to_string</span>(<span class="type">int</span> i)</span><br><span class="line">std::<span class="built_in">to_string</span>(<span class="type">unsigned</span> u)</span><br><span class="line">std::<span class="built_in">to_string</span>(<span class="type">long</span> l)</span><br><span class="line">std::<span class="built_in">to_string</span>(<span class="type">unsigned</span> <span class="type">long</span> l)</span><br><span class="line">std::<span class="built_in">to_string</span>(<span class="type">float</span> f)</span><br><span class="line">std::<span class="built_in">to_string</span>(<span class="type">double</span> d)</span><br></pre></td></tr></table></figure>
+
 <p>例子：小狗阿黄</p>
-<pre><code class="c++">#include &lt;iostream&gt;
-using namespace std;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">bark</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;汪汪汪！&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">bark</span><span class="params">(<span class="type">bool</span> injured)</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(injured)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;呜咽...&quot;</span> &lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">bark</span><span class="params">(<span class="type">int</span> mood)</span></span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(mood == <span class="number">0</span>)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;汪汪汪！&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(mood == <span class="number">1</span>)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;汪！汪汪！&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(mood == <span class="number">2</span>)&#123;</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;呜-呜&quot;</span> &lt;&lt; endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Dog ahuang;</span><br><span class="line">    ahuang.<span class="built_in">bark</span>();</span><br><span class="line">    ahuang.<span class="built_in">bark</span>(<span class="literal">true</span>);</span><br><span class="line">    ahuang.<span class="built_in">bark</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-class Dog&#123;
-    public:
-        void bark()&#123;
-            cout &lt;&lt; &quot;汪汪汪！&quot; &lt;&lt; endl;
-        &#125;
-        void bark(bool injured)&#123;
-            if(injured)&#123;
-                cout &lt;&lt; &quot;呜咽...&quot; &lt;&lt;endl;
-            &#125;
-        &#125;
-        void bark(int mood)&#123;
-            if(mood == 0)&#123;
-                cout &lt;&lt; &quot;汪汪汪！&quot; &lt;&lt; endl;
-            &#125;else if(mood == 1)&#123;
-                cout &lt;&lt; &quot;汪！汪汪！&quot; &lt;&lt; endl;
-            &#125;else if(mood == 2)&#123;
-                cout &lt;&lt; &quot;呜-呜&quot; &lt;&lt; endl;
-            &#125;
-        &#125;
-&#125;;
-
-void main()&#123;
-    Dog ahuang;
-    ahuang.bark();
-    ahuang.bark(true);
-    ahuang.bark(1);
-&#125;
-</code></pre>
 <p>重载的条件</p>
 <p>成员方法重名，但是</p>
 <ul>
@@ -733,54 +382,11 @@ void main()&#123;
 <li>参数的类型不同</li>
 <li>顺序不同</li>
 </ul>
-<pre><code class="c++">class Calculation&#123;
-    public:
-        void sum(int a,int b)&#123;
-            cout &lt;&lt; (a+b);
-        &#125;
-        void sum(int a,int b,int c)&#123;
-            cout &lt;&lt; (a+b+c);
-        &#125;
-&#125;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Calculation</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; (a+b);</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; (a+b+c);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculation2</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; (a+b);</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sum</span><span class="params">(<span class="type">double</span> a,<span class="type">double</span> b)</span></span>&#123;</span><br><span class="line">			cout &lt;&lt; (a+b);           </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculation3</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> a,<span class="type">double</span> b)</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; (a+b);</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">sum</span><span class="params">(<span class="type">double</span> b,<span class="type">int</span> a)</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; (a+b);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">    Calculation obj;</span><br><span class="line">    obj.<span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line">    obj.<span class="built_in">sum</span>(<span class="number">20</span>,<span class="number">20</span>);</span><br><span class="line">    </span><br><span class="line">    Calculation2 obj2;</span><br><span class="line">    obj2.<span class="built_in">sum</span>(<span class="number">10.5</span>,<span class="number">10.5</span>);</span><br><span class="line">    obj2.<span class="built_in">sum</span>(<span class="number">20</span>,<span class="number">20</span>);</span><br><span class="line">    </span><br><span class="line">    Calculation3 obj3;</span><br><span class="line">    obj3.<span class="built_in">sum</span>(<span class="number">10</span>,<span class="number">10.5</span>);</span><br><span class="line">    obj3.<span class="built_in">sum</span>(<span class="number">20.5</span>,<span class="number">20</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-class Calculation2&#123;
-    public:
-        void sum(int a,int b)&#123;
-            cout &lt;&lt; (a+b);
-        &#125;
-        void sum(double a,double b)&#123;
-            cout &lt;&lt; (a+b);           
-        &#125;
-&#125;
-
-class Calculation3&#123;
-    public:
-        void sum(int a,double b)&#123;
-            cout &lt;&lt; (a+b);
-        &#125;
-        void sum(double b,int a)&#123;
-            cout &lt;&lt; (a+b);
-        &#125;
-&#125;
-
-void main(String args[])&#123;
-    Calculation obj;
-    obj.sum(10,10,10);
-    obj.sum(20,20);
-    
-    Calculation2 obj2;
-    obj2.sum(10.5,10.5);
-    obj2.sum(20,20);
-    
-    Calculation3 obj3;
-    obj3.sum(10,10.5);
-    obj3.sum(20.5,20);
-&#125;
-</code></pre>
 <p>参数个数相同，各个参数的数据类型和顺序也相同，但变量名不同。不能够构成函数重载。</p>
-<pre><code class="c++">int move(string snake);
-int move(string turtle);
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">move</span><span class="params">(string snake)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">move</span><span class="params">(string turtle)</span></span>;</span><br></pre></td></tr></table></figure>
+
 <h2 id="存储管理（不作要求）"><a href="#存储管理（不作要求）" class="headerlink" title="存储管理（不作要求）"></a>存储管理（不作要求）</h2><p>寄存器、栈（stack）、堆（heap）、静态数据区</p>
 <h3 id="内存分布"><a href="#内存分布" class="headerlink" title="内存分布"></a>内存分布</h3><p>
         <span class="lazyload-img-span">
@@ -821,40 +427,8 @@ int move(string turtle);
            data-src="/..%5Cimg%5Cc&c++_5.png" >
         </sapn>
       </p>
-<pre><code class="c++">class Dude &#123;
-    public:
-        string name;
-        int hp;	// 血量
-        int mp;	// 魔力值
-        Dude() &#123; hp = 100; mp = 0; &#125;
-        void sayName() &#123;
-            cout &lt;&lt; name &lt;&lt; endl;
-        &#125;
-        void punchFace(Dude &amp;target) &#123;
-            target.hp -= 10;
-        &#125;    
-&#125;;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dude</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        string name;</span><br><span class="line">        <span class="type">int</span> hp;	<span class="comment">// 血量</span></span><br><span class="line">        <span class="type">int</span> mp;	<span class="comment">// 魔力值</span></span><br><span class="line">        <span class="built_in">Dude</span>() &#123; hp = <span class="number">100</span>; mp = <span class="number">0</span>; &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">sayName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            cout &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">punchFace</span><span class="params">(Dude &amp;target)</span> </span>&#123;</span><br><span class="line">            target.hp -= <span class="number">10</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Wizard</span>  :  <span class="keyword">public</span> Dude&#123; 		<span class="comment">// Wizard 是 Dude 的一个子类</span></span><br><span class="line">    string spells[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">cast</span><span class="params">(string spell)</span></span>&#123;</span><br><span class="line">            <span class="comment">// cool stuff here</span></span><br><span class="line">            ...</span><br><span class="line">            mp -= <span class="number">10</span>;</span><br><span class="line">        &#125;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">GrandWizard</span> : <span class="keyword">public</span> Wizard &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">sayName</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Grand wizard &quot;</span> &lt;&lt; name;</span><br><span class="line">        &#125; </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">grandWizard1.name = <span class="string">&quot;Flash&quot;</span>;</span><br><span class="line">grandWizard1.<span class="built_in">sayName</span>();</span><br></pre></td></tr></table></figure>
 
-class Wizard  :  public Dude&#123; 		// Wizard 是 Dude 的一个子类
-    string spells[20];
-    public:
-        void cast(string spell)&#123;
-            // cool stuff here
-            ...
-            mp -= 10;
-        &#125;  
-&#125;;
-
-class GrandWizard : public Wizard &#123;
-    public:
-        void sayName()&#123;
-            cout &lt;&lt; &quot;Grand wizard &quot; &lt;&lt; name;
-        &#125; 
-&#125;;
-
-grandWizard1.name = &quot;Flash&quot;;
-grandWizard1.sayName();
-</code></pre>
 <p>C++看到如下语句时会如何做？<code>grandWizard1.punchFace(dude1);</code></p>
 <ul>
 <li>在GrandWizard类中寻找punchFace()；</li>
@@ -912,66 +486,12 @@ grandWizard1.sayName();
 <li><p>父类和子类的构造函数各自负责初始化自身的成员变量</p>
 </li>
 <li><p>若构造函数无参数，在创建子类对象时系统会自动先调用父类的构造函数</p>
-<pre><code class="c++">class CPU8086&#123;
-    public:
-        cpu8086()&#123;
-                cout &lt;&lt; &quot;8086 constructor&quot; &lt;&lt; endl;
-        &#125;
-&#125;;
-class CPU286 : public CPU8086 &#123;
-    public:
-      CPU286() &#123;
-        cout &lt;&lt; &quot;286 constructor&quot; &lt;&lt; endl;
-      &#125;
-&#125;;
-class CPU386 : public CPU286 &#123;
-    public:
-      CPU386() &#123;
-        cout &lt;&lt; &quot;386 constructor&quot; &lt;&lt; endl;
-      &#125;
-&#125;;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CPU8086</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="built_in">cpu8086</span>()&#123;</span><br><span class="line">            	cout &lt;&lt; <span class="string">&quot;8086 constructor&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CPU286</span> : <span class="keyword">public</span> CPU8086 &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">CPU286</span>() &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;286 constructor&quot;</span> &lt;&lt; endl;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CPU386</span> : <span class="keyword">public</span> CPU286 &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">CPU386</span>() &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;386 constructor&quot;</span> &lt;&lt; endl;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    CPU386 cpu;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//运行结果</span></span><br><span class="line"><span class="number">8086</span> constructor</span><br><span class="line"><span class="number">286</span> constructor</span><br><span class="line"><span class="number">386</span> constructor</span><br></pre></td></tr></table></figure>
 
-void main()
-&#123; 
-    CPU386 cpu;
-&#125;
 
-//运行结果
-8086 constructor
-286 constructor
-386 constructor
-</code></pre>
 </li>
 <li><p>若构造函数有参数，在子类的构造函数中需要给父类的构造函数传递参数</p>
-<pre><code class="c++">子类名::子类名(父类所需的形参，子类成员所需的形参): 父类名(参数表), 子类成员初始化列表
-&#123;
-    //其他初始化；
-&#125;;
-
-class CPU8086 &#123;
-    public:
-      CPU8086(int i) &#123;
-        cout &lt;&lt; &quot;8086 constructor: &quot; &lt;&lt; i &lt;&lt; endl;
-      &#125;
-&#125;;
-class CPU286 : public CPU8086 &#123;
-    public:
-      CPU286(int i, int j) : CPU8086(i) &#123;
-        cout &lt;&lt; &quot;286 constructor: &quot; &lt;&lt; j &lt;&lt; endl;
-      &#125;
-&#125;;
-class CPU386 : public CPU286 &#123;
-    public:
-      CPU386(int i, int j, int k) : CPU286(i,j)&#123;
-        cout &lt;&lt; &quot;386 constructor: &quot; &lt;&lt; k &lt;&lt; endl;
-      &#125;
-&#125;;
-void main()
-&#123; 
-    CPU386 cpu(8086, 286, 386);
-&#125;
-</code></pre>
-</li>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">子类名::子类名(父类所需的形参，子类成员所需的形参): 父类名(参数表), 子类成员初始化列表</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//其他初始化；</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CPU8086</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">CPU8086</span>(<span class="type">int</span> i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;8086 constructor: &quot;</span> &lt;&lt; i &lt;&lt; endl;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CPU286</span> : <span class="keyword">public</span> CPU8086 &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">CPU286</span>(<span class="type">int</span> i, <span class="type">int</span> j) : <span class="built_in">CPU8086</span>(i) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;286 constructor: &quot;</span> &lt;&lt; j &lt;&lt; endl;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CPU386</span> : <span class="keyword">public</span> CPU286 &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">      <span class="built_in">CPU386</span>(<span class="type">int</span> i, <span class="type">int</span> j, <span class="type">int</span> k) : <span class="built_in">CPU286</span>(i,j)&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;386 constructor: &quot;</span> &lt;&lt; k &lt;&lt; endl;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="function">CPU386 <span class="title">cpu</span><span class="params">(<span class="number">8086</span>, <span class="number">286</span>, <span class="number">386</span>)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="多态-不作要求"><a href="#多态-不作要求" class="headerlink" title="多态(不作要求)"></a>多态(不作要求)</h2>
         <!-- 分类文章 -->

@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -145,95 +145,34 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h1 id="Notes-For-Git"><a href="#Notes-For-Git" class="headerlink" title="Notes For Git"></a>Notes For Git</h1><h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><pre><code class="bash">$ git config --list --show-origin
-file:D:/Git/etc/gitconfig       diff.astextplain.textconv=astextplain
-file:D:/Git/etc/gitconfig       filter.lfs.clean=git-lfs clean -- %f
-file:D:/Git/etc/gitconfig       filter.lfs.smudge=git-lfs smudge -- %f
-file:D:/Git/etc/gitconfig       filter.lfs.process=git-lfs filter-process
-file:D:/Git/etc/gitconfig       filter.lfs.required=true
-file:D:/Git/etc/gitconfig       http.sslbackend=openssl
-file:D:/Git/etc/gitconfig       http.sslcainfo=D:/Git/mingw64/ssl/certs/ca-bundle.crt
-file:D:/Git/etc/gitconfig       core.autocrlf=true
-file:D:/Git/etc/gitconfig       core.fscache=true
-file:D:/Git/etc/gitconfig       core.symlinks=false
-file:D:/Git/etc/gitconfig       pull.rebase=false
-file:D:/Git/etc/gitconfig       credential.helper=manager
-file:C:/Users/[]/.gitconfig        user.name=[]
-file:C:/Users/[]/.gitconfig        user.email=[]@[]
+        <h1 id="Notes-For-Git"><a href="#Notes-For-Git" class="headerlink" title="Notes For Git"></a>Notes For Git</h1><h2 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list --show-origin</span><br><span class="line">file:D:/Git/etc/gitconfig       diff.astextplain.textconv=astextplain</span><br><span class="line">file:D:/Git/etc/gitconfig       filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">file:D:/Git/etc/gitconfig       filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">file:D:/Git/etc/gitconfig       filter.lfs.process=git-lfs filter-process</span><br><span class="line">file:D:/Git/etc/gitconfig       filter.lfs.required=<span class="literal">true</span></span><br><span class="line">file:D:/Git/etc/gitconfig       http.sslbackend=openssl</span><br><span class="line">file:D:/Git/etc/gitconfig       http.sslcainfo=D:/Git/mingw64/ssl/certs/ca-bundle.crt</span><br><span class="line">file:D:/Git/etc/gitconfig       core.autocrlf=<span class="literal">true</span></span><br><span class="line">file:D:/Git/etc/gitconfig       core.fscache=<span class="literal">true</span></span><br><span class="line">file:D:/Git/etc/gitconfig       core.symlinks=<span class="literal">false</span></span><br><span class="line">file:D:/Git/etc/gitconfig       pull.rebase=<span class="literal">false</span></span><br><span class="line">file:D:/Git/etc/gitconfig       credential.helper=manager</span><br><span class="line">file:C:/Users/[]/.gitconfig        user.name=[]</span><br><span class="line">file:C:/Users/[]/.gitconfig        user.email=[]@[]</span><br><span class="line"></span><br><span class="line">$ git config --global user.name <span class="string">&quot;a&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;@&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ git config --global core.editor <span class="string">&quot;code --wait&quot;</span></span><br><span class="line">$ git config --global core.editor <span class="string">&quot;code --wait&quot;</span></span><br><span class="line"></span><br><span class="line">$ git config --list</span><br><span class="line">$ git config user.name</span><br><span class="line"></span><br><span class="line">$ git config --global init.defaultBranch main</span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">help</span> &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --<span class="built_in">help</span></span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
 
-$ git config --global user.name &quot;a&quot;
-$ git config --global user.email &quot;@&quot;
-
-
-$ git config --global core.editor &quot;code --wait&quot;
-$ git config --global core.editor &quot;code --wait&quot;
-
-$ git config --list
-$ git config user.name
-
-$ git config --global init.defaultBranch main
-
-$ git help &lt;verb&gt;
-$ git &lt;verb&gt; --help
-$ man git-&lt;verb&gt;
-</code></pre>
 <p>There levels: <code>--local</code> &gt; <code>--global</code> &gt; <code>--system</code></p>
 <p>On Windows systems, Git looks for the <code>.gitconfig</code> file in the $HOME directory (C:\Users$USER for most people). It also still looks for <code>[path]/etc/gitconfig</code>, although it’s relative to the MSys root, which is wherever you decide to install Git on your Windows system when you run the installer. </p>
-<h2 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h2><h3 id="initializing"><a href="#initializing" class="headerlink" title="initializing"></a>initializing</h3><pre><code class="bash">$ cd D:/my_project
-$ git init
-</code></pre>
+<h2 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h2><h3 id="initializing"><a href="#initializing" class="headerlink" title="initializing"></a>initializing</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> D:/my_project</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+
 <p>to control a repository with git and this will create a file named <code>.git</code></p>
 <p>we can initialize a repository like this:</p>
-<pre><code class="bash">$ git add *.c
-$ git add LICENSE
-$ git commit -m &#39;Initial project version&#39;
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add *.c</span><br><span class="line">$ git add LICENSE</span><br><span class="line">$ git commit -m <span class="string">&#x27;Initial project version&#x27;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="cloning"><a href="#cloning" class="headerlink" title="cloning"></a>cloning</h3><p>we can clone a repository like this:</p>
-<pre><code class="bash">$ git clone https://github.com/
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/</span><br></pre></td></tr></table></figure>
+
 <p>if want a new name </p>
-<pre><code class="bash">$ git clone &lt;url&gt; name
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> &lt;url&gt; name</span><br></pre></td></tr></table></figure>
+
 <p>and there are other protocols that can be chosen(SSH)</p>
 <h3 id="recording-changes"><a href="#recording-changes" class="headerlink" title="recording changes"></a>recording changes</h3><p>two states : tracked or untracked. To CHECK this :</p>
-<pre><code class="bash">$ git status
-On branch master
-Your branch is up-to-date with &#39;origin/master&#39;.
-nothing to commit, working tree clean
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with <span class="string">&#x27;origin/master&#x27;</span>.</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">$ git status -s</span><br><span class="line">M README</span><br><span class="line">MM Rakefile</span><br><span class="line">A lib/git.rb</span><br><span class="line">M lib/simplegit.rb</span><br><span class="line">?? LICENSE.txt</span><br></pre></td></tr></table></figure>
 
-$ git status -s
-M README
-MM Rakefile
-A lib/git.rb
-M lib/simplegit.rb
-?? LICENSE.txt
-</code></pre>
 <p>There are two columns to the output — the left-hand column indicates the status of the staging area and the right-hand column indicates the status of the working tree. </p>
-<h3 id="Ignoring-Files"><a href="#Ignoring-Files" class="headerlink" title="Ignoring Files"></a>Ignoring Files</h3><pre><code class="bash">- .gitignore
-$ cat .gitignore
-*.[oa]
-*~
-# ignore all .a files
-*.a
-# but do track lib.a, even though you&#39;re ignoring .a files above
-!lib.a
-# only ignore the TODO file in the current directory, not subdir/TODO
-/TODO
-# ignore all files in any directory named build
-build/
-# ignore doc/notes.txt, but not doc/server/arch.txt
-doc/*.txt
-# ignore all .pdf files in the doc/ directory and any of its subdirectories
-doc/**/*.pdf
-</code></pre>
+<h3 id="Ignoring-Files"><a href="#Ignoring-Files" class="headerlink" title="Ignoring Files"></a>Ignoring Files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- .gitignore</span><br><span class="line">$ <span class="built_in">cat</span> .gitignore</span><br><span class="line">*.[oa]</span><br><span class="line">*~</span><br><span class="line"><span class="comment"># ignore all .a files</span></span><br><span class="line">*.a</span><br><span class="line"><span class="comment"># but do track lib.a, even though you&#x27;re ignoring .a files above</span></span><br><span class="line">!lib.a</span><br><span class="line"><span class="comment"># only ignore the TODO file in the current directory, not subdir/TODO</span></span><br><span class="line">/TODO</span><br><span class="line"><span class="comment"># ignore all files in any directory named build</span></span><br><span class="line">build/</span><br><span class="line"><span class="comment"># ignore doc/notes.txt, but not doc/server/arch.txt</span></span><br><span class="line">doc/*.txt</span><br><span class="line"><span class="comment"># ignore all .pdf files in the doc/ directory and any of its subdirectories</span></span><br><span class="line">doc/**/*.pdf</span><br></pre></td></tr></table></figure>
+
 <h3 id="Viewing-Your-Staged-and-Unstaged-Changes"><a href="#Viewing-Your-Staged-and-Unstaged-Changes" class="headerlink" title="Viewing Your Staged and Unstaged Changes"></a>Viewing Your Staged and Unstaged Changes</h3><p><code>git diff</code> shows you the exact lines added and removed — the patch, as it were</p>
 <h3 id="Commit-Your-Changes"><a href="#Commit-Your-Changes" class="headerlink" title="Commit Your Changes"></a>Commit Your Changes</h3><p><code>git commit</code> 这样需要打开编辑器输入</p>
 <p><code>git commmit -m &quot;There is message&quot;</code></p>
-<pre><code class="bash">$ git commit -m &quot;Story 182: fix benchmarks for speed&quot;
-[master 463dc4f] Story 182: fix benchmarks for speed
-2 files changed, 2 insertions(+)
-create mode 100644 README
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">&quot;Story 182: fix benchmarks for speed&quot;</span></span><br><span class="line">[master 463dc4f] Story 182: fix benchmarks <span class="keyword">for</span> speed</span><br><span class="line">2 files changed, 2 insertions(+)</span><br><span class="line">create mode 100644 README</span><br></pre></td></tr></table></figure>
+
 <p><code>git commit -a</code> 可以跳过stage阶段</p>
 <h3 id="Removing-Files"><a href="#Removing-Files" class="headerlink" title="Removing Files"></a>Removing Files</h3><p>remove it from your tracked files, and also removes the file from your working directory so you don’t see it as an untracked file the next time around</p>
 <p><code>rm</code> 直接删除，但是不stage</p>
@@ -242,19 +181,11 @@ create mode 100644 README
 <p>to keep the file in your working tree but remove it from your staging area.</p>
 <p><code>git rm --cached README</code></p>
 <h3 id="Moving-Files"><a href="#Moving-Files" class="headerlink" title="Moving Files"></a>Moving Files</h3><p>重命名</p>
-<pre><code class="bash">$ git mv README.md README
-$ git status
-On branch master
-Your branch is up-to-date with &#39;origin/master&#39;.
-Changes to be committed:
-(use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-renamed: README.md -&gt; README
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">mv</span> README.md README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with <span class="string">&#x27;origin/master&#x27;</span>.</span><br><span class="line">Changes to be committed:</span><br><span class="line">(use <span class="string">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line">renamed: README.md -&gt; README</span><br></pre></td></tr></table></figure>
+
 <p>相当于</p>
-<pre><code class="bash">$ mv README.md README
-$ git rm README.md
-$ git add README
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mv</span> README.md README</span><br><span class="line">$ git <span class="built_in">rm</span> README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+
 <h3 id="Viewing-the-Commit-History"><a href="#Viewing-the-Commit-History" class="headerlink" title="Viewing the Commit History"></a>Viewing the Commit History</h3><p><code>git log</code> 查看commit history</p>
 <p><code>git log -patch</code> 显示每次的commit的不同之处</p>
 <p><code>git log -2</code> 只看最近两条</p>

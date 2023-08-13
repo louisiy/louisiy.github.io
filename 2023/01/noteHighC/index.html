@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -166,25 +166,10 @@
 <p><code>&amp;</code>和<code>|</code>操作符总是计算两个条件，而<code>&amp;&amp;</code>和<code>||</code>可以跳过第二个条件</p>
 <p>位运算 <code>6 &amp; 4</code> 等于4</p>
 <h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><p>switch语句检查一个单独的值。计算机会在第一个匹配的case语句处开始执行代码。在遇到break或到达switch语句的末尾前，代码会一直运行。</p>
-<pre><code class="c">switch(train) &#123;
-case 37:
-    winnings = winnings + 50;
-    break;
-case 65:
-    puts(&quot;头等奖!&quot;);
-    winnings = winnings + 80;		//执行完这条接着再+20这条，直到break
-case 12:
-    winnings = winnings + 20;
-    break;
-default:
-    winnings = 0;
-&#125;
-</code></pre>
-<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><pre><code class="c">int counter;
-for (counter = 1; counter &lt; 11; counter++) &#123;	//(初始化循环变量；循环运行前检查；循环后执行)
-    printf(&quot;%i个枣\n&quot;, counter);
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(train) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">37</span>:</span><br><span class="line">	winnings = winnings + <span class="number">50</span>;</span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">65</span>:</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;头等奖!&quot;</span>);</span><br><span class="line">	winnings = winnings + <span class="number">80</span>;		<span class="comment">//执行完这条接着再+20这条，直到break</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">12</span>:</span><br><span class="line">	winnings = winnings + <span class="number">20</span>;</span><br><span class="line">	<span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">	winnings = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> counter;</span><br><span class="line"><span class="keyword">for</span> (counter = <span class="number">1</span>; counter &lt; <span class="number">11</span>; counter++) &#123;	<span class="comment">//(初始化循环变量；循环运行前检查；循环后执行)</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%i个枣\n&quot;</span>, counter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>可以用<code>break</code>在任意时刻退出循环</p>
 <p>可以用<code>continue</code>随时跳到循环条件处</p>
 <h3 id="链式赋值"><a href="#链式赋值" class="headerlink" title="链式赋值"></a>链式赋值</h3><p><code>x = y = 4;</code>给多个变量赋相同值</p>
@@ -201,9 +186,8 @@ for (counter = 1; counter &lt; 11; counter++) &#123;	//(初始化循环变量；
 <h3 id="int"><a href="#int" class="headerlink" title="int *"></a>int *</h3><p><code>int *address_of_x = &amp;x;</code></p>
 <p><code>*</code>来解引用，如<code>int value_stored = *address_of_x;</code> 、<code>*address_of_x = 99;</code></p>
 <h3 id="sizeof（）"><a href="#sizeof（）" class="headerlink" title="sizeof（）"></a>sizeof（）</h3><p>这是个运算符</p>
-<pre><code class="c">sizeof(int);
-sizeof(&quot;Turtles!&quot;);		//返回9
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(<span class="type">int</span>);</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="string">&quot;Turtles!&quot;</span>);		<span class="comment">//返回9</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="数组变量"><a href="#数组变量" class="headerlink" title="数组变量"></a>数组变量</h3><p>数组变量可以被用作指针，指向数组中的第一个元素。函数参数声明如为数组，则其会被当作指针处理</p>
 <p>计算机不会为数组变量分配任何空间，编译器仅在出现它的地方把它替换成数组的起始地址，所以不能把它指向任何其他地方</p>
 <blockquote>
@@ -211,9 +195,8 @@ sizeof(&quot;Turtles!&quot;);		//返回9
 <p>假如把数组赋给指针变量，指针变量只会包含数组的地址信息，而对数组的长度一无所知，相当于指针丢失了一些信息，也就是指针退化。</p>
 <p>只要把数组传递给函数，数组免不了退化为指针，但需要记清楚代码中有哪些地方发生过数组退化，因为它们会引发一些不易察觉的错误。</p>
 </blockquote>
-<pre><code class="c">int drinks[] = &#123;4, 2, 3&#125;;		//drinks[i] == *(drinks + i)
-doses[3] == *(doses + 3) == *(3 + doses) == 3[doses]
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> drinks[] = &#123;<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;		<span class="comment">//drinks[i] == *(drinks + i)</span></span><br><span class="line">doses[<span class="number">3</span>] == *(doses + <span class="number">3</span>) == *(<span class="number">3</span> + doses) == <span class="number">3</span>[doses]</span><br></pre></td></tr></table></figure>
+
 <h3 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h3><p>指针之所以有类型，是因为编译器在指针算术运算时需要知道加几</p>
 <p>如<code>int nums[] = &#123;1, 2, 3&#125;;</code>中<code>nums</code>与<code>nums+1</code>的地址间隔4个字节（如果int通常占4个字节）</p>
 <ul>
@@ -229,39 +212,21 @@ doses[3] == *(doses + 3) == *(3 + doses) == 3[doses]
 <p><code>fgets()</code>总能读取整个字符串</p>
 <p><strong>Conclusion</strong>:	如果需要输入由多个字段构成的结构化数据，可以使用<code>scanf()</code>；而如果想要输入一个非结构化的字符串，<code>fgets()</code>将是不二之选</p>
 <h3 id="cards-还是-cards"><a href="#cards-还是-cards" class="headerlink" title="cards[ ]还是*cards"></a>cards[ ]还是*cards</h3><p>字符串字面值保存在只读存储器中。如果想要修改字符串，需要在新的数组中创建副本。可以将char指针声明成为<code>const char *</code>，以防代码用它修改字符串</p>
-<h2 id="2-5-字符串原理"><a href="#2-5-字符串原理" class="headerlink" title="2.5 字符串原理"></a>2.5 字符串原理</h2><h3 id="创建数组的数组"><a href="#创建数组的数组" class="headerlink" title="创建数组的数组"></a>创建数组的数组</h3><pre><code class="c">char tracks[][80] = &#123;			//第一对方括号用来访问由所有字符串组成的数组
-                              //第二对方括号用来访问每个单独的字符串
-    &quot;I left my heart in Harvard Med School&quot;,
-    &quot;Newark, Newark - a wonderful town&quot;,
-    &quot;Dancing with a Dork&quot;,
-    &quot;From here to maternity&quot;,
-    &quot;The girl from Iwo Jima&quot;,
-&#125;;
-</code></pre>
+<h2 id="2-5-字符串原理"><a href="#2-5-字符串原理" class="headerlink" title="2.5 字符串原理"></a>2.5 字符串原理</h2><h3 id="创建数组的数组"><a href="#创建数组的数组" class="headerlink" title="创建数组的数组"></a>创建数组的数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> tracks[][<span class="number">80</span>] = &#123;			<span class="comment">//第一对方括号用来访问由所有字符串组成的数组</span></span><br><span class="line">    						  <span class="comment">//第二对方括号用来访问每个单独的字符串</span></span><br><span class="line">	<span class="string">&quot;I left my heart in Harvard Med School&quot;</span>,</span><br><span class="line">	<span class="string">&quot;Newark, Newark - a wonderful town&quot;</span>,</span><br><span class="line">	<span class="string">&quot;Dancing with a Dork&quot;</span>,</span><br><span class="line">	<span class="string">&quot;From here to maternity&quot;</span>,</span><br><span class="line">	<span class="string">&quot;The girl from Iwo Jima&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>可以用<code>char strings[...][...]</code>来创建数组的数组。<br>第一组方括号用来访问外层数组<br>第二组方括号用来访问每个内层数组中的元素</p>
-<h3 id="使用string-h"><a href="#使用string-h" class="headerlink" title="使用string.h"></a>使用string.h</h3><pre><code class="c">#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-strcmp()
-可以比较字符串
-strchr()
-用来在字符串中找到某个字符的位置
-strlen()
-可以得到字符串的长度
-strcpy()
-可以复制字符串
-</code></pre>
+<h3 id="使用string-h"><a href="#使用string-h" class="headerlink" title="使用string.h"></a>使用string.h</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="built_in">strcmp</span>()</span><br><span class="line">可以比较字符串</span><br><span class="line"><span class="built_in">strchr</span>()</span><br><span class="line">用来在字符串中找到某个字符的位置</span><br><span class="line"><span class="built_in">strlen</span>()</span><br><span class="line">可以得到字符串的长度</span><br><span class="line"><span class="built_in">strcpy</span>()</span><br><span class="line">可以复制字符串</span><br></pre></td></tr></table></figure>
+
 <p>使用以上代码引用头文件</p>
-<h3 id="使用strstr（）"><a href="#使用strstr（）" class="headerlink" title="使用strstr（）"></a>使用strstr（）</h3><pre><code class="c">char s0[] = &quot;dysfunctional&quot;;
-char s1[] = &quot;fun&quot;;
-if (strstr(s0, s1))
-    puts(&quot;我在dysfunctional中找到fun了!&quot;);
-</code></pre>
+<h3 id="使用strstr（）"><a href="#使用strstr（）" class="headerlink" title="使用strstr（）"></a>使用strstr（）</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s0[] = <span class="string">&quot;dysfunctional&quot;</span>;</span><br><span class="line"><span class="type">char</span> s1[] = <span class="string">&quot;fun&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">strstr</span>(s0, s1))</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;我在dysfunctional中找到fun了!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>全局变量位于任何函数之外，所有函数都可以调用它们。</p>
 </blockquote>
-<h3 id="指针的数组"><a href="#指针的数组" class="headerlink" title="指针的数组"></a>指针的数组</h3><pre><code class="c">char *names_for_dog[] = &#123;&quot;Bowser&quot;, &quot;Bonza&quot;, &quot;Snodgrass&quot;&#125;;
-//可以像访问数组的数组那样访问指针的数组,一个字符串字面值配一个指针
-</code></pre>
+<h3 id="指针的数组"><a href="#指针的数组" class="headerlink" title="指针的数组"></a>指针的数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *names_for_dog[] = &#123;<span class="string">&quot;Bowser&quot;</span>, <span class="string">&quot;Bonza&quot;</span>, <span class="string">&quot;Snodgrass&quot;</span>&#125;;</span><br><span class="line"><span class="comment">//可以像访问数组的数组那样访问指针的数组,一个字符串字面值配一个指针</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="3-小工具"><a href="#3-小工具" class="headerlink" title="3 小工具"></a>3 小工具</h2><p>小工具设计遵循以下原则：</p>
 <ul>
 <li>从标准输入读取数据</li>
@@ -276,93 +241,68 @@ if (strstr(s0, s1))
 <p>head：显示文件前几行的内容<br>tail：显示文件最后几行的内容<br>sed：流编辑器（stream editor），用来搜索和替换文本</p>
 </blockquote>
 <h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>可以重定向标准输入、标准输出，让程序从键盘以外的地方读数据、往显示器以外的地方写数据，如文件。可用命令</p>
-<pre><code class="bash">$ ./geo2json &lt; gpsdata.csv &gt; output.json
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./geo2json &lt; gpsdata.csv &gt; output.json</span><br></pre></td></tr></table></figure>
+
 <h3 id="错误状态码"><a href="#错误状态码" class="headerlink" title="错误状态码"></a>错误状态码</h3><p>程序在数据中发现错误就会退出，并把退出状态置为2。怎么在程序结束后检查错误状态呢？</p>
 <p>要看操作系统</p>
 <p>如果你的计算机是Mac、Linux、其他UNIX，或你在Windows上使用Cygwin，可以用以下命令显示错误状态：</p>
-<pre><code class="bash">$ echo $?
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+
 <p>如果用的是Windows的命令提示符，则可以输入：</p>
-<pre><code class="bash">C:\&gt; echo %ERRORLEVEL%
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; <span class="built_in">echo</span> %ERRORLEVEL%</span><br></pre></td></tr></table></figure>
+
 <p>这两条命令做了相同的事：显示程序结束时返回的那个数字。</p>
 <h3 id="标准错误"><a href="#标准错误" class="headerlink" title="标准错误"></a>标准错误</h3><p>标准错误——一个用来发送错误消息的二号输出</p>
 <p>人有两只耳朵和一张嘴，但进程有一只耳朵（标准输入）和两张嘴（标准输出和标准错误）</p>
 <h3 id="fprintf-打印到数据流"><a href="#fprintf-打印到数据流" class="headerlink" title="fprintf()打印到数据流"></a>fprintf()打印到数据流</h3><p>printf()函数可以将数据发送到标准输出，但printf()只是fprintf()一个的特例</p>
 <p>scanf()  fscanf(stdin, …)</p>
-<pre><code class="c">printf(&quot;我喜欢乌龟！&quot;);
-fprintf(stdout, &quot;我喜欢乌龟！&quot;);
-//以上命令等价
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;我喜欢乌龟！&quot;</span>);</span><br><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">&quot;我喜欢乌龟！&quot;</span>);</span><br><span class="line"><span class="comment">//以上命令等价</span></span><br></pre></td></tr></table></figure>
+
 <p>stdout 标准输出</p>
 <p>stderr  标准错误</p>
 <p>stdin 标准输入</p>
 <p><code>&gt;</code>重定向标准输出	<code>&lt;</code>重定向标准输入	<code>2&gt;</code>重定向标准错误</p>
 <h3 id="用管道连接输入与输出"><a href="#用管道连接输入与输出" class="headerlink" title="用管道连接输入与输出"></a>用管道连接输入与输出</h3><p>符号 | 表示管道（pipe），它能连接一个进程的标准输出与另一个进程的标准输入</p>
 <p><code>bermuda | geo2json</code></p>
-<pre><code class="bash">&gt; (./bermuda | ./geo2json) &lt; spooky.csv &gt; output.json
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; (./bermuda | ./geo2json) &lt; spooky.csv &gt; output.json</span><br></pre></td></tr></table></figure>
+
 <p>只要在每个程序前加上一个<code>|</code>就可以连接多个程序，一连串相连的进程就叫流水线（pipeline），这时<code>&lt;</code>会把文件内容发送到流水线中第一个进程的标准输入，<code>&gt;</code>会捕获流水线中最后一个进程的标准输出</p>
 <p>外面的括号是必需的,这对括号保证了数据文件由bermuda程序的标准输入来读取</p>
 <h3 id="创建自己的数据流"><a href="#创建自己的数据流" class="headerlink" title="创建自己的数据流"></a>创建自己的数据流</h3><p>每条数据流用一个指向文件的指针来表示，可以用<code>fopen()</code>函数创建新数据流</p>
-<pre><code class="c">FILE *in_file = fopen(&quot;input.txt&quot;, &quot;r&quot;);	//将创建一条数据流，从文件中读取数据
-FILE *out_file = fopen(&quot;output.txt&quot;, &quot;w&quot;);	//将创建一条数据流，向文件写数据
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE *in_file = fopen(<span class="string">&quot;input.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);	<span class="comment">//将创建一条数据流，从文件中读取数据</span></span><br><span class="line">FILE *out_file = fopen(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);	<span class="comment">//将创建一条数据流，向文件写数据</span></span><br></pre></td></tr></table></figure>
+
 <p>fopen()函数接收两个参数：文件名和模式。共有三种模式</p>
 <p>“w”&#x3D; 写（write）	写文件<br>“r”&#x3D; 读（read）	读文件<br>“a”&#x3D; 追加（append）	在文件末尾追加数据</p>
 <p>创建数据流后，可以用fprintf()往数据流中打印数据<br>可以用fscanf()函数从文件中读取数据</p>
-<pre><code class="c">fprintf(out_file, &quot;%s 和 %s &quot;, &quot;红 &quot;, &quot;绿&quot;);
-fscanf(in_file, &quot;%79[^\n]\n&quot;, sentence);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(out_file, <span class="string">&quot;%s 和 %s &quot;</span>, <span class="string">&quot;红 &quot;</span>, <span class="string">&quot;绿&quot;</span>);</span><br><span class="line"><span class="built_in">fscanf</span>(in_file, <span class="string">&quot;%79[^\n]\n&quot;</span>, sentence);</span><br></pre></td></tr></table></figure>
+
 <p>最当用完数据流，别忘了关闭它。虽然所有的数据流在程序结束后都会自动关闭，但你仍应该自己关闭它们</p>
-<pre><code class="c">fclose(in_file);
-fclose(out_file);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fclose(in_file);</span><br><span class="line">fclose(out_file);</span><br></pre></td></tr></table></figure>
+
 <p>通常情况下，一个进程最多可以有256条数据流。但数据流的数量是有限的，用完后应该关闭它们。</p>
 <p>最早FILE是用宏定义的，而宏的名字通常都要大写。</p>
 <h3 id="首选项"><a href="#首选项" class="headerlink" title="首选项"></a>首选项</h3><p>对GUI程序来说，可以修改程序的首选项；而对于categorize这样的命令行程序，可以传给它命令行参数</p>
-<pre><code class="c">int main(int argc, char *argv[])
-&#123;
-.... 做事情....
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">.... 做事情....</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>main()函数有两个版本，一个有命令行参数，一个没有。命令行参数通过两个变量传递给main()函数，一个是参数的计数（argc），另一个是指针（指向参数字符串）数组</p>
 <p>用户运行程序时，命令行中第一个参数是程序名。也就是说，第一个命令行参数其实是argv[1]</p>
-<pre><code class="bash">&gt;./categorize mermaid mermaid.csv Elvis elvises.csv the_rest.csv
-   argv[0]	 argv[1]				...				argv[5]
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;./categorize mermaid mermaid.csv Elvis elvises.csv the_rest.csv</span><br><span class="line">   argv[0]	 argv[1]				...				argv[5]</span><br></pre></td></tr></table></figure>
+
 <p>在程序中打开文件准备读写时，最好检查一下有没有错误发生。好在如果数据流打开失败，fopen()函数会返回0，也就是说如果想检查错误，可以将下面这段代码：</p>
-<pre><code class="c">FILE *in = fopen(&quot;我不存在.txt&quot;, &quot;r&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *in = fopen(<span class="string">&quot;我不存在.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>改成这样：</p>
-<pre><code class="c">FILE *in;
-if (!(in = fopen(&quot;我不存在.txt&quot;, &quot;r&quot;))) &#123;
-    fprintf(stderr, &quot;无法打开文件.\n&quot;);
-    return 1;
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FILE *in;</span><br><span class="line"><span class="keyword">if</span> (!(in = fopen(<span class="string">&quot;我不存在.txt&quot;</span>, <span class="string">&quot;r&quot;</span>))) &#123;</span><br><span class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;无法打开文件.\n&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用库-getopt"><a href="#使用库-getopt" class="headerlink" title="使用库 getopt()"></a>使用库 getopt()</h3><p>unistd.h头文件不属于C标准库，而是POSIX库中的一员。POSIX的目标是创建一套能够在所有主流操作系统上使用的函数。</p>
 <p>getop()使用范例</p>
-<pre><code class="bash">&gt; rocket_to -e 4 -a Brasilia Tokyo London
-</code></pre>
-<pre><code class="c">#include &lt;unistd.h&gt;
-...
-while ((ch = getopt(argc, argv, &quot;ae:&quot;)) != EOF)
-//ae:告诉getopt()函数“a和e是有效选项”，e后面的冒号表示“-e后面需要再跟一个参数”，getopt()会用optarg变量指向这个参数
-    switch(ch) &#123;
-    ...
-    case &#39;e&#39;:
-        engine_count = optarg;
-    ...
-    &#125;
-argc -= optind;		//最后这两行用来跳过已读取的选项
-argv += optind;		//optind保存了“getopt()函数从命令行读取了几个选项”
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; rocket_to -e 4 -a Brasilia Tokyo London</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">while</span> ((ch = getopt(argc, argv, <span class="string">&quot;ae:&quot;</span>)) != EOF)</span><br><span class="line"><span class="comment">//ae:告诉getopt()函数“a和e是有效选项”，e后面的冒号表示“-e后面需要再跟一个参数”，getopt()会用optarg变量指向这个参数</span></span><br><span class="line">	<span class="keyword">switch</span>(ch) &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">case</span> <span class="string">&#x27;e&#x27;</span>:</span><br><span class="line">		engine_count = optarg;</span><br><span class="line">	...</span><br><span class="line">	&#125;</span><br><span class="line">argc -= optind;		<span class="comment">//最后这两行用来跳过已读取的选项</span></span><br><span class="line">argv += optind;		<span class="comment">//optind保存了“getopt()函数从命令行读取了几个选项”</span></span><br></pre></td></tr></table></figure>
+
 <p>经过一番处理，0号参数不再是程序名了。argv[0]会指向选项后的第一个命令行参数。循环结束以后，为了让程序读取命令行参数，需要调整一下argv和argc变量，跳过所有选项。</p>
-<pre><code class="bash">&gt; rocket_to -e 4 -a Brasilia  Tokyo   London
-                    argv[0]  argv[1]  argv[2]
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; rocket_to -e 4 -a Brasilia  Tokyo   London</span><br><span class="line">					argv[0]  argv[1]  argv[2]</span><br></pre></td></tr></table></figure>
+
 <p>Tips：</p>
 <ul>
 <li>可以多个选项<code>abc:d</code></li>
@@ -382,34 +322,16 @@ argv += optind;		//optind保存了“getopt()函数从命令行读取了几个�
 <p>为什么把一个很大的数保存到short中会变成负数？</p>
 <p>数字以二进制保存，二进制的100 000看起来像这样：<br>x &lt;- 0001 1000 0110 1010 0000<br>当计算机想把这个值保存到short时，发现只能保存2个字节，所以只保存了数字右半边：<br>y &lt;- 1000 0110 1010 0000<br>最高位是1的二进制有符号数会被当成负数处理，它等价于下面的十进制数：<br>-31072</p>
 </blockquote>
-<h3 id="使用类型转换临时转换数值的类型"><a href="#使用类型转换临时转换数值的类型" class="headerlink" title="使用类型转换临时转换数值的类型"></a>使用类型转换临时转换数值的类型</h3><pre><code class="c">int x = 7;
-int y = 2;
-//float z = (float)x / (float)y;
-float z = (float)x / y
-//如果编译器发现有整数在加、减、乘、除浮点数，会自动完成转换，因此可以减少代码中显式类型转换的次数：
-printf(&quot;z = %f\n&quot;, z);
-</code></pre>
+<h3 id="使用类型转换临时转换数值的类型"><a href="#使用类型转换临时转换数值的类型" class="headerlink" title="使用类型转换临时转换数值的类型"></a>使用类型转换临时转换数值的类型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">7</span>;</span><br><span class="line"><span class="type">int</span> y = <span class="number">2</span>;</span><br><span class="line"><span class="comment">//float z = (float)x / (float)y;</span></span><br><span class="line"><span class="type">float</span> z = (<span class="type">float</span>)x / y</span><br><span class="line"><span class="comment">//如果编译器发现有整数在加、减、乘、除浮点数，会自动完成转换，因此可以减少代码中显式类型转换的次数：</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;z = %f\n&quot;</span>, z);</span><br></pre></td></tr></table></figure>
+
 <h3 id="两个关键字"><a href="#两个关键字" class="headerlink" title="两个关键字"></a>两个关键字</h3><p>unsigned<br>用unsigned修饰的数值只能是非负数。由于无需记录负数，无符号数有更多的位可以使用，因此它可以保存更大的数。unsigned int可以保存0到最大值的数。这个最大值是int可以保存最大值的两倍左右。还有signed关键字，但你几乎从没见过，因为所有数据类型默认都是有符号的。<br><code>unsigned char c;</code></p>
 <p>long<br>没错，你可以在数据类型前加long，让它变长。longint是加长版的int；long int可以保存范围更广的数字；long long比long更长；还可以对浮点数用long。(c99和c11支持long long)<br><code>long double d;</code></p>
 <blockquote>
 <p>%.2f把浮点数格式化为小数点后两位</p>
 <p>%hi用来格式化short</p>
 </blockquote>
-<pre><code class="c">#include &lt;stdio.h&gt;
-#include &lt;limits.h&gt; //含有表示整型（比如int和char）大小的值
-#include &lt;float.h&gt; //含有表示float和double类型大小的值
-int main()
-&#123;
-printf(&quot;The value of INT_MAX is %i\n&quot;, INT_MAX);
-printf(&quot;The value of INT_MIN is %i\n&quot;, INT_MIN);
-printf(&quot;An int takes %z bytes\n&quot;, sizeof(int));
-printf(&quot;The value of FLT_MAX is %f\n&quot;, FLT_MAX);
-printf(&quot;The value of FLT_MIN is %.50f\n&quot;, FLT_MIN);
-printf(&quot;A float takes %z bytes\n&quot;, sizeof(float));
-    //可把INT和FLT替换成CHAR（char）、DBL（double）、SHRT（short）或LNG（long）
-return 0;
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;limits.h&gt;</span> <span class="comment">//含有表示整型（比如int和char）大小的值</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;float.h&gt;</span> <span class="comment">//含有表示float和double类型大小的值</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;The value of INT_MAX is %i\n&quot;</span>, INT_MAX);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;The value of INT_MIN is %i\n&quot;</span>, INT_MIN);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;An int takes %z bytes\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;The value of FLT_MAX is %f\n&quot;</span>, FLT_MAX);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;The value of FLT_MIN is %.50f\n&quot;</span>, FLT_MIN);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;A float takes %z bytes\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="type">float</span>));</span><br><span class="line">    <span class="comment">//可把INT和FLT替换成CHAR（char）、DBL（double）、SHRT（short）或LNG（long）</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>位数是计算机能够处理的数值长度</p>
 </blockquote>
@@ -492,41 +414,23 @@ return 0;
 </tr>
 </tbody></table>
 <h3 id="共享代码"><a href="#共享代码" class="headerlink" title="共享代码"></a>共享代码</h3><p>为了共享代码，可以把代码放到一个单独的C文件中。<br>需要把函数声明放到一个单独的.h头文件中。<br>在所有需要使用共享代码的C文件中包含这个头文件。<br>在编译的命令中列出所有C文件。</p>
-<pre><code class="c">//encrypt.h
-void encrypt(char *message);
-</code></pre>
-<pre><code class="c">//encrypt.c
-#include &quot;encrypt.h&quot;
-void encrypt(char *message)&#123;
-    char c;
-    while (*message) &#123;
-    *message = *message ^ 31;
-    message++;
-    &#125;
-&#125;
-</code></pre>
-<pre><code class="c">//mainprog.c
-#include &lt;stdio.h&gt;
-#include &quot;encrypt.h&quot;
-int main()&#123;
-    char msg[80];
-    while (fgets(msg, 80, stdin)) &#123;
-    encrypt(msg);
-    printf(&quot;%s&quot;, msg);
-    &#125;
-&#125;
-</code></pre>
-<pre><code class="bash">./ gcc message_hider.c encrypt.c -o message_hider
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//encrypt.h</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">encrypt</span><span class="params">(<span class="type">char</span> *message)</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//encrypt.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;encrypt.h&quot;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">encrypt</span><span class="params">(<span class="type">char</span> *message)</span>&#123;</span><br><span class="line">	<span class="type">char</span> c;</span><br><span class="line">	<span class="keyword">while</span> (*message) &#123;</span><br><span class="line">	*message = *message ^ <span class="number">31</span>;</span><br><span class="line">	message++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mainprog.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;encrypt.h&quot;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">	<span class="type">char</span> msg[<span class="number">80</span>];</span><br><span class="line">	<span class="keyword">while</span> (fgets(msg, <span class="number">80</span>, <span class="built_in">stdin</span>)) &#123;</span><br><span class="line">	encrypt(msg);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, msg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ gcc message_hider.c encrypt.c -o message_hider</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>共享变量<br>为了防止两个源文件中的同名变量相互干扰，变量的作用域仅限于某个文件内。如果你想共享变量，就应该在头文件中声明，并在变量名前加上extern关键字：<br><code>extern int passcode;</code></p>
 </blockquote>
 <h3 id="gccの编译"><a href="#gccの编译" class="headerlink" title="gccの编译"></a>gccの编译</h3><p>gcc -c会编译代码，但不会链接目标文件</p>
-<pre><code class="bash">./ gcc -c *.c
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ gcc -c *.c</span><br></pre></td></tr></table></figure>
+
 <p>gcc -o 链接，在例子中把目标文件链接为一个叫launch的可执行程序</p>
-<pre><code class="bash">./ gcc *.o -o launch
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ gcc *.o -o launch</span><br></pre></td></tr></table></figure>
+
 <h3 id="Make"><a href="#Make" class="headerlink" title="Make"></a>Make</h3><p>如果你掌握了某样东西的简单规则，别多想，自动化它</p>
 <p>make编译的文件叫目标（target）。目标可以是任何用其他文件生成的文件，也就是说目标可以是一批文件压缩而成的压缩文档</p>
 <p>make需要知道：依赖项、生成方法。依赖项和生成方法合在一起构成了一条规则。有了规则，make就知道如何生成目标</p>
@@ -537,82 +441,46 @@ int main()&#123;
 <p>Microsoft  NMAKE</p>
 </blockquote>
 <p>makefile文件书写</p>
-<pre><code class="makefile">launch.o: launch.c launch.h thruster.h		//目标：依赖项
-    gcc -c launch.c							//生成方法（必须以tab开头）
-                                            //这是规则
-thruster.o: thruster.h thruster.c
-    gcc -c thruster.c
-launch: launch.o thruster.o
-    gcc launch.o thruster.o -o launch
-</code></pre>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">launch.o: launch.c launch.h thruster.h		//目标：依赖项</span></span><br><span class="line">	gcc -c launch.c							//生成方法（必须以tab开头）</span><br><span class="line">											//这是规则</span><br><span class="line"><span class="section">thruster.o: thruster.h thruster.c</span></span><br><span class="line">	gcc -c thruster.c</span><br><span class="line"><span class="section">launch: launch.o thruster.o</span></span><br><span class="line">	gcc launch.o thruster.o -o launch</span><br></pre></td></tr></table></figure>
+
 <p>之后直接</p>
-<pre><code class="bash">./ make launch
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ make launch</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>更自动化的工具：autoconf</p>
 </blockquote>
 <p>-&gt; <a target="_blank" rel="noopener" href="http://tinyurl.com/yczmjx">GUN Make Manual</a></p>
 <h2 id="5-结构、联合与位字段"><a href="#5-结构、联合与位字段" class="headerlink" title="5 结构、联合与位字段"></a>5 结构、联合与位字段</h2><h3 id="结构-Struct"><a href="#结构-Struct" class="headerlink" title="结构 Struct"></a>结构 Struct</h3><p>结构化数据结构 structured data type</p>
 <p>结构是一种由一系列其他数据类型组成的数据类型。</p>
-<pre><code class="c">struct fish &#123;
-    const char *name;
-    const char *species;
-    int teeth;
-    int age;
-&#125;;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">fish</span> &#123;</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *name;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *species;</span><br><span class="line">	<span class="type">int</span> teeth;</span><br><span class="line">	<span class="type">int</span> age;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>创建一个新自定义的数据类型，由其它一批数据组成。</p>
 <ul>
 <li>结构的大小固定</li>
 <li>结构中的数据都有名字</li>
 </ul>
 <p>创建数据：</p>
-<pre><code class="c">struct fish snappy = &#123;&quot;Snappy&quot;, &quot;Piranha&quot;, 69, 4&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">fish</span> <span class="title">snappy</span> =</span> &#123;<span class="string">&quot;Snappy&quot;</span>, <span class="string">&quot;Piranha&quot;</span>, <span class="number">69</span>, <span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <p>把参数封装在结构中，代码会更稳定</p>
 <p>结构变量是结构本身的名字</p>
 <p>读取时只能按名访问，使用“.”运算符读取结构字段：&lt;结构&gt;.&lt;字段名&gt;语法（也叫“点表示法”）</p>
-<pre><code class="c">struct fish snappy = &#123;&quot;Snappy&quot;, &quot;piranha&quot;, 69, 4&#125;;
-printf(&quot;Name = %s\n&quot;, snappy.name);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">fish</span> <span class="title">snappy</span> =</span> &#123;<span class="string">&quot;Snappy&quot;</span>, <span class="string">&quot;piranha&quot;</span>, <span class="number">69</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Name = %s\n&quot;</span>, snappy.name);</span><br></pre></td></tr></table></figure>
+
 <p>为结构变量赋值相当于叫计算机复制数据</p>
 <h3 id="结构中的结构"><a href="#结构中的结构" class="headerlink" title="结构中的结构"></a>结构中的结构</h3><p>为什么要嵌套定义结构？</p>
 <p>之所以要这么做是为了对抗复杂性 。通过使用结构，我们可以建立更大的数据块。通过把结构组合在一起，我们可以创建更大的数据结构。本来你只能用int、short，但有了结构以后，就可以描述十分复杂的东西，比如网络流和视频图像。</p>
-<pre><code class="c">struct preferences &#123;
-    const char *food;
-    float exercise_hours;
-&#125;;
-struct fish &#123;
-    const char *name;
-    const char *species;
-    int teeth;
-    int age;
-    struct preferences care; //nesting 嵌套
-   struct fish snappy = &#123;&quot;Snappy&quot;, &quot;Piranha&quot;, 69, 4, &#123;&quot;Meat&quot;, 7.5&#125;&#125;;
-   printf(&quot;Snappy 喜欢吃 %s&quot;, snappy.care.food);
-    printf(&quot;Snappy 喜欢锻炼 %f hours&quot;, snappy.care.exercise_hours); //访问
-&#125;;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">preferences</span> &#123;</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *food;</span><br><span class="line">	<span class="type">float</span> exercise_hours;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">fish</span> &#123;</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *name;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *species;</span><br><span class="line">	<span class="type">int</span> teeth;</span><br><span class="line">	<span class="type">int</span> age;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">preferences</span> <span class="title">care</span>;</span> <span class="comment">//nesting 嵌套</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">fish</span> <span class="title">snappy</span> =</span> &#123;<span class="string">&quot;Snappy&quot;</span>, <span class="string">&quot;Piranha&quot;</span>, <span class="number">69</span>, <span class="number">4</span>, &#123;<span class="string">&quot;Meat&quot;</span>, <span class="number">7.5</span>&#125;&#125;;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;Snappy 喜欢吃 %s&quot;</span>, snappy.care.food);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Snappy 喜欢锻炼 %f hours&quot;</span>, snappy.care.exercise_hours); <span class="comment">//访问</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h3><p>在C语言中可以为结构创建别名，你只要在struct关键字前加上typedef，并在右花括号后写上类型名，就可以在任何地方使用这种新类型。</p>
-<pre><code class="c">typedef struct cell_phone &#123;
-    int cell_no;
-    const char *wallpaper;
-    float minutes_of_charge;
-&#125; phone;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cell_phone</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> cell_no;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *wallpaper;</span><br><span class="line">	<span class="type">float</span> minutes_of_charge;</span><br><span class="line">&#125; phone;</span><br></pre></td></tr></table></figure>
+
 <p>当你用typedef为结构创建别名，需要决定别名叫什么。别名其实就是类型名，也就是说结构有两个名字：一个是结构名（struct cell_phone），另一个是类型名（phone）。为什么要有两个名字？一般一个就够了。如果只写类型名而不写结构名，编译器也没意见：</p>
-<pre><code class="c">typedef struct &#123;
-    int cell_no;
-    const char *wallpaper;
-    float minutes_of_charge;
-&#125; phone;
-phone p = &#123;5557879, &quot;s.png&quot;, 1.35&#125;;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="type">int</span> cell_no;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *wallpaper;</span><br><span class="line">	<span class="type">float</span> minutes_of_charge;</span><br><span class="line">&#125; phone;</span><br><span class="line">phone p = &#123;<span class="number">5557879</span>, <span class="string">&quot;s.png&quot;</span>, <span class="number">1.35</span>&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>这样的结构称为匿名结构。</p>
-<h3 id="更新结构"><a href="#更新结构" class="headerlink" title="更新结构"></a>更新结构</h3><pre><code class="c">fish snappy = &#123;&quot;Snappy&quot;, &quot;piranha&quot;, 69, 4&#125;;
-printf(&quot;Hello %s\n&quot;, snappy.name);
-snappy.teeth = 68;
-</code></pre>
+<h3 id="更新结构"><a href="#更新结构" class="headerlink" title="更新结构"></a>更新结构</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fish snappy = &#123;<span class="string">&quot;Snappy&quot;</span>, <span class="string">&quot;piranha&quot;</span>, <span class="number">69</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Hello %s\n&quot;</span>, snappy.name);</span><br><span class="line">snappy.teeth = <span class="number">68</span>;</span><br></pre></td></tr></table></figure>
+
 <p>计算机通过把值赋给函数形参的方式向函数传值，所有赋值都会复制</p>
 <p>如果想让函数更新结构变量，就不能把结构作为参数传递，因为这样做仅仅是将数据的副本复制给<br>了函数。取而代之，可以传递结构的地址</p>
 <p>还有一种表示结构指针的方法，它更易于阅读。</p>
@@ -623,96 +491,37 @@ snappy.teeth = 68;
 <blockquote>
 <p>计算机需要保证联合的大小固定。唯一的办法就是让它足够大，任何一个字段都能装得下</p>
 </blockquote>
-<pre><code class="c">typedef union &#123;			//这里的关键字是union
-    short count;
-    float weight;
-    float volume;
-&#125; quantity;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> &#123;</span>			<span class="comment">//这里的关键字是union</span></span><br><span class="line">	<span class="type">short</span> count;</span><br><span class="line">	<span class="type">float</span> weight;</span><br><span class="line">	<span class="type">float</span> volume;</span><br><span class="line">&#125; quantity;</span><br></pre></td></tr></table></figure>
+
 <h3 id="使用联合"><a href="#使用联合" class="headerlink" title="使用联合"></a>使用联合</h3><ul>
 <li><p>C89 方式</p>
 <p>把值赋给联合中第一个字段</p>
-<pre><code class="c">quantity q = &#123;4&#125;;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quantity q = &#123;<span class="number">4</span>&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>指定初始化器（designated initializer）</p>
-<pre><code class="c">quantity q = &#123; .weight = 1.5 &#125;;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quantity q = &#123; .weight = <span class="number">1.5</span> &#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>点 表示法</p>
 <p>在第一行创建变量，然后在第二行设置字段的值</p>
-<pre><code class="c">quantity q;
-q.volume = 3.7;
-</code></pre>
-</li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">quantity q;</span><br><span class="line">q.volume = <span class="number">3.7</span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>无论用哪种方法设置联合的值，都只会保存一条数据。联合只是提供了一种创建支持不同数据类型的变量的方法</p>
 <p>“指定初始化器”也可以用来设置结构字段的初值，并提高代码的可读性</p>
-<pre><code class="c">typedef struct &#123;
-    const char *color;
-    int gears;
-    int height;
-&#125; bike;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *color;</span><br><span class="line">	<span class="type">int</span> gears;</span><br><span class="line">	<span class="type">int</span> height;</span><br><span class="line">&#125; bike;</span><br><span class="line"></span><br><span class="line">bike b = &#123;.height=<span class="number">17</span>, .gears=<span class="number">21</span>&#125;;</span><br></pre></td></tr></table></figure>
 
-bike b = &#123;.height=17, .gears=21&#125;;
-</code></pre>
-<h3 id="联合与结构"><a href="#联合与结构" class="headerlink" title="联合与结构"></a>联合与结构</h3><pre><code class="c">typedef struct &#123;
-    const char *name ;
-    const char *country;
-    quantity amount;
-&#125; fruit_order;
+<h3 id="联合与结构"><a href="#联合与结构" class="headerlink" title="联合与结构"></a>联合与结构</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *name ;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *country;</span><br><span class="line">    quantity amount;</span><br><span class="line">&#125; fruit_order;</span><br><span class="line"></span><br><span class="line">fruit_order apples = &#123;<span class="string">&quot;apples&quot;</span>,<span class="string">&quot;English&quot;</span>,.amount.weight = <span class="number">4.2</span>&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;This order contains %2.2f lbs of %s\n&quot;</span>,apples.amount.weight, apples.name);</span><br></pre></td></tr></table></figure>
 
-fruit_order apples = &#123;&quot;apples&quot;,&quot;English&quot;,.amount.weight = 4.2&#125;
-printf(&quot;This order contains %2.2f lbs of %s\n&quot;,apples.amount.weight, apples.name);
-</code></pre>
 <h3 id="枚举变量保存符号"><a href="#枚举变量保存符号" class="headerlink" title="枚举变量保存符号"></a>枚举变量保存符号</h3><p>你需要某种方法记录我们在联合中保存了什么值。</p>
 <p>结构与联合用分号（;）来分割数据项，而枚举用逗号。</p>
-<pre><code class="c">enum colors &#123;RED, GREEN, PUCE&#125;;		//可以用typedef为类型起个名字
-enum colors favorite = PUCE;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">colors</span> &#123;</span>RED, GREEN, PUCE&#125;;		<span class="comment">//可以用typedef为类型起个名字</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">colors</span> <span class="title">favorite</span> =</span> PUCE;</span><br></pre></td></tr></table></figure>
+
 <p><em><strong>so？枚举好处？？？</strong></em> 限制我能给的值？ 实例感受下：</p>
-<pre><code class="c">typedef enum &#123;
-    COUNT,
-    POUNDS,
-    PINTS
-&#125;unit_of_measure;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span></span><br><span class="line">    COUNT,</span><br><span class="line">    POUNDS,</span><br><span class="line">    PINTS</span><br><span class="line">&#125;unit_of_measure;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *name;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *country;</span><br><span class="line">    quantity amount;</span><br><span class="line">    unit_of_measure units;</span><br><span class="line">&#125;fruit_order;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">display</span><span class="params">(fruit_order order)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This order contains &quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (order.units==PINTS) <span class="built_in">printf</span>(<span class="string">&quot;%2.2f pints of %s\n&quot;</span>, order.amount.volume, order.name);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (order.units==POUNDS) <span class="built_in">printf</span>(<span class="string">&quot;%2.2f lbs of %s\n&quot;</span>, order.amount.weight, order.name);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%i %s\n&quot;</span>, order.amount.count, order.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    fruit_order strawberries= &#123;</span><br><span class="line">        <span class="string">&quot;strawberries&quot;</span>,</span><br><span class="line">        <span class="string">&quot;Spain&quot;</span>,</span><br><span class="line">        .amount.weight=<span class="number">17.6</span>,</span><br><span class="line">        POUNDS</span><br><span class="line">    &#125;;</span><br><span class="line">    display(strawberries);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-typedef struct &#123;
-    const char *name;
-    const char *country;
-    quantity amount;
-    unit_of_measure units;
-&#125;fruit_order;
-
-void display(fruit_order order) &#123;
-    printf(&quot;This order contains &quot;);
-    if (order.units==PINTS) printf(&quot;%2.2f pints of %s\n&quot;, order.amount.volume, order.name);
-
-    else if (order.units==POUNDS) printf(&quot;%2.2f lbs of %s\n&quot;, order.amount.weight, order.name);
-    else printf(&quot;%i %s\n&quot;, order.amount.count, order.name);
-&#125;
-
-int main() &#123;
-    fruit_order strawberries= &#123;
-        &quot;strawberries&quot;,
-        &quot;Spain&quot;,
-        .amount.weight=17.6,
-        POUNDS
-    &#125;;
-    display(strawberries);
-    return 0;
-&#125;
-</code></pre>
 <h3 id="位字段（bitfield）"><a href="#位字段（bitfield）" class="headerlink" title="位字段（bitfield）"></a>位字段（bitfield）</h3><p>C语言不支持二进制字面值，不过它支持十六进制字面值。每当C语言看到0x开头的数字，就认为它是以16为基数的数字（0x54）</p>
 <p>可以用位字段指定一个字段有多少位</p>
-<pre><code class="c">typedef struct &#123;
-    unsigned int low_pass_vcf:1;		//位字段应当声明为unsigned int
-    unsigned int filter_coupler:1;		//表示该字段只使用1位存储空间
-    unsigned int reverb:1;
-    unsigned int sequential:4;
-    ...
-&#125; synth;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> low_pass_vcf:<span class="number">1</span>;		<span class="comment">//位字段应当声明为unsigned int</span></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> filter_coupler:<span class="number">1</span>;		<span class="comment">//表示该字段只使用1位存储空间</span></span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> reverb:<span class="number">1</span>;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> sequential:<span class="number">4</span>;</span><br><span class="line">	...</span><br><span class="line">&#125; synth;</span><br></pre></td></tr></table></figure>
+
 <p>如果你有一连串的位字段，计算机会放在一起，以节省空间，也就是说如果有8个1位的位字段，计算机就会把它们保存在一个字节中</p>
 <p>如果编译器发现结构中只有一个位字段，还是会把它填充成一个字，这就是为什么位字段总是组合在一起</p>
 <h2 id="6-数据结构与动态存储"><a href="#6-数据结构与动态存储" class="headerlink" title="6 数据结构与动态存储"></a>6 数据结构与动态存储</h2><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>保存可变数量的数据，插入数据非常快</p>
@@ -721,51 +530,18 @@ int main() &#123;
 <p>如果一个结构包含一个链向同种结构的链接，那么这个结构就被称为递归结构</p>
 <p>只要在结构中保存指针，island数据就含有下一个我们将游览的island的地址。只要我们的代码能访问一个island，就能够跳到下一个island。</p>
 <p>在递归结构中，需要包含一个相同类型的指针， C语言的语法不允许用typedef别名来声明它，因此必须为结构起一个名字</p>
-<pre><code class="c">typedef struct island &#123;
-char *name;
-char *opens;
-char *closes;
-struct island *next;
-&#125; island;
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">island</span> &#123;</span></span><br><span class="line"><span class="type">char</span> *name;</span><br><span class="line"><span class="type">char</span> *opens;</span><br><span class="line"><span class="type">char</span> *closes;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">island</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; island;</span><br><span class="line"></span><br><span class="line">island amity = &#123;<span class="string">&quot;Amity&quot;</span>, <span class="string">&quot;09:00&quot;</span>, <span class="string">&quot;17:00&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">island craggy = &#123;<span class="string">&quot;Craggy&quot;</span>, <span class="string">&quot;09:00&quot;</span>, <span class="string">&quot;17:00&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">island isla_nublar = &#123;<span class="string">&quot;Isla Nublar&quot;</span>, <span class="string">&quot;09:00&quot;</span>, <span class="string">&quot;17:00&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">island shutter = &#123;<span class="string">&quot;Shutter&quot;</span>, <span class="string">&quot;09:00&quot;</span>, <span class="string">&quot;17:00&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"></span><br><span class="line">amity.next = &amp;craggy;</span><br><span class="line">craggy.next = &amp;isla_nublar;</span><br><span class="line">isla_nublar.next = &amp;shutter;</span><br><span class="line"></span><br><span class="line">\\插入数据</span><br><span class="line">island skull = &#123;<span class="string">&quot;Skull&quot;</span>, <span class="string">&quot;09:00&quot;</span>, <span class="string">&quot;17:00&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">isla_nublar.next = &amp;skull;</span><br><span class="line">skull.next = &amp;shutter;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">display</span><span class="params">(island *start)</span>&#123;</span><br><span class="line">    island *i = start;</span><br><span class="line">    <span class="keyword">for</span>(; i != <span class="literal">NULL</span>; i = i-&gt;next)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Name:%s\n open:%s-%s\n&quot;</span>,i-&gt;name,i-&gt;open,i-&gt;closes);        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-island amity = &#123;&quot;Amity&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
-island craggy = &#123;&quot;Craggy&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
-island isla_nublar = &#123;&quot;Isla Nublar&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
-island shutter = &#123;&quot;Shutter&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
-
-amity.next = &amp;craggy;
-craggy.next = &amp;isla_nublar;
-isla_nublar.next = &amp;shutter;
-
-\\插入数据
-island skull = &#123;&quot;Skull&quot;, &quot;09:00&quot;, &quot;17:00&quot;, NULL&#125;;
-isla_nublar.next = &amp;skull;
-skull.next = &amp;shutter;
-
-void display(island *start)&#123;
-    island *i = start;
-    for(; i != NULL; i = i-&gt;next)&#123;
-    printf(&quot;Name:%s\n open:%s-%s\n&quot;,i-&gt;name,i-&gt;open,i-&gt;closes);        
-    &#125;
-&#125;
-</code></pre>
 <p>在C语言中，NULL的值实际上为0，NULL专门用来把某个指针设为0。</p>
 <p>想快速地插入数据，就需要<strong>链表</strong>。想直接访问元素，就应该用<strong>数组</strong></p>
 <h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>栈是存储器用来保存局部变量的区域。数据保存在局部变量中，一旦离开函数，变量就会消失。堆是程序中用来保存长期使用数据的地方。堆上的数据不会自动清除，因此堆是保存数据结构的绝佳场所</p>
 <h3 id="malloc-与-free"><a href="#malloc-与-free" class="headerlink" title="malloc() 与 free()"></a>malloc() 与 free()</h3><p><code>malloc()</code>，memory allocation 申请储存器。接收一个参数：所需要的字节数。常与<code>sizeof</code>一起使用。<code>sizeof</code>告知某种数据类型在系统中占了多少字节。这种数据类型可以是结构，也可以是int或double这样的基本数据类型。返回一个指针，指针中保存了存储器块的起始地址。<code>free()</code>需要接收<code>malloc()</code>创建的存储器的地址。只要告诉C标准库存储器块从哪里开始，它就能查阅记录，知道要释放多少存储器。</p>
-<pre><code class="c"># include &lt;stdlib.h&gt;	//使用malloc()和free()需要包含这个头文件
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span>	<span class="comment">//使用malloc()和free()需要包含这个头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(island));</span><br><span class="line">island *p = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(island));		<span class="comment">//返回的通用指针，即void*类型</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">free</span>(p);</span><br></pre></td></tr></table></figure>
 
-malloc(sizeof(island));
-island *p = malloc(sizeof(island));		//返回的通用指针，即void*类型
-
-
-free(p);
-</code></pre>
 <p>虽然程序结束以后，所有堆空间会自动释放，但用free()显式释放创建的所有动态存储器是一种好的做法</p>
 <h3 id="字符串复制"><a href="#字符串复制" class="headerlink" title="字符串复制"></a>字符串复制</h3><p><code>string.h</code>的头文件中有一个函数<code>strdup()</code>。它可以把字符串复制到堆上</p>
-<pre><code class="c">char *s = &quot;MONA LISA&quot;
-char *copy = strdup(s);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *s = <span class="string">&quot;MONA LISA&quot;</span></span><br><span class="line"><span class="type">char</span> *copy = strdup(s);</span><br></pre></td></tr></table></figure>
+
 <p>作用机理为： 计算出字符串的长度，然后调用malloc()函数在堆上分配相应的空间。再把所有字符复制到堆上的新空间。</p>
 <p>strdup()总是在堆上创建空间，而不是在栈上，因为栈用来保存局部变量，而局部变量很快就会被清除。</p>
 <p>并且因为strdup()把新字符串放在堆上，所以千万记得要用free()函数释放空间。</p>
@@ -795,52 +571,27 @@ char *copy = strdup(s);
 <h3 id="valgrind"><a href="#valgrind" class="headerlink" title="valgrind"></a>valgrind</h3><p>valgrind通过伪造malloc()可以监控分配在堆上的数据。当程序想分配堆存储器时，valgrind将会拦截对malloc()和free()的调用，然后运行自己的malloc()和free()。valgrind<br>的malloc()会记录调用它的是哪段代码和分配了哪段存储器。程序结束时，valgrind会汇报堆上有哪些数据，并告诉这些数据是由哪段代码创建的。</p>
 <p>调试信息是编译时打包到可执行文件中的附加数据，比如某段代码在源文件中的行号。只要有调试信息，valgrind就能提供更多有助于发现存储器泄漏的信息。</p>
 <p>为了在可执行文件中加入调试信息，需要加上-g开关，并重新编译源代码。</p>
-<pre><code class="bash">$ gcc -g spies.c -o spies		// -g 开关告诉编译器要记录要编译代码的行号
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -g spies.c -o spies		// -g 开关告诉编译器要记录要编译代码的行号</span><br></pre></td></tr></table></figure>
+
 <p>存储器泄漏是C程序中最难发现的错误。</p>
 <p>valgrind工具可以发现泄漏、定位泄漏、检验泄漏是否修复</p>
-<h2 id="7-高级函数"><a href="#7-高级函数" class="headerlink" title="7 高级函数"></a>7 高级函数</h2><h3 id="向函数传递函数"><a href="#向函数传递函数" class="headerlink" title="向函数传递函数"></a>向函数传递函数</h3><pre><code class="c">int sports_no_bieber(char *s)&#123;
-    return strstr(s, &quot;sports&quot;) &amp;&amp; !strstr(s, &quot;bieber&quot;);
-&#125;
-void find(int(*match)(char*))&#123;
-    int i;
-    puts(&quot;Search results:&quot;);
-    puts(&quot;------------------------------------&quot;);
-    for (i = 0; i &lt; NUM_ADS; i++) &#123;
-        if (match(ADS[i])) &#123;
-            printf(&quot;%s\n&quot;, ADS[i]);
-        &#125;
-    &#125;
-    puts(&quot;------------------------------------&quot;);
-&#125;
+<h2 id="7-高级函数"><a href="#7-高级函数" class="headerlink" title="7 高级函数"></a>7 高级函数</h2><h3 id="向函数传递函数"><a href="#向函数传递函数" class="headerlink" title="向函数传递函数"></a>向函数传递函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">sports_no_bieber</span><span class="params">(<span class="type">char</span> *s)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">strstr</span>(s, <span class="string">&quot;sports&quot;</span>) &amp;&amp; !<span class="built_in">strstr</span>(s, <span class="string">&quot;bieber&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">find</span><span class="params">(<span class="type">int</span>(*match)(<span class="type">char</span>*))</span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;Search results:&quot;</span>);</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUM_ADS; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (match(ADS[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, ADS[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">find(sports_no_bieber);</span><br></pre></td></tr></table></figure>
 
-find(sports_no_bieber);
-</code></pre>
 <p>函数名是指向函数的指针，创建函数的同时也创建了一个同名函数指针，指针中保存了函数的地址，当调用函数时，你在使用函数指针。</p>
 <blockquote>
 <p>两者并不完全相同，函数名是L-value，而指针变量是R-value，因此函数名不能像指针变量那样自加或自减。</p>
 </blockquote>
 <p>函数有不同的返回类型和形参，所以它有许多不同的类型，没有<code>function*</code>的说法。</p>
 <h3 id="创建函数指针"><a href="#创建函数指针" class="headerlink" title="创建函数指针"></a>创建函数指针</h3><p>需要把函数的返回类型和接收参数类型告诉C编译器。</p>
-<pre><code class="c">int (*warp_fn)(int);
-warp_fn = go_to_warp_speed;		
-//创建一个叫warp_fn的变量，用来保存go_to_warp_speed()函数的地址。相当于调go_to_warp_speed(4)
-warp_fn(4);
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> (*warp_fn)(<span class="type">int</span>);</span><br><span class="line">warp_fn = go_to_warp_speed;		</span><br><span class="line"><span class="comment">//创建一个叫warp_fn的变量，用来保存go_to_warp_speed()函数的地址。相当于调go_to_warp_speed(4)</span></span><br><span class="line">warp_fn(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">char</span>** (*names_fn)(<span class="type">char</span>*,<span class="type">int</span>);</span><br><span class="line">names_fn = album_names;</span><br><span class="line"><span class="comment">//创建一个叫names_fn的变量，用来保存album_names()函数的地址。</span></span><br><span class="line"><span class="type">char</span>** results = names_fn(<span class="string">&quot;Sacha Distel&quot;</span>, <span class="number">1972</span>);</span><br></pre></td></tr></table></figure>
 
-char** (*names_fn)(char*,int);
-names_fn = album_names;
-//创建一个叫names_fn的变量，用来保存album_names()函数的地址。
-char** results = names_fn(&quot;Sacha Distel&quot;, 1972);
-</code></pre>
 <p>一旦声明了函数指针变量，就可以像其他变量一样使用它，可以对它赋值，也可以把它加到数组中，还可以把它传给函数</p>
 <blockquote>
 <p>char**是一个指针，通常用来指向字符串数组</p>
 </blockquote>
 <p>函数指针是C语言最强大的特性之一</p>
-<pre><code class="c">char** 		(*	names_fn	)(	char*,int	)
-返回类型	       指针变量		    参数类型
-            在这里声明形参的名称
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>** 		(*	names_fn	)(	<span class="type">char</span>*,<span class="type">int</span>	)</span><br><span class="line">返回类型	       指针变量		    参数类型</span><br><span class="line">    		在这里声明形参的名称</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><code>match(ADS[i])</code>可以换成<code>(*match)(ADS[i])</code></p>
 <p><code>find(sports_or_workout)</code>可以写成<code>find(&amp;sports_or_workout)</code></p>
@@ -849,28 +600,18 @@ char** results = names_fn(&quot;Sacha Distel&quot;, 1972);
 <h3 id="排序qsort"><a href="#排序qsort" class="headerlink" title="排序qsort()"></a>排序qsort()</h3><blockquote>
 <p>void指针(void *)可以保存任何类型数据的地址，但使用前必须把它转换为具体类型</p>
 </blockquote>
-<pre><code class="c">qsort(void *array, size_t length, size_t item_size, int (*compar)(const void *, const void *));
-//qsort(数组指针，数组长度，数组中每个元素长度，比较器函数指针（参数）)
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">qsort(<span class="type">void</span> *<span class="built_in">array</span>, <span class="type">size_t</span> length, <span class="type">size_t</span> item_size, <span class="type">int</span> (*compar)(<span class="type">const</span> <span class="type">void</span> *, <span class="type">const</span> <span class="type">void</span> *));</span><br><span class="line"><span class="comment">//qsort(数组指针，数组长度，数组中每个元素长度，比较器函数指针（参数）)</span></span><br></pre></td></tr></table></figure>
+
 <p>比较器会返回给qsort()三种值</p>
 <p>如果第一个值比第二个值大，就返回正数；如果第一个值比第二个值小，就返回负数；如果两个值相等，就返回0</p>
-<pre><code class="c">int compare_scores(const void* score_a, const void* score_b)&#123;
-    int a = *(int*)score_a;
-    int b = *(int*)score_b;	//这样将void指针转换为整型指针
-        ...
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">compare_scores</span><span class="params">(<span class="type">const</span> <span class="type">void</span>* score_a, <span class="type">const</span> <span class="type">void</span>* score_b)</span>&#123;</span><br><span class="line">	<span class="type">int</span> a = *(<span class="type">int</span>*)score_a;</span><br><span class="line">	<span class="type">int</span> b = *(<span class="type">int</span>*)score_b;	<span class="comment">//这样将void指针转换为整型指针</span></span><br><span class="line">    	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>字符串是字符指针，指向字符串的指针是指针的指针（绕口令哈哈哈）</p>
-<pre><code class="c">int compare_names(const void* a, const void* b)&#123;
-    char** sa = (char**)a;
-    char** sb = (char**)b;
-    return strcmp(*sa, *sb); //需要用*来取得字符串
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">compare_names</span><span class="params">(<span class="type">const</span> <span class="type">void</span>* a, <span class="type">const</span> <span class="type">void</span>* b)</span>&#123;</span><br><span class="line">	<span class="type">char</span>** sa = (<span class="type">char</span>**)a;</span><br><span class="line">	<span class="type">char</span>** sb = (<span class="type">char</span>**)b;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">strcmp</span>(*sa, *sb); <span class="comment">//需要用*来取得字符串</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="创建函数指针数组"><a href="#创建函数指针数组" class="headerlink" title="创建函数指针数组"></a>创建函数指针数组</h3><p>如果想在数组中保存函数，就必须告诉编译器函数的具体特征：函数返回什么类型以及接收什么参数</p>
-<pre><code class="c">void (*replies[])(response) = &#123;dump, second_chance, marriage&#125;;
-//返回类型（*指针变量）（参数类型）
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> (*replies[])(response) = &#123;dump, second_chance, marriage&#125;;</span><br><span class="line"><span class="comment">//返回类型（*指针变量）（参数类型）</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>C语言在创建枚举时会给每个符号分配一个从0开始的数字</p>
 </blockquote>
@@ -879,18 +620,8 @@ char** results = names_fn(&quot;Sacha Distel&quot;, 1972);
 <blockquote>
 <p>可以把宏想象成一种特殊类型的函数，它可以修改源代码</p>
 </blockquote>
-<pre><code class="c">\\打印一连串int函数
-#include &lt;stdarg.h&gt;
-void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略号“…”表示还有更多参数
-    va_list ap;				\\保存传给函数的其他参数
-    va_start(ap, args);		    \\需要把最后一个普通参数写明(至少需要一个普通参数)
-    int i;
-    for (i = 0; i &lt; args; i++) &#123;
-        printf(&quot;argument: %i\n&quot;, va_arg(ap, int));		\\用va_arg读取保存在va_list中的参数
-    &#125;
-    va_end(ap);								   \\当读完了所有参数，要用va_end宏来让C结束
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">\\打印一连串<span class="type">int</span>函数</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">print_ints</span><span class="params">(<span class="type">int</span> args, ...)</span>&#123;		\\在C语言中，函数参数后的省略号“…”表示还有更多参数</span><br><span class="line">	va_list ap;				\\保存传给函数的其他参数</span><br><span class="line">	va_start(ap, args);		    \\需要把最后一个普通参数写明(至少需要一个普通参数)</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; args; i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;argument: %i\n&quot;</span>, va_arg(ap, <span class="type">int</span>));		\\用va_arg读取保存在va_list中的参数</span><br><span class="line">	&#125;</span><br><span class="line">	va_end(ap);								   \\当读完了所有参数，要用va_end宏来让C结束</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>va_arg接收两个值：va_list和要读取参数的类型。本例中所有参数都是int</p>
 <p>宏用来在编译前重写代码，这里的几个宏<code>va_start</code>、<code>va_arg</code>和<code>va_end</code>看起来很像函数，但实际上隐藏在它们背后的是一些神秘的指令。在编译前，预处理器会根据这些指令在程序中插入巧妙的代码</p>
@@ -910,26 +641,21 @@ void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略
 <p>可以在源代码中用尖括号包含它们</p>
 </li>
 <li><p>在include语句中使用完整路径名</p>
-<pre><code class="c"># include &quot;/my_header_files/encrypt.h&quot;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&quot;/my_header_files/encrypt.h&quot;</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>告诉编译器去哪找头文件</p>
 <p>可以使用gcc的<code>-I</code>选项</p>
-<pre><code class="bash">$ gcc -I/my_header_files test_code.c  ...   -o test_code
-</code></pre>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -I/my_header_files test_code.c  ...   -o test_code</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>编译器会先检查<code>-I</code>选项中的目录，然后像往常一样检查所有标准目录</p>
 <h4 id="o目标文件"><a href="#o目标文件" class="headerlink" title=".o目标文件"></a>.o目标文件</h4><p>可以把.o目标文件放在一个类似共享目录的地方，用完整路径名共享</p>
-<pre><code class="bash">$ gcc -I/my_header_files test_code.c
-       /my_object_files/encrypt.o
-       /my_object_files/checksum.o -o test_code
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -I/my_header_files test_code.c</span><br><span class="line">	   /my_object_files/encrypt.o</span><br><span class="line">	   /my_object_files/checksum.o -o test_code</span><br></pre></td></tr></table></figure>
+
 <h4 id="存档"><a href="#存档" class="headerlink" title="存档"></a>存档</h4><p>把一批目标文件打包在一起就成了存档文件。只要创建目标文件存档，就可以一次告诉编译器一<br>批目标文件</p>
 <p>可以使用<code>nm</code>命令查看存档中的内容，列出存档中保存文件的名字</p>
 <p>可以使用<code>ar</code>命令来存档</p>
-<pre><code class="bash">$ ar -rcs libhfsecurity.a encrypt.o checksum.o
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ar -rcs libhfsecurity.a encrypt.o checksum.o</span><br></pre></td></tr></table></figure>
+
 <p>参数r表示如果.a文件存在就更新它，参数c表示创建存档时不显示反馈信息，参数s表示需要ar在.a文件开头建立索引。接着是.a文件的文件名，以及需要存档的文件</p>
 <p>所有.a文件名都是libXXX.a的形式。这是命名存档的标准方式，存档是静态库（static library），所以要以lib开头，否则编译器找不到它们</p>
 <p>接着可以把存档保存在库目录中，并不同情况下进行编译</p>
@@ -937,15 +663,12 @@ void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略
 <li><p>把.a文件保存在标准目录中，如&#x2F;usr&#x2F;local&#x2F;lib</p>
 <p>确保代码能正确运行之后会把存档安装在标准目录，这个目录专门用来放本地自定义库</p>
 <p>用-I开关编译代码</p>
-<pre><code class="bash">$ gcc test_code.c -lhfsecurity -o test_code
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc test_code.c -lhfsecurity -o test_code</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>把.a文件放在其他目录中</p>
 <p>如果还处于开发阶段，或者在系统目录中安装代码不合适，也可以创建自己的库目录<code>/my_lib</code></p>
 <p>用-L选项告诉编译器去哪找存档</p>
-<pre><code class="bash">$ gcc test_code.c -L/my_lib -lhfsecurity -o test_code
-</code></pre>
-</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc test_code.c -L/my_lib -lhfsecurity -o test_code</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>如果要使用多个存档，可以设置多个-l选项，<code>hfsecurity</code>叫编译器去找一个叫<code>libhfsecurity.a</code>的存档，-l选<br>项后的名字必须与存档名的一部分匹配，如果存档叫libawesome.a，可以用-lawesome开关编译程序</p>
 <blockquote>
@@ -955,8 +678,8 @@ void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略
 </blockquote>
 <h3 id="动态库"><a href="#动态库" class="headerlink" title="动态库"></a>动态库</h3><p>带有元信息的可重定位目标文件，由一个或多个.o文件创建，核心是一段目标代码</p>
 <h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>首先创建目标文件</p>
-<pre><code class="bash">$ gcc -I/includes -fPIC -c hfcal.c -o hfcal.o
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -I/includes -fPIC -c hfcal.c -o hfcal.o</span><br></pre></td></tr></table></figure>
+
 <p><code>-fPIC</code>表示创建位置无关代码。有的操作系统和处理器要用位置无关代码创建库，这样它们才能在运行时决定把代码加载到存储器的哪个位置，事实上在大多数操作系统中都不需要加这个选择</p>
 <blockquote>
 <p><strong>位置无关代码</strong></p>
@@ -965,11 +688,8 @@ void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略
 <p>然后生成动态库</p>
 <p>绝大部分操作系统都支持动态库，它们的工作方式也大抵相同，但称呼却大相径庭</p>
 <p>Windows 动态链接库；Linux和Unix 共享目标文件；Mac 动态库</p>
-<pre><code class="bash">$ gcc -shared hfcal.o -o	C:\libs\hfcal.dll	//Windows 上的MinGW
-                       /libs/libhfcal.dll.a   //Windows上的Cygwin
-                       /libs/libhfcal.so      //Linux或Unix
-                       /libs/libhfcal.dylib  //Mac
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -shared hfcal.o -o	C:\libs\hfcal.dll	//Windows 上的MinGW</span><br><span class="line">					   /libs/libhfcal.dll.a   //Windows上的Cygwin</span><br><span class="line">					   /libs/libhfcal.so      //Linux或Unix</span><br><span class="line">					   /libs/libhfcal.dylib  //Mac</span><br></pre></td></tr></table></figure>
+
 <p>-shared选项告诉gcc你想把.o目标文件转化为动态库</p>
 <p>编译器创建动态库时会把库的名字保存在文件中，假设你在Linux中创建了一个叫libhfcal.so的库，那么libhfcal.so文件就会记住它的库名叫hfcal。也就是说，一旦你用某个名字编译了库，就不能再修改文件名了。若想重命名库，就必须用新的名字重新编译一次</p>
 <blockquote>
@@ -977,9 +697,8 @@ void print_ints(int args, ...)&#123;		\\在C语言中，函数参数后的省略
 </blockquote>
 <p>最后编译程序</p>
 <p>一旦创建了动态库，你就可以像静态库那样使用它</p>
-<pre><code class="bash">$ gcc -I/include -c elliptical.c -o elliptical.o
-$ gcc elliptical.o -L/libs -lhfcal -o elliptical
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -I/include -c elliptical.c -o elliptical.o</span><br><span class="line">$ gcc elliptical.o -L/libs -lhfcal -o elliptical</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>在MinGW和Cygwin上，库名的格式有很多种，hfcal的库名可以是: libhfcal.dll.a、libhfcal.dll、hfcal.dll</p>
 </blockquote>
@@ -987,14 +706,11 @@ $ gcc elliptical.o -L/libs -lhfcal -o elliptical
 <p>可以运行程序了</p>
 <p>Mac可以直接运行当你在Mac中编译程序时，文件的完整路径&#x2F;libs&#x2F;libhfcal.dylib保存在可执行文件中，程序启动时知道去哪里找它</p>
 <p>在Linux和大部分Unix中，编译器只会记录libhfcal.so库的文件名，而不会包含路径名。也就是说如果不把hfcal库保存到标准目录（如&#x2F;usr&#x2F;lib），程序就找不到它。为了解决这个问题，Linux会检查保存在LD_LIBRARY_PATH变量中的附加目录。只要把库目录添加到LD_LIBRARY_PATH中，并export它，elliptical就能找到libhfcal.so</p>
-<pre><code class="bash">&gt; export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/libs
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span>:/libs</span><br></pre></td></tr></table></figure>
+
 <p>Windows同Linux一样，它的可执行文件也只保存hfcal库的名字，不保存目录名。不过Windows没有用LD_LIBRARY_PATH变量去找hfcal库。Windows程序会先在当前目录下查找，如果没找到就去查找保存在PATH变量中的目录</p>
-<pre><code class="bash">//Cygwin
-PATH=&quot;$PATH:/libs&quot;
-//MinGW
-PATH=&quot;%PATH%:C:\libs&quot;
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//Cygwin</span><br><span class="line">PATH=<span class="string">&quot;<span class="variable">$PATH</span>:/libs&quot;</span></span><br><span class="line">//MinGW</span><br><span class="line">PATH=<span class="string">&quot;%PATH%:C:\libs&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p>在Linux和Mac中，动态库通常保存在&#x2F;usr&#x2F;lib或&#x2F;usr&#x2F;local&#x2F;lib中；而在Windows中，程序员通常把.DLL和可执行文件保存在同一个目录下</p>
 <ul>
 <li>动态库在修改库文件后不用再重新编译项目文件</li>
@@ -1002,10 +718,8 @@ PATH=&quot;%PATH%:C:\libs&quot;
 <p>有了动态库，就能在运行时替换代码。不用重新编译程序，你就能修改它。如果你有很多程序，它们共享一段相同的代码，通过建立动态库，就可以同时更新所有程序</p>
 <h2 id="9-进程与系统调用"><a href="#9-进程与系统调用" class="headerlink" title="9 进程与系统调用"></a>9 进程与系统调用</h2><p>C程序无论做什么事都要靠操作系统。如果它想与硬件打交道，就要进行系统调用。系统调用是操作系统内核中的函数，C标准库中大部分代码都依赖于它们</p>
 <h3 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h3><p>接收一个字符串参数，并把它当作命令执行</p>
-<pre><code class="c">system(&quot;dir D:&quot;);	//打印D盘内容
-system(&quot;gedit&quot;);       //在Linux中启动编辑器
-system(&quot;say &#39;End of Line&#39; &quot;);	//在Mac上朗读文本
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">system(<span class="string">&quot;dir D:&quot;</span>);	<span class="comment">//打印D盘内容</span></span><br><span class="line">system(<span class="string">&quot;gedit&quot;</span>);       <span class="comment">//在Linux中启动编辑器</span></span><br><span class="line">system(<span class="string">&quot;say &#x27;End of Line&#x27; &quot;</span>);	<span class="comment">//在Mac上朗读文本</span></span><br></pre></td></tr></table></figure>
+
 <p>在一些操作系统中，系统调用的代码位于操作系统内核。而对其他操作系统而言，系统调用可能保存在动态库中</p>
 <blockquote>
 <p><strong>内核</strong>？</p>
@@ -1034,18 +748,12 @@ system(&quot;say &#39;End of Line&#39; &quot;);	//在Mac上朗读文本
 <p>如果调用了以 …e() 结尾的 exec() 函数，还可以传递环境变量数组，像”POWER&#x3D;4”,”PORT&#x3D;OPEN”……那样的字符数组</p>
 </li>
 </ol>
-<pre><code class="c">execl(&quot;/home/flynn/clu&quot;, &quot;/home/flynn/clu&quot;, &quot;paranoids&quot;, &quot;contract&quot;, NULL)	//execL = 参数列表(List)
-execlp(&quot;clu&quot;, &quot;clu&quot;, &quot;paranoids&quot;, &quot;contract&quot;, NULL)		//execLP = 参数列表（List） + 在PATH中查找程序
-execle(&quot;/home/flynn/clu&quot;, &quot;/home/flynn/clu&quot;, &quot;paranoids&quot;, &quot;contract&quot;, NULL, env_vars)
-//execLE = 参数列表（List） + 环境变量（Environment）
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">execl(<span class="string">&quot;/home/flynn/clu&quot;</span>, <span class="string">&quot;/home/flynn/clu&quot;</span>, <span class="string">&quot;paranoids&quot;</span>, <span class="string">&quot;contract&quot;</span>, <span class="literal">NULL</span>)	<span class="comment">//execL = 参数列表(List)</span></span><br><span class="line">execlp(<span class="string">&quot;clu&quot;</span>, <span class="string">&quot;clu&quot;</span>, <span class="string">&quot;paranoids&quot;</span>, <span class="string">&quot;contract&quot;</span>, <span class="literal">NULL</span>)		<span class="comment">//execLP = 参数列表（List） + 在PATH中查找程序</span></span><br><span class="line">execle(<span class="string">&quot;/home/flynn/clu&quot;</span>, <span class="string">&quot;/home/flynn/clu&quot;</span>, <span class="string">&quot;paranoids&quot;</span>, <span class="string">&quot;contract&quot;</span>, <span class="literal">NULL</span>, env_vars)</span><br><span class="line"><span class="comment">//execLE = 参数列表（List） + 环境变量（Environment）</span></span><br></pre></td></tr></table></figure>
+
 <h4 id="数组函数"><a href="#数组函数" class="headerlink" title="数组函数"></a>数组函数</h4><p>execv()、execvp()、execve()</p>
 <p>如果已经把命令行参数保存在了数组中，就会发现这两个版本用起来更容易</p>
-<pre><code class="c">execv(&quot;/home/flynn/clu&quot;, my_args);	//execV=参数数组或参数向量（Vector）
-execvp(&quot;clu&quot;, my_args);		//execVP = 参数数组/向量（Vector） + 在PATH中查找
-//参数需要保存在字符串数组my_args中
-//以上两函数唯一区别是execvp会用PATH变量查找程序
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">execv(<span class="string">&quot;/home/flynn/clu&quot;</span>, my_args);	<span class="comment">//execV=参数数组或参数向量（Vector）</span></span><br><span class="line">execvp(<span class="string">&quot;clu&quot;</span>, my_args);		<span class="comment">//execVP = 参数数组/向量（Vector） + 在PATH中查找</span></span><br><span class="line"><span class="comment">//参数需要保存在字符串数组my_args中</span></span><br><span class="line"><span class="comment">//以上两函数唯一区别是execvp会用PATH变量查找程序</span></span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -1073,17 +781,15 @@ execvp(&quot;clu&quot;, my_args);		//execVP = 参数数组/向量（Vector） + 
 <p>l、v总是在p、e之前出现；p、e是可选的</p>
 <h3 id="环境变量（具体做法见练习文件）"><a href="#环境变量（具体做法见练习文件）" class="headerlink" title="环境变量（具体做法见练习文件）"></a>环境变量（具体做法见练习文件）</h3><p>每个进程都有一组环境变量。你可以在命令行中输入set或env查看它们的值，它们一般会告诉进程一些有用的信息，比如用户主目录的位置，或去哪里找命令。C程序可以用getenv()系统调用读取环境变量</p>
 <p>可以用字符串指针数组的形式创建一组环境变量。环境变量的格式是“变量名&#x3D;值”。数组最后一项必须是NULL</p>
-<pre><code class="c">char *my_env[] = &#123;&quot;JUICE=peach and apple&quot;, NULL&#125;;
-execle(&quot;diner_info&quot;, &quot;diner_info&quot;, &quot;4&quot;, NULL, my_env);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *my_env[] = &#123;<span class="string">&quot;JUICE=peach and apple&quot;</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line">execle(<span class="string">&quot;diner_info&quot;</span>, <span class="string">&quot;diner_info&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="literal">NULL</span>, my_env);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><strong>在Cygwin中传递环境变量时一定要包含PATH变量</strong></p>
 <p>在Cygwin中，加载程序时需要用PATH变量，因此在Cygwin上传递环境变量时一定要包含PATH&#x3D;&#x2F;usr&#x2F;bin</p>
 </blockquote>
 <h3 id="系统调用错误"><a href="#系统调用错误" class="headerlink" title="系统调用错误"></a>系统调用错误</h3><p>如果在调用程序时发生错误，当前进程会继续运行，于是可以向用户报告错误信息</p>
-<pre><code class="c">execle(&quot;diner_info&quot;, &quot;diner_info&quot;, &quot;4&quot;, NULL, my_env);
-puts(&quot;哥们，diner_info程序肯定发生了什么问题&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">execle(<span class="string">&quot;diner_info&quot;</span>, <span class="string">&quot;diner_info&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="literal">NULL</span>, my_env);</span><br><span class="line"><span class="built_in">puts</span>(<span class="string">&quot;哥们，diner_info程序肯定发生了什么问题&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>所有的系统调用都遵循“失败黄金法则”</p>
 <ol>
 <li>尽可能收拾残局</li>
@@ -1112,8 +818,8 @@ puts(&quot;哥们，diner_info程序肯定发生了什么问题&quot;);
 </tr>
 </tbody></table>
 <p>可以拿errno和这些值比较，也可以用string.h中的<code>strerror()</code>的函数查询标准错误消息</p>
-<pre><code class="c">puts(strerror(errno));	//strerror()将错误码转换为一条消息
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(strerror(errno));	<span class="comment">//strerror()将错误码转换为一条消息</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="用fork-克隆进程"><a href="#用fork-克隆进程" class="headerlink" title="用fork()克隆进程"></a>用fork()克隆进程</h3><p>exec() 是程序中最后一行代码</p>
 <p>fork()会克隆当前进程。新建副本将从同一行开始运行相同程序，变量和变量中的值完全一样，只有进程标识符（PID）和原进程不同。原进程叫父进程，而新建副本叫子进程</p>
 <blockquote>
@@ -1171,34 +877,30 @@ puts(&quot;哥们，diner_info程序肯定发生了什么问题&quot;);
 <p><code>./myprog 2&gt;&amp;1</code></p>
 <p>“2&gt;”表示“重定向标准错误”;“&amp;1”表示“到标准输出”</p>
 <h3 id="fileno-返回描述符号"><a href="#fileno-返回描述符号" class="headerlink" title="fileno()返回描述符号"></a>fileno()返回描述符号</h3><p>每打开一个文件，操作系统都会在描述符表中新注册一项</p>
-<pre><code class="c">FILE *my_file = fopen(&quot;guitar.mp3&quot;, &quot;r&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *my_file = fopen(<span class="string">&quot;guitar.mp3&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>操作系统会打开<em>guitar.mp3</em>文件，然后返回一个指向它的指针，操作系统还会遍历描述符表寻找空项，把新文件注册在其中</p>
 <p>调用fileno()函数可以根据文件指针知道它是几号描述符</p>
-<pre><code class="c">int descriptor = fileno(my_file);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> descriptor = fileno(my_file);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>在失败时不返回-1的函数很少，fileno()就是其中之一。只要你把打开文件的指针传给fileno()，它就一定会返回描述符编号			😴？？</p>
 </blockquote>
 <h3 id="dup2-复制数据流"><a href="#dup2-复制数据流" class="headerlink" title="dup2()复制数据流"></a>dup2()复制数据流</h3><p>可以用dup2()函数修改某个已经注册过的数据流，dup2()可以复制数据流</p>
-<pre><code class="c">dup2(4, 3);		//同时将4号数据流连接到3号描述符
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dup2(<span class="number">4</span>, <span class="number">3</span>);		<span class="comment">//同时将4号数据流连接到3号描述符</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="exit"><a href="#exit" class="headerlink" title="exit()"></a>exit()</h3><p>exit()系统调用是结束程序的最快方式，为了使用exit系统调用，必须包含stdlib.h头文件</p>
-<pre><code class="c">#include &lt;stdlib.h&gt;
-void error(char *msg)&#123;
-    fprintf(stderr, &quot;%s: %s\n&quot;, msg, strerror(errno));
-    exit(1);		//exit(1)会立刻终止程序，并把退出状态置1
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">error</span><span class="params">(<span class="type">char</span> *msg)</span>&#123;</span><br><span class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s: %s\n&quot;</span>, msg, strerror(errno));</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">1</span>);		<span class="comment">//exit(1)会立刻终止程序，并把退出状态置1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>每次程序执行只有一次调用exit()的机会</p>
 <h3 id="等待子进程"><a href="#等待子进程" class="headerlink" title="等待子进程"></a>等待子进程</h3><p>子进程一创建就和父进程没关系了，有时候子进程还未完成任务，父进程就已经结束了，操作系统必须提供一种方式，让你等待子进程完成任务</p>
 <h4 id="waitpid-函数"><a href="#waitpid-函数" class="headerlink" title="waitpid()函数"></a>waitpid()函数</h4><p>waitpid()函数会等子进程结束以后才返回，也就是说可以在父进程中加几行代码，让它等到子进程运行结束以后才退出</p>
 <p>需要包含sys&#x2F;wait.h的头文件(Windows平台似乎并不支持)</p>
-<pre><code class="c">#include &lt;sys/wait.h&gt;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
 <p>接收三个参数</p>
-<pre><code class="c">waitpid(pid,pid_status, options )
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">waitpid(pid,pid_status, options )</span><br></pre></td></tr></table></figure>
+
 <ol>
 <li><p>pid</p>
 <p>父进程在克隆子进程时会得到子进程的ID</p>
@@ -1213,17 +915,14 @@ void error(char *msg)&#123;
 <p><strong>pid_status</strong>?</p>
 <p>waitpid()函数结束等待时会在pid_status中保存一个值，它告诉你进程的完成情况</p>
 <p>为了得到子进程的退出状态，可以把pid_status的值传给WEXITSTATUS()宏</p>
-<pre><code class="c">if (WEXITSTATUS(pid_status))
-    puts(&quot;Error status non-zero&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (WEXITSTATUS(pid_status))</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;Error status non-zero&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>pid_status中保存了好几条信息，只有前8位表示进程的退出状态，所以需要用宏来查看</p>
 <p>重定向输入、输出，然后让进程相互等待，这就是进程间通信</p>
 <p>进程之间通过共享数据和互相可以等待实现更多功能</p>
 <h3 id="管道连接进程"><a href="#管道连接进程" class="headerlink" title="管道连接进程"></a>管道连接进程</h3><p>可以在命令行用管道把一个进程的输出连接到另一个进程的输入</p>
-<pre><code class="bash">python rssgossip.py -u &#39;pajama death&#39; | grep &#39;http&#39;
-    http://www.rock-news.com/exclusive/24.html
-    http://www.rolling-stone.com/pdalbum.html
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python rssgossip.py -u <span class="string">&#x27;pajama death&#x27;</span> | grep <span class="string">&#x27;http&#x27;</span></span><br><span class="line">	http://www.rock-news.com/exclusive/24.html</span><br><span class="line">	http://www.rolling-stone.com/pdalbum.html</span><br></pre></td></tr></table></figure>
+
 <p>grep找出了包含http的那些行</p>
 <p>管道两侧的命令是父子关系，如上例中grep命令是rssgossip.py脚本的父进程</p>
 <ol>
@@ -1235,32 +934,15 @@ void error(char *msg)&#123;
 <h3 id="pipe-打开两条数据流"><a href="#pipe-打开两条数据流" class="headerlink" title="pipe()打开两条数据流"></a>pipe()打开两条数据流</h3><p>用pipe()函数建立管道</p>
 <p>每当打开数据流时，它都会加入描述符表。pipe()函数也是如此，它创建两条相连的数据流，并把它们加到表中，然后只要往其中一条数据流中写数据，就可以从另一条数据流中读取</p>
 <p>pipe()在描述符中创建这两项时，会把它们的文件描述符保存在一个包含两个元素的数组中</p>
-<pre><code class="c">int fd[2];
-if (pipe(fd) == -1) &#123;
-    error(&quot;Can&#39;t create the pipe&quot;);
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">if</span> (pipe(fd) == <span class="number">-1</span>) &#123;</span><br><span class="line">	error(<span class="string">&quot;Can&#x27;t create the pipe&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>pipe()函数创建了管道，并返回了两个描述符： fd[1]用来向管道写数据，fd[0]用来从管道读数据</p>
 <p>在子进程中，关闭管道的fd[0]端，修改子进程的标准输出，让它指向描述符fd[1]对应的数据流；在父进程中需要关闭管道的fd[1]端，重定向父进程的标准输入，让它从描述符fd[0]对应的数据流中读取数据</p>
-<pre><code class="c">// 子进程
-close(fd[0]);
-dup2(fd[1], 1);
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子进程</span></span><br><span class="line">close(fd[<span class="number">0</span>]);</span><br><span class="line">dup2(fd[<span class="number">1</span>], <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//父进程</span></span><br><span class="line">dup2(fd[<span class="number">0</span>], <span class="number">0</span>);</span><br><span class="line">close(fd[<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
 
-//父进程
-dup2(fd[0], 0);
-close(fd[1]);
-</code></pre>
 <p>不同操作系统打开网页？较为简单粗暴的system()写法</p>
-<pre><code class="c">void open_url(char *url)&#123;
-    char launch[255];
-    sprintf(launch, &quot;cmd /c start %s&quot;, url);		//Windows
-    system(launch);
-    sprintf(launch, &quot;x-www-browser &#39;%s&#39; &amp;&quot;, url);	//Linux
-    system(launch);
-    sprintf(launch, &quot;open &#39;%s&#39;&quot;, url);			     //Mac
-    system(launch);
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">open_url</span><span class="params">(<span class="type">char</span> *url)</span>&#123;</span><br><span class="line">	<span class="type">char</span> launch[<span class="number">255</span>];</span><br><span class="line">	<span class="built_in">sprintf</span>(launch, <span class="string">&quot;cmd /c start %s&quot;</span>, url);		<span class="comment">//Windows</span></span><br><span class="line">	system(launch);</span><br><span class="line">	<span class="built_in">sprintf</span>(launch, <span class="string">&quot;x-www-browser &#x27;%s&#x27; &amp;&quot;</span>, url);	<span class="comment">//Linux</span></span><br><span class="line">	system(launch);</span><br><span class="line">	<span class="built_in">sprintf</span>(launch, <span class="string">&quot;open &#x27;%s&#x27;&quot;</span>, url);			     <span class="comment">//Mac</span></span><br><span class="line">	system(launch);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>在类Unix机器或任何使用Cygwin的Windows机器中可以获取以下程序</p>
 <p><strong>curl&#x2F;wget</strong><br>可以用这两个程序与网络服务器通信，也可以在C代码中使用它们与网络通信<br><strong>mail&#x2F;mutt</strong><br>可以在命令行用这两个程序发送邮件。如果在机器上装了它们，C程序就能发送邮件<br><strong>convert</strong><br>convert命令可以转换图片格式。你可以写一个C程序，它输出文本格式的SVG图表，然后用convert命令把SVG转化成PNG图片</p>
@@ -1277,25 +959,19 @@ close(fd[1]);
 <h3 id="sigaction是一个函数包装器"><a href="#sigaction是一个函数包装器" class="headerlink" title="sigaction是一个函数包装器"></a>sigaction是一个函数包装器</h3><p><strong>以下均需要包含signal.h文件</strong></p>
 <p>sigaction是一个结构体，它有一个函数指针。sigaction告诉操作系统进程收到某个信号时应该调用哪个函数。</p>
 <p>创建方法：</p>
-<pre><code class="c">struct sigaction action;
-action.sa_handler = diediedie;	//指定计算机调用哪个函数，这个被sigaction包装起来的函数就叫处理器
-sigemptyset(&amp;action.sa_mask);  //用掩码来过滤sigaction要处理的信号，通常会用一个空的掩码
-action.sa_flags = 0;		//一些附加标志位，将它们置0就行了
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">action</span>;</span></span><br><span class="line">action.sa_handler = diediedie;	<span class="comment">//指定计算机调用哪个函数，这个被sigaction包装起来的函数就叫处理器</span></span><br><span class="line">sigemptyset(&amp;action.sa_mask);  <span class="comment">//用掩码来过滤sigaction要处理的信号，通常会用一个空的掩码</span></span><br><span class="line">action.sa_flags = <span class="number">0</span>;		<span class="comment">//一些附加标志位，将它们置0就行了</span></span><br></pre></td></tr></table></figure>
+
 <p>处理器必须接收信号参数，为整型</p>
-<pre><code class="c">void diediedie(int sig)&#123;
-    puts (&quot;Goodbye cruel world....\n&quot;);
-    exit(1);
-&#125;
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">diediedie</span><span class="params">(<span class="type">int</span> sig)</span>&#123;</span><br><span class="line">	<span class="built_in">puts</span> (<span class="string">&quot;Goodbye cruel world....\n&quot;</span>);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>处理器的代码应该短而快，刚好能处理接收到的信号就好</p>
 <blockquote>
 <p>在处理器函数中使用标准输出和标准错误时要小心</p>
 <p>之所以会有信号就是因为程序中发生了故障，而故障可能就是这些无法使用</p>
 </blockquote>
 <h3 id="用sigaction-来注册sigaction"><a href="#用sigaction-来注册sigaction" class="headerlink" title="用sigaction()来注册sigaction"></a>用sigaction()来注册sigaction</h3><p>创建sigaction以后，需要用sigaction()函数来让操作系统知道它的存在</p>
-<pre><code class="c">sigaction(signal_no, &amp;new_action, &amp;old_action);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sigaction(signal_no, &amp;new_action, &amp;old_action);</span><br></pre></td></tr></table></figure>
+
 <p>接收三个参数：</p>
 <ol>
 <li><p>信号编号</p>
@@ -1310,15 +986,8 @@ action.sa_flags = 0;		//一些附加标志位，将它们置0就行了
 </ol>
 <p>如果sigaction()函数失败，会返回－1，并设置errno变量</p>
 <p>以下函数简化了注册过程</p>
-<pre><code class="c">int catch_signal(int sig, void (*handler)(int))&#123;
-    struct sigaction action;
-    action.sa_handler = handler;
-    sigemptyset(&amp;action.sa_mask);
-    action.sa_flags = 0;
-    return sigaction (sig, &amp;action, NULL);
-&#125;
-catch_signal(SIGINT, diediedie);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">catch_signal</span><span class="params">(<span class="type">int</span> sig, <span class="type">void</span> (*handler)(<span class="type">int</span>))</span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">action</span>;</span></span><br><span class="line">	action.sa_handler = handler;</span><br><span class="line">	sigemptyset(&amp;action.sa_mask);</span><br><span class="line">	action.sa_flags = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> sigaction (sig, &amp;action, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line">catch_signal(SIGINT, diediedie);</span><br></pre></td></tr></table></figure>
+
 <h3 id="操作系统的信号（部分）"><a href="#操作系统的信号（部分）" class="headerlink" title="操作系统的信号（部分）"></a>操作系统的信号（部分）</h3><table>
 <thead>
 <tr>
@@ -1362,18 +1031,15 @@ catch_signal(SIGINT, diediedie);
 <h3 id="使用kill发送信号"><a href="#使用kill发送信号" class="headerlink" title="使用kill发送信号"></a>使用kill发送信号</h3><p>在类Unix操作系统中有一个叫kill的命令（在Windows上用Cygwin）</p>
 <p>叫kill是因为这个命令通常用来“杀死”进程。事实上，kill只是向进程发送了一个信号，kill默认会向进程发送SIGTERM信号</p>
 <p>kill －KILL一定能杀死进程</p>
-<h3 id="raise-给自己发送信号"><a href="#raise-给自己发送信号" class="headerlink" title="raise()给自己发送信号"></a>raise()给自己发送信号</h3><pre><code class="c">raise(SIGTERM);
-</code></pre>
+<h3 id="raise-给自己发送信号"><a href="#raise-给自己发送信号" class="headerlink" title="raise()给自己发送信号"></a>raise()给自己发送信号</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">raise(SIGTERM);</span><br></pre></td></tr></table></figure>
+
 <p>通常会在自定义的信号处理函数中使用raise()，这样程序就能在接收到低级别的信号时引发更高级别的信号。这就是信号升级</p>
 <h3 id="SIGALRM"><a href="#SIGALRM" class="headerlink" title="SIGALRM"></a>SIGALRM</h3><p>当计算机中发生了进程需要知道的事情时，操作系统就会向进程发送信号，除了在发生错误时使用，有时进程也需要产生自己的信号</p>
-<pre><code class="c">alarm(120);			//把闹钟调到120秒以后闹铃
-do_important_busy_work();
-do_more_busy_work();			//其间代码就会做其他事
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alarm(<span class="number">120</span>);			<span class="comment">//把闹钟调到120秒以后闹铃</span></span><br><span class="line">do_important_busy_work();</span><br><span class="line">do_more_busy_work();			<span class="comment">//其间代码就会做其他事</span></span><br></pre></td></tr></table></figure>
+
 <p>进程在收到闹钟信号以后默认会结束进程，但通常情况下使用定时器不是为了让它帮你“杀死”程序，而是为了利用闹钟信号的处理器去做另一件事</p>
-<pre><code class="c">catch_signal(SIGALRM, pour_coffee);
-alarm(120);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">catch_signal(SIGALRM, pour_coffee);</span><br><span class="line">alarm(<span class="number">120</span>);</span><br></pre></td></tr></table></figure>
+
 <p>闹钟信号可以实现多任务。如果需要每隔几秒运行一个任务，或者想限制花费在某个任务上的时间，就可以用闹钟信号让程序打断自己</p>
 <p>一个进程只有一个定时器。定时器由操作系统的内核管理，如果一个进程有很多定时器，内核就会变得很慢，因此操作系统需要限制进程能使用的定时器个数</p>
 <p>每次调用alarm()函数都会重置定时器</p>
@@ -1385,11 +1051,11 @@ alarm(120);
 <p>setitimer()函数可以把进程间隔计时器的单位设为几分之一秒</p>
 </blockquote>
 <h3 id="重置信号和忽略信号"><a href="#重置信号和忽略信号" class="headerlink" title="重置信号和忽略信号"></a>重置信号和忽略信号</h3><p>如果想还原默认的信号处理器，signal.h头文件中有一个特殊的符号SIG_DFL，它代表以默认方式处理信号</p>
-<pre><code class="c">catch_signal(SIGTERM, SIG_DFL);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catch_signal(SIGTERM, SIG_DFL);</span><br></pre></td></tr></table></figure>
+
 <p>同时，还可以用SIG_IGN符号让进程忽略某个信号</p>
-<pre><code class="c">catch_signal(SIGINT, SIG_IGN);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catch_signal(SIGINT, SIG_IGN);</span><br></pre></td></tr></table></figure>
+
 <p>在决定忽略某个信号前一定要慎重考虑，信号是控制进程和终止进程的重要方式，如果忽略了它们，程序就很难停下来</p>
 <h2 id="11-网络与套接字"><a href="#11-网络与套接字" class="headerlink" title="11 网络与套接字"></a>11 网络与套接字</h2><h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><p>互联网中大部分的底层网络代码都是用C语言写的。网络程序通常由两部分程序组成：服务器和客户端</p>
 <p>可以使用一个叫telnet的客户端程序连接服务器。telnet接收两个参数：一个是服务器地址，另一个是服务器运行的端口</p>
@@ -1399,52 +1065,22 @@ alarm(120);
 <p>服务器将同时与多个客户端通信。客户端与服务器之间将展开一段结构化对话，叫做协议。互联网使用了各种协议，一部分是低层协议，另一部分是高层协议。低层协议有IP（Internet Protocol，网际协议），它用来控制二进制的0和1在互联网中的发送方式；高层协议有HTTP（Hypertext Transfer Protocol，超文本传输协议），它用来控制浏览器和网络服务器的对话</p>
 <p>协议通常有一套严格的规则。客户端和服务器都遵守这些规则就没事，但只要它们中有一方违反了规则，对话就会戛然而止</p>
 <h3 id="BLAB"><a href="#BLAB" class="headerlink" title="BLAB"></a>BLAB</h3><p>如果想要写一个与网络通信的程序，就需要一种新数据流——套接字</p>
-<pre><code class="c">#include &lt;sys/socket.h&gt;			//需要包含这个头文件
-...
-int listener_d = socket(PF_INET, SOCK_STREAM, 0);		//listener_d是套接字描述符，0是协议号
-if (listener_d == -1)
-    error(&quot;无法打开套接字&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/socket.h&gt;</span>			<span class="comment">//需要包含这个头文件</span></span></span><br><span class="line">...</span><br><span class="line"><span class="type">int</span> listener_d = socket(PF_INET, SOCK_STREAM, <span class="number">0</span>);		<span class="comment">//listener_d是套接字描述符，0是协议号</span></span><br><span class="line"><span class="keyword">if</span> (listener_d == <span class="number">-1</span>)</span><br><span class="line">	error(<span class="string">&quot;无法打开套接字&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>在使用套接字与客户端程序通信前，服务器需要历经四个阶段：绑定（Bind）、监听（Listen）、接受（Accept）和开始（Begin），首字母缩写为BLAB</p>
 <ol>
 <li><p>绑定端口</p>
 <p>计算机可能同时运行多个服务器程序，每项服务必须使用不同的端口（port）。端口就好比电视频道，我们在不同端口使用不同的网络服务，就像我们通过不同频道收看不同的电视节目</p>
 <p>服务器在启动时，需要告诉操作系统将要使用哪个端口，这个过程叫端口绑定。为了绑定它，你需要两样东西：套接字描述符和套接字名</p>
-<pre><code class="C">#include &lt;arpa/inet.h&gt;
-...
-struct sockaddr_in name;
-name.sin_family = PF_INET;
-name.sin_port = (in_port_t)htons(30000);
-name.sin_addr.s_addr = htonl(INADDR_ANY);
-int c = bind (listener_d, (struct sockaddr *) &amp;name, sizeof(name));
-if (c == -1)
-    error(&quot;无法绑定端口&quot;);
-</code></pre>
-</li>
-<li><p>监听</p>
-<p>可以用listen()系统调用告诉操作系统队列有多长</p>
-<p>调用listen()把队列长度设为10，也就是说最多可以有10个客户端同时尝试连接服务器，它们不会立即得到响应，但可以排队等待，而第11个客户端会被告知服务器太忙</p>
-<pre><code class="c">if(listen(listener_d, 10) == -1)
-    error(&quot;无法监听&quot;);
-</code></pre>
-</li>
-<li><p>接受连接</p>
-<p>accept()系统调用会一直等待，直到有客户端连接服务器时，它会返回第二个套接字描述符，然后就可以用它通信了</p>
-<pre><code class="c">struct sockaddr_storage client_addr;
-unsigned int address_size = sizeof(client_addr);
-int connect_d = accept(listener_d, (struct sockaddr *)&amp;client_addr, &amp;address_size);
-if (connect_d == -1)
-    error(&quot;无法打开副套接字&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line">   ...</span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">name</span>;</span></span><br><span class="line">   name.sin_family = PF_INET;</span><br><span class="line">   name.sin_port = (<span class="type">in_port_t</span>)htons(<span class="number">30000</span>);</span><br><span class="line">   name.sin_addr.s_addr = htonl(INADDR_ANY);</span><br><span class="line">   <span class="type">int</span> c = bind (listener_d, (<span class="keyword">struct</span> sockaddr *) &amp;name, <span class="keyword">sizeof</span>(name));</span><br><span class="line">   <span class="keyword">if</span> (c == <span class="number">-1</span>)</span><br><span class="line">   	error(<span class="string">&quot;无法绑定端口&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 监听</span><br><span class="line"></span><br><span class="line">   可以用listen()系统调用告诉操作系统队列有多长</span><br><span class="line"></span><br><span class="line">   调用listen()把队列长度设为<span class="number">10</span>，也就是说最多可以有<span class="number">10</span>个客户端同时尝试连接服务器，它们不会立即得到响应，但可以排队等待，而第<span class="number">11</span>个客户端会被告知服务器太忙</span><br><span class="line"></span><br><span class="line">   ```c</span><br><span class="line">   <span class="title function_">if</span><span class="params">(listen(listener_d, <span class="number">10</span>) == <span class="number">-1</span>)</span></span><br><span class="line">       <span class="title function_">error</span><span class="params">(<span class="string">&quot;无法监听&quot;</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span> 接受连接</span><br><span class="line"></span><br><span class="line">   accept()系统调用会一直等待，直到有客户端连接服务器时，它会返回第二个套接字描述符，然后就可以用它通信了</span><br><span class="line"></span><br><span class="line">   ```c</span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_storage</span> <span class="title">client_addr</span>;</span></span><br><span class="line">   <span class="type">unsigned</span> <span class="type">int</span> address_size = <span class="keyword">sizeof</span>(client_addr);</span><br><span class="line">   <span class="type">int</span> connect_d = accept(listener_d, (<span class="keyword">struct</span> sockaddr *)&amp;client_addr, &amp;address_size);</span><br><span class="line">   <span class="keyword">if</span> (connect_d == <span class="number">-1</span>)</span><br><span class="line">   	error(<span class="string">&quot;无法打开副套接字&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <p>服务器将用新的连接描述符connect_d进行通信</p>
 </li>
 </ol>
 <h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>套接字是双向的，它既可以用作输入也可以用作输出，也就是说要用其他函数和它通信</p>
 <p>如果想向套接字输出数据，就要用send()函数，而不是fprintf()</p>
-<pre><code class="c">char *msg = &quot;Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n&gt; &quot;;
-if (send(connect_d, msg, strlen(msg), 0) == -1)
-    error(&quot;send&quot;);
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *msg = <span class="string">&quot;Internet Knock-Knock Protocol Server\r\nVersion 1.0\r\nKnock! Knock!\r\n&gt; &quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (send(connect_d, msg, <span class="built_in">strlen</span>(msg), <span class="number">0</span>) == <span class="number">-1</span>)</span><br><span class="line">	error(<span class="string">&quot;send&quot;</span>);</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p><strong>如何选择端口号</strong></p>
 <p>为服务器程序选择端口号时千万要小心。现如今有各式各样的服务器，所以不要选其他程序用过的端口号。在Cygwin和大多数Unix中有一个&#x2F;etc&#x2F;services文件，它列出了很多常用服务使用的端口号。在选择端口时必须确保没有其他程序用过</p>
@@ -1456,13 +1092,7 @@ if (send(connect_d, msg, strlen(msg), 0) == -1)
 <p>++和–的位置决定了表达式返回i的原始值还是新值，前新后旧</p>
 </li>
 <li><p>三目运算符</p>
-<pre><code class="c">if (x == 1)
-    return 2;
-else
-    return 3;
-
-return (x == 1) ? 2 : 3;	//这里上下等价
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x == <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (x == <span class="number">1</span>) ? <span class="number">2</span> : <span class="number">3</span>;	<span class="comment">//这里上下等价</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>位运算</p>
 <p>C语言可以用来编写底层代码，为此它提供了一组位运算符：</p>

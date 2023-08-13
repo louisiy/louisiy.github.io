@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -152,8 +152,8 @@
 <p>上面已经备份之后，再继续进行操作就只需在hexo_src分支下进行</p>
 <p>hexo的操作，以及git操作</p>
 <p>批处理</p>
-<pre><code class="bash">hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m &#39;new push&#39;;git push origin hexo_src
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean;hexo g;hexo d;git status ;git add . ;git commit -m <span class="string">&#x27;new push&#x27;</span>;git push origin hexo_src</span><br></pre></td></tr></table></figure>
+
 <p>挺方便</p>
 <h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>使用 <code>hexo init</code> 来生成基本文件，做一些基本的配置，像安装模块、配置主题等</p>
 <p>使用 <code>hexo new page / post</code>来生成文章或页面的 md 文件，编辑</p>
@@ -163,12 +163,11 @@
 <h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>首先在github博客仓库下新建一个分支<code>hexo_src</code>，然后<code>git clone</code>到本地，把<code>.git</code>文件夹拿出来，放在博客根目录下。</p>
 <p>然后<code>git checkout -b hexo_src</code>切换到<code>hexo_src</code>分支，然后<code>git add .</code>，然后<code>git commit -m &quot;xxx&quot;</code>，最后<code>git push origin hexo_src</code>提交就行了。</p>
 <h3 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h3><p>首先在指定文件夹clone下来hexo_src分支</p>
-<pre><code class="bash">$ git clone -b hexo_src [仓库地址]
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> -b hexo_src [仓库地址]</span><br></pre></td></tr></table></figure>
+
 <p>在该clone下来的文件夹里去安装hexo</p>
-<pre><code class="bash">$ cnpm install hexo
-$ cnpm install		//这一句不知道和上面这一句有何区别
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cnpm install hexo</span><br><span class="line">$ cnpm install		//这一句不知道和上面这一句有何区别</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>特别注意，hexo_src中的theme文件夹在上传分支后为空，需要再次从原主题仓库clone下来处理</p>
 </blockquote>

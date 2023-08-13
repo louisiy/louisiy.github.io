@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -146,104 +146,50 @@
         <!-- top型目录 -->
         
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>C10k &#x3D; 10000 concurrent connection处理10000个并发连接</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="包管理器安装"><a href="#包管理器安装" class="headerlink" title="包管理器安装"></a>包管理器安装</h3><pre><code class="bash">//Linux apt yum
-$ sudo apt update
-$ sudo apt install nginx
-//Mac Homebrew
-$ brew install nginx
-//Windows scoop chocolatey
-$ scoop install nginx
-$ choco install nginx
-</code></pre>
-<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><pre><code class="bash">$ ./configue											//预编译
-    --sbin-path=/usr/local/nginx/nginx
-    --conf-path=/usr/local/nginx/nginx.conf
-    --pid-path=/usr/local/nginx/nginx.pid
-    --with-http_ssl_module
-    --with-pcre=../pcre2-10.39
-    --with-zlib=../zlibb-1.2.11
-$ make												  //编译
-$ make install										       //安装
-</code></pre>
-<h3 id="使用Docker安装"><a href="#使用Docker安装" class="headerlink" title="使用Docker安装"></a>使用Docker安装</h3><pre><code class="bash">$ docker pull nginx
-</code></pre>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="包管理器安装"><a href="#包管理器安装" class="headerlink" title="包管理器安装"></a>包管理器安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//Linux apt yum</span><br><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install nginx</span><br><span class="line">//Mac Homebrew</span><br><span class="line">$ brew install nginx</span><br><span class="line">//Windows scoop chocolatey</span><br><span class="line">$ scoop install nginx</span><br><span class="line">$ choco install nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./configue											//预编译</span><br><span class="line">	--sbin-path=/usr/local/nginx/nginx</span><br><span class="line">	--conf-path=/usr/local/nginx/nginx.conf</span><br><span class="line">	--pid-path=/usr/local/nginx/nginx.pid</span><br><span class="line">	--with-http_ssl_module</span><br><span class="line">	--with-pcre=../pcre2-10.39</span><br><span class="line">	--with-zlib=../zlibb-1.2.11</span><br><span class="line">$ make												  //编译</span><br><span class="line">$ make install										       //安装</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用Docker安装"><a href="#使用Docker安装" class="headerlink" title="使用Docker安装"></a>使用Docker安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull nginx</span><br></pre></td></tr></table></figure>
+
 <h2 id="服务启停"><a href="#服务启停" class="headerlink" title="服务启停"></a>服务启停</h2><p>启动服务</p>
-<pre><code class="bash">$ nginx
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx</span><br></pre></td></tr></table></figure>
+
 <p>没有提示消息即表明顺利启动，启动失败会有提示</p>
 <p>浏览器输入</p>
-<pre><code class="http">localhost
-</code></pre>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost</span><br></pre></td></tr></table></figure>
+
 <p>查看到默认欢迎页面即可</p>
 <p>在命令行输入</p>
-<pre><code class="bash">$ ps -ef|grep nginx
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ef|grep nginx</span><br></pre></td></tr></table></figure>
+
 <p>可以查看Nginx的进程</p>
 <p>Nginx的进程模型为master为主进程，负责读取和验证配置文件以及管理worker进程，worker进程为工作进程，负责处理实际的请求，worker文件可以有多个</p>
-<pre><code class="bash">$ lsof -i:80		//查看端口的利用情况		后缀为只查看的端口
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsof -i:80		//查看端口的利用情况		后缀为只查看的端口</span><br></pre></td></tr></table></figure>
+
 <p>可以用如下命令停止服务器</p>
-<pre><code class="bash">$ nginx -s stop
-</code></pre>
-<h2 id="静态站点部署"><a href="#静态站点部署" class="headerlink" title="静态站点部署"></a>静态站点部署</h2><pre><code class="bash">$ nginx -V
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态站点部署"><a href="#静态站点部署" class="headerlink" title="静态站点部署"></a>静态站点部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -V</span><br></pre></td></tr></table></figure>
+
 <p>可以用来查看安装目录，编译参数等各种信息</p>
 <p>也可以通过</p>
-<pre><code class="bash">$ nginx -t
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -t</span><br></pre></td></tr></table></figure>
+
 <p>来查看配置文件的位置</p>
 <p>放在默认文件夹下即可</p>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>修改配置文件后，需要使用命令来检查配置文件是否正确</p>
-<pre><code class="bash">$ nginx -t
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -t</span><br></pre></td></tr></table></figure>
+
 <p>worker_processes进程数量，保持同服务器CPU内核的数量相同是比较合适的，也可以设置为auto来自动配置进程数量</p>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><pre><code>worker_processes auto;						   //全局块	设置
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">worker_processes auto;						   //全局块	设置</span><br><span class="line"></span><br><span class="line">events &#123;									//events块	服务器和客户端网络连接配置</span><br><span class="line">	worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;										//http块</span><br><span class="line">	include			  mime.types;</span><br><span class="line">	default_type	    application/octet-stream;</span><br><span class="line">	sendfile		   on;</span><br><span class="line">	keepalive_timeout  65;</span><br><span class="line">	</span><br><span class="line">	server &#123;								////多个server块</span><br><span class="line">		listen		  80;</span><br><span class="line">		server_name	 localhost;</span><br><span class="line">		return 301	  https://$server_name$request_uri;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	server &#123;</span><br><span class="line">		listen		  8000;</span><br><span class="line">		listen		  somename:8080;</span><br><span class="line">		server_name	 somename	alias	another.alias;</span><br><span class="line">		location / &#123;</span><br><span class="line">			root	html;</span><br><span class="line">			index	index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	include servers/*;			//把servers目录下的所有配置文件都包含进来</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-events &#123;									//events块	服务器和客户端网络连接配置
-    worker_connections 1024;
-&#125;
-
-http &#123;										//http块
-    include			  mime.types;
-    default_type	    application/octet-stream;
-    sendfile		   on;
-    keepalive_timeout  65;
-    
-    server &#123;								////多个server块
-        listen		  80;
-        server_name	 localhost;
-        return 301	  https://$server_name$request_uri;
-    &#125;
-    
-    server &#123;
-        listen		  8000;
-        listen		  somename:8080;
-        server_name	 somename	alias	another.alias;
-        location / &#123;
-            root	html;
-            index	index.html index.htm;
-        &#125;
-    &#125;
-    include servers/*;			//把servers目录下的所有配置文件都包含进来
-&#125;
-</code></pre>
 <h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>代理服务端</p>
-<pre><code>upstream backend&#123;
-    ip_hash;
-    server 127.0.0.1:8000	weight = 3;
-    server 127.0.0.1:8001;
-    server 127.0.0.1:8002;
-&#125;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">upstream backend&#123;</span><br><span class="line">	ip_hash;</span><br><span class="line">	server 127.0.0.1:8000	weight = 3;</span><br><span class="line">	server 127.0.0.1:8001;</span><br><span class="line">	server 127.0.0.1:8002;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">	location /app&#123;</span><br><span class="line">		proxy_pass http://backend;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-server &#123;
-    location /app&#123;
-        proxy_pass http://backend;
-    &#125;
-&#125;
-</code></pre>
 <p>修改完需重载配置文件</p>
-<pre><code class="bash">$ nginx -s reload
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s reload</span><br></pre></td></tr></table></figure>
+
 <p>默认轮询的方式来代理</p>
 <p>可以使用权重weight来分配负载均衡</p>
 <p>ip_hash策略来使同一个客户端的请求分配到同一台服务器上，解决一些session的问题</p>
@@ -251,49 +197,28 @@ server &#123;
 <blockquote>
 <p>使用openssl生成证书</p>
 <p>生成私钥文件（private key）</p>
-<pre><code>openssl genrsa -out private.key 2048
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out private.key 2048</span><br></pre></td></tr></table></figure>
+
 <p>根据私钥生成证书签名请求文件</p>
-<pre><code>openssl req -new -key private.key -out cert.csr
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -key private.key -out cert.csr</span><br></pre></td></tr></table></figure>
+
 <p>使用私钥对证书申请进行签名从而生成证书文件（pem文件）</p>
-<pre><code>openssl x509 -req -in cert.csr -out cacert.pem -signkey private.key
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -req -in cert.csr -out cacert.pem -signkey private.key</span><br><span class="line"></span><br><span class="line">在配置文件中进行配置</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>server{<br>    listen 80;<br>    server_name adf;<br>    return 301 https:&#x2F;&#x2F;$server_name$request_url;<br>}</p>
 </blockquote>
-<p>在配置文件中进行配置</p>
-<pre><code>server&#123;
-    listen 80;
-    server_name adf;
-    return 301 https://$server_name$request_url;
-&#125;
+<p>server{<br>    listen 443 ssl;<br>    server_name locahost;	&#x2F;&#x2F;一般填写自己的域名</p>
+<pre><code>ssl_certificate			路径;
+ssl_certificate_key		 路径;
 
-server&#123;
-    listen 443 ssl;
-    server_name locahost;	//一般填写自己的域名
-    
-    ssl_certificate			路径;
-    ssl_certificate_key		 路径;
-    
-    //加密协议和算法相关的配置
-    ssl_session_timeout 	5m;	//缓存有效期
-    ssl_protocols	TLSv1	TLSv1.1	TLSv1.2	TLSv1.3;
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:! aNULL:! MD5:!RC4:!DHE;
-    ssl_prefer_server_ciphers on;
-&#125;
+//加密协议和算法相关的配置
+ssl_session_timeout 	5m;	//缓存有效期
+ssl_protocols	TLSv1	TLSv1.1	TLSv1.2	TLSv1.3;
+ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:! aNULL:! MD5:!RC4:!DHE;
+ssl_prefer_server_ciphers on;
 </code></pre>
-<h2 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h2><p>通过server来设置虚拟主机</p>
-<p>可以在&#x2F;server下新建文件，然后重载也可以</p>
-<pre><code># vue.conf
-
-server&#123;
-    listen 5173;
-    server_name locahost;
-    location /&#123;
-        root	路径;
-        index	index.html index.htm;
-    &#125;
-&#125;
-</code></pre>
+<p>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 配置文件</span><br><span class="line"></span><br><span class="line">通过server来设置虚拟主机</span><br><span class="line"></span><br><span class="line">可以在/server下新建文件，然后重载也可以</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="vue-conf"><a href="#vue-conf" class="headerlink" title="vue.conf"></a>vue.conf</h1><p>server{<br>    listen 5173;<br>    server_name locahost;<br>    location &#x2F;{<br>        root	路径;<br>        index	index.html index.htm;<br>    }<br>}<br>&#96;&#96;&#96;</p>
 
         <!-- 分类文章 -->
         
@@ -301,7 +226,7 @@ server&#123;
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%89%8D%E8%A8%80"><span class="space-toc-text">前言</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%AE%89%E8%A3%85"><span class="space-toc-text">安装</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C"><span class="space-toc-text">服务启停</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E9%83%A8%E7%BD%B2"><span class="space-toc-text">静态站点部署</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="space-toc-text">配置文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="space-toc-text">反向代理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#https%E9%85%8D%E7%BD%AE"><span class="space-toc-text">https配置</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-1"><span class="space-toc-text">配置文件</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%89%8D%E8%A8%80"><span class="space-toc-text">前言</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%AE%89%E8%A3%85"><span class="space-toc-text">安装</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C"><span class="space-toc-text">服务启停</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E9%83%A8%E7%BD%B2"><span class="space-toc-text">静态站点部署</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="space-toc-text">配置文件</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="space-toc-text">反向代理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#https%E9%85%8D%E7%BD%AE"><span class="space-toc-text">https配置</span></a></li></ol>
            </div>
         
       </div>

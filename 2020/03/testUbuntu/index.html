@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -148,130 +148,80 @@
         <h2 id="Trip-to-Ubuntu"><a href="#Trip-to-Ubuntu" class="headerlink" title="Trip to Ubuntu"></a>Trip to Ubuntu</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几天我在Microsoft Store里发现了Ubuntu，它是运行在Windows上的子系统，第一时间我就开始了Ubuntu的配置探索之旅。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>我在Microsoft Store安装之后，发现它是装在C盘系统盘的，为了节省C盘空间，我采取了转移到非系统盘的方式</p>
 <p>通过安装，我定位到了它的安装路径</p>
-<pre><code>C:\Users\xxxx\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\xxxx\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc</span><br></pre></td></tr></table></figure>
+
 <p>接着，我将它卸载，通过创建软链接来解决这个问题</p>
 <p>先在想要安装的位置创建了Ubuntu文件夹</p>
 <p>然后打开<code>cmd</code>终端，输入</p>
-<pre><code class="bash">mklink /j C:\Users\XXXX\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc  D:\Ubuntu\
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /j C:\Users\XXXX\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc  D:\Ubuntu\</span><br></pre></td></tr></table></figure>
+
 <p>创建成功后，再重新在Microsoft Store中安装Ubuntu</p>
 <p>安装过程中如果出现了安装失败的问题，可以运行</p>
-<pre><code class="bash">icacls D:\Ubuntu /grant &quot;用户名:(OI)(CI)(F)&quot;
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icacls D:\Ubuntu /grant <span class="string">&quot;用户名:(OI)(CI)(F)&quot;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><p>清华源</p>
 <ul>
 <li>网址：<a href="https://link.zhihu.com/?target=https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/</a></li>
 <li>源地址：<a href="https://link.zhihu.com/?target=https://mirrors.tuna.tsinghua.edu.cn/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/ubuntu/</a></li>
 </ul>
-<pre><code># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
-# 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-</code></pre>
 <p>阿里源</p>
 <ul>
 <li>网址：<a href="https://link.zhihu.com/?target=https://opsx.alibaba.com/guide?lang=zh-CN&document=69a2341e-801e-11e8-8b5a-00163e04cdbb">https://opsx.alibaba.com/guide?lang=zh-CN&document=69a2341e-801e-11e8-8b5a-00163e04cdbb</a></li>
 <li>源地址：<a href="https://link.zhihu.com/?target=http://mirrors.aliyun.com/ubuntu/">http://mirrors.aliyun.com/ubuntu/</a></li>
 </ul>
-<pre><code># 默认注释了源码仓库，如有需要可自行取消注释
-deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码仓库，如有需要可自行取消注释</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
-# 预发布软件源，不建议启用
-# deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-</code></pre>
 <p>中科大源</p>
 <ul>
 <li>网址：<a href="https://link.zhihu.com/?target=http://mirrors.ustc.edu.cn/help/ubuntu.html">http://mirrors.ustc.edu.cn/help/ubuntu.html</a></li>
 <li>源地址：<a href="https://link.zhihu.com/?target=https://mirrors.ustc.edu.cn/ubuntu/">https://mirrors.ustc.edu.cn/ubuntu/</a></li>
 </ul>
-<pre><code># 默认注释了源码仓库，如有需要可自行取消注释
-deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse
-deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse
-deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse
-deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码仓库，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
-# 预发布软件源，不建议启用
-# deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse
-</code></pre>
 <p>网易源</p>
 <ul>
 <li>网址：<a href="https://link.zhihu.com/?target=http://mirrors.163.com/.help/ubuntu.html">http://mirrors.163.com/.help/ubuntu.html</a></li>
 <li>源地址：<a href="https://link.zhihu.com/?target=http://mirrors.163.com/">http://mirrors.163.com</a></li>
 </ul>
-<pre><code># 默认注释了源码仓库，如有需要可自行取消注释
-deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
-# deb-src https://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
-# deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
-# deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse
-deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
-# deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 默认注释了源码仓库，如有需要可自行取消注释</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"># deb-src https://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"># 预发布软件源，不建议启用</span><br><span class="line"># deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"># deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
-# 预发布软件源，不建议启用
-# deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
-# deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse
-</code></pre>
 <p>先对系统给的镜像源进行备份，以防止出现问题</p>
-<pre><code class="bash">$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup 
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.backup </span><br></pre></td></tr></table></figure>
+
 <p>然后，修改数据源配置文件</p>
-<pre><code class="bash">$ sudo vim /etc/apt/sources.list
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
 <p>选择一个源添加到文件最前面或直接将官方的源注释掉替换掉原文件</p>
 <p>更新软件源中的所有软件列表：</p>
-<pre><code class="bash">$ sudo apt-get update
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
+
 <p>更新软件：</p>
-<pre><code class="bash">$ sudo apt-get upgrade
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
 <p>更新系统版本：</p>
-<pre><code class="bash">$ sudo apt-get dist-upgrade
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get dist-upgrade</span><br></pre></td></tr></table></figure>
+
 <p>下载中文语言包：</p>
-<pre><code class="bash">$ sudo apt-get install language-pack-zh-han*
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install language-pack-zh-han*</span><br></pre></td></tr></table></figure>
+
 <h4 id="安装-C-x2F-C-开发环境"><a href="#安装-C-x2F-C-开发环境" class="headerlink" title="安装 C&#x2F;C++ 开发环境"></a>安装 C&#x2F;C++ 开发环境</h4><p>安装编译工具包：</p>
-<pre><code class="bash">$ sudo apt-get install build-essential
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+
 <p>安装 nginx 依赖库：</p>
-<pre><code class="bash">$ sudo apt-get install libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g-dev
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libpcre3 libpcre3-dev libpcrecpp0 libssl-dev zlib1g-dev</span><br></pre></td></tr></table></figure>
+
 <h4 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h4><p>首先安装使用VcXsrv Windows X Server</p>
 <p>启动Launcher，首次启动自动进入界面设置后，选择：“one large window”，Display number设置成0，其它默认即可：</p>
 <p><strong>安装桌面环境</strong></p>
-<pre><code class="bash">sudo apt-get install ubuntu-desktop unity compizconfig-settings-manager
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ubuntu-desktop unity compizconfig-settings-manager</span><br></pre></td></tr></table></figure>
+
 <p>启动之前安装的X-Windows，在Bash中执行如下命令：</p>
-<pre><code class="bash">export  DISPLAY=localhost:0
-ccsm
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span>  DISPLAY=localhost:0</span><br><span class="line">ccsm</span><br></pre></td></tr></table></figure>
+
 <p><strong>启动compiz (打开桌面)</strong></p>
-<pre><code class="bash">compiz
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compiz</span><br></pre></td></tr></table></figure>
 
         <!-- 分类文章 -->
         

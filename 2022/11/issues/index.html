@@ -31,7 +31,7 @@
 
     
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0-rc2"></head>
 
 
 <body>
@@ -147,9 +147,8 @@
         
         <h1 id="常见小问题"><a href="#常见小问题" class="headerlink" title="常见小问题"></a>常见小问题</h1><h2 id="终端无法运行脚本"><a href="#终端无法运行脚本" class="headerlink" title="终端无法运行脚本"></a>终端无法运行脚本</h2><p>参考<a target="_blank" rel="noopener" href="https://go.microsoft.com/fwlink/?LinkID=135170">Microsoft文档</a> 中about_Execution_Policies</p>
 <h2 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h2><p>1 Q&amp;E</p>
-<pre><code class="bash">platform unsupported hexo-deployer-git@3.0.0 › hexo-fs@3.1.0 › chokidar@3.5.3 › fsevents@~2.3.2 Package require os(darwin) not compatible with your platform(win32)
-[fsevents@~2.3.2] optional install error: Package require os(darwin) not compatible with your platform(win32)
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">platform unsupported hexo-deployer-git@3.0.0 › hexo-fs@3.1.0 › chokidar@3.5.3 › fsevents@~2.3.2 Package require os(darwin) not compatible with your platform(win32)</span><br><span class="line">[fsevents@~2.3.2] optional install error: Package require os(darwin) not compatible with your platform(win32)</span><br></pre></td></tr></table></figure>
+
 <p>A 这是一个可以忽略的错误，fsevents是可选的依赖，只能应用于maxOS系统，不适合Windows或者Linux，也就是忽略即可</p>
 
         <!-- 分类文章 -->
