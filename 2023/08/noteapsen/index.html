@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>  Notes for SummerSchool Python |    Louisiy.</title>
+  <title>  Note for Aspen |    Louisiy.</title>
   <meta name="description" content="Blog">
   <!-- 标签页图标 -->
   
@@ -134,8 +134,8 @@
 <article class="post-inner">
   <div class="post-content-outer">
     <div class="post-intro">
-      <div class="post-title animate__animated  animate__fadeInUp">Notes for SummerSchool Python</div>
-      <div class="meta-intro animate__animated  animate__fadeInUp">8月 13 2023</div>
+      <div class="post-title animate__animated  animate__fadeInUp">Note for Aspen</div>
+      <div class="meta-intro animate__animated  animate__fadeInUp">8月 14 2023</div>
       
     </div>
     <div class="post-content-inner">
@@ -145,19 +145,104 @@
       <div class="post-content-main animate__animated  animate__fadeInUp">
         <!-- top型目录 -->
         
-        <h2 id="环境前提"><a href="#环境前提" class="headerlink" title="环境前提"></a>环境前提</h2><p>Anaconda是一个用于科学计算的Python发行版，支持Linux，Mac，Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存，切换以及各种第三方包安装问题</p>
-<p>anaconda利用工具&#x2F;命令<code>conda</code>来进行package和environment的管理，并且已经包含了Python和相关的配套工具</p>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Anaconda是一个打包的集合，预装了conda，某个版本的python，很多package，科学计算工具等，称为一个发行版</p>
-<p>conda是一个工具，也是一个可执行命令，核心功能是包管理和环境管理。包管理与pip的使用类似，环境管理则允许用户方便地安装不同版本的python并可以快速切换</p>
-<p>Miniconda是一个简单包，只包含最基本的内容，python和conda，以及相关的必须依赖项</p>
-<h3 id="conda命令"><a href="#conda命令" class="headerlink" title="conda命令"></a>conda命令</h3>
+        <h2 id="化工设计"><a href="#化工设计" class="headerlink" title="化工设计"></a>化工设计</h2><p>化工设计为设计一种流程，将原材料转化为需要的化工产品</p>
+<ul>
+<li>反应设计</li>
+<li>分离混合物</li>
+<li>换热网络</li>
+<li>公用工程</li>
+</ul>
+<h3 id="反应器"><a href="#反应器" class="headerlink" title="反应器"></a>反应器</h3><p>用于实现液相单相反应过程和液液、气液、液固、气液固等多相反应过程</p>
+<ul>
+<li>固定床反应器<ul>
+<li>反应器内装填颗粒状固体催化剂或固体反应物，形成一定高度的堆积床层，气体或液体物料通过颗粒间隙流过静止固定床层的同时，实现非均相反应过程</li>
+</ul>
+</li>
+<li>流化床反应器<ul>
+<li>气体在由固体物料或催化剂构成的沸腾床层内进行化学反应</li>
+</ul>
+</li>
+<li>反应塔<ul>
+<li>反应和精馏同时发生，适用于可逆反应</li>
+</ul>
+</li>
+</ul>
+<h3 id="分离设备"><a href="#分离设备" class="headerlink" title="分离设备"></a>分离设备</h3><p>分离混合物，以提纯需要的组分</p>
+<ul>
+<li>精馏塔<ul>
+<li>塔式气液接触装置。利用混合物中各组分具有不同的挥发度，即在同一温度下各组分的蒸气压不同这一性质，使液相中的轻组分(低沸物)转移到气相中，而气相中的重组分(高沸物)转移到液相中，从而实现分离的目的</li>
+</ul>
+</li>
+<li>分离器<ul>
+<li>利用分子大小或性质的区别，穿过分离模进行分离</li>
+</ul>
+</li>
+<li>膜分离<ul>
+<li>利用相平衡等原理，分离气相和液相的混合物</li>
+</ul>
+</li>
+</ul>
+<h3 id="换热设备"><a href="#换热设备" class="headerlink" title="换热设备"></a>换热设备</h3><p>使热量从热流体传递到冷流体</p>
+<ul>
+<li>管壳式换热器<ul>
+<li>冷流体和热流体在管程和壳程之间进行换热</li>
+</ul>
+</li>
+<li>加热炉<ul>
+<li>利用火焰燃烧辐射热给工艺介质加热</li>
+</ul>
+</li>
+</ul>
+<p>概念设计-&gt;中试设计-&gt;基础设计-&gt;工程设计</p>
+<h2 id="Aspen相关"><a href="#Aspen相关" class="headerlink" title="Aspen相关"></a>Aspen相关</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><ul>
+<li>物性环境(Property Environment) — 全面定义物性所需的所有步骤<ul>
+<li>组分选择和特性描述</li>
+<li>选择物性方法和数据库</li>
+<li>收集实验物性数据，以检查或拟合您的模型</li>
+<li>物性估计／结构绘制</li>
+<li>物性分析</li>
+<li>物性数据回归</li>
+</ul>
+</li>
+<li>模拟环境(Simulation Environment) — 用来构建及运行模型<ul>
+<li>构建及详细规定工艺流程</li>
+<li>创建及运行交互分析（灵敏度／案例研究等）</li>
+<li>根据流程或实验室数据调整模型</li>
+<li>初步设备设计、尺寸估算及校核</li>
+<li>相关成本估计（经济评估）</li>
+</ul>
+</li>
+</ul>
+<h3 id="构建环境"><a href="#构建环境" class="headerlink" title="构建环境"></a>构建环境</h3><ul>
+<li>物性环境：<ul>
+<li>指定流程中的化学组分<ul>
+<li>Aspen Plus 数据库或用户定义</li>
+</ul>
+</li>
+<li>指定热力学模型（物性方法），以体现流程中的物性组分及混合物<ul>
+<li>内置模型或自定义模型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模拟环境：<ul>
+<li>定义工艺流程：</li>
+<li>单元操作和流股连接</li>
+<li>以图形方式从模型选择窗口构建流程与模型</li>
+<li>指定进料流股组分流量和条件</li>
+<li>指定单元操作模型的操作条件及其他参数</li>
+<li>可选操作：如果执行能量与成本分析，则指定工艺的公用工程及成本因素</li>
+</ul>
+</li>
+</ul>
+
         <!-- 分类文章 -->
         
       </div>
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%8E%AF%E5%A2%83%E5%89%8D%E6%8F%90"><span class="space-toc-text">环境前提</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%8C%96%E5%B7%A5%E8%AE%BE%E8%AE%A1"><span class="space-toc-text">化工设计</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#Aspen%E7%9B%B8%E5%85%B3"><span class="space-toc-text">Aspen相关</span></a></li></ol>
            </div>
         
       </div>
