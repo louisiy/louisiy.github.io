@@ -676,7 +676,7 @@
 <p>
         <span class="lazyload-img-span">
         <img   
-           data-src="D:\Personal\inTHU\大一暑期小学期\3.png" >
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/3.png" >
         </sapn>
       </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">functionname</span>(<span class="params"> parameters </span>):</span><br><span class="line">	function_suite</span><br><span class="line">	<span class="keyword">return</span> [expression]</span><br></pre></td></tr></table></figure>
@@ -690,14 +690,240 @@
 <li>不可变类型：变量赋值 a&#x3D;5 后再赋值 a&#x3D;10，这里实际是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，不是改变a的值，相当于新生成了a</li>
 <li>可变类型：变量赋值 la&#x3D;[1,2,3,4] 后再赋值 la[2]&#x3D;5 则是将 list la 的第三个元素值更改，本身la没有动，只是其内部的一部分值被修改了</li>
 </ul>
-<h3 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h3>
+<h3 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h3><p>以下是调用函数时可使用的正式参数类型：</p>
+<ul>
+<li><p>必备参数</p>
+<ul>
+<li>必备参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样</li>
+</ul>
+</li>
+<li><p>关键字参数</p>
+<ul>
+<li><p>关键字参数和函数调用关系紧密，函数调用使用关键字参数来确定传入的参数值。使用关键字参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值</p>
+</li>
+<li><p>&#96;&#96;&#96;python<br>def printinfo(name, age):<br>“打印任何传入的字符串”<br>print(“Name: “, name)<br>print(“Age “, age)<br>return</p>
+<h1 id="调用printinfo函数"><a href="#调用printinfo函数" class="headerlink" title="调用printinfo函数"></a>调用printinfo函数</h1><p>printinfo(age&#x3D;50, name&#x3D;”miki”)</p>
+</li>
+</ul>
+</li>
+<li><p>默认参数</p>
+<ul>
+<li>调用函数时，默认参数的值如果没有传入，则被认为是默认值</li>
+</ul>
+</li>
+<li><p>不定长参数 </p>
+<ul>
+<li>需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述参数不同，声明时不会命名</li>
+</ul>
+</li>
+</ul>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>使用 lambda 来创建匿名函数<br>所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数</p>
+<p>lambda 只是一个表达式，函数体比 def 简单很多。主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> [arg1 [,arg2,.....argn]]:expression</span><br><span class="line"></span><br><span class="line">实例 (设置参数 a 加上 <span class="number">10</span>)</span><br><span class="line">x = <span class="keyword">lambda</span> a : a + <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(x(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可将匿名函数封装在一个函数内，这样可以使用同样的代码来创建多个匿名函数。</p>
+<p>以下实例将匿名函数封装在 myfunc 函数中，通过传入不同的参数来创建不同的匿名函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfunc</span>(<span class="params">n</span>):</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">lambda</span> a: a * n</span><br><span class="line">mydoubler = myfunc(<span class="number">2</span>)</span><br><span class="line">mytripler = myfunc(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(mydoubler(<span class="number">11</span>))</span><br><span class="line"><span class="built_in">print</span>(mytripler(<span class="number">11</span>))</span><br></pre></td></tr></table></figure>
+
+<p>return [表达式] 语句用于退出函数，选择性地向调用方返回一个表达式。不带参数值的 return 语句返回 None</p>
+<h2 id="PYTHON面向对象"><a href="#PYTHON面向对象" class="headerlink" title="PYTHON面向对象"></a>PYTHON面向对象</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ul>
+<li>类(Class)<ul>
+<li>用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例</li>
+</ul>
+</li>
+<li>方法<ul>
+<li>类中定义的函数</li>
+</ul>
+</li>
+<li>类变量<ul>
+<li>类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用</li>
+</ul>
+</li>
+<li>数据成员<ul>
+<li>类变量或者实例变量用于处理类及其实例对象的相关的数据</li>
+</ul>
+</li>
+<li>方法重写<ul>
+<li>如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写</li>
+</ul>
+</li>
+<li>局部变量<ul>
+<li>定义在方法中的变量，只作用于当前实例的类</li>
+</ul>
+</li>
+<li>实例变量<ul>
+<li>在类的声明中，属性是用变量来表示的，这种变量就称为实例变量，实例变量就是一个用 self修饰的变量</li>
+</ul>
+</li>
+<li>继承<ul>
+<li>即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待</li>
+</ul>
+</li>
+<li>实例化<ul>
+<li>创建一个类的实例，类的具体对象</li>
+</ul>
+</li>
+<li>对象<ul>
+<li>通过类定义的数据结构实例。对象包括两个数据成员（类变量和实例变量）和方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h3><p>类对象支持两种操作：属性引用和实例化</p>
+<p>属性引用使用和 Python 中所有的属性引用一样的标准语法：obj.name</p>
+<p>类对象创建后，类命名空间中所有的命名都是有效属性名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ClassName</span></span><br><span class="line">	&lt;statement-<span class="number">1</span>&gt;</span><br><span class="line">    &lt;statement-N&gt;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span>:</span><br><span class="line"><span class="string">&quot;&quot;&quot;一个简单的类实例&quot;&quot;&quot;</span></span><br><span class="line">	i = <span class="number">12345</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">self</span>):</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="comment"># 实例化类</span></span><br><span class="line">x = MyClass()</span><br><span class="line"><span class="comment"># 访问类的属性和方法</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;MyClass 类的属性 i 为：&quot;</span>, x.i)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;MyClass 类的方法 f 输出为：&quot;</span>, x.f())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># MyClass 类的属性 i 为： 12345</span></span><br><span class="line"><span class="comment"># MyClass 类的方法 f 输出为： hello world</span></span><br></pre></td></tr></table></figure>
+
+<p>类有一个名为 _<em>init</em>_() 的特殊方法（构造方法），该方法在类实例化时会自动调用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">	self.data = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">people</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,age</span>):</span><br><span class="line">		self.name=name</span><br><span class="line">		self.age=age</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">		<span class="keyword">return</span> ‘这个人的名字是%s,已经有%d岁了！’%(self.name,self.age)</span><br><span class="line"></span><br><span class="line">a = people(“孙悟空<span class="string">&quot;,999)</span></span><br><span class="line"><span class="string">print(a)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">           </span></span><br><span class="line"><span class="string">class Complex:</span></span><br><span class="line"><span class="string">	def __init__(self, realpart, imagpart):</span></span><br><span class="line"><span class="string">		self.r = realpart</span></span><br><span class="line"><span class="string">		self.i = imagpart</span></span><br><span class="line"><span class="string">x = Complex(3.0, -4.5)</span></span><br><span class="line"><span class="string">print(x.r, x.i)           	</span></span><br></pre></td></tr></table></figure>
+
+<p>类的方法与普通的函数只有一个特别的区别——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self</p>
+<p>self代表的是类的实例，代表当前对象的地址，而self.class则指向类</p>
+<h3 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h3><p>子类（派生类 DerivedClassName）会继承父类（基类 BaseClassName）的属性和方法。</p>
+<p>BaseClassName（实例中的基类名）必须与派生类定义在一个作用域内</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/usr/bin/python3</span></span><br><span class="line"><span class="comment"># 类定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">people</span>:</span><br><span class="line">	<span class="comment"># 定义基本属性</span></span><br><span class="line">	name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">	age = <span class="number">0</span></span><br><span class="line">	<span class="comment"># 定义私有属性,私有属性在类外部无法直接进行访问</span></span><br><span class="line">	__weight = <span class="number">0</span></span><br><span class="line">	<span class="comment"># 定义构造方法</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n, a, w</span>):</span><br><span class="line">		self.name = n</span><br><span class="line">		self.age = a</span><br><span class="line">		self.__weight = w</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;%s 说: 我 %d 岁。&quot;</span> % (self.name, self.age))</span><br><span class="line">        </span><br><span class="line"><span class="comment"># 单继承示例</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">student</span>(<span class="title class_ inherited__">people</span>):</span><br><span class="line">	grade = <span class="string">&#x27;&#x27;</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n, a, w, g</span>):</span><br><span class="line">	<span class="comment"># 调用父类的构函</span></span><br><span class="line">		people.__init__(self, n, a, w)</span><br><span class="line">	self.grade = g</span><br><span class="line">	<span class="comment"># 覆写父类的方法</span></span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;%s 说: 我 %d 岁了，我在读 %d 年级&quot;</span> %(self.name, self.age, self.grade))</span><br><span class="line"></span><br><span class="line">s = student(<span class="string">&#x27;ken&#x27;</span>, <span class="number">10</span>, <span class="number">60</span>, <span class="number">3</span>)</span><br><span class="line">s.speak()</span><br></pre></td></tr></table></figure>
+
+<h3 id="类的属性与方法"><a href="#类的属性与方法" class="headerlink" title="类的属性与方法"></a>类的属性与方法</h3><h4 id="类的私有属性"><a href="#类的私有属性" class="headerlink" title="类的私有属性"></a>类的私有属性</h4><p>__private_attrs：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 self.__private_attrs</p>
+<h4 id="类的私有方法"><a href="#类的私有方法" class="headerlink" title="类的私有方法"></a>类的私有方法</h4><p>__init__ : 构造函数，在生成对象时调用<br>__del__ : 析构函数，释放对象时使用<br>__repr__ : 打印，转换<br>__setitem__ : 按照索引赋值<br>__getitem__: 按照索引获取值<br>__len__: 获得长度<br>__cmp__: 比较运算<br>__call__: 函数调用<br>__add__: 加运算<br>__sub__: 减运算<br>__mul__: 乘运算<br>__truediv__: 除运算<br>__mod__: 求余运算<br>__pow__: 乘方</p>
+<h4 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vector</span>:</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">		self.a = a</span><br><span class="line">		self.b = b</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&#x27;Vector (%d, %d)&#x27;</span> % (self.a, self.b)</span><br><span class="line">	<span class="keyword">def</span> <span class="title function_">__add__</span>(<span class="params">self, other</span>):</span><br><span class="line">		<span class="keyword">return</span> Vector(self.a + other.a, self.b + other.b)</span><br><span class="line"></span><br><span class="line">v1 = Vector(<span class="number">2</span>, <span class="number">10</span>)</span><br><span class="line">v2 = Vector(<span class="number">5</span>, -<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(v1 + v2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="W1-补充"><a href="#W1-补充" class="headerlink" title="W1 补充"></a>W1 补充</h2><h3 id="随机数生成"><a href="#随机数生成" class="headerlink" title="随机数生成"></a>随机数生成</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">random.randint(a,b)</span><br><span class="line"><span class="comment">#函数返回数字 N ，N 为 a 到 b 之间的数字（a &lt;= N &lt;= b），包含 a 和 b</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="列表头尾元素对调"><a href="#列表头尾元素对调" class="headerlink" title="列表头尾元素对调"></a>列表头尾元素对调</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">swapList</span>(<span class="params">newList</span>):</span><br><span class="line">    newList[<span class="number">0</span>], newList[-<span class="number">1</span>] = newList[-<span class="number">1</span>], newList[<span class="number">0</span>] <span class="comment">#同时赋值，分别用原值</span></span><br><span class="line">    <span class="keyword">return</span> newList</span><br><span class="line"></span><br><span class="line">newList = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(swapList(newList))</span><br></pre></td></tr></table></figure>
+
+<h3 id="日历-日期"><a href="#日历-日期" class="headerlink" title="日历\日期"></a>日历\日期</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引入日历模块</span></span><br><span class="line"><span class="keyword">import</span> calendar </span><br><span class="line"><span class="comment"># 输入指定年月 </span></span><br><span class="line">yy = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;输入年份: &quot;</span>)) </span><br><span class="line">mm = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;输入月份: &quot;</span>)) </span><br><span class="line"><span class="comment"># 显示日历 print(calendar.month(yy,mm))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getYesterday</span>(): </span><br><span class="line">	yesterday = datetime.date.today() + datetime.timedelta(-<span class="number">1</span>) </span><br><span class="line">	<span class="keyword">return</span> yesterday </span><br><span class="line"><span class="comment"># 输出 </span></span><br><span class="line"><span class="built_in">print</span>(getYesterday()) </span><br></pre></td></tr></table></figure>
+
+<h3 id="秒表"><a href="#秒表" class="headerlink" title="秒表"></a>秒表</h3><p>主要是用了try-except的组合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time </span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;按下回车开始计时，按下 Ctrl + C 停止计时&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>: </span><br><span class="line">	<span class="built_in">input</span>(<span class="string">&quot;&quot;</span>) </span><br><span class="line">	starttime = time.time() </span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;开始&#x27;</span>) </span><br><span class="line">	<span class="keyword">try</span>: </span><br><span class="line">		<span class="keyword">while</span> <span class="literal">True</span>: </span><br><span class="line">			<span class="built_in">print</span>(<span class="string">&#x27;计时: &#x27;</span>, <span class="built_in">round</span>(time.time() - starttime, <span class="number">0</span>), <span class="string">&#x27;秒&#x27;</span>, end=<span class="string">&quot;\r&quot;</span>) </span><br><span class="line">			time.sleep(<span class="number">1</span>) </span><br><span class="line">	<span class="keyword">except</span> KeyboardInterrupt: </span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&#x27;结束&#x27;</span>) </span><br><span class="line">		endtime = time.time() </span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&#x27;总共的时间为:&#x27;</span>, <span class="built_in">round</span>(endtime - starttime, <span class="number">2</span>), <span class="string">&#x27;secs&#x27;</span>) </span><br><span class="line">		<span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="科学计算"><a href="#科学计算" class="headerlink" title="科学计算"></a>科学计算</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p><strong>NumPy</strong> (Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与<br>矩阵运算，此外也针对数组运算提供大量的数学函数库</p>
+<p>NumPy 通常与 SciPy（Scientific Python）和 Matplotlib（绘图库）一起使用， 这种组合<br>广泛用于替代 Matlab，是一个强大的科学计算环境，有助于我们通过 Python 学习数据科<br>学或者机器学习</p>
+<p><strong>SciPy</strong> 是一个开源的 Python 算法库和数学工具包。SciPy 包含的模块有最优化、线性代数、<br>积分、插值、特殊函数、快速傅里叶变换、信号处理和图像处理、常微分方程求解和其他科<br>学与工程中常用的计算</p>
+<p><strong>Matplotlib</strong> 是 Python 编程语言及其数值数学扩展包 NumPy 的可视化操作界面。它为利<br>用通用的图形用户界面工具包，如 Tkinter, wxPython, Qt 或 GTK+ 向应用程序嵌入式绘图<br>提供了应用程序接口（API）</p>
+<h3 id="NUMPY"><a href="#NUMPY" class="headerlink" title="NUMPY"></a>NUMPY</h3><p><a target="_blank" rel="noopener" href="https://www.numpy.org.cn/">https://www.numpy.org.cn/</a></p>
+<p>NumPy 最重要的一个特点是其 N 维数组对象 ndarray，它是一系列同类型数据的集合，以 0 下标为开始进行集合中元素的索引</p>
+<p>ndarray 对象是用于存放同类型元素的多维数组。ndarray 中的每个元素在内存中都有相同存储大小的区域。ndarray 内部由以下内容组成：</p>
+<ul>
+<li>一个指向数据（内存或内存映射文件中的一块数据）的指针</li>
+<li>数据类型或 dtype，描述在数组中的固定大小值的格子</li>
+<li>一个表示数组形状（shape）的元组，表示各维度大小的元组 </li>
+<li>一个跨度元组（stride），其中的整数指的是为了前进到当前维度下一个元素需要”跨过”的字节数</li>
+</ul>
+<p>ndarray 的内部结构: </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/4.png" >
+        </sapn>
+      </p>
+<h4 id="数组类"><a href="#数组类" class="headerlink" title="数组类"></a>数组类</h4><p>NumPy的数组类被调用ndarray。它也被别名所知 array。请注意，numpy.array这与标准Python库类不同array.array，后者只处理一维数组并提供较少的功能。ndarray对象更重要的属性是：</p>
+<ul>
+<li>ndarray.ndim - 数组的轴（维度）的个数。在Python世界中，维度的数量被称为rank</li>
+<li>ndarray.shape - 数组的维度。这是一个整数的元组，表示每个维度中数组的大小。对于有 n 行和 m 列的矩阵，shape 将是 (n,m)。因此，shape 元组的长度就是rank或维度的个数 ndim</li>
+<li>ndarray.size - 数组元素的总数。这等于 shape 的元素的乘积</li>
+<li>ndarray.dtype - 一个描述数组中元素类型的对象。可以使用标准的Python类型创建或指定dtype。另外NumPy提供它自己的类型。例如numpy.int32、numpy.int16和numpy.float64</li>
+<li>ndarray.itemsize - 数组中每个元素的字节大小。例如，元素为 float64 类型的数组的 itemsize 为8（&#x3D;64&#x2F;8），而 complex32 类型的数组的 itemsize 为4（&#x3D;32&#x2F;8）。它等于 ndarray.dtype.itemsize</li>
+</ul>
+<h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.arry(<span class="built_in">object</span>, dtype = <span class="literal">None</span>, copy = <span class="literal">True</span>, order = <span class="literal">None</span>, subok = <span class="literal">False</span>, ndmin = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>object</td>
+<td>数组或嵌套的数列</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>数组元素的数据类型，可选</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>对象是否需要复制，可选</td>
+</tr>
+<tr>
+<td>order</td>
+<td>创建数组的样式，C为行方向，F为列方向，A为任意方向（默认）</td>
+</tr>
+<tr>
+<td>subok</td>
+<td>默认返回一个与基类类型一致的数组</td>
+</tr>
+<tr>
+<td>ndmin</td>
+<td>指定生成数组的最小维度</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">b = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+
+<p>可以使用array函数从常规Python列表或元组中创建数组。得到的数组的类型是从Python列表中元素的类型推导出来的</p>
+<p>array 还可以将序列的序列转换成二维数组、三维数组等，也可以在创建时显式指定数组的类型</p>
+<p>通常，数组的元素最初是未知的，但它的大小是已知的。因此，NumPy提供了几个函数来创建具有初始占位符内容的数组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成3行4列零矩阵</span></span><br><span class="line">np.zero((<span class="number">3</span>,<span class="number">4</span>)) </span><br><span class="line"><span class="comment">#生成3维元素全为1的矩阵</span></span><br><span class="line">np.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>),dtype = np.int16) </span><br><span class="line"><span class="comment">#初始内容是随机的，取决于内存的状态。默认情况下，创建的数组的dtype是 float64 类型的</span></span><br><span class="line">np.empty((<span class="number">2</span>,<span class="number">3</span>)) </span><br></pre></td></tr></table></figure>
+
+<p>为了创建数字组成的数组，NumPy提供了一个类似于range的函数，该函数返回数组而不是列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange(<span class="number">10</span>,<span class="number">30</span>,<span class="number">5</span>)</span><br><span class="line">array([<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">25</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange(<span class="number">0</span>,<span class="number">2</span>,<span class="number">0.3</span>)</span><br><span class="line">array([<span class="number">0.</span> ,<span class="number">0.3</span> ,<span class="number">0.6</span> ,<span class="number">0.9</span> , <span class="number">1.2</span>, <span class="number">1.5</span>, <span class="number">1.8</span>])</span><br></pre></td></tr></table></figure>
+
+<p>当arange与浮点参数一起使用时，由于有限的浮点精度，通常不可能预测所获得的元素的数量。出于这个原因，通常最好使用linspace函数来接收我们想要的元素数量的函数，而不是步长（step）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> numpy <span class="keyword">import</span> pi</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.linspace(<span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span>)</span><br><span class="line">array([<span class="number">0</span>, <span class="number">0.25</span>, <span class="number">0.5</span>, <span class="number">0.75</span>, <span class="number">1.</span> ,<span class="number">1.25</span> ,<span class="number">1.5</span>, <span class="number">1.75</span>, <span class="number">2.</span>])</span><br><span class="line">&gt;&gt;&gt;x = np.linspace(<span class="number">0</span>, <span class="number">2</span>*pi, <span class="number">100</span>)</span><br><span class="line">&gt;&gt;&gt;f = np.sin(x)</span><br></pre></td></tr></table></figure>
+
+<h4 id="索引、切片"><a href="#索引、切片" class="headerlink" title="索引、切片"></a>索引、切片</h4><p>一维的数组可以进行索引、切片和迭代操作的，就像列表和其他Python序列类型一样</p>
+<p>多维的数组每个轴可以有一个索引。这些索引以逗号分隔的元组给出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b[<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b[<span class="number">0</span>:<span class="number">5</span>, <span class="number">1</span>]	<span class="comment"># each row in the second column of b</span></span><br><span class="line">b[ : ,<span class="number">1</span>]	<span class="comment"># equivalent to the previous example</span></span><br><span class="line">b[<span class="number">1</span>:<span class="number">3</span>, :]	<span class="comment"># each column in the second an third row of b</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>对多维数组进行 迭代（Iterating） 是相对于第一个轴完成的</p>
+<p>如果想要对数组中的每个元素执行操作，可以使用flat属性，该属性是数组的所有元素的迭代</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> b:</span><br><span class="line">    <span class="built_in">print</span>(row)</span><br><span class="line"><span class="keyword">for</span> element <span class="keyword">in</span> b.flat:</span><br><span class="line">    <span class="built_in">print</span>(element)</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>不附表</p>
+<h4 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h4><p>NumPy提供熟悉的数学函数，例如sin，cos和exp。在NumPy中，这些被称为“通函数”（ufunc）。在NumPy中，这些函数在数组上按元素进行运算，产生一个数组作为输出</p>
+<blockquote>
+<p>舍入函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numpy.around() <span class="comment"># 函数返回指定数字的四舍五入值。</span></span><br><span class="line">numpy.around(a,decimals)</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：<br>•a: 数组<br>•decimals: 舍入的小数位数。 默认值为0。 如果为负，整数将四舍五入到小数点左侧的位置</p>
+</blockquote>
+<h4 id="算数函数"><a href="#算数函数" class="headerlink" title="算数函数"></a>算数函数</h4><p>NumPy 算术函数包含简单的加减乘除: <code>add()</code>，<code>subtract()</code>，<code>multiply() </code>和 <code>divide()</code>。需要注意的是数组必须具有相同的形状或符合数组广播规则</p>
+<p>numpy.reciprocal() 函数返回参数逐元素的倒数。如 1&#x2F;4 倒数为 4&#x2F;1</p>
+<h4 id="矩阵运算"><a href="#矩阵运算" class="headerlink" title="矩阵运算"></a>矩阵运算</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">a = np.array([[<span class="number">1.0</span>,<span class="number">2.0</span>],[<span class="number">3.0</span>,<span class="number">4.0</span>]])</span><br><span class="line">u = np.eye(<span class="number">2</span>) <span class="comment"># unit 2x2 matrix; &quot;eye&quot; represents &quot;I&quot;</span></span><br><span class="line">j = np.array([[<span class="number">0.0</span>,-<span class="number">1.0</span>],[<span class="number">1.0</span>,<span class="number">0.0</span>]])</span><br><span class="line">y = np.array([[<span class="number">5.</span>],[<span class="number">7.</span>]])</span><br><span class="line"></span><br><span class="line">a.transpose() <span class="comment"># 转置</span></span><br><span class="line">np.linalg.inv(a) <span class="comment"># 求逆</span></span><br><span class="line">np.trace(a) <span class="comment"># 迹</span></span><br><span class="line">np.linalg.solve(a,y) <span class="comment"># 解矩阵方程</span></span><br><span class="line">np.linage.eig(j) <span class="comment"># 特征值和右特征向量</span></span><br></pre></td></tr></table></figure>
+
+<p>与许多矩阵语言不同，乘积运算符*在NumPy数组中按元素进行运算。矩阵乘积可以使用@运算符（在python&gt; &#x3D; 3.5中）或dot函数或方法执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A = np.array([[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">B = np.array([[<span class="number">2</span>,<span class="number">0</span>],[<span class="number">3</span>,<span class="number">4</span>]])</span><br><span class="line"></span><br><span class="line">A * B <span class="comment"># elementwise product</span></span><br><span class="line">A @ B <span class="comment"># matrix product</span></span><br><span class="line">A.dot(B) <span class="comment"># another matrix product</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Broadcast-广播"><a href="#Broadcast-广播" class="headerlink" title="Broadcast 广播"></a>Broadcast 广播</h4><p>广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行</p>
+<p>如果两个数组 a 和 b 形状相同，即满足 a.shape &#x3D;&#x3D; b.shape，那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同</p>
+<p>4x3 的二维数组与长为 3 的一维数组相加，等效于把数组 b 在二维上重复 4 次再运算</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/5.png" >
+        </sapn>
+      </p>
+<p>广播的规则:</p>
+<ul>
+<li>让所有输入数组都向其中形状最长的数组看齐，形状中不足的部分都通过在前面加 1 补齐</li>
+<li>输出数组的形状是输入数组形状的各个维度上的最大值</li>
+<li>如果输入数组的某个维度和输出数组的对应维度的长度相同或者其长度为 1 时，这个数组能够用来计算，否则出错</li>
+<li>当输入数组的某个维度的长度为 1 时，沿着此维度运算时都用此维度上的第一组值</li>
+</ul>
+<p>简单理解：对两个数组，分别比较他们的每一个维度（若其中一个数组没有当前维度则忽略），满足：</p>
+<ul>
+<li>数组拥有相同形状</li>
+<li>当前维度的值相等</li>
+<li>当前维度的值有一个是 1</li>
+</ul>
+<p>若条件不满足，抛出 “ValueError: frames are not aligned” 异常</p>
+
         <!-- 分类文章 -->
         
       </div>
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%8E%AF%E5%A2%83%E5%89%8D%E6%8F%90"><span class="space-toc-text">环境前提</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="space-toc-text">基础语法</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="space-toc-text">运算符</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="space-toc-text">程序控制结构</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%87%BD%E6%95%B0"><span class="space-toc-text">函数</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%8E%AF%E5%A2%83%E5%89%8D%E6%8F%90"><span class="space-toc-text">环境前提</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="space-toc-text">基础语法</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="space-toc-text">运算符</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="space-toc-text">程序控制结构</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%87%BD%E6%95%B0"><span class="space-toc-text">函数</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#PYTHON%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="space-toc-text">PYTHON面向对象</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#W1-%E8%A1%A5%E5%85%85"><span class="space-toc-text">W1 补充</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97"><span class="space-toc-text">科学计算</span></a></li></ol>
            </div>
         
       </div>
