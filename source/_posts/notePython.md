@@ -449,7 +449,7 @@ list(range(5))
 - 函数内容以冒号起始，并且缩进
 - return [表达式] 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回 None
 
-![image-20230816092934029](D:\Personal\inTHU\大一暑期小学期\3.png)
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/3.png)
 
 ```python
 def functionname( parameters ):
@@ -475,3 +475,486 @@ a = "Tsinghua"
 
 ### 参数类型
 
+以下是调用函数时可使用的正式参数类型：
+
+- 必备参数
+
+  - 必备参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样
+
+- 关键字参数
+
+  - 关键字参数和函数调用关系紧密，函数调用使用关键字参数来确定传入的参数值。使用关键字参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值
+
+  - ```python
+    def printinfo(name, age):
+    	"打印任何传入的字符串"
+    	print("Name: ", name)
+    	print("Age ", age)
+    	return
+    # 调用printinfo函数
+    printinfo(age=50, name="miki")
+
+- 默认参数
+
+  - 调用函数时，默认参数的值如果没有传入，则被认为是默认值
+
+- 不定长参数 
+
+  - 需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述参数不同，声明时不会命名
+
+### 匿名函数
+
+使用 lambda 来创建匿名函数
+所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数
+
+lambda 只是一个表达式，函数体比 def 简单很多。主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数
+
+```python
+lambda [arg1 [,arg2,.....argn]]:expression
+
+实例 (设置参数 a 加上 10)
+x = lambda a : a + 10
+print(x(5))
+```
+
+可将匿名函数封装在一个函数内，这样可以使用同样的代码来创建多个匿名函数。
+
+以下实例将匿名函数封装在 myfunc 函数中，通过传入不同的参数来创建不同的匿名函数
+
+```python
+def myfunc(n):
+	return lambda a: a * n
+mydoubler = myfunc(2)
+mytripler = myfunc(3)
+print(mydoubler(11))
+print(mytripler(11))
+```
+
+return [表达式] 语句用于退出函数，选择性地向调用方返回一个表达式。不带参数值的 return 语句返回 None
+
+## PYTHON面向对象
+
+### 基础概念
+
+- 类(Class)
+  - 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例
+- 方法
+  - 类中定义的函数 
+- 类变量
+  - 类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用
+- 数据成员
+  - 类变量或者实例变量用于处理类及其实例对象的相关的数据
+- 方法重写
+  - 如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写
+- 局部变量
+  - 定义在方法中的变量，只作用于当前实例的类
+- 实例变量
+  - 在类的声明中，属性是用变量来表示的，这种变量就称为实例变量，实例变量就是一个用 self修饰的变量
+- 继承
+  - 即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待
+- 实例化
+  - 创建一个类的实例，类的具体对象
+- 对象
+  - 通过类定义的数据结构实例。对象包括两个数据成员（类变量和实例变量）和方法
+
+### 类对象
+
+类对象支持两种操作：属性引用和实例化
+
+属性引用使用和 Python 中所有的属性引用一样的标准语法：obj.name
+
+类对象创建后，类命名空间中所有的命名都是有效属性名
+
+```python
+class ClassName
+	<statement-1>
+    <statement-N>
+    
+class MyClass:
+"""一个简单的类实例"""
+	i = 12345
+	def f(self):
+		return 'hello world'
+# 实例化类
+x = MyClass()
+# 访问类的属性和方法
+print("MyClass 类的属性 i 为：", x.i)
+print("MyClass 类的方法 f 输出为：", x.f())
+
+
+# MyClass 类的属性 i 为： 12345
+# MyClass 类的方法 f 输出为： hello world
+```
+
+类有一个名为 \__init__() 的特殊方法（构造方法），该方法在类实例化时会自动调用
+
+```python
+def __init__(self):
+	self.data = []
+
+class people:
+	def __init__(self,name,age):
+		self.name=name
+		self.age=age
+	def __str__(self):
+		return ‘这个人的名字是%s,已经有%d岁了！’%(self.name,self.age)
+
+a = people(“孙悟空",999)
+print(a)
+
+           
+class Complex:
+	def __init__(self, realpart, imagpart):
+		self.r = realpart
+		self.i = imagpart
+x = Complex(3.0, -4.5)
+print(x.r, x.i)           	
+```
+
+类的方法与普通的函数只有一个特别的区别——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self
+
+self代表的是类的实例，代表当前对象的地址，而self.class则指向类
+
+### 类的继承
+
+子类（派生类 DerivedClassName）会继承父类（基类 BaseClassName）的属性和方法。
+
+BaseClassName（实例中的基类名）必须与派生类定义在一个作用域内
+
+```python
+# !/usr/bin/python3
+# 类定义
+class people:
+	# 定义基本属性
+	name = ''
+	age = 0
+	# 定义私有属性,私有属性在类外部无法直接进行访问
+	__weight = 0
+	# 定义构造方法
+	def __init__(self, n, a, w):
+		self.name = n
+		self.age = a
+		self.__weight = w
+	def speak(self):
+		print("%s 说: 我 %d 岁。" % (self.name, self.age))
+        
+# 单继承示例
+class student(people):
+	grade = ''
+	def __init__(self, n, a, w, g):
+	# 调用父类的构函
+		people.__init__(self, n, a, w)
+	self.grade = g
+	# 覆写父类的方法
+	def speak(self):
+		print("%s 说: 我 %d 岁了，我在读 %d 年级" %(self.name, self.age, self.grade))
+
+s = student('ken', 10, 60, 3)
+s.speak()
+```
+
+### 类的属性与方法
+
+#### 类的私有属性
+
+\__private_attrs：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 self.__private_attrs
+
+#### 类的私有方法
+
+\_\_init__ : 构造函数，在生成对象时调用
+\_\_del__ : 析构函数，释放对象时使用
+\_\_repr__ : 打印，转换
+\_\_setitem__ : 按照索引赋值
+\_\_getitem\_\_: 按照索引获取值
+\_\_len\_\_: 获得长度
+\_\_cmp\_\_: 比较运算
+\_\_call\_\_: 函数调用
+\_\_add\_\_: 加运算
+\_\_sub\_\_: 减运算
+\_\_mul\_\_: 乘运算
+\_\_truediv\_\_: 除运算
+\_\_mod\_\_: 求余运算
+\_\_pow\_\_: 乘方
+
+#### 运算符重载
+
+```python
+class Vector:
+	def __init__(self, a, b):
+		self.a = a
+		self.b = b
+	def __str__(self):
+		return 'Vector (%d, %d)' % (self.a, self.b)
+	def __add__(self, other):
+		return Vector(self.a + other.a, self.b + other.b)
+
+v1 = Vector(2, 10)
+v2 = Vector(5, -2)
+print(v1 + v2)
+```
+
+## W1 补充
+
+### 随机数生成
+
+```python
+import random
+random.randint(a,b)
+#函数返回数字 N ，N 为 a 到 b 之间的数字（a <= N <= b），包含 a 和 b
+```
+
+### 列表头尾元素对调
+
+```python
+def swapList(newList):
+    newList[0], newList[-1] = newList[-1], newList[0] #同时赋值，分别用原值
+    return newList
+
+newList = [1, 2, 3]
+print(swapList(newList))
+```
+
+### 日历\日期
+
+```python
+# 引入日历模块
+import calendar 
+# 输入指定年月 
+yy = int(input("输入年份: ")) 
+mm = int(input("输入月份: ")) 
+# 显示日历 print(calendar.month(yy,mm))
+
+
+import datetime 
+def getYesterday(): 
+	yesterday = datetime.date.today() + datetime.timedelta(-1) 
+	return yesterday 
+# 输出 
+print(getYesterday()) 
+```
+
+### 秒表
+
+主要是用了try-except的组合
+
+```python
+import time 
+print('按下回车开始计时，按下 Ctrl + C 停止计时')
+while True: 
+	input("") 
+	starttime = time.time() 
+	print('开始') 
+	try: 
+		while True: 
+			print('计时: ', round(time.time() - starttime, 0), '秒', end="\r") 
+			time.sleep(1) 
+	except KeyboardInterrupt: 
+		print('结束') 
+		endtime = time.time() 
+		print('总共的时间为:', round(endtime - starttime, 2), 'secs') 
+		break
+```
+
+## 科学计算
+
+### 环境
+
+**NumPy** (Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与
+矩阵运算，此外也针对数组运算提供大量的数学函数库
+
+NumPy 通常与 SciPy（Scientific Python）和 Matplotlib（绘图库）一起使用， 这种组合
+广泛用于替代 Matlab，是一个强大的科学计算环境，有助于我们通过 Python 学习数据科
+学或者机器学习
+
+**SciPy** 是一个开源的 Python 算法库和数学工具包。SciPy 包含的模块有最优化、线性代数、
+积分、插值、特殊函数、快速傅里叶变换、信号处理和图像处理、常微分方程求解和其他科
+学与工程中常用的计算
+
+**Matplotlib** 是 Python 编程语言及其数值数学扩展包 NumPy 的可视化操作界面。它为利
+用通用的图形用户界面工具包，如 Tkinter, wxPython, Qt 或 GTK+ 向应用程序嵌入式绘图
+提供了应用程序接口（API）
+
+### NUMPY
+
+https://www.numpy.org.cn/
+
+NumPy 最重要的一个特点是其 N 维数组对象 ndarray，它是一系列同类型数据的集合，以 0 下标为开始进行集合中元素的索引
+
+ndarray 对象是用于存放同类型元素的多维数组。ndarray 中的每个元素在内存中都有相同存储大小的区域。ndarray 内部由以下内容组成：
+
+- 一个指向数据（内存或内存映射文件中的一块数据）的指针
+- 数据类型或 dtype，描述在数组中的固定大小值的格子
+- 一个表示数组形状（shape）的元组，表示各维度大小的元组 
+- 一个跨度元组（stride），其中的整数指的是为了前进到当前维度下一个元素需要"跨过"的字节数
+
+ndarray 的内部结构: 
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/4.png)
+
+#### 数组类
+
+NumPy的数组类被调用ndarray。它也被别名所知 array。请注意，numpy.array这与标准Python库类不同array.array，后者只处理一维数组并提供较少的功能。ndarray对象更重要的属性是：
+
+- ndarray.ndim - 数组的轴（维度）的个数。在Python世界中，维度的数量被称为rank
+- ndarray.shape - 数组的维度。这是一个整数的元组，表示每个维度中数组的大小。对于有 n 行和 m 列的矩阵，shape 将是 (n,m)。因此，shape 元组的长度就是rank或维度的个数 ndim
+- ndarray.size - 数组元素的总数。这等于 shape 的元素的乘积
+- ndarray.dtype - 一个描述数组中元素类型的对象。可以使用标准的Python类型创建或指定dtype。另外NumPy提供它自己的类型。例如numpy.int32、numpy.int16和numpy.float64
+- ndarray.itemsize - 数组中每个元素的字节大小。例如，元素为 float64 类型的数组的 itemsize 为8（=64/8），而 complex32 类型的数组的 itemsize 为4（=32/8）。它等于 ndarray.dtype.itemsize 
+
+#### 创建
+
+```python
+numpy.arry(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)
+```
+
+| 名称   | 描述                                                      |
+| ------ | --------------------------------------------------------- |
+| object | 数组或嵌套的数列                                          |
+| dtype  | 数组元素的数据类型，可选                                  |
+| copy   | 对象是否需要复制，可选                                    |
+| order  | 创建数组的样式，C为行方向，F为列方向，A为任意方向（默认） |
+| subok  | 默认返回一个与基类类型一致的数组                          |
+| ndmin  | 指定生成数组的最小维度                                    |
+
+```python
+import numpy as np
+a = np.array([1,2,3])
+b = np.array([[1,2],[3,4]])
+```
+
+可以使用array函数从常规Python列表或元组中创建数组。得到的数组的类型是从Python列表中元素的类型推导出来的
+
+array 还可以将序列的序列转换成二维数组、三维数组等，也可以在创建时显式指定数组的类型
+
+通常，数组的元素最初是未知的，但它的大小是已知的。因此，NumPy提供了几个函数来创建具有初始占位符内容的数组
+
+```python
+#生成3行4列零矩阵
+np.zero((3,4)) 
+#生成3维元素全为1的矩阵
+np.ones((2,3,4),dtype = np.int16) 
+#初始内容是随机的，取决于内存的状态。默认情况下，创建的数组的dtype是 float64 类型的
+np.empty((2,3)) 
+```
+
+为了创建数字组成的数组，NumPy提供了一个类似于range的函数，该函数返回数组而不是列表
+
+```python
+>>> np.arange(10,30,5)
+array([10,15,20,25])
+>>> np.arange(0,2,0.3)
+array([0. ,0.3 ,0.6 ,0.9 , 1.2, 1.5, 1.8])
+```
+
+当arange与浮点参数一起使用时，由于有限的浮点精度，通常不可能预测所获得的元素的数量。出于这个原因，通常最好使用linspace函数来接收我们想要的元素数量的函数，而不是步长（step）
+
+```python
+>>> from numpy import pi
+>>> np.linspace(0, 2, 9)
+array([0, 0.25, 0.5, 0.75, 1. ,1.25 ,1.5, 1.75, 2.])
+>>>x = np.linspace(0, 2*pi, 100)
+>>>f = np.sin(x)
+```
+
+#### 索引、切片
+
+一维的数组可以进行索引、切片和迭代操作的，就像列表和其他Python序列类型一样
+
+多维的数组每个轴可以有一个索引。这些索引以逗号分隔的元组给出
+
+```python
+b[2,3]
+b[0:5, 1]	# each row in the second column of b
+b[ : ,1]	# equivalent to the previous example
+b[1:3, :]	# each column in the second an third row of b
+```
+
+#### 迭代
+
+对多维数组进行 迭代（Iterating） 是相对于第一个轴完成的
+
+如果想要对数组中的每个元素执行操作，可以使用flat属性，该属性是数组的所有元素的迭代
+
+```python
+for row in b:
+    print(row)
+for element in b.flat:
+    print(element)
+```
+
+#### 数据类型
+
+不附表
+
+#### 数学函数
+
+NumPy提供熟悉的数学函数，例如sin，cos和exp。在NumPy中，这些被称为“通函数”（ufunc）。在NumPy中，这些函数在数组上按元素进行运算，产生一个数组作为输出
+
+> 舍入函数
+>
+> ```python
+> numpy.around() # 函数返回指定数字的四舍五入值。
+> numpy.around(a,decimals)
+> ```
+>
+> 参数说明：
+> •a: 数组
+> •decimals: 舍入的小数位数。 默认值为0。 如果为负，整数将四舍五入到小数点左侧的位置
+
+#### 算数函数
+
+NumPy 算术函数包含简单的加减乘除: `add()`，`subtract()`，`multiply() `和 `divide()`。需要注意的是数组必须具有相同的形状或符合数组广播规则
+
+numpy.reciprocal() 函数返回参数逐元素的倒数。如 1/4 倒数为 4/1
+
+#### 矩阵运算
+
+```python
+import numpy as np
+a = np.array([[1.0,2.0],[3.0,4.0]])
+u = np.eye(2) # unit 2x2 matrix; "eye" represents "I"
+j = np.array([[0.0,-1.0],[1.0,0.0]])
+y = np.array([[5.],[7.]])
+
+a.transpose() # 转置
+np.linalg.inv(a) # 求逆
+np.trace(a) # 迹
+np.linalg.solve(a,y) # 解矩阵方程
+np.linage.eig(j) # 特征值和右特征向量
+```
+
+与许多矩阵语言不同，乘积运算符*在NumPy数组中按元素进行运算。矩阵乘积可以使用@运算符（在python> = 3.5中）或dot函数或方法执行
+
+```python
+A = np.array([[1,1],[0,1]])
+B = np.array([[2,0],[3,4]])
+
+A * B # elementwise product
+A @ B # matrix product
+A.dot(B) # another matrix product
+```
+
+#### Broadcast 广播
+
+广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行
+
+如果两个数组 a 和 b 形状相同，即满足 a.shape == b.shape，那么 a*b 的结果就是 a 与 b 数组对应位相乘。这要求维数相同，且各维度的长度相同
+
+4x3 的二维数组与长为 3 的一维数组相加，等效于把数组 b 在二维上重复 4 次再运算
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/5.png)
+
+广播的规则:
+
+- 让所有输入数组都向其中形状最长的数组看齐，形状中不足的部分都通过在前面加 1 补齐
+- 输出数组的形状是输入数组形状的各个维度上的最大值
+- 如果输入数组的某个维度和输出数组的对应维度的长度相同或者其长度为 1 时，这个数组能够用来计算，否则出错
+- 当输入数组的某个维度的长度为 1 时，沿着此维度运算时都用此维度上的第一组值
+
+简单理解：对两个数组，分别比较他们的每一个维度（若其中一个数组没有当前维度则忽略），满足：
+
+- 数组拥有相同形状
+- 当前维度的值相等
+- 当前维度的值有一个是 1
+
+若条件不满足，抛出 "ValueError: frames are not aligned" 异常
