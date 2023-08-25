@@ -961,6 +961,8 @@ A.dot(B) # another matrix product
 
 ### SCIPY
 
+https://wizardforcel.gitbooks.io/scipy-lecture-notes/content/index.html
+
 #### 模块列表
 
 不附表
@@ -971,3 +973,532 @@ A.dot(B) # another matrix product
 
 #### Optimize
 
+NumPy 能够找到多项式和线性方程的根，但它无法找到非线性方程的根
+
+我们可以使用 SciPy 的 optimze.root函数，这个函数需要两个参数：
+
+- fun - 表示方程的函数
+- x0 - 根的初始猜测
+
+```python
+from scipy.optimize import root
+from math import cos
+def eqn(x):
+	return x + cos(x)
+myroot = root(eqn, 0)
+print(myroot.x)
+print(myroot)
+```
+
+#### 最小化
+
+可以使用 scipy.optimize.minimize() 函数来最小化函数
+
+minimize() 函接受以下几个参数：
+
+- fun - 要优化的函数
+- x0 - 初始猜测值
+- method - 要使用的方法名称，值可以是：'CG'，'BFGS'，'Newton-CG'，'L-BFGS-B'，'TNC'，'COBYLA'，'SLSQP'
+- callback - 每次优化迭代后调用的函数
+- options - 定义其他参数的字典
+
+实例：$x^2+x+2$使用BFGS的最小化函数
+
+```PYTHON
+from scipy.optimize import minimize
+def eqn(x):
+	return x**2 + x + 2
+mymin = minimize(eqn, 0, method='BFGS')
+print(mymin)
+```
+
+#### Scipy稀疏矩阵
+
+稀疏矩阵（英语：sparse matrix）指的是在数值分析中绝大多数数值为零的矩阵。反之，如果大部分元素都非零，则这个矩阵是稠密的(Dense)
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/6.png)
+
+在科学与工程领域中求解线性模型时经常出现大型的稀疏矩阵
+
+SciPy 的 scipy.sparse 模块提供了处理稀疏矩阵的函数
+
+我们主要使用以下两种类型的稀疏矩阵：
+
+- CSC - 压缩稀疏列（Compressed Sparse Column），按列压缩
+- CSR - 压缩稀疏行（Compressed Sparse Row），按行压缩
+
+```python
+import numpy as np
+from scipy.sparse import csr_matrix
+arr = np.array([0, 0, 0, 0, 0, 1, 1, 0, 2])
+print(csr_matrix(arr))
+```
+
+使用`count_nonzero()`方法计算非0元素总数
+
+```python
+arr = np.array([[0, 0, 0], [0, 0, 1], [1, 0, 2]])
+print(csr_matrix(arr).count_nonzero())
+```
+
+使用`eliminate_zeros()`方法删除矩阵中0元素
+
+```python
+arr = np.array([[0, 0, 0], [0, 0, 1], [1, 0, 2]])
+mat = csr_matrix(arr)
+mat.eliminate_zeros()
+print(mat)
+```
+
+#### 插值
+
+在数学的数值分析领域中，插值（英语：interpolation）是一种通过已知的、离散的数据点，
+在范围内推求新数据点的过程或方法
+
+简单来说插值是一种在给定的点之间生成点的方法
+
+插值有很多用途，在机器学习中我们经常处理数据缺失的数据，插值通常可用于替换这些值。这种填充值的方法称为插补
+
+SciPy 提供了 scipy.interpolate 模块来处理插值
+
+一维数据的插值运算可以通过方法 interp1d() 完成。该方法接收两个参数 x 点和 y 点。返回值是可调用函数，该函数可以用新的 x 调用并返回相应的 y，y = f(x)
+
+interp1d的method指定插值类型，默认是method=linear一次函数f(x)=ax+b线性插值
+
+```python
+from scipy.interpolate import interp1d
+import numpy as np
+xs = np.arange(10)
+ys = 2*xs + 1
+interp_func = interp1d(xs, ys)
+newarr = interp_func(np.arange(2.1, 3, 0.1))
+print(newarr)
+```
+
+#### 单变量插值
+
+在一维插值中，点是针对单个曲线拟合的，而在样条插值中，点是针对使用多项式分段定义的函数拟合的
+
+单变量插值使用 UnivariateSpline() 函数，该函数接受 xs 和 ys 并生成一个可调用函数，该函数可以用新的 xs 调用
+
+为非线性点找到 2.1、2.2...2.9 的单变量样条插值
+
+```python
+from scipy.interpolate import UnivariateSpline
+import numpy as np
+xs = np.arange(10)
+ys = xs**2 + np.sin(xs) + 1
+interp_func = UnivariateSpline(xs, ys)
+newarr = interp_func(np.arange(2.1, 3, 0.1))
+print(newarr)
+```
+
+#### 径向基函数插值
+
+径向基函数是对应于固定参考点定义的函数
+
+曲面插值里我们一般使用径向基函数插值
+
+Rbf() 函数接受 xs 和 ys 作为参数，并生成一个可调用函数，该函数可以用新的 xs 调用
+
+为非线性点找到 2.1、2.2...2.9 的径向基函数插值
+
+```python
+from scipy.interpolate import Rbf
+import numpy as np
+xs = np.arange(10)
+ys = xs**2 + np.sin(xs) + 1
+interp_func = Rbf(xs, ys)
+newarr = interp_func(np.arange(2.1, 3, 0.1))
+print(newarr)
+```
+
+#### 显著性检验
+
+显著性检验（significance test）就是事先对总体（随机变量）的参数或总体分布形式做出一个假设，然后利用样本信息来判断这个假设（备择假设）是否合理，即判断总体的真实情况与原假设是否有显著性差异
+
+显著性检验即用于实验处理组与对照组或两种不同处理的效应之间是否有差异，以及这种差异是
+否显著的方法
+
+SciPy 提供了 scipy.stats 的模块来执行Scipy 显著性检验的功能
+
+normaltest() 函数返回零假设的 p 值，查找数据是否来自正态分布
+
+```python
+import numpy as np
+from scipy.stats import normaltest
+v = np.random.normal(size=100)
+print(normaltest(v))
+```
+
+正态性检验（偏度和峰度）
+
+利用观测数据判断总体是否服从正态分布的检验称为正态性检验，它是统计判决中重要的一种特殊的拟合优度假设检验
+
+>偏度
+>数据对称性的度量
+>对于正态分布，它是 0
+>如果为负，则表示数据向左倾斜
+>如果为正，则表示数据向右倾斜
+>
+>![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/8.png)
+>
+>峰度
+>衡量数据是重尾还是轻尾正态分布的度量
+>正峰度意味着重尾
+>负峰度意味着轻尾
+>
+>![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/7.png)
+
+正态性检验基于偏度和峰度。查找数组中值的偏度和峰度
+
+```python
+import numpy as np
+from scipy.stats import skew, kurtosis
+v = np.random.normal(size=100)
+print(skew(v))
+print(kurtosis(v)
+```
+
+### MATPLOTLIB
+
+https://matplotlib.org/stable/tutorials/index.html
+
+> pylab
+> pylab 是 matplotlib 面向对象绘图库的一个接口。它的语法和 Matlab 十分相近。主要的绘图命令和 Matlab 对应的命令有相似的参数
+
+#### 基本作图
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+C,S = np.cos(X), np.sin(X)
+plt.plot(X,C)
+plt.plot(X,S)
+plt.show()
+```
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/9.png)
+
+```python
+from pylab import *
+
+figure(figsize=(8,6),dpi=80) #创建一个8*6点的图，设置分辨率为80
+subplot(1,1,1) #创建一个新的1*1的子图，接下来的图样绘制在其中的第一块（也是唯一的一块）
+
+X = np.linspace(-np.pi,np.pi,256,endpoint=True)
+C,S = np.cos(X),np.sin(X)
+
+plot(X,C,color = "blue", linewidth =1.0, linestyle = "-") #绘制余弦曲线，使用蓝色的、连续的、宽度为1px的线条
+
+plot(X,S,color = "green",linewidth = 1.0, linestyle = "-") #绘制正弦曲线，使用绿色的、连续的、宽度为1px的线条
+
+xlim(-4.0,4.0) #设置横轴的上下限
+xticks(np.linspace(-4,4,9,endpoint=True)) #设置横轴记号
+
+ylim(-1.0,1.0) #设置纵轴的上下限
+yticks(np.linspace(-1,1,5,endpoint = True)) #设置纵轴记号
+
+# 修改图片边界
+xmin ,xmax = X.min(), X.max()
+ymin, ymax = Y.min(), Y.max()
+dx = (xmax - xmin) * 0.2
+dy = (ymax - ymin) * 0.2
+xlim(xmin - dx, xmax + dx)
+ylim(ymin - dy, ymax + dy)
+```
+
+#### 设置记号
+
+设置记号的时候，我们可以同时设置记号的标签。注意这里使用了 LaTeX
+
+```python
+xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi], [r'$-\pi$', r'$-\pi/2$',r'$0$', r'$+\pi/2$', r'$+\pi$'])
+yticks([-1, 0, +1], [r'$-1$', r'$0$', r'$+1$'])
+```
+
+#### 移动脊柱
+
+坐标轴线和上面的记号连在一起就形成了脊柱（Spines，一条线段上有一系列的凸起，很像脊柱骨），它记录了数据区域的范围。它们可以放在任意位置，不过至今为止，我们都把它放在图的四边
+
+实际上每幅图有四条脊柱（上下左右），为了将脊柱放在图的中间，我们必须将其中的两条（上和右）
+设置为无色，然后调整剩下的两条到合适的位置——数据空间的 0 点
+
+```python
+ax = gca() 
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+ax.xaxis.set_ticks_position('bottom')
+ax.spines['bottom'].set_position(('data',0))
+ax.yaxis.set_ticks_position('left')
+ax.spines['left'].set_position(('data',0)) 
+```
+
+#### 添加图例、注释
+
+在图的左上角添加一个图例。只需要在 plot 函数里以「键 - 值」的形式增加一个参数
+
+```python
+plot(X, C, color="blue", linewidth=2.5,linestyle="-", label="cosine")
+plot(X, S, color="red", linewidth=2.5,linestyle="-", label="sine")
+legend(loc='upper left')
+```
+
+我们希望在 2π/3 的位置给两条函数曲线加上一个注释。首先，我们在对应的函数图像位置上画一个点；然后，向横轴引一条垂线，以虚线标记；最后，写上标签
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/10.png)
+
+#### 子图
+
+可以显式地控制图像、子图、坐标轴
+
+Matplotlib 中的「图像」指的是用户界面看到的整个窗口内容。在图像里面有所谓「子图」。子图的位置是由坐标网格确定的，而「坐标轴」却不受此限制，可以放在图像的任意位置。我们已经隐式地使用过图像和子图：当我们调用 plot 函数的时候，matplotlib 调用 gca() 函数以及 gcf() 函数来获取当前的坐标轴和图像；如果无法获取图像，则会调用 figure() 函数来创建一个——严格地说，是用 subplot(1,1,1)创建一个只有一个子图的图像
+
+示例一
+
+```python
+from pylab import *
+subplot(2,2,1)
+xticks([]), yticks([])
+text(0.5,0.5, 'subplot(2,2,1)',ha='center',va='center',size=20,alpha=.5)
+
+subplot(2,2,2)
+xticks([]), yticks([])
+text(0.5,0.5, 'subplot(2,2,2)',ha='center',va='center',size=20,alpha=.5)
+
+subplot(2,2,3)
+xticks([]), yticks([])
+text(0.5,0.5, 'subplot(2,2,3)',ha='center',va='center',size=20,alpha=.5)
+
+subplot(2,2,4)
+xticks([]), yticks([])
+text(0.5,0.5, 'subplot(2,2,4)',ha='center',va='center',size=20,alpha=.5)
+# savefig('../figures/subplot-grid.png', dpi=64)
+show()
+```
+
+![image-20230824204316302](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/16.png)
+
+示例二
+
+```python
+import matplotlib.pyplot as plt
+plt.figure(1) # the first figure
+plt.subplot(211) # the first subplot in the first figure
+plt.plot([1, 2, 3])
+plt.subplot(212) # the second subplot in the first figure
+plt.plot([4, 5, 6])
+
+plt.figure(2) # a second figure
+plt.plot([4, 5, 6]) # creates a subplot(111) by default
+
+plt.figure(1) # figure 1 current; subplot(212) still current
+plt.subplot(211) # make subplot(211) in figure1 current
+plt.title('Easy as 1, 2, 3') # subplot 211 title
+plt.show()
+```
+
+- [ ] ![image-20230824204458978](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/18.png)
+
+#### 散点图、条形图和极轴图
+
+```python
+# scatter
+from pylab import *
+n = 1024
+X = np.random.normal(0,1,n)
+Y = np.random.normal(0,1,n)
+scatter(X,Y)
+show()
+# bar
+from pylab import *
+n = 12 X = np.arange(n)
+Y1 = (1-X/float(n)) * np.random.uniform(0.5,1.0,n)
+Y2 = (1-X/float(n)) * np.random.uniform(0.5,1.0,n)
+bar(X, +Y1, facecolor='#9999ff', edgecolor='white’)
+bar(X, -Y2, facecolor='#ff9999', edgecolor='white’)
+for x,y in zip(X,Y1):
+text(x+0.4, y+0.05, '%.2f' % y, ha='center', va= 'bottom’)
+ylim(-1.25,+1.25)
+show()
+# polar
+from pylab import *
+axes([0,0,1,1])
+N = 20
+theta = np.arange(0.0, 2*np.pi, 2*np.pi/N)
+radii = 10*np.random.rand(N)
+width = np.pi/4*np.random.rand(N)
+bars = bar(theta, radii, width=width, bottom=0.0)
+for r,bar in zip(radii, bars):
+bar.set_facecolor( cm.jet(r/10.))
+bar.set_alpha(0.5)
+show()
+```
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/13new.png)
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/14new.png)
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/15new.png)
+
+#### 改变坐标轴
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.ticker import NullFormatter # useful for `logit` scale
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+# make up some data in the interval ]0, 1[
+y = np.random.normal(loc=0.5, scale=0.4, size=1000)
+y = y[(y > 0) & (y < 1)]
+y.sort()
+x = np.arange(len(y))
+# plot with various axes scales
+plt.figure(1)
+
+# linear
+plt.subplot(221)
+plt.plot(x, y)
+plt.yscale('linear')
+plt.title('linear')
+plt.grid(True)
+# plt.show()
+# log
+plt.subplot(222)
+plt.plot(x, y)
+plt.yscale('log')
+plt.title('log')
+plt.grid(True)
+# plt.show()
+# symmetric log
+plt.subplot(223)
+plt.plot(x, y - y.mean())
+plt.yscale('symlog')
+plt.title('symlog')
+plt.grid(True)
+# logit
+plt.subplot(224)
+plt.plot(x, y)
+plt.yscale('logit')
+plt.title('logit')
+plt.grid(True)
+# Format the minor tick labels of the y-axis into empty strings with
+# `NullFormatter`, to avoid cumbering the axis with too many labels.
+plt.gca().yaxis.set_minor_formatter(NullFormatter())
+# Adjust the subplot layout, because the logit one may take more space
+# than usual, due to y-tick labels like "1 - 10^{-3}"
+plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25,
+wspace=0.35)
+plt.show()
+```
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/12.png)
+
+#### 配色
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+th = np.linspace(0, 2*np.pi, 128)
+def demo(sty):
+	mpl.style.use(sty)
+	fig, ax = plt.subplots(figsize=(3, 3))
+	ax.set_title('style: {!r}'.format(sty), color='C0')
+	ax.plot(th, np.cos(th), 'C1', label='C1')
+	ax.plot(th, np.sin(th), 'C2', label='C2')
+	ax.legend()
+demo('default')
+demo('seaborn')
+plt.show()
+```
+
+![](https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/11.png)
+
+#### 更多示例
+
+https://www.python-graph-gallery.com/
+
+#### 前端作图界面
+
+https://echarts.apache.org/en/index.html
+
+### PANDAS
+
+Pandas 是 Python 语言的一个扩展程序库，用于数据分析
+
+```python
+import pandas as pd
+```
+
+#### 数据类型
+
+Pandas Series 类似表格中的一个列（column），类似于一维数组，可以保存任何数据类型
+
+Series 由索引（index）和列组成
+
+```python
+pandas.Series( data, index, dtype, name, copy)
+```
+
+参数说明：
+
+- data：一组数据(ndarray 类型)
+- index：数据索引标签，如果不指定，默认从 0 开始
+- dtype：数据类型，默认会自己判断
+- name：设置名称
+- copy：拷贝数据，默认为 False
+
+```python
+import pandas as pd
+a = [1, 2, 3]
+myvar = pd.Series(a)
+print(myvar)
+```
+
+DataFrame 是一个表格型的数据结构，它含有一组有序的列，每列可以是不同的值类型（数值、字符串、布尔型值）
+
+DataFrame 既有行索引也有列索引，它可以被看做由 Series 组成的字典（共同用一个索引）
+
+```python
+pandas.DataFrame( data, index, columns, dtype, copy)
+```
+
+参数说明：
+
+- data：一组数据(ndarray、series, map, lists, dict 等类型)
+
+- index：索引值，或者可以称为行标签
+- columns：列标签，默认为 RangeIndex (0, 1, 2, …, n) 
+- dtype：数据类型
+- copy：拷贝数据，默认为 False
+
+```python
+import pandas as pd
+data = {"calories": [420, 380, 390],"duration": [50, 40, 45]}
+# 数据载入到 DataFrame 对象
+df = pd.DataFrame(data)
+# 返回第一行
+print(df.loc[0])
+# 返回第二行
+print(df.loc[1])
+```
+
+#### CSV
+
+CSV（Comma-Separated Values，逗号分隔值，有时也称为字符分隔值，因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。CSV 是一种通用的、相对简单的文件格式，被用户、商业和科学广泛应用
+
+Pandas 可以很方便的处理 CSV 文件
+
+```python
+import pandas as pd
+df = pd.read_csv('nba.csv')
+print(df.to_string())
+```
+
+- to_string() 用于返回 DataFrame 类型的数据，如果不使用该函数，则输出结果为数据的前面 5 行和末尾 5 行，中间部分以 **...** 代替
+- head( n ) 方法用于读取前面的 n 行，如果不填参数 n ，默认返回 5 行
+- tail( n ) 方法用于读取尾部的 n 行，如果不填参数 n ，默认返回 5 行，空行各个字段的值返回 NaN
+- info() 方法返回表格的一些基本信息
