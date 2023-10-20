@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>记录在算协的学习</title>
+      <link href="/2023/10/THUSAAC/"/>
+      <url>/2023/10/THUSAAC/</url>
+      
+        <content type="html"><![CDATA[<h2 id="平台前端"><a href="#平台前端" class="headerlink" title="平台前端"></a>平台前端</h2><p><a href="https://blog.csdn.net/weixin_61465100/article/details/126528236">https://blog.csdn.net/weixin_61465100/article/details/126528236</a></p><p>create react app</p><p><a href="https://create-react-app.dev/docs/getting-started">https://create-react-app.dev/docs/getting-started</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> THU </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>乐理笔记</title>
+      <link href="/2023/08/noteMusicTheory/"/>
+      <url>/2023/08/noteMusicTheory/</url>
+      
+        <content type="html"><![CDATA[<h2 id="音及音高"><a href="#音及音高" class="headerlink" title="音及音高"></a>音及音高</h2><h3 id="音"><a href="#音" class="headerlink" title="音"></a>音</h3><p>音有高低、强弱、长短、音色等四种性质</p><p>音乐中所使用的主要是乐音，但噪音也是音乐表现中不可缺少的组成部分</p><p>复合音：基音、泛音</p><h3 id="乐音体系-音列-音级"><a href="#乐音体系-音列-音级" class="headerlink" title="乐音体系 音列 音级"></a>乐音体系 音列 音级</h3><p>音乐中使用的、有固定音高的音的总和，叫做乐音体系。乐音体系中的音，按照上行或者下行次序排列起来，叫做音列。乐音体系中的各音叫做音级。音级有基本音级和变化音级两种</p><p>乐音体系中，七个具有独立名称的音级叫做基本音级，基本音级的名称是用字母 和唱名两种方式来标记的</p><p>钢琴上五十二各白键循环重复地使用七个基本音级名称</p><p>两个相邻地具有同样名称的音叫做八度</p><p>升高或降低基本音级而的来的音，叫做变化音级</p><p>升高半音用“升”或“♯”来标明，降半音用“降”或“♭”来标明；升高全音用“重升”或“×”来标明，降全音用“重降”或“♭♭”来标明（以上左上角）</p><p>德国体系中，加字尾来标明变化音级：is(升)es(降)isis(重升)eses(重降)，如Cis</p><p>降E不写Ees而是es，降A不是Aes而是as；降h不是hes而是b</p><h3 id="音的分组"><a href="#音的分组" class="headerlink" title="音的分组"></a>音的分组</h3><p>为了音名相同而音高不同的各音，将音列分成许多各“组”</p><p>在音列中央的一组叫小字一组，它的音级标记用小写字母并在右上方加数字1来表示，如$c^1$  $d^1$</p><p>比小字一组高的组顺次定名为：小字二组、小字三组、小字四组、小字五组。小字二组的标记$c^2$   $d^2$</p><p>比小字一组低的组，依次定名为小字组、大字组、大字一组及大字二组</p><p>小字组c  d，大字组C  D，大字一组$C_1$  $D_1$，大字二组$A_2$  $B_2$</p><p>        <span class="lazyload-img-span">        <img              data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/yuepu" >        </sapn>      </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> music </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>来到Win11</title>
       <link href="/2023/08/Towin11/"/>
       <url>/2023/08/Towin11/</url>
