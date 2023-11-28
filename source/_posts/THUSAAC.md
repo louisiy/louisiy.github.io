@@ -6,8 +6,10 @@ tags: THU
 
 ## 平台前端
 
-https://blog.csdn.net/weixin_61465100/article/details/126528236
-
-create react app
+react框架
 
 https://create-react-app.dev/docs/getting-started
+
+状态
+
+axios
