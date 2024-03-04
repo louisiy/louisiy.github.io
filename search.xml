@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>操作系统笔记</title>
+      <link href="/2024/03/noteTHUopsys/"/>
+      <url>/2024/03/noteTHUopsys/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>指令是计算机运行的最小的功能单元，是指挥计算机硬件运行的命令</p><ul><li>算术运算指令</li><li>逻辑运算指令</li><li>移位操作指令</li><li>数据传送指令</li><li>输入输出指令</li><li>转移指令等</li></ul><p>操作码 + 操作数</p><p>在硬件和应用软件之间引入操作系统</p><ul><li>管理系统的各个部件，使之能正常运转；</li><li>给上层的应用软件提供一个易于理解和编程的接口</li></ul><p>操作系统发展历史：</p><ul><li>1946-1950<ul><li>机器语言，纸带或卡片</li></ul></li><li>50年代末-60年代中<ul><li>批处理管理程序</li><li>串行执行，单道批处理</li></ul></li><li>60年代中-70年代中<ul><li>现代意义上的操作系统的出现</li></ul></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Operation System </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数字电子技术</title>
       <link href="/2023/11/noteDC/"/>
       <url>/2023/11/noteDC/</url>
