@@ -748,14 +748,856 @@
            data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240415214151481.png" >
         </sapn>
       </p>
-<h3 id="虚拟储存技术"><a href="#虚拟储存技术" class="headerlink" title="虚拟储存技术"></a>虚拟储存技术</h3>
+<p>在现有的方案中，每一次访问内存（数据&#x2F;指令）时，都要做两次访问内存的工作。为缩短页表的查找时间，可以采用一种特殊的快速查找硬件：TLB (Translation Lookaside Buffer) 或称associative memory,用来存放那些最常用的页表项</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240422193055053.png" >
+        </sapn>
+      </p>
+<h5 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点</p>
+<ul>
+<li>没有外碎片，内碎片的大小不超过页面的大小；</li>
+<li>一个程序不必连续存放；</li>
+<li>进程看到连续逻辑地址空间，OS辛苦</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>程序必须全部装入内存；</li>
+<li>OS为每个进程维护一张页表，切换开销</li>
+</ul>
+<h4 id="段式存储管理"><a href="#段式存储管理" class="headerlink" title="段式存储管理"></a>段式存储管理</h4><p>页式存储管理（和分区存储管理）只有一个逻辑地址空间，即一维的线性连续空间</p>
+<p>存储保护</p>
+<ul>
+<li>代码段：一条条指令组成，只读，可执行，无需写回磁盘；</li>
+<li>数据段：全局变量，可修改，可读写，需写回磁盘；</li>
+<li>栈：形参、局部变量、CPU寄存器、返回地址，可读写；</li>
+</ul>
+<p>存储共享</p>
+<ul>
+<li>在多个进程之间，共享代码和数据</li>
+</ul>
+<h5 id="基本原理-1"><a href="#基本原理-1" class="headerlink" title="基本原理"></a>基本原理</h5><p>对程序的每个逻辑单元（代码、数据和栈等），设立一个完全独立的地址空间，称为“段”。每个段的内部是一维线性连续地址，大小可不同</p>
+<p>对于物理内存来说，采用可变分区（动态分区）的管理方法</p>
+<p>当一个程序需要装入内存时，以段为单位进行分配，把每一个段装入到一个内存分区当中，这些内存分区不必是连续的</p>
+<h5 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h5><p>在段式存储管理中，用户空间地址为二维地址：(段号，段内偏移)。</p>
+<p>实现方式：</p>
+<ul>
+<li>地址高端为段号、低端为偏移；</li>
+<li>指令中显式地给出段号和段内偏移。</li>
+</ul>
+<p>段表：系统为每一个进程都建立了一个段表，它给出了进程当中的每一个段与它所对应的内存分区之间的映射关系。</p>
+<p>段表的具体实现</p>
+<ul>
+<li>段表保存在内存当中；</li>
+<li>设置一个段表基地址寄存器（Segment-table base register，STBR），用来指向内存当中段表的起始地址；</li>
+<li>设置一个段表长度寄存器（Segment-table length register，STLR），用来指示段表的大小，即程序当中的段的个数；</li>
+</ul>
+<p>放在MMU里，轮到运行，操作系统更新</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240422203555076.png" >
+        </sapn>
+      </p>
+<h5 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h5><p>优点</p>
+<ul>
+<li>程序通过分段来划分多个模块，每个模块可以分别编写和编译，可以针对不同类型的段采取不同的保护，可以按段为单位来进行共享；</li>
+<li>一个程序不必连续存放，没有内碎片。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>程序必须全部装入内存、外碎片等。</li>
+</ul>
+<h4 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h4><p>段式存储和页式存储各有特点：</p>
+<ul>
+<li>段式存储管理为用户提供了一个二维的逻辑地址空间，可以满足程序和信息的逻辑分段要求，反映了程序的逻辑结构，有利于段的共享、保护和动态增长；</li>
+<li>页式存储管理的特征是等分内存，它有效地克服了碎片问题，提高了内存的利用率。</li>
+</ul>
+<p>为了保持页式在存储管理上的优点和段式在逻辑上的优点，人们又提出了段页式存储管理技术</p>
+<h5 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h5><p>先把程序划分为段，然后在段内分页。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240422234827862.png" >
+        </sapn>
+      </p>
+<p>内存划分：按页式存储管理方案<br>内存分配：以页面为单位进行分配</p>
+<h5 id="具体实现-1"><a href="#具体实现-1" class="headerlink" title="具体实现"></a>具体实现</h5><ul>
+<li>段表：记录了每个段的页表起始地址和页表长度，而不是该段所在内存分区的起始地址。</li>
+<li>页表：记录了逻辑页面号与物理页面号之间的对应关系。（每一段有一个，一个程序可能有多个页表）</li>
+<li>需要的硬件支持：段表基地址寄存器（STBR）和段表长度寄存器（STLR）</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240422234923669.png" >
+        </sapn>
+      </p>
+<h3 id="虚拟储存技术"><a href="#虚拟储存技术" class="headerlink" title="虚拟储存技术"></a>虚拟储存技术</h3><h4 id="程序的局部性原理"><a href="#程序的局部性原理" class="headerlink" title="程序的局部性原理"></a>程序的局部性原理</h4><p>局部性原理(principle of locality)</p>
+<p>程序在执行过程中的一个较短时期，所执行的指令地址和指令的操作数地址，分别局限于一定区域。</p>
+<p>局部性原理的具体表现：</p>
+<ul>
+<li>程序在执行时，大部分是顺序执行的指令，少部分是转移和过程调用指令；</li>
+<li>程序中存在相当多的循环结构，它们由少量指令组成，而被多次执行；</li>
+<li>程序中存在很多对一定数据结构的操作，如数组操作，往往局限在较小范围内。</li>
+</ul>
+<p>程序的局部性原理表明，从理论上来说，虚拟存储技术是能够实现的，而且在实现了以后应该是能够取得一个满意的效果的</p>
+<h4 id="虚拟页式存储管理"><a href="#虚拟页式存储管理" class="headerlink" title="虚拟页式存储管理"></a>虚拟页式存储管理</h4><p>当一个用户程序要调入内存运行时，不是将该程序的所有页面都装入内存，而是只装入部分的页面（0个或多个），就可启动程序运行。在运行的过程中，如果发现要执行的指令或要访问数据不在内存，则发出缺页中断请求，系统在处理这个中断时，将外存中相应的页面调入内存，使得该程序能继续运行。</p>
+<ul>
+<li><p>当内存空间不够用时，需要把页面保存在磁盘上（backing store，后备存储）；</p>
+</li>
+<li><p>内存物理页面称为page frame，磁盘上的页面称为后备页面（backing frame）；</p>
+</li>
+<li><p>目的：提供一种错觉，内存的容量好像和磁盘容量一样大，且速度和内存一样快（理想状态）。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240531204159216.png" >
+        </sapn>
+      </p>
+</li>
+</ul>
+<h5 id="页表表项"><a href="#页表表项" class="headerlink" title="页表表项"></a>页表表项</h5><p>每个页表项包含以下信息：逻辑页号、物理页号、驻留位、保护位、修改位、访问位、</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240531204233059.png" >
+        </sapn>
+      </p>
+<ul>
+<li>驻留位（有效位）：表示该页是否在内存。若该位为1，表示该页位于内存中，即该页表项有效，可以使用；若该位为0，表示该页当前还在外存中，此时若访问该页表项，将导致缺页中断；</li>
+<li>保护位：表示允许对该页做何种类型的访问，如只读、可读写、可执行等；</li>
+<li>修改位：表明此页在内存中是否被修改过。当系统回收该物理页面时，根据此位来决定是否把它的内容写回外存；</li>
+<li>访问位：如果该页面被访问过（包括读操作或写操作），则设置此位。用于页面置换算法。</li>
+</ul>
+<blockquote>
+<p> 哪些位是CPU写OS读？哪些位是OS写CPU读？</p>
+</blockquote>
+<h5 id="缺页中断"><a href="#缺页中断" class="headerlink" title="缺页中断"></a>缺页中断</h5><p>在地址映射过程中，如果所要访问的逻辑页面 p 不在内存，则产生缺页中断(page fault)。中断处理过程：</p>
+<ul>
+<li>如果在内存中有空闲的物理页面，则分配一页，设为 f，然后转第4步；否则转第2步；</li>
+<li>采用某种页面置换算法，选择一个将被替换的物理页面 f，它所对应的逻辑页面为p’。如果该页在内存期间被修改过，则需把它写回外存；</li>
+<li>对p’所对应的页表项进行修改，把驻留位置为0；</li>
+<li>将需要访问的页面 p 装入到物理页面 f 当中（进程被阻塞），并修改 p 所对应的页表项的内容，把驻留位置为1，把物理页面号设置为 f；</li>
+<li>重新运行被中断的指令（PC不变）。</li>
+</ul>
+<p>用户进程感觉不到缺页中断的发生（就像进程切换一样）</p>
+<h4 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h4><h5 id="最优页面置换算法OPT"><a href="#最优页面置换算法OPT" class="headerlink" title="最优页面置换算法OPT"></a>最优页面置换算法OPT</h5><p>当一个缺页中断发生时，对于保存在内存当中的每一个逻辑页面，计算在它的下一次访问之前，还需等待多长时间，从中选择等待时间最长的那个，作为被置换的页面。</p>
+<h5 id="最近最久未使用算法LRU"><a href="#最近最久未使用算法LRU" class="headerlink" title="最近最久未使用算法LRU"></a>最近最久未使用算法LRU</h5><p>当一个缺页中断发生时，选择最近最久未使用的那个页面，并淘汰之。</p>
+<p>完美的LRU算法并不实用：</p>
+<ul>
+<li>在每次内存访问时，都需要去更新该页面访问时间（时间戳法）或调整各个页面的先后顺序（链表法和栈法），开销很大；</li>
+<li>缺乏硬件支持。</li>
+</ul>
+<p>可行的做法：</p>
+<ul>
+<li>对LRU算法的近似；</li>
+<li>在硬件的支持下，使用某种简单而快速的方法来寻找比较老（而非最老）的页面</li>
+</ul>
+<h5 id="最不常用算法LFU"><a href="#最不常用算法LFU" class="headerlink" title="最不常用算法LFU"></a>最不常用算法LFU</h5><p>当一个缺页中断发生时，选择访问次数最少的那个页面，并淘汰之。</p>
+<p>实现方法：对每个页面设置一个访问计数器，每当一个页面被访问时，该页面的访问计数器加 1。在发生缺页中断时，淘汰计数值最小的那个页面。</p>
+<h5 id="先进先出算法FIFO"><a href="#先进先出算法FIFO" class="headerlink" title="先进先出算法FIFO"></a>先进先出算法FIFO</h5><p>选择在内存中驻留时间最长的页面并淘汰之</p>
+<p>性能较差，调出的页面有可能是经常要访问的页面</p>
+<h4 id="工作集模型"><a href="#工作集模型" class="headerlink" title="工作集模型"></a>工作集模型</h4><h5 id="工作集"><a href="#工作集" class="headerlink" title="工作集"></a>工作集</h5><p>一个进程当前正在使用的逻辑页面集合，可以用一个二元函数W(t, $\Delta$)来表示：</p>
+<ul>
+<li>t是当前的执行时刻；</li>
+<li>$\Delta$ 称为工作集窗口（working-set window ），即一个定长的页面访问窗口；</li>
+<li>W(t, $\Delta$)＝在当前时刻 t 之前的 $\Delta$ 窗口当中的所有页面所组成的集合（随着 t 的变化，该集合也在不断地变化）；</li>
+<li>| W(t, $\Delta$) | 指工作集的大小，即页面数目。</li>
+</ul>
+<p>工作集大小的变化：进程开始执行后，随着访问新页面逐步建立较稳定的工作集。当内存访问的局部性区域的位置大致稳定时，工作集大小也大致稳定；局部性区域的位置改变时，工作集快速扩张和收缩过渡到下一个稳定值。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240531205411572.png" >
+        </sapn>
+      </p>
+<h5 id="驻留集"><a href="#驻留集" class="headerlink" title="驻留集"></a>驻留集</h5><p>驻留集是指在当前时刻，进程实际驻留在内存当中的页面集合。</p>
+<p>工作集是进程在运行过程中固有的性质，而驻留集取决于系统分配给进程的物理页面数目，以及所采用的页面置换算法</p>
+<h4 id="虚拟页式的设计问题"><a href="#虚拟页式的设计问题" class="headerlink" title="虚拟页式的设计问题"></a>虚拟页式的设计问题</h4><h5 id="页面的分配策略"><a href="#页面的分配策略" class="headerlink" title="页面的分配策略"></a>页面的分配策略</h5><p>固定分配策略：驻留集大小固定。例如：各进程平均分配，或根据程序大小按比例分配等。</p>
+<ul>
+<li>采用局部页面置换的方式，当发生一个缺页中断时，被置换的页面局限在本进程内部。</li>
+<li>缺点：分配的物理页面数难以确定。进程在运行过程中，工作集的大小可能会不断地变化，若分配的页面数太少，则发生抖动；若分配的页面数太多，则浪费内存资源。</li>
+</ul>
+<p>可变分配策略：驻留集大小可变。例如：每个进程在刚开始运行的时候，先根据程序大小给它分配一定数目的物理页面，然后在进程运行过程中，再动态地调整驻留集的大小。</p>
+<ul>
+<li>可采用全局页面置换的方式，当发生一个缺页中断时，被置换的页面可以是在其它进程当中，各个并发进程竞争地使用物理页面。</li>
+<li>优缺点：性能较好，但增加了系统开销。</li>
+<li>具体实现：可以使用缺页率算法(PFF, page fault frequency)来动态调整驻留集的大小。</li>
+</ul>
+<h6 id="PFF"><a href="#PFF" class="headerlink" title="PFF"></a>PFF</h6><p>缺页率表示“缺页次数 &#x2F; 内存访问次数”(比率)或“缺页的平均时间间隔的倒数”。影响缺页率的因素：</p>
+<ul>
+<li>页面置换算法</li>
+<li>分配给进程的物理页面数目</li>
+<li>页面本身的大小</li>
+<li>程序的编制方法</li>
+</ul>
+<p>若进程的缺页率过高，则分配更多的物理页面；若进程的缺页率过低，则减少它的物理页面数，力图使每个进程的缺页率保持在一个合理的范围内。</p>
+<h5 id="页表结构"><a href="#页表结构" class="headerlink" title="页表结构"></a>页表结构</h5><p>为解决页表占内存过多的问题，需提出新的页表结构：</p>
+<ul>
+<li>多级页表 (Multilevel  Page Tables)；</li>
+<li>反置页表(Inverted  Page  Tables)。</li>
+</ul>
+<h6 id="多级页表"><a href="#多级页表" class="headerlink" title="多级页表"></a>多级页表</h6><p>由于不是所有的虚拟地址都会用到，所以不必把所有的页表项都保存在内存当中。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240531210706217.png" >
+        </sapn>
+      </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240531211202553.png" >
+        </sapn>
+      </p>
+<h6 id="反置页表"><a href="#反置页表" class="headerlink" title="反置页表"></a>反置页表</h6><ul>
+<li><p>根据内存中的物理页面号来组织页表，用物理页面号来作为访问页表的索引。页表项的个数仅与物理内存的大小和页面大小有关，与逻辑空间大小和进程数无关。</p>
+</li>
+<li><p>每个页表项记录了在相应的物理页面中，保存的是哪个进程的哪一个逻辑页面。</p>
+</li>
+<li><p>反置页表节省了大量内存空间，但逻辑页面号到物理页面号的转换变得更复杂，一种方法是Hash表.</p>
+</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240531211154965.png" >
+        </sapn>
+      </p>
+<h2 id="I-x2F-O设备管理"><a href="#I-x2F-O设备管理" class="headerlink" title="I&#x2F;O设备管理"></a>I&#x2F;O设备管理</h2><h3 id="I-x2F-O硬件"><a href="#I-x2F-O硬件" class="headerlink" title="I&#x2F;O硬件"></a>I&#x2F;O硬件</h3><p>按交互方向分类：</p>
+<ul>
+<li>输入设备：键盘、鼠标、扫描仪；</li>
+<li>输出设备：显示器、打印机；</li>
+<li>输入&#x2F;输出：磁盘、网卡。</li>
+</ul>
+<p>按数据组织分类：</p>
+<ul>
+<li>块设备：<ul>
+<li>以数据块作为信息的存储和传输单位，每个数据块都有一个地址，数据块之间的读写操作是相互独立的，如硬盘</li>
+</ul>
+</li>
+<li>字符设备：<ul>
+<li>以字符作为信息存储和传输单位，数据即字符流，无定位无寻址，如鼠标、键盘</li>
+</ul>
+</li>
+</ul>
+<p>一个I&#x2F;O单元由两部分组成：机械部分和电子部分（设备控制器或适配器）。</p>
+<p>每个设备控制器都有一些寄存器用来与CPU通信。通过往这些寄存器中写入不同的值，OS能命令该设备去执行发送数据、接收数据、打开、关闭等操作；OS也能通过读取这些寄存器的值来了解设备的当前状态。此外，许多控制器还有一个数据缓冲区供OS读写。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506193439441.png" >
+        </sapn>
+      </p>
+<p>CPU与设备控制器进行通信的方法有三种</p>
+<h4 id="I-x2F-O独立编址"><a href="#I-x2F-O独立编址" class="headerlink" title="I&#x2F;O独立编址"></a>I&#x2F;O独立编址</h4><p>基本思路</p>
+<ul>
+<li><p>给控制器中的每一个寄存器分配一个唯一的I&#x2F;O端口（I&#x2F;O port）编号，称为I&#x2F;O端口地址，然后用专门的I&#x2F;O指令对端口进行操作；</p>
+</li>
+<li><p>这些端口地址所构成的地址空间是完全独立的，与内存的地址空间没有关系。</p>
+</li>
+</ul>
+
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506202007472.png" >
+        </sapn>
+      
+
+<h4 id="内存映像编址"><a href="#内存映像编址" class="headerlink" title="内存映像编址"></a>内存映像编址</h4><p>基本思路</p>
+<ul>
+<li>把所有控制器中的每个寄存器都映射为一个物理内存地址，专门用于I&#x2F;O操作（功能上），对这些单元的读写操作即为普通的内存访问操作。</li>
+<li>端口地址空间与物理内存的地址空间统一编址，前者是后者的一部分，一般位于后者的顶端部分</li>
+</ul>
+
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506202016447.png" >
+        </sapn>
+      
+
+<p>如：显存（帧缓存，frame buffer）</p>
+<h4 id="混合编址"><a href="#混合编址" class="headerlink" title="混合编址"></a>混合编址</h4><p>基本思路</p>
+<ul>
+<li>对于设备控制器中的寄存器，采用独立编址的方法；</li>
+<li>而对于设备的数据缓冲区，采用内存映像编址的方法。</li>
+</ul>
+
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506202107485.png" >
+        </sapn>
+      
+
+<h3 id="I-x2F-O控制方式"><a href="#I-x2F-O控制方式" class="headerlink" title="I&#x2F;O控制方式"></a>I&#x2F;O控制方式</h3><h4 id="程序循环检测方式-Programmed-I-x2F-O"><a href="#程序循环检测方式-Programmed-I-x2F-O" class="headerlink" title="程序循环检测方式(Programmed I&#x2F;O)"></a>程序循环检测方式(Programmed I&#x2F;O)</h4><p>基本思路</p>
+<ul>
+<li>在程序（设备驱动程序）中通过不断地检测I&#x2F;O设备的当前状态，来控制I&#x2F;O操作的完成。具体来说，在进行I&#x2F;O操作之前，要循环地检测设备是否就绪；在I&#x2F;O操作进行之中，要循环地检测设备是否已完成。从硬件来说，控制I&#x2F;O的所有工作均由CPU来完成。</li>
+<li>也称为繁忙等待方式（busy waiting）或轮询方式（polling）。</li>
+</ul>
+<blockquote>
+<p>I&#x2F;O控制与I&#x2F;O操作</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//已知I/O地址采用内存映像编址的方式，现需要在打印机上打印一个字符串“ABCDEFGH”</span></span><br><span class="line"><span class="keyword">for</span> (i  =  <span class="number">0</span>;  i  &lt; count;  i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(*printer_status_reg  !=  READY);</span><br><span class="line">        *printer_data_register  =  p[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="中断驱动方式-Interrupt-driven-I-x2F-O"><a href="#中断驱动方式-Interrupt-driven-I-x2F-O" class="headerlink" title="中断驱动方式(Interrupt-driven I&#x2F;O)"></a>中断驱动方式(Interrupt-driven I&#x2F;O)</h4><p>当一个I&#x2F;O设备完成任务时，它的控制器会通过总线向中断控制器发出一个信号，如果中断控制器接受了该信号，就把标明该设备的一个编号放在地址线上，并向CPU发出一个中断信号。 CPU发现后就中断当前工作，并以该编号为索引去访问中断向量表，取出中断处理程序的起始地址，并在该程序运行后向中断控制器发出确认信号。</p>
+
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506210622684.png" >
+        </sapn>
+      
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户进程</span></span><br><span class="line"><span class="built_in">strcpy</span>(buffer,  “ABCDEFGH”);</span><br><span class="line">print(buffer, <span class="built_in">strlen</span>(buffer));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//系统调用函数print</span></span><br><span class="line">copy_from_user(buffer, p, count);  <span class="comment">// p:内核缓冲区</span></span><br><span class="line">enable_interrupts( );</span><br><span class="line"><span class="keyword">while</span>(*printer_status_reg  !=  READY);</span><br><span class="line">*printer_data_register  =  p[<span class="number">0</span>];</span><br><span class="line">scheduler( );</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//中断处理程序</span></span><br><span class="line"><span class="keyword">if</span>(count  ==  <span class="number">0</span>)&#123;</span><br><span class="line">    unblock_user( );</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    *printer_data_register  =  p[++i];</span><br><span class="line">    count --;</span><br><span class="line">&#125;</span><br><span class="line">acknowledge_intereupt( );</span><br><span class="line">return_from_interrupt( );</span><br></pre></td></tr></table></figure>
+
+<h4 id="直接内存访问方式-DMA-Direct-Memory-Access"><a href="#直接内存访问方式-DMA-Direct-Memory-Access" class="headerlink" title="直接内存访问方式(DMA, Direct Memory Access)"></a>直接内存访问方式(DMA, Direct Memory Access)</h4><p>在硬件上需要一个DMA控制器。</p>
+<p>DMA控制器可以直接去访问系统总线，它能代替CPU去指挥I&#x2F;O设备与内存之间的数据传送。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506214107374.png" >
+        </sapn>
+      </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506214128796.png" >
+        </sapn>
+      </p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240506214138346.png" >
+        </sapn>
+      </p>
+<h3 id="I-x2F-O软件"><a href="#I-x2F-O软件" class="headerlink" title="I&#x2F;O软件"></a>I&#x2F;O软件</h3><p>I&#x2F;O 设备管理软件的基本思想是采用分层的结构，把各种设备管理软件组织成一系列的层次</p>
+<p>低层与硬件特性相关，它把硬件和较高层的软件隔离开来</p>
+<table>
+<thead>
+<tr>
+<th>I&#x2F;O软件系统的层次</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户空间的I&#x2F;O软件</td>
+</tr>
+<tr>
+<td>设备独立的系统软件</td>
+</tr>
+<tr>
+<td>设备驱动程序</td>
+</tr>
+<tr>
+<td>中断处理程序</td>
+</tr>
+<tr>
+<td>硬件</td>
+</tr>
+</tbody></table>
+<h4 id="设备驱动程序"><a href="#设备驱动程序" class="headerlink" title="设备驱动程序"></a>设备驱动程序</h4><ul>
+<li>与具体的设备类型相关的，用来控制设备运行的程序。一般由设备生产商提供</li>
+<li>通常是平台相关（如Windows&#x2F;linux），适合于特定的某个设备（如键盘）或某类设备（如SCSI）</li>
+<li>每一个I&#x2F;O设备都需要相应的设备驱动程序，而每一个设备驱动程序一般只能处理一种设备类型。</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240513192620233.png" >
+        </sapn>
+      </p>
+<h4 id="设备独立的系统软件"><a href="#设备独立的系统软件" class="headerlink" title="设备独立的系统软件"></a>设备独立的系统软件</h4><p>设备独立的I&#x2F;O软件（I&#x2F;O子系统）是系统内核的一部分，其任务是实现所有设备都需要的一些通用的I&#x2F;O功能，并向用户级软件提供一个统一的接口。</p>
+<p>需要内核的I&#x2F;O软件的原因</p>
+<ul>
+<li>I&#x2F;O设备的种类繁多、功能各异，需要标准化接口</li>
+<li>I&#x2F;O设备不可靠，如存储介质失效或传输错误</li>
+<li>I&#x2F;O设备不可预测，且运行速度快慢不一</li>
+</ul>
+<p>内核I&#x2F;O子系统实现的主要功能：</p>
+<ul>
+<li>给上层应用的统一接口</li>
+<li>与设备驱动程序的统一接口</li>
+<li>提供与设备无关的数据块大小</li>
+<li>缓冲技术</li>
+</ul>
+<h5 id="上层接口"><a href="#上层接口" class="headerlink" title="上层接口"></a>上层接口</h5><p> 应用程序开发人员 - 程序&#x2F;OS的接口 - 操作系统</p>
+<ul>
+<li>设备独立性：使得用户在编写程序、访问各种I&#x2F;O设备时，无需事先指定特定的设备类型，各种类型的设备之间的差异由OS来处理，对用户是透明的。</li>
+<li>统一命名：即用简单的字符串或整数的方式来命名一个文件或设备。例如在Unix当中，所有的文件和设备都采用相同的命名规则：路径名。</li>
+<li>阻塞与非阻塞I&#x2F;O：当进程启动一个系统调用后，是立即返回还是被阻塞起来，直到I&#x2F;O操作完成。</li>
+</ul>
+<p>Windows中的CreateFile()函数</p>
+<ul>
+<li>创建或打开以下的某种对象：控制台、通信资源（如串口）、目录、磁盘设备（分区）、文件（软盘、硬盘、光盘）等；</li>
+<li><code>lpFileName</code>,            &#x2F;&#x2F; file name</li>
+<li><code>dwDesiredAccess</code>,  &#x2F;&#x2F; 访问模式，读&#x2F;写&#x2F;执行等</li>
+<li><code>dwShareMode</code>,       &#x2F;&#x2F; 共享模式，</li>
+<li><code>lpSecurityAttributes</code>, &#x2F;&#x2F; 安全属性</li>
+<li><code>dwCreationDisposition</code>, &#x2F;&#x2F; how to create</li>
+<li><code>dwFlagsAndAttributes</code>, &#x2F;&#x2F; file attributes</li>
+<li>设备独立性。统一命名：<ul>
+<li>“A:\1.txt”、“C:\2.txt”、“F:\3.txt”、“COM1”、“\.\A:”、“\.\C:”、“CON”。</li>
+</ul>
+</li>
+</ul>
+<p>阻塞与非阻塞I&#x2F;O</p>
+<ul>
+<li>阻塞：进程被阻塞起来，直到I&#x2F;O操作完成<ul>
+<li>易于使用和理解</li>
+<li>有些情形下不能满足要求</li>
+</ul>
+</li>
+<li>非阻塞：I&#x2F;O调用很快返回<ul>
+<li>异步性：当I&#x2F;O操作进行时进程继续执行，当I&#x2F;O操作完成时，I&#x2F;O子系统给进程发信号</li>
+<li>调用者具有主动权</li>
+<li>不易使用，多线程</li>
+</ul>
+</li>
+</ul>
+<p>阻塞I&#x2F;O示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//串口访问</span></span><br><span class="line">HANDLE hCom;</span><br><span class="line">hCom = CreateFile(<span class="string">&quot;COM1&quot;</span>,GENERIC_READ,<span class="number">0</span>,<span class="literal">NULL</span>, OPEN_EXISTING, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">//EV_RXCHAR: A character was received and placed in the input buffer</span></span><br><span class="line">SetCommMask(hCom, EV_RXCHAR); </span><br><span class="line">WaitCommEvent(hCom, &amp;dwEvtMask, <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">if</span> (dwEvtMask &amp; EV_RXCHAR) &#123;</span><br><span class="line">  ReadFile(hCom, buf, NumBytesToRead,NumBytesRead, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>非阻塞I&#x2F;O示例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">HANDLE hCom;</span><br><span class="line">OVERLAPPED o;</span><br><span class="line">hCom = CreateFile(“COM1”,GENERIC_READ,<span class="number">0</span>, 	<span class="literal">NULL</span>, OPEN_EXISTING,    FILE_FLAG_OVERLAPPED, <span class="literal">NULL</span>);<span class="comment">//重叠I/O</span></span><br><span class="line"><span class="comment">//EV_RXCHAR: A character was received and placed in the input buffer</span></span><br><span class="line">SetCommMask(hCom, EV_RXCHAR); </span><br><span class="line">o.hEvent = CreateEvent(<span class="literal">NULL</span>,...);</span><br><span class="line">bR = WaitCommEvent(hCom, &amp;dwEvtMask,&amp;o);</span><br><span class="line"><span class="keyword">if</span>(!bR)ASSERT(GetLastError()== ERROR_IO_PENDING);</span><br><span class="line">r = WaitForSingleObject(o.hEvent,INFINITE);</span><br><span class="line"><span class="keyword">if</span>(r == WAIT_OBJECT_0)&#123;  <span class="comment">//有数据到达</span></span><br><span class="line">	bR = ReadFile(hCom, buf, <span class="keyword">sizeof</span>(buf),&amp;nBytesRead, &amp;o);</span><br><span class="line">  	<span class="keyword">if</span>( !bR )&#123;</span><br><span class="line">    	<span class="keyword">if</span>(GetLastError()==ERROR_IO_PENDING)&#123;</span><br><span class="line">      		r = WaitForSingleObject(o.hEvent,<span class="number">2000</span>);</span><br><span class="line">      	<span class="keyword">if</span>(r == WAIT_OBJECT_0) </span><br><span class="line">          	GetOverlappedResult(hCom, &amp;o,&amp;nBytesRead, FALSE);</span><br><span class="line">      	<span class="keyword">else</span> <span class="keyword">if</span>(r == WAIT_TIMEOUT)...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Linux简化版本</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//阻塞地读取串口一个字符</span></span><br><span class="line"><span class="type">char</span> buf;  </span><br><span class="line">fd=open(<span class="string">&quot;/dev/ttyS1&quot;</span>,O_RDWR);  </span><br><span class="line">....  </span><br><span class="line">res=read(fd,&amp;buf,<span class="number">1</span>); <span class="comment">//当串口有输入时才返回</span></span><br><span class="line"><span class="keyword">if</span>(res==<span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,buf); </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//非阻塞地读取串口一个字符</span></span><br><span class="line"><span class="type">char</span> buf;  </span><br><span class="line">fd=open(<span class="string">&quot;/dev/ttyS1&quot;</span>,O_RDWR|O_NONBLOCK);  </span><br><span class="line">....  </span><br><span class="line"><span class="keyword">while</span>(read(fd,&amp;buf,<span class="number">1</span>)!=<span class="number">1</span>);<span class="comment">//串口无输入也返回</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,buf); </span><br></pre></td></tr></table></figure>
+
+<h5 id="下层接口"><a href="#下层接口" class="headerlink" title="下层接口"></a>下层接口</h5><p>操作系统 - OS&#x2F;设备驱动的接口 - 设备</p>
+<ul>
+<li>为实现设备独立性，OS把各种类型的设备划分为三类：块设备、字符设备和网络设备，并为每一类定义了一个标准接口，大多数设备驱动程序都支持其中之一。</li>
+<li>这个接口供上层的OS软件使用，它由一些抽象的函数组成，该接口是设备独立的。</li>
+<li>分层：其他OS软件&#x2F;接口&#x2F;设备驱动程序。</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240513194745286.png" >
+        </sapn>
+      </p>
+<p>字符设备驱动程序的接口</p>
+<ul>
+<li>open(deviceNumber)：启动设备并初始化 </li>
+<li>close(deviceNumber)：关闭设备</li>
+<li>read(deviceNumber, buffer, size)：从一个字节流设备中读入size个字节到buffer缓冲区中</li>
+<li>write(deviceNumber, buffer, size)：从缓冲区buffer中取出size个字节写入到一个字节流设备中</li>
+</ul>
+<p>块设备驱动程序的接口</p>
+<ul>
+<li>open(deviceNumber)：启动设备并初始化</li>
+<li>close(deviceNumber)：关闭设备</li>
+<li>read(deviceNumber, deviceAddr, buffer)：从设备地址deviceAddr处读入一块数据到buffer缓冲区</li>
+<li>write(deviceNumber, deviceAddr, buffer)：把buffer中的数据块写入到设备地址deviceAddr </li>
+<li>seek(deviceNumber, deviceAddress)：把访问指针定位到正确的位置</li>
+</ul>
+<h5 id="接口映射"><a href="#接口映射" class="headerlink" title="接口映射"></a>接口映射</h5><h4 id="用户空间的I-x2F-O软件"><a href="#用户空间的I-x2F-O软件" class="headerlink" title="用户空间的I&#x2F;O软件"></a>用户空间的I&#x2F;O软件</h4><p>在用户态下执行的I&#x2F;O软件</p>
+<ul>
+<li>库函数：如C语言里与I&#x2F;O有关的库函数write、read等，它们实质上只是将它们的参数再传递给系统调用函数，并由后者来完成实际的I&#x2F;O操作；</li>
+<li>Spooling技术：在多道系统中，一种处理独占设备的方法。</li>
+</ul>
+<p>利用假脱机技术（SPOOLing, Simultaneous Peripheral Operation On Line, 也称虚拟设备技术）可把独占设备转变成具有共享特征的虚拟设备，从而提高设备利用率。</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240513203611033.png" >
+        </sapn>
+      </p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><h5 id="一次I-x2F-O请求的生命周期"><a href="#一次I-x2F-O请求的生命周期" class="headerlink" title="一次I&#x2F;O请求的生命周期"></a>一次I&#x2F;O请求的生命周期</h5><p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240513205519165.png" >
+        </sapn>
+      </p>
+<h5 id="字符驱动示例（互斥访问）"><a href="#字符驱动示例（互斥访问）" class="headerlink" title="字符驱动示例（互斥访问）"></a>字符驱动示例（互斥访问）</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">foo_read</span><span class="params">(<span class="keyword">struct</span> file *filp, <span class="type">char</span> *buf,<span class="type">size_t</span> count, <span class="type">loff_t</span> *ppos)</span>&#123;</span><br><span class="line">    <span class="type">foo_dev_t</span> *foo_dev = filp-&gt;private_data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(down_interruptible(&amp;foo_dev-&gt;sem)<span class="comment">//互斥</span></span><br><span class="line">        <span class="keyword">return</span> -ERESTARTSYS;</span><br><span class="line">    foo_dev-&gt;intr = <span class="number">0</span>;  <span class="comment">//同步</span></span><br><span class="line">    outb(DEV_FOO_READ, DEV_FOO_CONTROL_PORT);</span><br><span class="line">    wait_event_interruptible(foo_dev-&gt;wait,(foo_dev-&gt;intr == <span class="number">1</span>)); <span class="comment">// 被阻塞</span></span><br><span class="line">    <span class="keyword">if</span> (put_user(foo_dev-&gt;data, buf))</span><br><span class="line">        <span class="keyword">return</span> -EFAULT;</span><br><span class="line">    up(&amp;foo_dev-&gt;sem);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo_interrupt</span><span class="params">(<span class="type">int</span> irq,<span class="type">void</span> *dev_id,<span class="keyword">struct</span> pt_regs *regs)</span>&#123;</span><br><span class="line">    foo-&gt;data = inb(DEV_FOO_DATA_PORT);</span><br><span class="line">    foo-&gt;intr = <span class="number">1</span>;</span><br><span class="line">    wake_up_interruptible(&amp;foo-&gt;wait);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="块设备的驱动程序方案"><a href="#块设备的驱动程序方案" class="headerlink" title="块设备的驱动程序方案"></a>块设备的驱动程序方案</h5><ul>
+<li>数据结构：请求队列（request queue）；</li>
+<li>块设备驱动程序：上层函数，负责管理请求队列；底层函数，负责与硬件打交道，完成真正的I&#x2F;O；</li>
+<li>I&#x2F;O请求的提交与真正实现是分离的。各个用户进程（通过内核）调用上层函数，提交I&#x2F;O请求(mak_request)，然后阻塞；底层函数则从队列中取出每个I&#x2F;O请求，并完成之。</li>
+<li>能对各I&#x2F;O请求进行优化，如数据块重组。</li>
+</ul>
+<blockquote>
+<p>Example: A scsi disk driver in UNIX</p>
+<ul>
+<li>sdstrategy: do error checking, if device is not busy, issue a start request for the specific unit (disk).</li>
+<li>sdustart: find the proper queue for this unit, put the request on the queue, issue start.</li>
+<li>sdstart: request the resources needed for the request (scsi bus or DMA resources).</li>
+<li>sdgo: write the commands to the controller, set the interrupt vector, issue the start request to the controller.</li>
+<li>sdintr: called from I&#x2F;O interrupt, finish the request (schedule the waiting process), issue a new request if there is one.</li>
+</ul>
+</blockquote>
+<h3 id="存储设备"><a href="#存储设备" class="headerlink" title="存储设备"></a>存储设备</h3><h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240513211921122.png" >
+        </sapn>
+      </p>
+<ul>
+<li>磁道：当传动装置固定在某个位置时，若盘面旋转一圈，磁头所能访问的圆环区域；</li>
+<li>柱面：在所有盘面上，半径相同的所有磁道即组成一个柱面；</li>
+<li>扇区：每一个磁道被划分为若干个扇区；</li>
+<li>磁盘的访问过程：以扇区作为最小的寻址和存取单位。首先移动传动装置，通过它来移动磁头，从而定位正确的柱面。然后选中相应的磁头，等我们想要的扇区正好路过这个磁头正下方的时候，就可以对它进行访问了。</li>
+</ul>
+<h5 id="读写字节"><a href="#读写字节" class="headerlink" title="读写字节"></a>读写字节</h5><ul>
+<li>读入包含该字节的扇区；</li>
+<li>修改该字节；</li>
+<li>把整个扇区写回到磁盘</li>
+</ul>
+<p>磁盘的访问是以扇区作为最小的寻址和存取单位，在访问一个磁盘扇区时，所需的时间主要有：</p>
+<ul>
+<li>柱面定位时间：磁头在磁头臂牵引下，移动到指定柱面的机械运动时间；</li>
+<li>旋转延迟时间：等待指定的扇区旋转到磁头的正下方所需的机械运动时间；它与磁盘转速有关，如：软盘转速可为600rpm(每分钟转速)，硬盘可为7,200rpm至10,000rpm；</li>
+<li>数据传送时间：从指定扇区读写数据的时间。</li>
+</ul>
+<h5 id="提高磁盘访问速度"><a href="#提高磁盘访问速度" class="headerlink" title="提高磁盘访问速度"></a>提高磁盘访问速度</h5><ul>
+<li>合理地组织磁盘数据的存储位置</li>
+<li>磁盘调度<ul>
+<li>减少平均的柱面定位时间将有效地改进系统的输入输出性能</li>
+<li>来自不同进程的磁盘访问请求构成一个随机分布的请求队列。磁盘调度的基本思路就是通过对这些I&#x2F;O请求的执行顺序进行调整，来减少整个请求队列所对应的平均柱面定位时间</li>
+<li>磁盘调度算法：先来先服务、最短定位时间优先、电梯算法等。</li>
+</ul>
+</li>
+</ul>
+<h5 id="磁盘格式化"><a href="#磁盘格式化" class="headerlink" title="磁盘格式化"></a>磁盘格式化</h5><ul>
+<li>低级格式化<ul>
+<li>标出磁道和扇区，在相邻的扇区之间有狭窄的间隙隔开。一个扇区的格式是：相位编码（preamble）＋数据区＋纠错码（ECC）<ul>
+<li>相位编码：以某个特定的位组合模式开始，向硬件表明这是一个新扇区的开始。还包括柱面号、扇区号、扇区大小等类似信息；</li>
+<li>数据区：由格式化程序确定其大小，一般512；</li>
+<li>纠错码：包含冗余信息，用来纠正读取错误</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分区<ul>
+<li>用分区软件把整个硬盘划分为若干个逻辑分区，每个分区可视为一个独立的磁盘。在多数计算机上，用第0个扇区来存放一些系统启动代码和一个分区表，记录了每个分区的起始扇区和大小</li>
+</ul>
+</li>
+<li>高级格式化<ul>
+<li>对每一个逻辑分区，分别进行一种高级格式化（即通常的格式化操作），生成一个引导块、空闲存储管理结构、根目录和一个空白的文件系统。对不同的分区，可以使用不同的文件系统，如FAT16、FAT32、NTFS等</li>
+</ul>
+</li>
+</ul>
+<h4 id="SSD硬盘"><a href="#SSD硬盘" class="headerlink" title="SSD硬盘"></a>SSD硬盘</h4><h5 id="闪存"><a href="#闪存" class="headerlink" title="闪存"></a>闪存</h5><p>闪速存储器（Flash Memory）</p>
+<ul>
+<li>可读&#x2F;可写</li>
+<li>基本单元电路（存储细胞）为双层浮空栅MOS管，带电表示存入0，不带电表示存入1</li>
+<li>速度快，无机械装置，无需柱面定位和旋转延迟，可用电气的方法快速地擦写</li>
+<li>非易失型，在断电后不丢失信息</li>
+<li>经久耐用（压力、温度、水），在嵌入式设备中得到广泛应用</li>
+</ul>
+<h5 id="NOR-Flash"><a href="#NOR-Flash" class="headerlink" title="NOR Flash"></a>NOR Flash</h5><ul>
+<li>设计目标：替代原来的ROM，可方便地进行重写。用于存储不经常更新的程序代码。</li>
+<li>读操作：提供完全的地址和数据总线，可以随机地访问任何存储单元，类似于RAM。处理器可以直接执行上面的程序。</li>
+<li>写操作：随机写，但只能从1到0。</li>
+<li>擦除操作：必须以块为单位，通常的块大小为64、128或256KB。最大擦写次数可达100万次。</li>
+</ul>
+<h5 id="NAND-flash"><a href="#NAND-flash" class="headerlink" title="NAND flash"></a>NAND flash</h5><ul>
+<li>设计目标：缩小芯片面积，实现大容量的Flash Memory，以匹敌磁介质存储设备，如硬盘。</li>
+<li>写操作能力增强，与NOR相比，有较快的擦除和写入速度。体积小，存储密度大，成本低。</li>
+<li>I&#x2F;O接口不提供随机访问的外部地址总线，所有操作（读、擦除和写）都必须以块为单位。</li>
+<li>不适合取代原来的ROM，因为微处理器不能直接执行存储在它上面的代码。</li>
+<li>在访问方式和容量上类似于硬盘这样的块设备。</li>
+</ul>
+<blockquote>
+<p>在一个嵌入式系统（如数码相机或摄像机）中，可能会用到哪些不同类型的存储器</p>
+<ul>
+<li>存放BootLoader的存储器，必须随机访问，其内容主要是代码，一般不会修改。非易失型。<ul>
+<li>可用ROM或NOR Flash实现。</li>
+</ul>
+</li>
+<li>内存。程序必须装入内存执行。要求可读写、随机访问，速度要快。<ul>
+<li>可用DRAM实现。</li>
+</ul>
+</li>
+<li>系统的固件放哪？可读可写，不需要随机访问，容量要大。<ul>
+<li>可用NAND Flash实现。</li>
+</ul>
+</li>
+<li>用户产生的数据文件放哪？<ul>
+<li>NAND Flash。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>页（page）：一页有若干个KB，如4KB</p>
+<p>块（block）：一块由若干个页组成</p>
+<p>读取一页</p>
+<ul>
+<li>读取某一页的全部内容</li>
+<li>时间开销：10—20微秒</li>
+<li>所需时间与页号和之前的访问请求无关</li>
+<li>硬盘：柱面定位4-15毫秒、旋转延迟2-6毫秒、数据读取1.4微秒</li>
+</ul>
+<p>写一页</p>
+<ul>
+<li>写操作只能将数据位从1写成0，不能从0写成1（1111-&gt;1110)，故在重新写入前先要执行擦除操作，初始为1</li>
+<li>擦除操作最小单位是块，且次数有限</li>
+<li>时间开销：擦~1-2ms，写20-200μs</li>
+</ul>
+<h5 id="SSD硬盘-1"><a href="#SSD硬盘-1" class="headerlink" title="SSD硬盘"></a>SSD硬盘</h5><ul>
+<li>SSD（Solid-State Drive）：固态硬盘，一种固态存储设备，使用集成电路部件来永久地存储数据，外部接口与传统硬盘相同</li>
+<li>SSD的存储介质主要是NAND flash，早期也有用DRAM的</li>
+<li>优点：可靠、无噪声、读速快（总是快）</li>
+<li>缺点：价格贵、写速慢、擦除次数有限</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240513214420265.png" >
+        </sapn>
+      </p>
+<blockquote>
+<ul>
+<li>SSD硬盘不需要碎片整理，SSD硬盘不需要机械寻址。</li>
+<li>要尽量减少SSD硬盘的擦写次数</li>
+<li>SSD硬盘存放常用、速度慢及以读为主的内容，而不常用、速度快及频繁删除的内容尽量存放在机械硬盘上</li>
+</ul>
+</blockquote>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>一个简单的文件系统</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240520192719864.png" >
+        </sapn>
+      </p>
+<p>可以从两种不同的观点来看待文件系统：</p>
+<ul>
+<li>用户观点：关心的是文件系统所提供的对外的用户接口，包括文件如何命名、如何保护、如何访问（创建、打开、关闭、读、写等）；</li>
+<li>操作系统观点：关心的是如何来实现与文件有关的各个功能模块，包括如何来管理存储空间、文件系统的布局、文件的存储位置等。</li>
+</ul>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><p>文件是一种抽象机制。可以视为一个单独的连续的逻辑地址空间，其大小即为文件的大小，与进程的地址空间无关。</p>
+<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>文件名.扩展名</p>
+<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><p>指文件的逻辑结构，即文件系统提供给用户的文件结构形式，它独立于在外存上的物理存储结构。</p>
+<blockquote>
+<p>无结构：整个文件由一序列无结构的字节流组成；</p>
+</blockquote>
+<h5 id="文件的访问方式"><a href="#文件的访问方式" class="headerlink" title="文件的访问方式"></a>文件的访问方式</h5><p>随机存取：根据所需访问的字节或记录在文件中的位置，将文件的读写指针直接移至该位置，然后进行存取。每一次存取操作都要指定该操作的起始位置。现代OS都提供随机存取的方式。</p>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>普通文件（regular file）：包含用户信息的文件；<ul>
+<li>ASCII文件：由一行行的文本组成；</li>
+<li>二进制文件：非ASCII文件，通常具有某种内部的逻辑结构，为相关的应用程序所了解。</li>
+</ul>
+</li>
+<li>目录文件（directory）：管理文件系统结构的系统文件。</li>
+</ul>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>每个文件都有一个名字和它所保存的信息，此外，OS还给每个文件附加了一些其他的信息，这些信息称为文件的属性。</li>
+<li>常见的一些文件属性：<ul>
+<li>保护信息：谁可以对该文件进行何种操作；</li>
+<li>创建者：该文件是谁创建的；</li>
+<li>只读标志位：0表示可读&#x2F;写，1表示只读；</li>
+<li>隐藏标志位：0表示普通文件，1表示隐藏文件；</li>
+<li>系统标志位：0表示普通文件，1表示系统文件；</li>
+<li>创建时间、最后访问时间、最后修改时间；</li>
+<li>文件长度。</li>
+</ul>
+</li>
+</ul>
+<h4 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h4><p>文件控制指围绕文件属性的控制所进行的文件操作。</p>
+<ul>
+<li>创建create：创建一个空白的文件；</li>
+<li>删除delete：删除一个文件，释放磁盘空间；</li>
+<li>获取文件属性get attributes：读取文件的属性信息;</li>
+<li>设置文件属性set attributes：设置文件的属性信息；</li>
+<li>修改文件名rename：改变文件的文件名。</li>
+</ul>
+<h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p>文件访问指围绕文件内容的读写所进行的文件操作。</p>
+<ul>
+<li>打开open：在访问一个文件前，必须先打开它；</li>
+<li>关闭close：在使用完一个文件后，要关闭该文件；</li>
+<li>读read：从文件中读取数据；</li>
+<li>写write：把数据写入文件；</li>
+<li>添加append：添加数据到文件的末尾；</li>
+<li>定位seek：指定文件访问的当前位置。</li>
+</ul>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>目录（directory）也称文件夹（folder），它是一张表格，记录了在该目录下的每一个文件的文件名和其他的一些管理信息。</li>
+<li>一般情况下，每个文件占用该表格的某一行，即一个目录项；</li>
+<li>这张表格本身是以文件的形式存放在磁盘上；</li>
+<li>在目录的管理上，也有相关的系统调用，如：<ul>
+<li>创建目录create；</li>
+<li>删除目录delete；</li>
+<li>修改目录名rename；</li>
+</ul>
+</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240520193954619.png" >
+        </sapn>
+      </p>
+<p>多级目录结构</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240520194039722.png" >
+        </sapn>
+      </p>
+<h3 id="文件系统的实现"><a href="#文件系统的实现" class="headerlink" title="文件系统的实现"></a>文件系统的实现</h3><ul>
+<li>文件的逻辑结构一般是字节流；</li>
+<li>对于用户而言，可以在这种字节流的基础上，构造自己所需的各种类型的数据结构，如：记录结构、树状结构、线性结构等；</li>
+<li>对于文件系统而言，必须将这种字节流（一个连续的逻辑地址空间）保存在磁盘的某些扇区中；</li>
+<li>通常做法：把磁盘空间划分为一个个大小相同的块（block），称为物理块；把该逻辑地址空间也分成大小相同的逻辑块，在文件系统的内部，以块为单位来进行操作；</li>
+<li>一个物理块由一个或多个连续的扇区组成。</li>
+</ul>
+<h4 id="文件系统的布局"><a href="#文件系统的布局" class="headerlink" title="文件系统的布局"></a>文件系统的布局</h4><ul>
+<li>一个磁盘在低级格式化以后，可以用分区软件划分为若干个分区。在分区以后，磁盘的扇区0称为主引导记录（Master  Boot  Record,  MBR），用来启动计算机，MBR的结尾是一个分区表，记录了每个分区的起始扇区和大小，其中有一个分区为活动分区；</li>
+<li>在不同的分区中，可以使用不同的文件系统，每一种文件系统在分区中的布局可能各不相同。</li>
+</ul>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240520203313469.png" >
+        </sapn>
+      </p>
+<h4 id="文件的实现"><a href="#文件的实现" class="headerlink" title="文件的实现"></a>文件的实现</h4><h5 id="文件控制块"><a href="#文件控制块" class="headerlink" title="文件控制块"></a>文件控制块</h5><ul>
+<li><p>文件控制块（File  Control  Block，FCB）：是操作系统为了管理文件而设置的数据结构，存放了文件的所有管理信息。是文件存在的标志； </p>
+</li>
+<li><p>文件控制块的内容一般包括：</p>
+<ul>
+<li>文件的类型、长度；</li>
+<li>文件的所有者、文件的访问权限；</li>
+<li>文件的创建时间、最后访问时间、最后修改时间；</li>
+<li>文件所在的物理块信息；</li>
+</ul>
+</li>
+<li><p>在Linux中，称为I结点（inode，索引结点）。</p>
+</li>
+</ul>
+<h5 id="文件的物理结构"><a href="#文件的物理结构" class="headerlink" title="文件的物理结构"></a>文件的物理结构</h5><p>文件在物理介质上的存放方式。</p>
+<p>具体而言，以块为单位，研究如何把文件的一个个连续的逻辑块存放在不同的物理块当中，即研究逻辑块与物理块之间的映射关系（类似于页式存储管理方案）</p>
+<h5 id="连续结构"><a href="#连续结构" class="headerlink" title="连续结构"></a>连续结构</h5><p>连续结构（顺序结构）：把文件的各个逻辑块按照顺序存放在若干个连续的物理块当中。</p>
+<ul>
+<li>优点：<ul>
+<li>简单，容易实现从逻辑块到物理块的映射关系，设起始的物理块号为S，则第n个逻辑块的地址为S+n</li>
+<li>对于机械硬盘，由于物理块是顺序存放的，所以在访问文件时，只需将磁头定位到第一个物理块，即可顺序地读取，因而速度很快。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>随着磁盘文件的增加和删除，将形成已占用物理块与空闲物理块交错的情形，那些较小的、无法再利用的物理块，即成为外碎片。</li>
+<li>文件的大小不能动态的增长，对于在创建之时未知大小的文件，预留空间少了则不够用，预留多了则浪费。</li>
+</ul>
+</li>
+</ul>
+<p>在CD-ROM、DVD和其他一些一次性写入的光学存储介质中，有着广泛的应用。</p>
+<h5 id="链表结构"><a href="#链表结构" class="headerlink" title="链表结构"></a>链表结构</h5><p>链表结构：把文件的各个逻辑块依次存放在若干个（可以）不连续的物理块当中，各块之间通过指针连接，前一个物理块指向下一个物理块。</p>
+<ul>
+<li>缺点：<ul>
+<li>只能进行顺序访问，不能进行随机访问。为了访问一个文件的第n个逻辑块，必须从文件的第一个物理块开始，按照指针所指向的地址，顺序地访问前n个块，即为了得到第n个逻辑块的物理块地址，必须先访问n-1次的硬盘，速度非常慢；</li>
+<li>每个物理块上的数据存储空间不再是2的整数次幂（指针占用了若干个字节），从而使文件的访问不太方便。</li>
+</ul>
+</li>
+</ul>
+<h5 id="带有文件分配表的链表结构"><a href="#带有文件分配表的链表结构" class="headerlink" title="带有文件分配表的链表结构"></a>带有文件分配表的链表结构</h5><p>基本思路：在链表结构的基础上，把每一个物理块当中的链表指针抽取出来，单独组成一个表格，即文件分配表（File  Allocation  Table,  FAT），并把它放在内存当中。</p>
+<ul>
+<li>特点：<ul>
+<li>实现了链表指针与文件数据的分离，整个物理块都可以用来存放数据；</li>
+<li>FAT表放在内存当中，因此，若要随机地访问文件的第n个逻辑块，可以先从FAT表中查到相应的物理块编号（地址），然后再去访问外存，这样只需访问一次外存，速度快。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>需要把整个FAT表保存在内存中，会占用较大的内存空间。例如，假设硬盘20GB，块大小为1KB，表项长度4个字节，则整个FAT表大小为80MB</li>
+<li>FAT文件系统仍然在使用中，如U盘、SD卡等</li>
+</ul>
+</li>
+</ul>
+<p>整个硬盘共用一张FAT表</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240520210727614.png" >
+        </sapn>
+      </p>
+<h5 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h5><p>索引结构：类似于普通页表，把文件的每一个逻辑块所对应的物理块编号直接记录在FCB中，称为I结点（inode，index-node，索引结点）。</p>
+<ul>
+<li>特点：<ul>
+<li>每一个文件都有一个索引结点；</li>
+<li>直接实现逻辑块与物理块的映射；</li>
+<li>只需把那些正被使用的文件的索引结点装入内存即可，不必象FAT表那样须全部装入。</li>
+</ul>
+</li>
+</ul>
+<p>UFS-Unix File System</p>
+<p>12 direct blocks</p>
+<p>直接索引 48k</p>
+<p>一级索引 4M</p>
+<p>二级索引 4G</p>
+<p>三级索引 4T</p>
+<p>
+        <span class="lazyload-img-span">
+        <img   
+           data-src="https://cdn.jsdelivr.net/gh/louisiy/ImageStorage/img/image-20240520204257659.png" >
+        </sapn>
+      </p>
+<h4 id="目录的实现"><a href="#目录的实现" class="headerlink" title="目录的实现"></a>目录的实现</h4><p>目录的主要功能：根据用户给出的ASCII形式的文件名（路径名），迅速地定位到相应的文件控制块。</p>
+<p>不同的系统采用不同的实现方法，一般分为两类：</p>
+<ul>
+<li>直接法：目录项＝文件名＋FCB（属性信息、在外存上的存放位置）</li>
+<li>间接法：目录项＝文件名＋FCB地址（索引号）</li>
+</ul>
+<p>不管是何种方法，给定一个文件名，即可返回相应的FCB。</p>
+<h4 id="文件属性的访问"><a href="#文件属性的访问" class="headerlink" title="文件属性的访问"></a>文件属性的访问</h4><p>访问目录项</p>
+<ul>
+<li>创建文件</li>
+<li>修改文件属性</li>
+<li>删除文件</li>
+<li>修改文件名</li>
+<li>移动文件</li>
+</ul>
+<h4 id="文件内容的访问"><a href="#文件内容的访问" class="headerlink" title="文件内容的访问"></a>文件内容的访问</h4><h5 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h5><p>在读写一个文件之前，先要打开该文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">open</span><span class="params">(<span class="type">char</span> *filename, <span class="type">int</span> flags)</span> <span class="comment">//返回fd</span></span><br></pre></td></tr></table></figure>
+
+<p><code>flags</code>是一个位向量:</p>
+<ul>
+<li>Access modes (Rd, Wr, …)</li>
+<li>Open Flags (Create, …)</li>
+<li>Operating modes (Appends, …)</li>
+</ul>
+<p>作用</p>
+<ul>
+<li>利用目录结构进行文件名解析，将文件名（路径名）翻译为一个整数fd</li>
+<li>在进程PCB中的“打开文件表”中增加一项，返回其下标fd</li>
+<li>在硬盘找到该文件的FCB并读入内存，通过fd可访问该FCB，进而定位各物理块</li>
+<li>其它工作，如检查文件访问的合法性</li>
+</ul>
+<h5 id="目录检索"><a href="#目录检索" class="headerlink" title="目录检索"></a>目录检索</h5><p>解析路径名”&#x2F;Ann&#x2F;mail&#x2F;B”的执行过程</p>
+<ul>
+<li>读入根结点的FCB（位于硬盘固定区域）</li>
+<li>读入根目录的第1个数据块</li>
+<li>该数据块即为根目录的开始部分的内容，在其中搜索Ann子目录</li>
+<li>读入”Ann”目录文件的FCB</li>
+<li>读入”Ann”目录文件的第1个数据块，并在其中搜索”mail”子目录</li>
+<li>读入”mail”目录文件的FCB</li>
+<li>读入”mail”目录文件的第1个数据块，并在其中搜索”B”</li>
+<li>读入”B”目录文件的FCB</li>
+</ul>
+<h5 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h5><p>在打开一个文件后，即可对该文件进行读写，典型的读写操作是：读写该文件从某个位置开始的若干个字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lseek(fd, <span class="number">100</span>, SEEK_SET);</span><br><span class="line">read(fd，buffer，<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>其他的一些系统调用：</p>
+<ul>
+<li>创建文件create；</li>
+<li>写文件write；</li>
+<li>添加append；</li>
+<li>文件定位seek；<br>……</li>
+</ul>
+
         <!-- 分类文章 -->
         
       </div>
       <div class="post-content-inner-space">
         
           <div class="space-toc-main animate__animated  animate__fadeInUp">
-            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="space-toc-text">概述</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="space-toc-text">进程管理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%82%A8%E5%AD%98%E7%AE%A1%E7%90%86"><span class="space-toc-text">储存管理</span></a></li></ol>
+            <ol class="space-toc"><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="space-toc-text">概述</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="space-toc-text">进程管理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E5%82%A8%E5%AD%98%E7%AE%A1%E7%90%86"><span class="space-toc-text">储存管理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#I-x2F-O%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86"><span class="space-toc-text">I&#x2F;O设备管理</span></a></li><li class="space-toc-item space-toc-level-2"><a class="space-toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="space-toc-text">文件系统</span></a></li></ol>
            </div>
         
       </div>
